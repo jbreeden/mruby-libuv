@@ -185,7 +185,7 @@ mrb_UV_UvCpuInfoT_get_cpu_times(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvCpuInfoT::cpu_times_writer */
-/* sha: 290442aaf473c81c0dfce7384e8870e4e58a1d1b44ec0daa2b4f327f09b78381 */
+/* sha: 98355fa37022035e39273faf099d84d64e1598dbdc35d75a9a164942fd096664 */
 #if BIND_UvCpuInfoT_cpu_times_FIELD_WRITER
 /* set_cpu_times
  *
@@ -200,12 +200,12 @@ mrb_UV_UvCpuInfoT_set_cpu_times(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &cpu_times);
 
   /* type checking */
-  if (!mrb_obj_is_kind_of(mrb, cpu_times, uv_cpu_times_s_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "uv_cpu_times_s expected");
+  if (!mrb_obj_is_kind_of(mrb, cpu_times, UvCpuTimesS_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UvCpuTimesS expected");
     return mrb_nil_value();
   }
 
-  uv_cpu_times_s native_cpu_times = *(mruby_unbox_uv_cpu_times_s(cpu_times));
+  struct uv_cpu_times_s native_cpu_times = *(mruby_unbox_uv_cpu_times_s(cpu_times));
 
   native_self->cpu_times = native_cpu_times;
   

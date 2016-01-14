@@ -70,42 +70,50 @@ mrb_UV_UvShutdownT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
  * Fields
  */
 
-/* MRUBY_BINDING: UvShutdownT::uv_stream_t_reader */
-/* sha: 125522d0ec4fbdd2e8f5db8f48ebde04b233a419c034d437acbb0a866511db27 */
-#if BIND_UvShutdownT_uv_stream_t_FIELD_READER
-/* get_uv_stream_t
+/* MRUBY_BINDING: UvShutdownT::handle_reader */
+/* sha: 47b344e2ff265eb999d0ee168c90fd20bd6d339c7ede9f5deb6a4cf8265485bd */
+#if BIND_UvShutdownT_handle_FIELD_READER
+/* get_handle
  *
- * Return Type: int
+ * Return Type: uv_stream_t *
  */
 mrb_value
-mrb_UV_UvShutdownT_get_uv_stream_t(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvShutdownT_get_handle(mrb_state* mrb, mrb_value self) {
   uv_shutdown_t * native_self = mruby_unbox_uv_shutdown_t(self);
 
-  int native_uv_stream_t = native_self->uv_stream_t;
+  uv_stream_t * native_handle = native_self->handle;
 
-  mrb_value uv_stream_t = mrb_fixnum_value(native_uv_stream_t);
+  mrb_value handle = (native_handle == NULL ? mrb_nil_value() : mruby_box_uv_stream_t(mrb, native_handle));
 
-  return uv_stream_t;
+  return handle;
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvShutdownT::uv_stream_t_writer */
-/* sha: af6e52c0ccd5173a4d947e07b47328ceccce4b570412e417e275f41123cff9d8 */
-#if BIND_UvShutdownT_uv_stream_t_FIELD_WRITER
-/* set_uv_stream_t
+/* MRUBY_BINDING: UvShutdownT::handle_writer */
+/* sha: 9b93c25b93aa2203b1dd436422c95a1d99bde326f46d1162a9d4233d4b175a09 */
+#if BIND_UvShutdownT_handle_FIELD_WRITER
+/* set_handle
  *
  * Parameters:
- * - value: int
+ * - value: uv_stream_t *
  */
 mrb_value
-mrb_UV_UvShutdownT_set_uv_stream_t(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvShutdownT_set_handle(mrb_state* mrb, mrb_value self) {
   uv_shutdown_t * native_self = mruby_unbox_uv_shutdown_t(self);
-  mrb_int native_uv_stream_t;
+  mrb_value handle;
 
-  mrb_get_args(mrb, "i", &native_uv_stream_t);
+  mrb_get_args(mrb, "o", &handle);
 
-  native_self->uv_stream_t = native_uv_stream_t;
+  /* type checking */
+  if (!mrb_obj_is_kind_of(mrb, handle, UvStreamT_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
+    return mrb_nil_value();
+  }
+
+  uv_stream_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_stream_t(handle));
+
+  native_self->handle = native_handle;
   
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
@@ -163,50 +171,6 @@ mrb_UV_UvShutdownT_set_cb(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvShutdownT::_reader */
-/* sha: f5f51e1ed9151615f6fe4ccae1cf890ba96578a402f515743c4ea5ce5d06f029 */
-#if BIND_UvShutdownT__FIELD_READER
-/* get_
- *
- * Return Type: int
- */
-mrb_value
-mrb_UV_UvShutdownT_get_(mrb_state* mrb, mrb_value self) {
-  uv_shutdown_t * native_self = mruby_unbox_uv_shutdown_t(self);
-
-  int native_ = native_self->;
-
-  mrb_value  = mrb_fixnum_value(native_);
-
-  return ;
-}
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvShutdownT::_writer */
-/* sha: 7a04e80fb3fbbbdf23aa567974c09e8e3f6d3e7f3da7ec726ab458b9c905225b */
-#if BIND_UvShutdownT__FIELD_WRITER
-/* set_
- *
- * Parameters:
- * - value: int
- */
-mrb_value
-mrb_UV_UvShutdownT_set_(mrb_state* mrb, mrb_value self) {
-  uv_shutdown_t * native_self = mruby_unbox_uv_shutdown_t(self);
-  mrb_int native_;
-
-  mrb_get_args(mrb, "i", &native_);
-
-  native_self-> = native_;
-  
-  mrb_value value_as_mrb_value;
-  mrb_get_args(mrb, "o", &value_as_mrb_value);
-  return value_as_mrb_value;
-}
-#endif
-/* MRUBY_BINDING_END */
-
 
 void mrb_UV_UvShutdownT_init(mrb_state* mrb) {
 /* MRUBY_BINDING: UvShutdownT::class_definition */
@@ -225,27 +189,21 @@ void mrb_UV_UvShutdownT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvShutdownT::attr_definitions */
-/* sha: 7f5b7b043a896a07edc5ea4bee49d7a527de9cabc8a6d4ca53233cd2c3ee7a3c */
+/* sha: 57a0265a3dfd4a32f0618b33ac129c872153dd78609308b9c0acecfb956ef04f */
   /*
    * Fields
    */
-#if BIND_UvShutdownT_uv_stream_t_FIELD_READER
-  mrb_define_method(mrb, UvShutdownT_class, "uv_stream_t", mrb_UV_UvShutdownT_get_uv_stream_t, MRB_ARGS_ARG(0, 0));
+#if BIND_UvShutdownT_handle_FIELD_READER
+  mrb_define_method(mrb, UvShutdownT_class, "handle", mrb_UV_UvShutdownT_get_handle, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvShutdownT_uv_stream_t_FIELD_WRITER
-  mrb_define_method(mrb, UvShutdownT_class, "uv_stream_t=", mrb_UV_UvShutdownT_set_uv_stream_t, MRB_ARGS_ARG(1, 0));
+#if BIND_UvShutdownT_handle_FIELD_WRITER
+  mrb_define_method(mrb, UvShutdownT_class, "handle=", mrb_UV_UvShutdownT_set_handle, MRB_ARGS_ARG(1, 0));
 #endif
 #if BIND_UvShutdownT_cb_FIELD_READER
   mrb_define_method(mrb, UvShutdownT_class, "cb", mrb_UV_UvShutdownT_get_cb, MRB_ARGS_ARG(0, 0));
 #endif
 #if BIND_UvShutdownT_cb_FIELD_WRITER
   mrb_define_method(mrb, UvShutdownT_class, "cb=", mrb_UV_UvShutdownT_set_cb, MRB_ARGS_ARG(1, 0));
-#endif
-#if BIND_UvShutdownT__FIELD_READER
-  mrb_define_method(mrb, UvShutdownT_class, "", mrb_UV_UvShutdownT_get_, MRB_ARGS_ARG(0, 0));
-#endif
-#if BIND_UvShutdownT__FIELD_WRITER
-  mrb_define_method(mrb, UvShutdownT_class, "=", mrb_UV_UvShutdownT_set_, MRB_ARGS_ARG(1, 0));
 #endif
 /* MRUBY_BINDING_END */
 

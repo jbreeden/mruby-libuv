@@ -70,42 +70,50 @@ mrb_UV_UvUdpSendT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
  * Fields
  */
 
-/* MRUBY_BINDING: UvUdpSendT::uv_udp_t_reader */
-/* sha: 8fe2bbbf2b334c482fe89ba260f426d5fd81bdf366952bd8b57cc921b250f084 */
-#if BIND_UvUdpSendT_uv_udp_t_FIELD_READER
-/* get_uv_udp_t
+/* MRUBY_BINDING: UvUdpSendT::handle_reader */
+/* sha: e73192b0aa9e9d9eaa8bff5b3cdb609b82533914bb4731eba96494a385422d1f */
+#if BIND_UvUdpSendT_handle_FIELD_READER
+/* get_handle
  *
- * Return Type: int
+ * Return Type: uv_udp_t *
  */
 mrb_value
-mrb_UV_UvUdpSendT_get_uv_udp_t(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvUdpSendT_get_handle(mrb_state* mrb, mrb_value self) {
   uv_udp_send_t * native_self = mruby_unbox_uv_udp_send_t(self);
 
-  int native_uv_udp_t = native_self->uv_udp_t;
+  uv_udp_t * native_handle = native_self->handle;
 
-  mrb_value uv_udp_t = mrb_fixnum_value(native_uv_udp_t);
+  mrb_value handle = (native_handle == NULL ? mrb_nil_value() : mruby_box_uv_udp_t(mrb, native_handle));
 
-  return uv_udp_t;
+  return handle;
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpSendT::uv_udp_t_writer */
-/* sha: 87743d0da8d6a7ca7347cd82b4425f55b94d2237be3cf9c4183f211619e6b46e */
-#if BIND_UvUdpSendT_uv_udp_t_FIELD_WRITER
-/* set_uv_udp_t
+/* MRUBY_BINDING: UvUdpSendT::handle_writer */
+/* sha: e4007c643e0450f2130c7c33bca26602bd034b2b7235b8f2be3baf2334ab2b94 */
+#if BIND_UvUdpSendT_handle_FIELD_WRITER
+/* set_handle
  *
  * Parameters:
- * - value: int
+ * - value: uv_udp_t *
  */
 mrb_value
-mrb_UV_UvUdpSendT_set_uv_udp_t(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvUdpSendT_set_handle(mrb_state* mrb, mrb_value self) {
   uv_udp_send_t * native_self = mruby_unbox_uv_udp_send_t(self);
-  mrb_int native_uv_udp_t;
+  mrb_value handle;
 
-  mrb_get_args(mrb, "i", &native_uv_udp_t);
+  mrb_get_args(mrb, "o", &handle);
 
-  native_self->uv_udp_t = native_uv_udp_t;
+  /* type checking */
+  if (!mrb_obj_is_kind_of(mrb, handle, UvUdpT_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UvUdpT expected");
+    return mrb_nil_value();
+  }
+
+  uv_udp_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_udp_t(handle));
+
+  native_self->handle = native_handle;
   
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
@@ -163,50 +171,6 @@ mrb_UV_UvUdpSendT_set_cb(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpSendT::_reader */
-/* sha: 4c68f12b7395559873e31bac6f91898a0a1f1de9e8805ba6cd3301a10350e4ea */
-#if BIND_UvUdpSendT__FIELD_READER
-/* get_
- *
- * Return Type: int
- */
-mrb_value
-mrb_UV_UvUdpSendT_get_(mrb_state* mrb, mrb_value self) {
-  uv_udp_send_t * native_self = mruby_unbox_uv_udp_send_t(self);
-
-  int native_ = native_self->;
-
-  mrb_value  = mrb_fixnum_value(native_);
-
-  return ;
-}
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvUdpSendT::_writer */
-/* sha: 5c3b14203c3e02ff6021fac9173528b7b8505e4a68417c283c3b1d1995eca3db */
-#if BIND_UvUdpSendT__FIELD_WRITER
-/* set_
- *
- * Parameters:
- * - value: int
- */
-mrb_value
-mrb_UV_UvUdpSendT_set_(mrb_state* mrb, mrb_value self) {
-  uv_udp_send_t * native_self = mruby_unbox_uv_udp_send_t(self);
-  mrb_int native_;
-
-  mrb_get_args(mrb, "i", &native_);
-
-  native_self-> = native_;
-  
-  mrb_value value_as_mrb_value;
-  mrb_get_args(mrb, "o", &value_as_mrb_value);
-  return value_as_mrb_value;
-}
-#endif
-/* MRUBY_BINDING_END */
-
 
 void mrb_UV_UvUdpSendT_init(mrb_state* mrb) {
 /* MRUBY_BINDING: UvUdpSendT::class_definition */
@@ -225,27 +189,21 @@ void mrb_UV_UvUdpSendT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvUdpSendT::attr_definitions */
-/* sha: 7f519dee0885f49ac8eab92323c43a355c477c8c3d7b8d3afb4d6e2117678fba */
+/* sha: 542ced0e16cd219858b9fa73da369216d8fcade70074cd7db67290147d19bebe */
   /*
    * Fields
    */
-#if BIND_UvUdpSendT_uv_udp_t_FIELD_READER
-  mrb_define_method(mrb, UvUdpSendT_class, "uv_udp_t", mrb_UV_UvUdpSendT_get_uv_udp_t, MRB_ARGS_ARG(0, 0));
+#if BIND_UvUdpSendT_handle_FIELD_READER
+  mrb_define_method(mrb, UvUdpSendT_class, "handle", mrb_UV_UvUdpSendT_get_handle, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvUdpSendT_uv_udp_t_FIELD_WRITER
-  mrb_define_method(mrb, UvUdpSendT_class, "uv_udp_t=", mrb_UV_UvUdpSendT_set_uv_udp_t, MRB_ARGS_ARG(1, 0));
+#if BIND_UvUdpSendT_handle_FIELD_WRITER
+  mrb_define_method(mrb, UvUdpSendT_class, "handle=", mrb_UV_UvUdpSendT_set_handle, MRB_ARGS_ARG(1, 0));
 #endif
 #if BIND_UvUdpSendT_cb_FIELD_READER
   mrb_define_method(mrb, UvUdpSendT_class, "cb", mrb_UV_UvUdpSendT_get_cb, MRB_ARGS_ARG(0, 0));
 #endif
 #if BIND_UvUdpSendT_cb_FIELD_WRITER
   mrb_define_method(mrb, UvUdpSendT_class, "cb=", mrb_UV_UvUdpSendT_set_cb, MRB_ARGS_ARG(1, 0));
-#endif
-#if BIND_UvUdpSendT__FIELD_READER
-  mrb_define_method(mrb, UvUdpSendT_class, "", mrb_UV_UvUdpSendT_get_, MRB_ARGS_ARG(0, 0));
-#endif
-#if BIND_UvUdpSendT__FIELD_WRITER
-  mrb_define_method(mrb, UvUdpSendT_class, "=", mrb_UV_UvUdpSendT_set_, MRB_ARGS_ARG(1, 0));
 #endif
 /* MRUBY_BINDING_END */
 

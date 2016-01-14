@@ -224,14 +224,14 @@ mrb_UV_uv_backend_timeout(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_barrier_destroy */
-/* sha: 3773b8c7c1afb04603b10850864e2089958d40e3fd916157e5975baa7beaf3ec */
+/* sha: e37fed6791c3d0ff876a9b3e390e69ab6efcb0c74e6daa91e40952f7f480d3e9 */
 #if BIND_uv_barrier_destroy_FUNCTION
 #define uv_barrier_destroy_REQUIRED_ARGC 1
 #define uv_barrier_destroy_OPTIONAL_ARGC 0
 /* uv_barrier_destroy
  *
  * Parameters:
- * - barrier: int *
+ * - barrier: uv_barrier_t *
  * Return Type: void
  */
 mrb_value
@@ -242,10 +242,10 @@ mrb_UV_uv_barrier_destroy(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &barrier);
 
   /* Type checking */
-  TODO_type_check_int_PTR(barrier);
+  TODO_type_check_uv_barrier_t_PTR(barrier);
 
   /* Unbox param: barrier */
-  int * native_barrier = TODO_mruby_unbox_int_PTR(barrier);
+  uv_barrier_t * native_barrier = TODO_mruby_unbox_uv_barrier_t_PTR(barrier);
 
   /* Invocation */
   uv_barrier_destroy(native_barrier);
@@ -256,14 +256,14 @@ mrb_UV_uv_barrier_destroy(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_barrier_init */
-/* sha: 59c077726df102344d03d44d718fa0950ec867b2770fc603efc8dc6f7eccef0e */
+/* sha: bb30df6783fe486d5b14e142807ebeef5933a57c18ee4f58fb5712b4e4f8a4d7 */
 #if BIND_uv_barrier_init_FUNCTION
 #define uv_barrier_init_REQUIRED_ARGC 2
 #define uv_barrier_init_OPTIONAL_ARGC 0
 /* uv_barrier_init
  *
  * Parameters:
- * - barrier: int *
+ * - barrier: uv_barrier_t *
  * - count: unsigned int
  * Return Type: int
  */
@@ -276,10 +276,10 @@ mrb_UV_uv_barrier_init(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oi", &barrier, &native_count);
 
   /* Type checking */
-  TODO_type_check_int_PTR(barrier);
+  TODO_type_check_uv_barrier_t_PTR(barrier);
 
   /* Unbox param: barrier */
-  int * native_barrier = TODO_mruby_unbox_int_PTR(barrier);
+  uv_barrier_t * native_barrier = TODO_mruby_unbox_uv_barrier_t_PTR(barrier);
 
   /* Invocation */
   int native_return_value = uv_barrier_init(native_barrier, native_count);
@@ -293,14 +293,14 @@ mrb_UV_uv_barrier_init(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_barrier_wait */
-/* sha: 768d97409e6957257ef43a4bfa56bf2ecf4ca4c3e0c81cbfe6383b19a2a9889c */
+/* sha: c2544a8e8c88786f6eadcd16ce786789f7056352d4d254207c5bf2b42f09de66 */
 #if BIND_uv_barrier_wait_FUNCTION
 #define uv_barrier_wait_REQUIRED_ARGC 1
 #define uv_barrier_wait_OPTIONAL_ARGC 0
 /* uv_barrier_wait
  *
  * Parameters:
- * - barrier: int *
+ * - barrier: uv_barrier_t *
  * Return Type: int
  */
 mrb_value
@@ -311,10 +311,10 @@ mrb_UV_uv_barrier_wait(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &barrier);
 
   /* Type checking */
-  TODO_type_check_int_PTR(barrier);
+  TODO_type_check_uv_barrier_t_PTR(barrier);
 
   /* Unbox param: barrier */
-  int * native_barrier = TODO_mruby_unbox_int_PTR(barrier);
+  uv_barrier_t * native_barrier = TODO_mruby_unbox_uv_barrier_t_PTR(barrier);
 
   /* Invocation */
   int native_return_value = uv_barrier_wait(native_barrier);
@@ -328,22 +328,36 @@ mrb_UV_uv_barrier_wait(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_buf_init */
-/* sha: 9ae9c00cda1dbf50649d381f5d194ae18278b44cc202cb1375d2b2ffcf51351c */
+/* sha: ec7981885716e43d174fd5619a32729065a7080ac04801046ff695cc74ce721b */
 #if BIND_uv_buf_init_FUNCTION
-#define uv_buf_init_REQUIRED_ARGC 0
+#define uv_buf_init_REQUIRED_ARGC 2
 #define uv_buf_init_OPTIONAL_ARGC 0
 /* uv_buf_init
  *
- * Parameters: None
- * Return Type: int
+ * Parameters:
+ * - base: char *
+ * - len: unsigned int
+ * Return Type: uv_buf_t
  */
 mrb_value
 mrb_UV_uv_buf_init(mrb_state* mrb, mrb_value self) {
+  mrb_value base;
+  mrb_int native_len;
+
+  /* Fetch the args */
+  mrb_get_args(mrb, "oi", &base, &native_len);
+
+  /* Type checking */
+  TODO_type_check_char_PTR(base);
+
+  /* Unbox param: base */
+  char * native_base = TODO_mruby_unbox_char_PTR(base);
+
   /* Invocation */
-  int native_return_value = uv_buf_init();
+  uv_buf_t native_return_value = uv_buf_init(native_base, native_len);
 
   /* Box the return value */
-  mrb_value return_value = mrb_fixnum_value(native_return_value);
+  mrb_value return_value = TODO_mruby_box_uv_buf_t(mrb, native_return_value);
   
   return return_value;
 }
@@ -588,14 +602,14 @@ mrb_UV_uv_close(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_cond_broadcast */
-/* sha: cd4f0a0e4ff135599676b442f2525fc72a396644574908672202d06b6ff58fa7 */
+/* sha: b0588a51fdc625137c6ccb590d1bf4e54f97d947f95847dc0ca22cefa3bbc51e */
 #if BIND_uv_cond_broadcast_FUNCTION
 #define uv_cond_broadcast_REQUIRED_ARGC 1
 #define uv_cond_broadcast_OPTIONAL_ARGC 0
 /* uv_cond_broadcast
  *
  * Parameters:
- * - cond: int *
+ * - cond: uv_cond_t *
  * Return Type: void
  */
 mrb_value
@@ -606,10 +620,10 @@ mrb_UV_uv_cond_broadcast(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &cond);
 
   /* Type checking */
-  TODO_type_check_int_PTR(cond);
+  TODO_type_check_uv_cond_t_PTR(cond);
 
   /* Unbox param: cond */
-  int * native_cond = TODO_mruby_unbox_int_PTR(cond);
+  uv_cond_t * native_cond = TODO_mruby_unbox_uv_cond_t_PTR(cond);
 
   /* Invocation */
   uv_cond_broadcast(native_cond);
@@ -620,14 +634,14 @@ mrb_UV_uv_cond_broadcast(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_cond_destroy */
-/* sha: 779feae6814b542df2a6f0991de98ca12850728099f1cf013d8176618ce1f3c2 */
+/* sha: 25d40866a85b391c7ff37ee954b1023518834223464b3f4f7554b048ccb90673 */
 #if BIND_uv_cond_destroy_FUNCTION
 #define uv_cond_destroy_REQUIRED_ARGC 1
 #define uv_cond_destroy_OPTIONAL_ARGC 0
 /* uv_cond_destroy
  *
  * Parameters:
- * - cond: int *
+ * - cond: uv_cond_t *
  * Return Type: void
  */
 mrb_value
@@ -638,10 +652,10 @@ mrb_UV_uv_cond_destroy(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &cond);
 
   /* Type checking */
-  TODO_type_check_int_PTR(cond);
+  TODO_type_check_uv_cond_t_PTR(cond);
 
   /* Unbox param: cond */
-  int * native_cond = TODO_mruby_unbox_int_PTR(cond);
+  uv_cond_t * native_cond = TODO_mruby_unbox_uv_cond_t_PTR(cond);
 
   /* Invocation */
   uv_cond_destroy(native_cond);
@@ -652,14 +666,14 @@ mrb_UV_uv_cond_destroy(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_cond_init */
-/* sha: 6dbb91afe4261bb163257b8515a69c82e7c9c132403bb7791b64a96eca97ee83 */
+/* sha: aef65fa7003d9856394884295d6a33e8c4a4dae4b3ba46a68889bdbb348e15a5 */
 #if BIND_uv_cond_init_FUNCTION
 #define uv_cond_init_REQUIRED_ARGC 1
 #define uv_cond_init_OPTIONAL_ARGC 0
 /* uv_cond_init
  *
  * Parameters:
- * - cond: int *
+ * - cond: uv_cond_t *
  * Return Type: int
  */
 mrb_value
@@ -670,10 +684,10 @@ mrb_UV_uv_cond_init(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &cond);
 
   /* Type checking */
-  TODO_type_check_int_PTR(cond);
+  TODO_type_check_uv_cond_t_PTR(cond);
 
   /* Unbox param: cond */
-  int * native_cond = TODO_mruby_unbox_int_PTR(cond);
+  uv_cond_t * native_cond = TODO_mruby_unbox_uv_cond_t_PTR(cond);
 
   /* Invocation */
   int native_return_value = uv_cond_init(native_cond);
@@ -687,14 +701,14 @@ mrb_UV_uv_cond_init(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_cond_signal */
-/* sha: da7b3ad1a206e637c66537892f4dbcb7def3ef1df192680faa44286be0f0277d */
+/* sha: 7057fae5f803adb3c6ff8b72b232eb4bdca3d8477baf167381dc44230d377b82 */
 #if BIND_uv_cond_signal_FUNCTION
 #define uv_cond_signal_REQUIRED_ARGC 1
 #define uv_cond_signal_OPTIONAL_ARGC 0
 /* uv_cond_signal
  *
  * Parameters:
- * - cond: int *
+ * - cond: uv_cond_t *
  * Return Type: void
  */
 mrb_value
@@ -705,10 +719,10 @@ mrb_UV_uv_cond_signal(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &cond);
 
   /* Type checking */
-  TODO_type_check_int_PTR(cond);
+  TODO_type_check_uv_cond_t_PTR(cond);
 
   /* Unbox param: cond */
-  int * native_cond = TODO_mruby_unbox_int_PTR(cond);
+  uv_cond_t * native_cond = TODO_mruby_unbox_uv_cond_t_PTR(cond);
 
   /* Invocation */
   uv_cond_signal(native_cond);
@@ -719,15 +733,15 @@ mrb_UV_uv_cond_signal(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_cond_timedwait */
-/* sha: c7ec54897e19cf3a11afeb166d50bd816fac7f545caac4042eed05096d7dd388 */
+/* sha: e224f2e833db21456f63eb2f3e164f4fd7eb6c34e27e4eae023b951acbc6e7aa */
 #if BIND_uv_cond_timedwait_FUNCTION
 #define uv_cond_timedwait_REQUIRED_ARGC 3
 #define uv_cond_timedwait_OPTIONAL_ARGC 0
 /* uv_cond_timedwait
  *
  * Parameters:
- * - cond: int *
- * - mutex: int *
+ * - cond: uv_cond_t *
+ * - mutex: uv_mutex_t *
  * - timeout: uint64_t
  * Return Type: int
  */
@@ -741,15 +755,15 @@ mrb_UV_uv_cond_timedwait(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooo", &cond, &mutex, &timeout);
 
   /* Type checking */
-  TODO_type_check_int_PTR(cond);
-  TODO_type_check_int_PTR(mutex);
+  TODO_type_check_uv_cond_t_PTR(cond);
+  TODO_type_check_uv_mutex_t_PTR(mutex);
   TODO_type_check_uint64_t(timeout);
 
   /* Unbox param: cond */
-  int * native_cond = TODO_mruby_unbox_int_PTR(cond);
+  uv_cond_t * native_cond = TODO_mruby_unbox_uv_cond_t_PTR(cond);
 
   /* Unbox param: mutex */
-  int * native_mutex = TODO_mruby_unbox_int_PTR(mutex);
+  uv_mutex_t * native_mutex = TODO_mruby_unbox_uv_mutex_t_PTR(mutex);
 
   /* Unbox param: timeout */
   uint64_t native_timeout = TODO_mruby_unbox_uint64_t(timeout);
@@ -766,15 +780,15 @@ mrb_UV_uv_cond_timedwait(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_cond_wait */
-/* sha: d807ba83ebd5b1f306433788d81b611ade0ab47451a764869927548ca3332ccf */
+/* sha: 66c4f7420ab34a2942f3e05e405753f06692ace12b4885c6f287f86ae5d8f9bf */
 #if BIND_uv_cond_wait_FUNCTION
 #define uv_cond_wait_REQUIRED_ARGC 2
 #define uv_cond_wait_OPTIONAL_ARGC 0
 /* uv_cond_wait
  *
  * Parameters:
- * - cond: int *
- * - mutex: int *
+ * - cond: uv_cond_t *
+ * - mutex: uv_mutex_t *
  * Return Type: void
  */
 mrb_value
@@ -786,14 +800,14 @@ mrb_UV_uv_cond_wait(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &cond, &mutex);
 
   /* Type checking */
-  TODO_type_check_int_PTR(cond);
-  TODO_type_check_int_PTR(mutex);
+  TODO_type_check_uv_cond_t_PTR(cond);
+  TODO_type_check_uv_mutex_t_PTR(mutex);
 
   /* Unbox param: cond */
-  int * native_cond = TODO_mruby_unbox_int_PTR(cond);
+  uv_cond_t * native_cond = TODO_mruby_unbox_uv_cond_t_PTR(cond);
 
   /* Unbox param: mutex */
-  int * native_mutex = TODO_mruby_unbox_int_PTR(mutex);
+  uv_mutex_t * native_mutex = TODO_mruby_unbox_uv_mutex_t_PTR(mutex);
 
   /* Invocation */
   uv_cond_wait(native_cond, native_mutex);
@@ -929,14 +943,14 @@ mrb_UV_uv_disable_stdio_inheritance(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_dlclose */
-/* sha: ac0e992bcb080fe9103098c6834f78ba173cca1ab6bb6595ce20c9110ea63e9a */
+/* sha: 0e7f987b12a344e541f0897ab1706ac802b3509825b936dc061fe50c54842bce */
 #if BIND_uv_dlclose_FUNCTION
 #define uv_dlclose_REQUIRED_ARGC 1
 #define uv_dlclose_OPTIONAL_ARGC 0
 /* uv_dlclose
  *
  * Parameters:
- * - lib: int *
+ * - lib: uv_lib_t *
  * Return Type: void
  */
 mrb_value
@@ -947,10 +961,10 @@ mrb_UV_uv_dlclose(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &lib);
 
   /* Type checking */
-  TODO_type_check_int_PTR(lib);
+  TODO_type_check_uv_lib_t_PTR(lib);
 
   /* Unbox param: lib */
-  int * native_lib = TODO_mruby_unbox_int_PTR(lib);
+  uv_lib_t * native_lib = TODO_mruby_unbox_uv_lib_t_PTR(lib);
 
   /* Invocation */
   uv_dlclose(native_lib);
@@ -961,14 +975,14 @@ mrb_UV_uv_dlclose(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_dlerror */
-/* sha: 35042a232642dafb5fdaf404f2242f73a42224dbec2d7e8d97ae3eca5b832620 */
+/* sha: bbaca1426ecddee9950be429bf7633461904053ded4b1f35808a5a460d0fac1b */
 #if BIND_uv_dlerror_FUNCTION
 #define uv_dlerror_REQUIRED_ARGC 1
 #define uv_dlerror_OPTIONAL_ARGC 0
 /* uv_dlerror
  *
  * Parameters:
- * - lib: const int *
+ * - lib: const uv_lib_t *
  * Return Type: const char *
  */
 mrb_value
@@ -979,10 +993,10 @@ mrb_UV_uv_dlerror(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &lib);
 
   /* Type checking */
-  TODO_type_check_int_PTR(lib);
+  TODO_type_check_uv_lib_t_PTR(lib);
 
   /* Unbox param: lib */
-  const int * native_lib = TODO_mruby_unbox_int_PTR(lib);
+  const uv_lib_t * native_lib = TODO_mruby_unbox_uv_lib_t_PTR(lib);
 
   /* Invocation */
   const char * native_return_value = uv_dlerror(native_lib);
@@ -996,7 +1010,7 @@ mrb_UV_uv_dlerror(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_dlopen */
-/* sha: b0ae22782b174aa7afeb8bb9e136865091943a627e4f83073078e5dff63d4052 */
+/* sha: 2d39e454dfb83faad75b33d8e17af648bc98955d302a8e485eeda312debcb22e */
 #if BIND_uv_dlopen_FUNCTION
 #define uv_dlopen_REQUIRED_ARGC 2
 #define uv_dlopen_OPTIONAL_ARGC 0
@@ -1004,7 +1018,7 @@ mrb_UV_uv_dlerror(mrb_state* mrb, mrb_value self) {
  *
  * Parameters:
  * - filename: const char *
- * - lib: int *
+ * - lib: uv_lib_t *
  * Return Type: int
  */
 mrb_value
@@ -1016,10 +1030,10 @@ mrb_UV_uv_dlopen(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "zo", &native_filename, &lib);
 
   /* Type checking */
-  TODO_type_check_int_PTR(lib);
+  TODO_type_check_uv_lib_t_PTR(lib);
 
   /* Unbox param: lib */
-  int * native_lib = TODO_mruby_unbox_int_PTR(lib);
+  uv_lib_t * native_lib = TODO_mruby_unbox_uv_lib_t_PTR(lib);
 
   /* Invocation */
   int native_return_value = uv_dlopen(native_filename, native_lib);
@@ -1033,14 +1047,14 @@ mrb_UV_uv_dlopen(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_dlsym */
-/* sha: c1dee4cb1833f0a2a2374dc3cdfb56405a0c0a300e172cf519238791fa473ef5 */
+/* sha: 4369d9422785d473b1605cd5b31ce8288dff1dc805d741313c7c1eddfeece9ca */
 #if BIND_uv_dlsym_FUNCTION
 #define uv_dlsym_REQUIRED_ARGC 3
 #define uv_dlsym_OPTIONAL_ARGC 0
 /* uv_dlsym
  *
  * Parameters:
- * - lib: int *
+ * - lib: uv_lib_t *
  * - name: const char *
  * - ptr: void **
  * Return Type: int
@@ -1055,11 +1069,11 @@ mrb_UV_uv_dlsym(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ozo", &lib, &native_name, &ptr);
 
   /* Type checking */
-  TODO_type_check_int_PTR(lib);
+  TODO_type_check_uv_lib_t_PTR(lib);
   TODO_type_check_void_PTR_PTR(ptr);
 
   /* Unbox param: lib */
-  int * native_lib = TODO_mruby_unbox_int_PTR(lib);
+  uv_lib_t * native_lib = TODO_mruby_unbox_uv_lib_t_PTR(lib);
 
   /* Unbox param: ptr */
   void ** native_ptr = TODO_mruby_unbox_void_PTR_PTR(ptr);
@@ -1146,7 +1160,7 @@ mrb_UV_uv_exepath(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_fileno */
-/* sha: c22fdd5e7a6b2ab271bb8b2054d44fdf4da894e2b252f40b4d59be6fa603fee7 */
+/* sha: f6cce66434ff8986a252b4f7857425d9ed152151178816cdf7228e1f8cb4ced5 */
 #if BIND_uv_fileno_FUNCTION
 #define uv_fileno_REQUIRED_ARGC 2
 #define uv_fileno_OPTIONAL_ARGC 0
@@ -1154,7 +1168,7 @@ mrb_UV_uv_exepath(mrb_state* mrb, mrb_value self) {
  *
  * Parameters:
  * - handle: const uv_handle_t *
- * - fd: int *
+ * - fd: uv_os_fd_t *
  * Return Type: int
  */
 mrb_value
@@ -1170,13 +1184,13 @@ mrb_UV_uv_fileno(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvHandleT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_int_PTR(fd);
+  TODO_type_check_uv_os_fd_t_PTR(fd);
 
   /* Unbox param: handle */
   const uv_handle_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_handle_t(handle));
 
   /* Unbox param: fd */
-  int * native_fd = TODO_mruby_unbox_int_PTR(fd);
+  uv_os_fd_t * native_fd = TODO_mruby_unbox_uv_os_fd_t_PTR(fd);
 
   /* Invocation */
   int native_return_value = uv_fileno(native_handle, native_fd);
@@ -1410,7 +1424,7 @@ mrb_UV_uv_fs_chmod(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_fs_chown */
-/* sha: 08acf9c7ba837cfae613bfe0cc25f3b2cdda06eb3eb7260f211bedb7e0d92c06 */
+/* sha: d7018bacdac4dc56774067b7ffaf438650098a673117d3b47f4005b391570cf8 */
 #if BIND_uv_fs_chown_FUNCTION
 #define uv_fs_chown_REQUIRED_ARGC 6
 #define uv_fs_chown_OPTIONAL_ARGC 0
@@ -1420,8 +1434,8 @@ mrb_UV_uv_fs_chmod(mrb_state* mrb, mrb_value self) {
  * - loop: uv_loop_t *
  * - req: uv_fs_t *
  * - path: const char *
- * - uid: int
- * - gid: int
+ * - uid: uv_uid_t
+ * - gid: uv_gid_t
  * - cb: uv_fs_cb
  * Return Type: int
  */
@@ -1430,12 +1444,12 @@ mrb_UV_uv_fs_chown(mrb_state* mrb, mrb_value self) {
   mrb_value loop;
   mrb_value req;
   char * native_path = NULL;
-  mrb_int native_uid;
-  mrb_int native_gid;
+  mrb_value uid;
+  mrb_value gid;
   mrb_value cb;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooziio", &loop, &req, &native_path, &native_uid, &native_gid, &cb);
+  mrb_get_args(mrb, "oozooo", &loop, &req, &native_path, &uid, &gid, &cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
@@ -1446,6 +1460,8 @@ mrb_UV_uv_fs_chown(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
+  TODO_type_check_uv_uid_t(uid);
+  TODO_type_check_uv_gid_t(gid);
   TODO_type_check_uv_fs_cb(cb);
 
   /* Unbox param: loop */
@@ -1453,6 +1469,12 @@ mrb_UV_uv_fs_chown(mrb_state* mrb, mrb_value self) {
 
   /* Unbox param: req */
   uv_fs_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_fs_t(req));
+
+  /* Unbox param: uid */
+  uv_uid_t native_uid = TODO_mruby_unbox_uv_uid_t(uid);
+
+  /* Unbox param: gid */
+  uv_gid_t native_gid = TODO_mruby_unbox_uv_gid_t(gid);
 
   /* Unbox param: cb */
   uv_fs_cb native_cb = TODO_mruby_unbox_uv_fs_cb(cb);
@@ -1469,7 +1491,7 @@ mrb_UV_uv_fs_chown(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_fs_close */
-/* sha: b286e37c3fb931316d08f34c46c7c935c0ba611c3eb03edc9e86cd3e09385e9f */
+/* sha: 4ce33a6ebea818bb71fe9cd06b6bd9fab10e63aede119712609e5f35d47f1df7 */
 #if BIND_uv_fs_close_FUNCTION
 #define uv_fs_close_REQUIRED_ARGC 4
 #define uv_fs_close_OPTIONAL_ARGC 0
@@ -1478,7 +1500,7 @@ mrb_UV_uv_fs_chown(mrb_state* mrb, mrb_value self) {
  * Parameters:
  * - loop: uv_loop_t *
  * - req: uv_fs_t *
- * - file: int
+ * - file: uv_file
  * - cb: uv_fs_cb
  * Return Type: int
  */
@@ -1486,11 +1508,11 @@ mrb_value
 mrb_UV_uv_fs_close(mrb_state* mrb, mrb_value self) {
   mrb_value loop;
   mrb_value req;
-  mrb_int native_file;
+  mrb_value file;
   mrb_value cb;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooio", &loop, &req, &native_file, &cb);
+  mrb_get_args(mrb, "oooo", &loop, &req, &file, &cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
@@ -1501,6 +1523,7 @@ mrb_UV_uv_fs_close(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
+  TODO_type_check_uv_file(file);
   TODO_type_check_uv_fs_cb(cb);
 
   /* Unbox param: loop */
@@ -1508,6 +1531,9 @@ mrb_UV_uv_fs_close(mrb_state* mrb, mrb_value self) {
 
   /* Unbox param: req */
   uv_fs_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_fs_t(req));
+
+  /* Unbox param: file */
+  uv_file native_file = TODO_mruby_unbox_uv_file(file);
 
   /* Unbox param: cb */
   uv_fs_cb native_cb = TODO_mruby_unbox_uv_fs_cb(cb);
@@ -1707,7 +1733,7 @@ mrb_UV_uv_fs_event_stop(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_fs_fchmod */
-/* sha: d6aed641b6438f25fb221a4497ad8de2b2163a53cbde004e9359fc1b5738c875 */
+/* sha: 3f3d1145ac4b8541aeea30841bec1509c2b476b1894667f5e3de7c3ed5ce86db */
 #if BIND_uv_fs_fchmod_FUNCTION
 #define uv_fs_fchmod_REQUIRED_ARGC 5
 #define uv_fs_fchmod_OPTIONAL_ARGC 0
@@ -1716,7 +1742,7 @@ mrb_UV_uv_fs_event_stop(mrb_state* mrb, mrb_value self) {
  * Parameters:
  * - loop: uv_loop_t *
  * - req: uv_fs_t *
- * - file: int
+ * - file: uv_file
  * - mode: int
  * - cb: uv_fs_cb
  * Return Type: int
@@ -1725,12 +1751,12 @@ mrb_value
 mrb_UV_uv_fs_fchmod(mrb_state* mrb, mrb_value self) {
   mrb_value loop;
   mrb_value req;
-  mrb_int native_file;
+  mrb_value file;
   mrb_int native_mode;
   mrb_value cb;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooiio", &loop, &req, &native_file, &native_mode, &cb);
+  mrb_get_args(mrb, "oooio", &loop, &req, &file, &native_mode, &cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
@@ -1741,6 +1767,7 @@ mrb_UV_uv_fs_fchmod(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
+  TODO_type_check_uv_file(file);
   TODO_type_check_uv_fs_cb(cb);
 
   /* Unbox param: loop */
@@ -1748,6 +1775,9 @@ mrb_UV_uv_fs_fchmod(mrb_state* mrb, mrb_value self) {
 
   /* Unbox param: req */
   uv_fs_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_fs_t(req));
+
+  /* Unbox param: file */
+  uv_file native_file = TODO_mruby_unbox_uv_file(file);
 
   /* Unbox param: cb */
   uv_fs_cb native_cb = TODO_mruby_unbox_uv_fs_cb(cb);
@@ -1764,7 +1794,7 @@ mrb_UV_uv_fs_fchmod(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_fs_fchown */
-/* sha: 8be2071c88bc1832743a203327eb4ae34975ee73e4ba7f32ad73abe83d2f40df */
+/* sha: cfd2b8b1e4b8fa0240064009195ecc9940e89bbc1ee52e154b6edda2d9062916 */
 #if BIND_uv_fs_fchown_FUNCTION
 #define uv_fs_fchown_REQUIRED_ARGC 6
 #define uv_fs_fchown_OPTIONAL_ARGC 0
@@ -1773,9 +1803,9 @@ mrb_UV_uv_fs_fchmod(mrb_state* mrb, mrb_value self) {
  * Parameters:
  * - loop: uv_loop_t *
  * - req: uv_fs_t *
- * - file: int
- * - uid: int
- * - gid: int
+ * - file: uv_file
+ * - uid: uv_uid_t
+ * - gid: uv_gid_t
  * - cb: uv_fs_cb
  * Return Type: int
  */
@@ -1783,13 +1813,13 @@ mrb_value
 mrb_UV_uv_fs_fchown(mrb_state* mrb, mrb_value self) {
   mrb_value loop;
   mrb_value req;
-  mrb_int native_file;
-  mrb_int native_uid;
-  mrb_int native_gid;
+  mrb_value file;
+  mrb_value uid;
+  mrb_value gid;
   mrb_value cb;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooiiio", &loop, &req, &native_file, &native_uid, &native_gid, &cb);
+  mrb_get_args(mrb, "oooooo", &loop, &req, &file, &uid, &gid, &cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
@@ -1800,6 +1830,9 @@ mrb_UV_uv_fs_fchown(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
+  TODO_type_check_uv_file(file);
+  TODO_type_check_uv_uid_t(uid);
+  TODO_type_check_uv_gid_t(gid);
   TODO_type_check_uv_fs_cb(cb);
 
   /* Unbox param: loop */
@@ -1807,6 +1840,15 @@ mrb_UV_uv_fs_fchown(mrb_state* mrb, mrb_value self) {
 
   /* Unbox param: req */
   uv_fs_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_fs_t(req));
+
+  /* Unbox param: file */
+  uv_file native_file = TODO_mruby_unbox_uv_file(file);
+
+  /* Unbox param: uid */
+  uv_uid_t native_uid = TODO_mruby_unbox_uv_uid_t(uid);
+
+  /* Unbox param: gid */
+  uv_gid_t native_gid = TODO_mruby_unbox_uv_gid_t(gid);
 
   /* Unbox param: cb */
   uv_fs_cb native_cb = TODO_mruby_unbox_uv_fs_cb(cb);
@@ -1823,7 +1865,7 @@ mrb_UV_uv_fs_fchown(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_fs_fdatasync */
-/* sha: 45659caa6be3b619aac9d70e01da47de82e55e88209c8165306b52c30b29fee0 */
+/* sha: bc732f089a0cddda73a72bd064f13107c7a40766b6e5bfeda4d78c97ee81d326 */
 #if BIND_uv_fs_fdatasync_FUNCTION
 #define uv_fs_fdatasync_REQUIRED_ARGC 4
 #define uv_fs_fdatasync_OPTIONAL_ARGC 0
@@ -1832,7 +1874,7 @@ mrb_UV_uv_fs_fchown(mrb_state* mrb, mrb_value self) {
  * Parameters:
  * - loop: uv_loop_t *
  * - req: uv_fs_t *
- * - file: int
+ * - file: uv_file
  * - cb: uv_fs_cb
  * Return Type: int
  */
@@ -1840,11 +1882,11 @@ mrb_value
 mrb_UV_uv_fs_fdatasync(mrb_state* mrb, mrb_value self) {
   mrb_value loop;
   mrb_value req;
-  mrb_int native_file;
+  mrb_value file;
   mrb_value cb;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooio", &loop, &req, &native_file, &cb);
+  mrb_get_args(mrb, "oooo", &loop, &req, &file, &cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
@@ -1855,6 +1897,7 @@ mrb_UV_uv_fs_fdatasync(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
+  TODO_type_check_uv_file(file);
   TODO_type_check_uv_fs_cb(cb);
 
   /* Unbox param: loop */
@@ -1862,6 +1905,9 @@ mrb_UV_uv_fs_fdatasync(mrb_state* mrb, mrb_value self) {
 
   /* Unbox param: req */
   uv_fs_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_fs_t(req));
+
+  /* Unbox param: file */
+  uv_file native_file = TODO_mruby_unbox_uv_file(file);
 
   /* Unbox param: cb */
   uv_fs_cb native_cb = TODO_mruby_unbox_uv_fs_cb(cb);
@@ -1878,7 +1924,7 @@ mrb_UV_uv_fs_fdatasync(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_fs_fstat */
-/* sha: 5b503101f5b3dbd88701f608ea96668423d7746b4d52bbd2ccb3e0ac8f91bef5 */
+/* sha: 328a01b184219bd2f1d65a345a967b69fcae7d20f8ccdb8f54b3961f910da926 */
 #if BIND_uv_fs_fstat_FUNCTION
 #define uv_fs_fstat_REQUIRED_ARGC 4
 #define uv_fs_fstat_OPTIONAL_ARGC 0
@@ -1887,7 +1933,7 @@ mrb_UV_uv_fs_fdatasync(mrb_state* mrb, mrb_value self) {
  * Parameters:
  * - loop: uv_loop_t *
  * - req: uv_fs_t *
- * - file: int
+ * - file: uv_file
  * - cb: uv_fs_cb
  * Return Type: int
  */
@@ -1895,11 +1941,11 @@ mrb_value
 mrb_UV_uv_fs_fstat(mrb_state* mrb, mrb_value self) {
   mrb_value loop;
   mrb_value req;
-  mrb_int native_file;
+  mrb_value file;
   mrb_value cb;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooio", &loop, &req, &native_file, &cb);
+  mrb_get_args(mrb, "oooo", &loop, &req, &file, &cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
@@ -1910,6 +1956,7 @@ mrb_UV_uv_fs_fstat(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
+  TODO_type_check_uv_file(file);
   TODO_type_check_uv_fs_cb(cb);
 
   /* Unbox param: loop */
@@ -1917,6 +1964,9 @@ mrb_UV_uv_fs_fstat(mrb_state* mrb, mrb_value self) {
 
   /* Unbox param: req */
   uv_fs_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_fs_t(req));
+
+  /* Unbox param: file */
+  uv_file native_file = TODO_mruby_unbox_uv_file(file);
 
   /* Unbox param: cb */
   uv_fs_cb native_cb = TODO_mruby_unbox_uv_fs_cb(cb);
@@ -1933,7 +1983,7 @@ mrb_UV_uv_fs_fstat(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_fs_fsync */
-/* sha: 5e6b79198b5649bbbdda2074f1c731e7711099b83c74bb4fa62a2c10df4c5dcf */
+/* sha: f4be2cc513abd39bbb72720382dcd9664261b3c5457bad47074ee037d9ab07ed */
 #if BIND_uv_fs_fsync_FUNCTION
 #define uv_fs_fsync_REQUIRED_ARGC 4
 #define uv_fs_fsync_OPTIONAL_ARGC 0
@@ -1942,7 +1992,7 @@ mrb_UV_uv_fs_fstat(mrb_state* mrb, mrb_value self) {
  * Parameters:
  * - loop: uv_loop_t *
  * - req: uv_fs_t *
- * - file: int
+ * - file: uv_file
  * - cb: uv_fs_cb
  * Return Type: int
  */
@@ -1950,11 +2000,11 @@ mrb_value
 mrb_UV_uv_fs_fsync(mrb_state* mrb, mrb_value self) {
   mrb_value loop;
   mrb_value req;
-  mrb_int native_file;
+  mrb_value file;
   mrb_value cb;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooio", &loop, &req, &native_file, &cb);
+  mrb_get_args(mrb, "oooo", &loop, &req, &file, &cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
@@ -1965,6 +2015,7 @@ mrb_UV_uv_fs_fsync(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
+  TODO_type_check_uv_file(file);
   TODO_type_check_uv_fs_cb(cb);
 
   /* Unbox param: loop */
@@ -1972,6 +2023,9 @@ mrb_UV_uv_fs_fsync(mrb_state* mrb, mrb_value self) {
 
   /* Unbox param: req */
   uv_fs_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_fs_t(req));
+
+  /* Unbox param: file */
+  uv_file native_file = TODO_mruby_unbox_uv_file(file);
 
   /* Unbox param: cb */
   uv_fs_cb native_cb = TODO_mruby_unbox_uv_fs_cb(cb);
@@ -1988,7 +2042,7 @@ mrb_UV_uv_fs_fsync(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_fs_ftruncate */
-/* sha: 519d6373bd8cad534b2d59184c3bb5d7ae4a3c9c24377b3aa3f10c4db8a8ebff */
+/* sha: cab8ae475d54dcb56d8e94f05c41912689115589a76f357864326894f33ad702 */
 #if BIND_uv_fs_ftruncate_FUNCTION
 #define uv_fs_ftruncate_REQUIRED_ARGC 5
 #define uv_fs_ftruncate_OPTIONAL_ARGC 0
@@ -1997,7 +2051,7 @@ mrb_UV_uv_fs_fsync(mrb_state* mrb, mrb_value self) {
  * Parameters:
  * - loop: uv_loop_t *
  * - req: uv_fs_t *
- * - file: int
+ * - file: uv_file
  * - offset: int64_t
  * - cb: uv_fs_cb
  * Return Type: int
@@ -2006,12 +2060,12 @@ mrb_value
 mrb_UV_uv_fs_ftruncate(mrb_state* mrb, mrb_value self) {
   mrb_value loop;
   mrb_value req;
-  mrb_int native_file;
+  mrb_value file;
   mrb_value offset;
   mrb_value cb;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooioo", &loop, &req, &native_file, &offset, &cb);
+  mrb_get_args(mrb, "ooooo", &loop, &req, &file, &offset, &cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
@@ -2022,6 +2076,7 @@ mrb_UV_uv_fs_ftruncate(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
+  TODO_type_check_uv_file(file);
   TODO_type_check_int64_t(offset);
   TODO_type_check_uv_fs_cb(cb);
 
@@ -2030,6 +2085,9 @@ mrb_UV_uv_fs_ftruncate(mrb_state* mrb, mrb_value self) {
 
   /* Unbox param: req */
   uv_fs_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_fs_t(req));
+
+  /* Unbox param: file */
+  uv_file native_file = TODO_mruby_unbox_uv_file(file);
 
   /* Unbox param: offset */
   int64_t native_offset = TODO_mruby_unbox_int64_t(offset);
@@ -2049,7 +2107,7 @@ mrb_UV_uv_fs_ftruncate(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_fs_futime */
-/* sha: 5c58632f3a194108cbd7cd5f1cc74fa5d663b8fb2031d6442703eeab51e6d99c */
+/* sha: d475ca20aa3188facbcbaff45ca1ba3299883038f2e07be5fade2fbb2e336e62 */
 #if BIND_uv_fs_futime_FUNCTION
 #define uv_fs_futime_REQUIRED_ARGC 6
 #define uv_fs_futime_OPTIONAL_ARGC 0
@@ -2058,7 +2116,7 @@ mrb_UV_uv_fs_ftruncate(mrb_state* mrb, mrb_value self) {
  * Parameters:
  * - loop: uv_loop_t *
  * - req: uv_fs_t *
- * - file: int
+ * - file: uv_file
  * - atime: double
  * - mtime: double
  * - cb: uv_fs_cb
@@ -2068,13 +2126,13 @@ mrb_value
 mrb_UV_uv_fs_futime(mrb_state* mrb, mrb_value self) {
   mrb_value loop;
   mrb_value req;
-  mrb_int native_file;
+  mrb_value file;
   mrb_float native_atime;
   mrb_float native_mtime;
   mrb_value cb;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooiffo", &loop, &req, &native_file, &native_atime, &native_mtime, &cb);
+  mrb_get_args(mrb, "oooffo", &loop, &req, &file, &native_atime, &native_mtime, &cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
@@ -2085,6 +2143,7 @@ mrb_UV_uv_fs_futime(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
+  TODO_type_check_uv_file(file);
   TODO_type_check_uv_fs_cb(cb);
 
   /* Unbox param: loop */
@@ -2092,6 +2151,9 @@ mrb_UV_uv_fs_futime(mrb_state* mrb, mrb_value self) {
 
   /* Unbox param: req */
   uv_fs_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_fs_t(req));
+
+  /* Unbox param: file */
+  uv_file native_file = TODO_mruby_unbox_uv_file(file);
 
   /* Unbox param: cb */
   uv_fs_cb native_cb = TODO_mruby_unbox_uv_fs_cb(cb);
@@ -2574,7 +2636,7 @@ mrb_UV_uv_fs_poll_stop(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_fs_read */
-/* sha: 7c90501e6901709f7176a2a665a8f4e90a474bc5f851cce83720c64a047cd1d4 */
+/* sha: 7e87df5abb66337e71bbfcd738ecf30e148af7e363b7892221286b37e60f3743 */
 #if BIND_uv_fs_read_FUNCTION
 #define uv_fs_read_REQUIRED_ARGC 7
 #define uv_fs_read_OPTIONAL_ARGC 0
@@ -2583,8 +2645,8 @@ mrb_UV_uv_fs_poll_stop(mrb_state* mrb, mrb_value self) {
  * Parameters:
  * - loop: uv_loop_t *
  * - req: uv_fs_t *
- * - file: int
- * - bufs: const int []
+ * - file: uv_file
+ * - bufs: const uv_buf_t []
  * - nbufs: unsigned int
  * - offset: int64_t
  * - cb: uv_fs_cb
@@ -2594,14 +2656,14 @@ mrb_value
 mrb_UV_uv_fs_read(mrb_state* mrb, mrb_value self) {
   mrb_value loop;
   mrb_value req;
-  mrb_int native_file;
+  mrb_value file;
   mrb_value bufs;
   mrb_int native_nbufs;
   mrb_value offset;
   mrb_value cb;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooioioo", &loop, &req, &native_file, &bufs, &native_nbufs, &offset, &cb);
+  mrb_get_args(mrb, "ooooioo", &loop, &req, &file, &bufs, &native_nbufs, &offset, &cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
@@ -2612,7 +2674,8 @@ mrb_UV_uv_fs_read(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_int_[](bufs);
+  TODO_type_check_uv_file(file);
+  TODO_type_check_uv_buf_t_[](bufs);
   TODO_type_check_int64_t(offset);
   TODO_type_check_uv_fs_cb(cb);
 
@@ -2622,8 +2685,11 @@ mrb_UV_uv_fs_read(mrb_state* mrb, mrb_value self) {
   /* Unbox param: req */
   uv_fs_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_fs_t(req));
 
+  /* Unbox param: file */
+  uv_file native_file = TODO_mruby_unbox_uv_file(file);
+
   /* Unbox param: bufs */
-  const int [] native_bufs = TODO_mruby_unbox_int_[](bufs);
+  const uv_buf_t [] native_bufs = TODO_mruby_unbox_uv_buf_t_[](bufs);
 
   /* Unbox param: offset */
   int64_t native_offset = TODO_mruby_unbox_int64_t(offset);
@@ -3004,7 +3070,7 @@ mrb_UV_uv_fs_scandir_next(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_fs_sendfile */
-/* sha: 89d469fa64e2ad7a269c7b0ff655b6471104b1e01a735347b5c42a3135cb20cd */
+/* sha: 1ae18ff277d5faf77a42726cc9f35f738a8fc643fa05cd336c58bc2d21b60626 */
 #if BIND_uv_fs_sendfile_FUNCTION
 #define uv_fs_sendfile_REQUIRED_ARGC 7
 #define uv_fs_sendfile_OPTIONAL_ARGC 0
@@ -3013,8 +3079,8 @@ mrb_UV_uv_fs_scandir_next(mrb_state* mrb, mrb_value self) {
  * Parameters:
  * - loop: uv_loop_t *
  * - req: uv_fs_t *
- * - out_fd: int
- * - in_fd: int
+ * - out_fd: uv_file
+ * - in_fd: uv_file
  * - in_offset: int64_t
  * - length: size_t
  * - cb: uv_fs_cb
@@ -3024,14 +3090,14 @@ mrb_value
 mrb_UV_uv_fs_sendfile(mrb_state* mrb, mrb_value self) {
   mrb_value loop;
   mrb_value req;
-  mrb_int native_out_fd;
-  mrb_int native_in_fd;
+  mrb_value out_fd;
+  mrb_value in_fd;
   mrb_value in_offset;
   mrb_int native_length;
   mrb_value cb;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooiioio", &loop, &req, &native_out_fd, &native_in_fd, &in_offset, &native_length, &cb);
+  mrb_get_args(mrb, "oooooio", &loop, &req, &out_fd, &in_fd, &in_offset, &native_length, &cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
@@ -3042,6 +3108,8 @@ mrb_UV_uv_fs_sendfile(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
+  TODO_type_check_uv_file(out_fd);
+  TODO_type_check_uv_file(in_fd);
   TODO_type_check_int64_t(in_offset);
   TODO_type_check_uv_fs_cb(cb);
 
@@ -3050,6 +3118,12 @@ mrb_UV_uv_fs_sendfile(mrb_state* mrb, mrb_value self) {
 
   /* Unbox param: req */
   uv_fs_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_fs_t(req));
+
+  /* Unbox param: out_fd */
+  uv_file native_out_fd = TODO_mruby_unbox_uv_file(out_fd);
+
+  /* Unbox param: in_fd */
+  uv_file native_in_fd = TODO_mruby_unbox_uv_file(in_fd);
 
   /* Unbox param: in_offset */
   int64_t native_in_offset = TODO_mruby_unbox_int64_t(in_offset);
@@ -3297,7 +3371,7 @@ mrb_UV_uv_fs_utime(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_fs_write */
-/* sha: acbae79ffdb308e2fb76fe377743076a49b801a199be028b34fa4d0214a14317 */
+/* sha: 85a9f7c16c8ef9980586cc6bb48d4a8f43e621cd65510f1ab24a9ed42baa5b5c */
 #if BIND_uv_fs_write_FUNCTION
 #define uv_fs_write_REQUIRED_ARGC 7
 #define uv_fs_write_OPTIONAL_ARGC 0
@@ -3306,8 +3380,8 @@ mrb_UV_uv_fs_utime(mrb_state* mrb, mrb_value self) {
  * Parameters:
  * - loop: uv_loop_t *
  * - req: uv_fs_t *
- * - file: int
- * - bufs: const int []
+ * - file: uv_file
+ * - bufs: const uv_buf_t []
  * - nbufs: unsigned int
  * - offset: int64_t
  * - cb: uv_fs_cb
@@ -3317,14 +3391,14 @@ mrb_value
 mrb_UV_uv_fs_write(mrb_state* mrb, mrb_value self) {
   mrb_value loop;
   mrb_value req;
-  mrb_int native_file;
+  mrb_value file;
   mrb_value bufs;
   mrb_int native_nbufs;
   mrb_value offset;
   mrb_value cb;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooioioo", &loop, &req, &native_file, &bufs, &native_nbufs, &offset, &cb);
+  mrb_get_args(mrb, "ooooioo", &loop, &req, &file, &bufs, &native_nbufs, &offset, &cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
@@ -3335,7 +3409,8 @@ mrb_UV_uv_fs_write(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_int_[](bufs);
+  TODO_type_check_uv_file(file);
+  TODO_type_check_uv_buf_t_[](bufs);
   TODO_type_check_int64_t(offset);
   TODO_type_check_uv_fs_cb(cb);
 
@@ -3345,8 +3420,11 @@ mrb_UV_uv_fs_write(mrb_state* mrb, mrb_value self) {
   /* Unbox param: req */
   uv_fs_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_fs_t(req));
 
+  /* Unbox param: file */
+  uv_file native_file = TODO_mruby_unbox_uv_file(file);
+
   /* Unbox param: bufs */
-  const int [] native_bufs = TODO_mruby_unbox_int_[](bufs);
+  const uv_buf_t [] native_bufs = TODO_mruby_unbox_uv_buf_t_[](bufs);
 
   /* Unbox param: offset */
   int64_t native_offset = TODO_mruby_unbox_int64_t(offset);
@@ -3573,7 +3651,7 @@ mrb_UV_uv_getnameinfo(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_getrusage */
-/* sha: 9b079afc63150856781ff3e292050652734f41e797be0211773a980917fb7ed2 */
+/* sha: 2447b1d006ce8829d65a740638d6ef3754ba9969ccaf74ae15c7af9063c9e50d */
 #if BIND_uv_getrusage_FUNCTION
 #define uv_getrusage_REQUIRED_ARGC 1
 #define uv_getrusage_OPTIONAL_ARGC 0
@@ -3591,10 +3669,13 @@ mrb_UV_uv_getrusage(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &rusage);
 
   /* Type checking */
-  TODO_type_check_uv_rusage_t_PTR(rusage);
+  if (!mrb_obj_is_kind_of(mrb, rusage, UvRusageT_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UvRusageT expected");
+    return mrb_nil_value();
+  }
 
   /* Unbox param: rusage */
-  uv_rusage_t * native_rusage = TODO_mruby_unbox_uv_rusage_t_PTR(rusage);
+  uv_rusage_t * native_rusage = (mrb_nil_p(rusage) ? NULL : mruby_unbox_uv_rusage_t(rusage));
 
   /* Invocation */
   int native_return_value = uv_getrusage(native_rusage);
@@ -3608,22 +3689,28 @@ mrb_UV_uv_getrusage(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_guess_handle */
-/* sha: a0e9390bde3e00940787c3ab7486447593b2e5243c01f66046d028fdf7c9e420 */
+/* sha: 5d344f16089b20617b0ec8d1db05c69a560446f8fb6bb3a23fbf2e6be55afe74 */
 #if BIND_uv_guess_handle_FUNCTION
 #define uv_guess_handle_REQUIRED_ARGC 1
 #define uv_guess_handle_OPTIONAL_ARGC 0
 /* uv_guess_handle
  *
  * Parameters:
- * - file: int
+ * - file: uv_file
  * Return Type: uv_handle_type
  */
 mrb_value
 mrb_UV_uv_guess_handle(mrb_state* mrb, mrb_value self) {
-  mrb_int native_file;
+  mrb_value file;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "i", &native_file);
+  mrb_get_args(mrb, "o", &file);
+
+  /* Type checking */
+  TODO_type_check_uv_file(file);
+
+  /* Unbox param: file */
+  uv_file native_file = TODO_mruby_unbox_uv_file(file);
 
   /* Invocation */
   uv_handle_type native_return_value = uv_guess_handle(native_file);
@@ -3981,7 +4068,7 @@ mrb_UV_uv_interface_addresses(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_ip4_addr */
-/* sha: 1c17c643fe732e46250ff9a2bd590023adf9bf5e957c9993d579f7fafd3d0f9d */
+/* sha: 585a32cd72b9144d7b0ae8c9279b0636a6796152598243bbc4fae8e736ab7f67 */
 #if BIND_uv_ip4_addr_FUNCTION
 #define uv_ip4_addr_REQUIRED_ARGC 3
 #define uv_ip4_addr_OPTIONAL_ARGC 0
@@ -4003,13 +4090,10 @@ mrb_UV_uv_ip4_addr(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "zio", &native_ip, &native_port, &addr);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, addr, SockaddrIn_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "SockaddrIn expected");
-    return mrb_nil_value();
-  }
+  TODO_type_check_sockaddr_in_PTR(addr);
 
   /* Unbox param: addr */
-  struct sockaddr_in * native_addr = (mrb_nil_p(addr) ? NULL : mruby_unbox_sockaddr_in(addr));
+  struct sockaddr_in * native_addr = TODO_mruby_unbox_sockaddr_in_PTR(addr);
 
   /* Invocation */
   int native_return_value = uv_ip4_addr(native_ip, native_port, native_addr);
@@ -4023,7 +4107,7 @@ mrb_UV_uv_ip4_addr(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_ip4_name */
-/* sha: 028d2ed8b88c04be4b662f6a0ffcbf20d1439a930ac7405958e073093b7656db */
+/* sha: 894602d660871cffda2ae7df05c8679af5dda1089365dc6c07ff38b3089bbd1a */
 #if BIND_uv_ip4_name_FUNCTION
 #define uv_ip4_name_REQUIRED_ARGC 3
 #define uv_ip4_name_OPTIONAL_ARGC 0
@@ -4045,14 +4129,11 @@ mrb_UV_uv_ip4_name(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooi", &src, &dst, &native_size);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, src, SockaddrIn_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "SockaddrIn expected");
-    return mrb_nil_value();
-  }
+  TODO_type_check_sockaddr_in_PTR(src);
   TODO_type_check_char_PTR(dst);
 
   /* Unbox param: src */
-  const struct sockaddr_in * native_src = (mrb_nil_p(src) ? NULL : mruby_unbox_sockaddr_in(src));
+  const struct sockaddr_in * native_src = TODO_mruby_unbox_sockaddr_in_PTR(src);
 
   /* Unbox param: dst */
   char * native_dst = TODO_mruby_unbox_char_PTR(dst);
@@ -4069,7 +4150,7 @@ mrb_UV_uv_ip4_name(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_ip6_addr */
-/* sha: 5a674e01576ce291b42bd4038435d5756c3d13efe5263fb6aa040dde63e8a1ab */
+/* sha: fe32e856fed738febb7b6388b6c918a041c584c2ff2501e32c7d225a98006cba */
 #if BIND_uv_ip6_addr_FUNCTION
 #define uv_ip6_addr_REQUIRED_ARGC 3
 #define uv_ip6_addr_OPTIONAL_ARGC 0
@@ -4091,13 +4172,10 @@ mrb_UV_uv_ip6_addr(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "zio", &native_ip, &native_port, &addr);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, addr, SockaddrIn6_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "SockaddrIn6 expected");
-    return mrb_nil_value();
-  }
+  TODO_type_check_sockaddr_in6_PTR(addr);
 
   /* Unbox param: addr */
-  struct sockaddr_in6 * native_addr = (mrb_nil_p(addr) ? NULL : mruby_unbox_sockaddr_in6(addr));
+  struct sockaddr_in6 * native_addr = TODO_mruby_unbox_sockaddr_in6_PTR(addr);
 
   /* Invocation */
   int native_return_value = uv_ip6_addr(native_ip, native_port, native_addr);
@@ -4111,7 +4189,7 @@ mrb_UV_uv_ip6_addr(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_ip6_name */
-/* sha: 07d7a6319726587b917734789654a2c6635168b406fcf1f7ed195f274f7ddfd7 */
+/* sha: fa43fa0c28834606eef9a70290d9951fd314ebd0f8d2d68a8f90114e0a3734d8 */
 #if BIND_uv_ip6_name_FUNCTION
 #define uv_ip6_name_REQUIRED_ARGC 3
 #define uv_ip6_name_OPTIONAL_ARGC 0
@@ -4133,14 +4211,11 @@ mrb_UV_uv_ip6_name(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooi", &src, &dst, &native_size);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, src, SockaddrIn6_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "SockaddrIn6 expected");
-    return mrb_nil_value();
-  }
+  TODO_type_check_sockaddr_in6_PTR(src);
   TODO_type_check_char_PTR(dst);
 
   /* Unbox param: src */
-  const struct sockaddr_in6 * native_src = (mrb_nil_p(src) ? NULL : mruby_unbox_sockaddr_in6(src));
+  const struct sockaddr_in6 * native_src = TODO_mruby_unbox_sockaddr_in6_PTR(src);
 
   /* Unbox param: dst */
   char * native_dst = TODO_mruby_unbox_char_PTR(dst);
@@ -4309,14 +4384,14 @@ mrb_UV_uv_is_writable(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_key_create */
-/* sha: 0e42827a038e5b654a5d7649920aacc9935627c9cff4f2e4fa21458db73c3764 */
+/* sha: 2938bfd557104b5aca2771116b31e0d70a9434a970861b71a3104458afedfa9b */
 #if BIND_uv_key_create_FUNCTION
 #define uv_key_create_REQUIRED_ARGC 1
 #define uv_key_create_OPTIONAL_ARGC 0
 /* uv_key_create
  *
  * Parameters:
- * - key: int *
+ * - key: uv_key_t *
  * Return Type: int
  */
 mrb_value
@@ -4327,10 +4402,10 @@ mrb_UV_uv_key_create(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &key);
 
   /* Type checking */
-  TODO_type_check_int_PTR(key);
+  TODO_type_check_uv_key_t_PTR(key);
 
   /* Unbox param: key */
-  int * native_key = TODO_mruby_unbox_int_PTR(key);
+  uv_key_t * native_key = TODO_mruby_unbox_uv_key_t_PTR(key);
 
   /* Invocation */
   int native_return_value = uv_key_create(native_key);
@@ -4344,14 +4419,14 @@ mrb_UV_uv_key_create(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_key_delete */
-/* sha: 2a414a0e1c32e7095184634d31325156cd337231b04fda06bf7898ba3e6ff361 */
+/* sha: 9757536bb352b24598c98ea63595d420d314fd17a7c5f9748f3a14b518714926 */
 #if BIND_uv_key_delete_FUNCTION
 #define uv_key_delete_REQUIRED_ARGC 1
 #define uv_key_delete_OPTIONAL_ARGC 0
 /* uv_key_delete
  *
  * Parameters:
- * - key: int *
+ * - key: uv_key_t *
  * Return Type: void
  */
 mrb_value
@@ -4362,10 +4437,10 @@ mrb_UV_uv_key_delete(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &key);
 
   /* Type checking */
-  TODO_type_check_int_PTR(key);
+  TODO_type_check_uv_key_t_PTR(key);
 
   /* Unbox param: key */
-  int * native_key = TODO_mruby_unbox_int_PTR(key);
+  uv_key_t * native_key = TODO_mruby_unbox_uv_key_t_PTR(key);
 
   /* Invocation */
   uv_key_delete(native_key);
@@ -4376,14 +4451,14 @@ mrb_UV_uv_key_delete(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_key_get */
-/* sha: 83b20c1a8a0c11043983e954853fecafdacfdb3c293d7db794f78ae41261cdf6 */
+/* sha: e559cbfd41cb32c686081dd26bb4d266d93fa6b1333fb2eb1457266ed9ae7457 */
 #if BIND_uv_key_get_FUNCTION
 #define uv_key_get_REQUIRED_ARGC 1
 #define uv_key_get_OPTIONAL_ARGC 0
 /* uv_key_get
  *
  * Parameters:
- * - key: int *
+ * - key: uv_key_t *
  * Return Type: void *
  */
 mrb_value
@@ -4394,10 +4469,10 @@ mrb_UV_uv_key_get(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &key);
 
   /* Type checking */
-  TODO_type_check_int_PTR(key);
+  TODO_type_check_uv_key_t_PTR(key);
 
   /* Unbox param: key */
-  int * native_key = TODO_mruby_unbox_int_PTR(key);
+  uv_key_t * native_key = TODO_mruby_unbox_uv_key_t_PTR(key);
 
   /* Invocation */
   void * native_return_value = uv_key_get(native_key);
@@ -4411,14 +4486,14 @@ mrb_UV_uv_key_get(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_key_set */
-/* sha: 9312782a79eb747b8055388f965ac5656797ba4fc4a19eb0633f3d22bef0a6cd */
+/* sha: d5a5a3408132664f651d95f375dea43bedfd5a8574a26975593821da98f0724b */
 #if BIND_uv_key_set_FUNCTION
 #define uv_key_set_REQUIRED_ARGC 2
 #define uv_key_set_OPTIONAL_ARGC 0
 /* uv_key_set
  *
  * Parameters:
- * - key: int *
+ * - key: uv_key_t *
  * - value: void *
  * Return Type: void
  */
@@ -4431,11 +4506,11 @@ mrb_UV_uv_key_set(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &key, &value);
 
   /* Type checking */
-  TODO_type_check_int_PTR(key);
+  TODO_type_check_uv_key_t_PTR(key);
   TODO_type_check_void_PTR(value);
 
   /* Unbox param: key */
-  int * native_key = TODO_mruby_unbox_int_PTR(key);
+  uv_key_t * native_key = TODO_mruby_unbox_uv_key_t_PTR(key);
 
   /* Unbox param: value */
   void * native_value = TODO_mruby_unbox_void_PTR(value);
@@ -4793,14 +4868,14 @@ mrb_UV_uv_loop_size(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_mutex_destroy */
-/* sha: d234af4034209911683130c65f45bea9d456e2c45ea29471fac6ca4138647818 */
+/* sha: 03e81b5cdb42e25224c646eeb87594c1337ae5cb6b8c57b4f4fa90ca5685efb9 */
 #if BIND_uv_mutex_destroy_FUNCTION
 #define uv_mutex_destroy_REQUIRED_ARGC 1
 #define uv_mutex_destroy_OPTIONAL_ARGC 0
 /* uv_mutex_destroy
  *
  * Parameters:
- * - handle: int *
+ * - handle: uv_mutex_t *
  * Return Type: void
  */
 mrb_value
@@ -4811,10 +4886,10 @@ mrb_UV_uv_mutex_destroy(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  TODO_type_check_int_PTR(handle);
+  TODO_type_check_uv_mutex_t_PTR(handle);
 
   /* Unbox param: handle */
-  int * native_handle = TODO_mruby_unbox_int_PTR(handle);
+  uv_mutex_t * native_handle = TODO_mruby_unbox_uv_mutex_t_PTR(handle);
 
   /* Invocation */
   uv_mutex_destroy(native_handle);
@@ -4825,14 +4900,14 @@ mrb_UV_uv_mutex_destroy(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_mutex_init */
-/* sha: 679477813cccd6ca585a37f7efbeab6c92efe38396f987dcdaaabf0d313a4743 */
+/* sha: 56c107a11b5781edc936f6ca6a5b2eaea7d4c6558c6002b6d2a1f0a50512035d */
 #if BIND_uv_mutex_init_FUNCTION
 #define uv_mutex_init_REQUIRED_ARGC 1
 #define uv_mutex_init_OPTIONAL_ARGC 0
 /* uv_mutex_init
  *
  * Parameters:
- * - handle: int *
+ * - handle: uv_mutex_t *
  * Return Type: int
  */
 mrb_value
@@ -4843,10 +4918,10 @@ mrb_UV_uv_mutex_init(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  TODO_type_check_int_PTR(handle);
+  TODO_type_check_uv_mutex_t_PTR(handle);
 
   /* Unbox param: handle */
-  int * native_handle = TODO_mruby_unbox_int_PTR(handle);
+  uv_mutex_t * native_handle = TODO_mruby_unbox_uv_mutex_t_PTR(handle);
 
   /* Invocation */
   int native_return_value = uv_mutex_init(native_handle);
@@ -4860,14 +4935,14 @@ mrb_UV_uv_mutex_init(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_mutex_lock */
-/* sha: 620d12ea6c6570cd5bee3f3b3a1a56398d11d295c2d955d2204b17b2c080a9d9 */
+/* sha: 925967d81c2172fbe3a209c0dbcf1b49c9d1f3cd29c89ce7599ee9638073c2ed */
 #if BIND_uv_mutex_lock_FUNCTION
 #define uv_mutex_lock_REQUIRED_ARGC 1
 #define uv_mutex_lock_OPTIONAL_ARGC 0
 /* uv_mutex_lock
  *
  * Parameters:
- * - handle: int *
+ * - handle: uv_mutex_t *
  * Return Type: void
  */
 mrb_value
@@ -4878,10 +4953,10 @@ mrb_UV_uv_mutex_lock(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  TODO_type_check_int_PTR(handle);
+  TODO_type_check_uv_mutex_t_PTR(handle);
 
   /* Unbox param: handle */
-  int * native_handle = TODO_mruby_unbox_int_PTR(handle);
+  uv_mutex_t * native_handle = TODO_mruby_unbox_uv_mutex_t_PTR(handle);
 
   /* Invocation */
   uv_mutex_lock(native_handle);
@@ -4892,14 +4967,14 @@ mrb_UV_uv_mutex_lock(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_mutex_trylock */
-/* sha: 2ca04b67af85ac9698ff71587633a6517c77b9994c5f32af595c830e01f359b3 */
+/* sha: 1ee32d1ad351016a0811d5bccdeed58a6e4c2f1f3c5b03ec75d5aace2b044a54 */
 #if BIND_uv_mutex_trylock_FUNCTION
 #define uv_mutex_trylock_REQUIRED_ARGC 1
 #define uv_mutex_trylock_OPTIONAL_ARGC 0
 /* uv_mutex_trylock
  *
  * Parameters:
- * - handle: int *
+ * - handle: uv_mutex_t *
  * Return Type: int
  */
 mrb_value
@@ -4910,10 +4985,10 @@ mrb_UV_uv_mutex_trylock(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  TODO_type_check_int_PTR(handle);
+  TODO_type_check_uv_mutex_t_PTR(handle);
 
   /* Unbox param: handle */
-  int * native_handle = TODO_mruby_unbox_int_PTR(handle);
+  uv_mutex_t * native_handle = TODO_mruby_unbox_uv_mutex_t_PTR(handle);
 
   /* Invocation */
   int native_return_value = uv_mutex_trylock(native_handle);
@@ -4927,14 +5002,14 @@ mrb_UV_uv_mutex_trylock(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_mutex_unlock */
-/* sha: c5660d994220ef472f2b2d2a33232799fad10a3552cf1e7432de4ab4f206068c */
+/* sha: e87b14b97b23ee3cfa17851b4c25df60c155b128df6b899badd69a84b8312379 */
 #if BIND_uv_mutex_unlock_FUNCTION
 #define uv_mutex_unlock_REQUIRED_ARGC 1
 #define uv_mutex_unlock_OPTIONAL_ARGC 0
 /* uv_mutex_unlock
  *
  * Parameters:
- * - handle: int *
+ * - handle: uv_mutex_t *
  * Return Type: void
  */
 mrb_value
@@ -4945,10 +5020,10 @@ mrb_UV_uv_mutex_unlock(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  TODO_type_check_int_PTR(handle);
+  TODO_type_check_uv_mutex_t_PTR(handle);
 
   /* Unbox param: handle */
-  int * native_handle = TODO_mruby_unbox_int_PTR(handle);
+  uv_mutex_t * native_handle = TODO_mruby_unbox_uv_mutex_t_PTR(handle);
 
   /* Invocation */
   uv_mutex_unlock(native_handle);
@@ -4997,14 +5072,14 @@ mrb_UV_uv_now(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_once */
-/* sha: e79831775db0129393a472245b695f7d558acd13d696400854de0246e35e7876 */
+/* sha: cb5088fd385e84ae0fa1287005ef015c92e7418dd6d40818e86e2d4e831f5905 */
 #if BIND_uv_once_FUNCTION
 #define uv_once_REQUIRED_ARGC 2
 #define uv_once_OPTIONAL_ARGC 0
 /* uv_once
  *
  * Parameters:
- * - guard: int *
+ * - guard: uv_once_t *
  * - callback: void (*)(void)
  * Return Type: void
  */
@@ -5017,11 +5092,11 @@ mrb_UV_uv_once(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &guard, &callback);
 
   /* Type checking */
-  TODO_type_check_int_PTR(guard);
+  TODO_type_check_uv_once_t_PTR(guard);
   TODO_type_check_void_LPAREN_PTR_RPAREN_LPAREN_void_RPAREN(callback);
 
   /* Unbox param: guard */
-  int * native_guard = TODO_mruby_unbox_int_PTR(guard);
+  uv_once_t * native_guard = TODO_mruby_unbox_uv_once_t_PTR(guard);
 
   /* Unbox param: callback */
   void (*native_callback)(void) = TODO_mruby_unbox_void_LPAREN_PTR_RPAREN_LPAREN_void_RPAREN(callback);
@@ -5317,7 +5392,7 @@ mrb_UV_uv_pipe_init(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_pipe_open */
-/* sha: 3b0e93c9739693e622bc27e1d06d3664a7d9df64198eb0e6e2391d2d651bdc2c */
+/* sha: 4993c6eaa6c8628827451d2e87d01ecebcf0639f20d84728e46565650941c71b */
 #if BIND_uv_pipe_open_FUNCTION
 #define uv_pipe_open_REQUIRED_ARGC 2
 #define uv_pipe_open_OPTIONAL_ARGC 0
@@ -5325,25 +5400,29 @@ mrb_UV_uv_pipe_init(mrb_state* mrb, mrb_value self) {
  *
  * Parameters:
  * - arg1: uv_pipe_t *
- * - file: int
+ * - file: uv_file
  * Return Type: int
  */
 mrb_value
 mrb_UV_uv_pipe_open(mrb_state* mrb, mrb_value self) {
   mrb_value arg1;
-  mrb_int native_file;
+  mrb_value file;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oi", &arg1, &native_file);
+  mrb_get_args(mrb, "oo", &arg1, &file);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, arg1, UvPipeT_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvPipeT expected");
     return mrb_nil_value();
   }
+  TODO_type_check_uv_file(file);
 
   /* Unbox param: arg1 */
   uv_pipe_t * native_arg1 = (mrb_nil_p(arg1) ? NULL : mruby_unbox_uv_pipe_t(arg1));
+
+  /* Unbox param: file */
+  uv_file native_file = TODO_mruby_unbox_uv_file(file);
 
   /* Invocation */
   int native_return_value = uv_pipe_open(native_arg1, native_file);
@@ -5519,7 +5598,7 @@ mrb_UV_uv_poll_init(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_poll_init_socket */
-/* sha: 1d26e43eacb1d622a1e6c2fbefe2dd3d358ae437dcf24ad01f5ed3ff7cdf36fc */
+/* sha: 01052454b9859451a216c6def1dd7160a9c2d6efa1f8e85ec18e5838b29a76f9 */
 #if BIND_uv_poll_init_socket_FUNCTION
 #define uv_poll_init_socket_REQUIRED_ARGC 3
 #define uv_poll_init_socket_OPTIONAL_ARGC 0
@@ -5528,17 +5607,17 @@ mrb_UV_uv_poll_init(mrb_state* mrb, mrb_value self) {
  * Parameters:
  * - loop: uv_loop_t *
  * - handle: uv_poll_t *
- * - socket: int
+ * - socket: uv_os_sock_t
  * Return Type: int
  */
 mrb_value
 mrb_UV_uv_poll_init_socket(mrb_state* mrb, mrb_value self) {
   mrb_value loop;
   mrb_value handle;
-  mrb_int native_socket;
+  mrb_value socket;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooi", &loop, &handle, &native_socket);
+  mrb_get_args(mrb, "ooo", &loop, &handle, &socket);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
@@ -5549,12 +5628,16 @@ mrb_UV_uv_poll_init_socket(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvPollT expected");
     return mrb_nil_value();
   }
+  TODO_type_check_uv_os_sock_t(socket);
 
   /* Unbox param: loop */
   uv_loop_t * native_loop = (mrb_nil_p(loop) ? NULL : mruby_unbox_uv_loop_t(loop));
 
   /* Unbox param: handle */
   uv_poll_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_poll_t(handle));
+
+  /* Unbox param: socket */
+  uv_os_sock_t native_socket = TODO_mruby_unbox_uv_os_sock_t(socket);
 
   /* Invocation */
   int native_return_value = uv_poll_init_socket(native_loop, native_handle, native_socket);
@@ -6286,14 +6369,14 @@ mrb_UV_uv_run(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_rwlock_destroy */
-/* sha: 2cfc209d99cca3aeff34f994c6fe285c82342322f51f82896ae24d9858e1f13e */
+/* sha: 96f36a84464142f3c43e052082175f6a08c198f80df16d904787ada32adc8102 */
 #if BIND_uv_rwlock_destroy_FUNCTION
 #define uv_rwlock_destroy_REQUIRED_ARGC 1
 #define uv_rwlock_destroy_OPTIONAL_ARGC 0
 /* uv_rwlock_destroy
  *
  * Parameters:
- * - rwlock: int *
+ * - rwlock: uv_rwlock_t *
  * Return Type: void
  */
 mrb_value
@@ -6304,10 +6387,10 @@ mrb_UV_uv_rwlock_destroy(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &rwlock);
 
   /* Type checking */
-  TODO_type_check_int_PTR(rwlock);
+  TODO_type_check_uv_rwlock_t_PTR(rwlock);
 
   /* Unbox param: rwlock */
-  int * native_rwlock = TODO_mruby_unbox_int_PTR(rwlock);
+  uv_rwlock_t * native_rwlock = TODO_mruby_unbox_uv_rwlock_t_PTR(rwlock);
 
   /* Invocation */
   uv_rwlock_destroy(native_rwlock);
@@ -6318,14 +6401,14 @@ mrb_UV_uv_rwlock_destroy(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_rwlock_init */
-/* sha: 1229f0e6ce698de23cba68b11ed7f8f1131fd28a6e454848e28aafc5b38504b0 */
+/* sha: e7d83a4613962fdd9e205a896c746da87b456b00f3e494eba20f592c3dd95ac8 */
 #if BIND_uv_rwlock_init_FUNCTION
 #define uv_rwlock_init_REQUIRED_ARGC 1
 #define uv_rwlock_init_OPTIONAL_ARGC 0
 /* uv_rwlock_init
  *
  * Parameters:
- * - rwlock: int *
+ * - rwlock: uv_rwlock_t *
  * Return Type: int
  */
 mrb_value
@@ -6336,10 +6419,10 @@ mrb_UV_uv_rwlock_init(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &rwlock);
 
   /* Type checking */
-  TODO_type_check_int_PTR(rwlock);
+  TODO_type_check_uv_rwlock_t_PTR(rwlock);
 
   /* Unbox param: rwlock */
-  int * native_rwlock = TODO_mruby_unbox_int_PTR(rwlock);
+  uv_rwlock_t * native_rwlock = TODO_mruby_unbox_uv_rwlock_t_PTR(rwlock);
 
   /* Invocation */
   int native_return_value = uv_rwlock_init(native_rwlock);
@@ -6353,14 +6436,14 @@ mrb_UV_uv_rwlock_init(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_rwlock_rdlock */
-/* sha: 55db638e44df12fab23846f7d0b51a6564e9ebd4a8b6131145e4ab0934fec51a */
+/* sha: 7db9dac5c5ddc9f8a8cc043da60c94c91218481e502c100656e5fb546d5ec185 */
 #if BIND_uv_rwlock_rdlock_FUNCTION
 #define uv_rwlock_rdlock_REQUIRED_ARGC 1
 #define uv_rwlock_rdlock_OPTIONAL_ARGC 0
 /* uv_rwlock_rdlock
  *
  * Parameters:
- * - rwlock: int *
+ * - rwlock: uv_rwlock_t *
  * Return Type: void
  */
 mrb_value
@@ -6371,10 +6454,10 @@ mrb_UV_uv_rwlock_rdlock(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &rwlock);
 
   /* Type checking */
-  TODO_type_check_int_PTR(rwlock);
+  TODO_type_check_uv_rwlock_t_PTR(rwlock);
 
   /* Unbox param: rwlock */
-  int * native_rwlock = TODO_mruby_unbox_int_PTR(rwlock);
+  uv_rwlock_t * native_rwlock = TODO_mruby_unbox_uv_rwlock_t_PTR(rwlock);
 
   /* Invocation */
   uv_rwlock_rdlock(native_rwlock);
@@ -6385,14 +6468,14 @@ mrb_UV_uv_rwlock_rdlock(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_rwlock_rdunlock */
-/* sha: 131e7e4ba7ffd3e312bfe4bbcd325295a563e8e11fe60f271f5bd1a1841b40f7 */
+/* sha: 645eea99ef2b9efb346a104b17c1eb46af95471d9cd9f51f31d0aa3edc8c178e */
 #if BIND_uv_rwlock_rdunlock_FUNCTION
 #define uv_rwlock_rdunlock_REQUIRED_ARGC 1
 #define uv_rwlock_rdunlock_OPTIONAL_ARGC 0
 /* uv_rwlock_rdunlock
  *
  * Parameters:
- * - rwlock: int *
+ * - rwlock: uv_rwlock_t *
  * Return Type: void
  */
 mrb_value
@@ -6403,10 +6486,10 @@ mrb_UV_uv_rwlock_rdunlock(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &rwlock);
 
   /* Type checking */
-  TODO_type_check_int_PTR(rwlock);
+  TODO_type_check_uv_rwlock_t_PTR(rwlock);
 
   /* Unbox param: rwlock */
-  int * native_rwlock = TODO_mruby_unbox_int_PTR(rwlock);
+  uv_rwlock_t * native_rwlock = TODO_mruby_unbox_uv_rwlock_t_PTR(rwlock);
 
   /* Invocation */
   uv_rwlock_rdunlock(native_rwlock);
@@ -6417,14 +6500,14 @@ mrb_UV_uv_rwlock_rdunlock(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_rwlock_tryrdlock */
-/* sha: 2bfe611bc290caa98c229a88d4754b1667ee08054920053f03686528b76178af */
+/* sha: e072e9108d8c1b20cddba2a8455ff5f814a3c82c5e352aa5e170c576410d9e67 */
 #if BIND_uv_rwlock_tryrdlock_FUNCTION
 #define uv_rwlock_tryrdlock_REQUIRED_ARGC 1
 #define uv_rwlock_tryrdlock_OPTIONAL_ARGC 0
 /* uv_rwlock_tryrdlock
  *
  * Parameters:
- * - rwlock: int *
+ * - rwlock: uv_rwlock_t *
  * Return Type: int
  */
 mrb_value
@@ -6435,10 +6518,10 @@ mrb_UV_uv_rwlock_tryrdlock(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &rwlock);
 
   /* Type checking */
-  TODO_type_check_int_PTR(rwlock);
+  TODO_type_check_uv_rwlock_t_PTR(rwlock);
 
   /* Unbox param: rwlock */
-  int * native_rwlock = TODO_mruby_unbox_int_PTR(rwlock);
+  uv_rwlock_t * native_rwlock = TODO_mruby_unbox_uv_rwlock_t_PTR(rwlock);
 
   /* Invocation */
   int native_return_value = uv_rwlock_tryrdlock(native_rwlock);
@@ -6452,14 +6535,14 @@ mrb_UV_uv_rwlock_tryrdlock(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_rwlock_trywrlock */
-/* sha: f8377403716c685ad551ada17709bf8c202da45028a3d49d883185e3d787f4fb */
+/* sha: 14015d8bb1e0cb5be5fad4303cfe7c57d8c27c7491cfb9e146a016fe6f70b295 */
 #if BIND_uv_rwlock_trywrlock_FUNCTION
 #define uv_rwlock_trywrlock_REQUIRED_ARGC 1
 #define uv_rwlock_trywrlock_OPTIONAL_ARGC 0
 /* uv_rwlock_trywrlock
  *
  * Parameters:
- * - rwlock: int *
+ * - rwlock: uv_rwlock_t *
  * Return Type: int
  */
 mrb_value
@@ -6470,10 +6553,10 @@ mrb_UV_uv_rwlock_trywrlock(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &rwlock);
 
   /* Type checking */
-  TODO_type_check_int_PTR(rwlock);
+  TODO_type_check_uv_rwlock_t_PTR(rwlock);
 
   /* Unbox param: rwlock */
-  int * native_rwlock = TODO_mruby_unbox_int_PTR(rwlock);
+  uv_rwlock_t * native_rwlock = TODO_mruby_unbox_uv_rwlock_t_PTR(rwlock);
 
   /* Invocation */
   int native_return_value = uv_rwlock_trywrlock(native_rwlock);
@@ -6487,14 +6570,14 @@ mrb_UV_uv_rwlock_trywrlock(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_rwlock_wrlock */
-/* sha: a5ef5113c77a133117c90f3ab3350c0e7966785588ae3f8d375fe55440e20ed7 */
+/* sha: 79130b9d39584af90d233516c90d19060b2db5d45d17f5fca46b013ce90d44d1 */
 #if BIND_uv_rwlock_wrlock_FUNCTION
 #define uv_rwlock_wrlock_REQUIRED_ARGC 1
 #define uv_rwlock_wrlock_OPTIONAL_ARGC 0
 /* uv_rwlock_wrlock
  *
  * Parameters:
- * - rwlock: int *
+ * - rwlock: uv_rwlock_t *
  * Return Type: void
  */
 mrb_value
@@ -6505,10 +6588,10 @@ mrb_UV_uv_rwlock_wrlock(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &rwlock);
 
   /* Type checking */
-  TODO_type_check_int_PTR(rwlock);
+  TODO_type_check_uv_rwlock_t_PTR(rwlock);
 
   /* Unbox param: rwlock */
-  int * native_rwlock = TODO_mruby_unbox_int_PTR(rwlock);
+  uv_rwlock_t * native_rwlock = TODO_mruby_unbox_uv_rwlock_t_PTR(rwlock);
 
   /* Invocation */
   uv_rwlock_wrlock(native_rwlock);
@@ -6519,14 +6602,14 @@ mrb_UV_uv_rwlock_wrlock(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_rwlock_wrunlock */
-/* sha: bb2edc487ac2395dfa87b0d88dead4735e25867adaac879609c9ad60e87fedfa */
+/* sha: 2b12732a7507edaa57e681ca176f320d764ea49d6da3b4170d37d6554ea91bb6 */
 #if BIND_uv_rwlock_wrunlock_FUNCTION
 #define uv_rwlock_wrunlock_REQUIRED_ARGC 1
 #define uv_rwlock_wrunlock_OPTIONAL_ARGC 0
 /* uv_rwlock_wrunlock
  *
  * Parameters:
- * - rwlock: int *
+ * - rwlock: uv_rwlock_t *
  * Return Type: void
  */
 mrb_value
@@ -6537,10 +6620,10 @@ mrb_UV_uv_rwlock_wrunlock(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &rwlock);
 
   /* Type checking */
-  TODO_type_check_int_PTR(rwlock);
+  TODO_type_check_uv_rwlock_t_PTR(rwlock);
 
   /* Unbox param: rwlock */
-  int * native_rwlock = TODO_mruby_unbox_int_PTR(rwlock);
+  uv_rwlock_t * native_rwlock = TODO_mruby_unbox_uv_rwlock_t_PTR(rwlock);
 
   /* Invocation */
   uv_rwlock_wrunlock(native_rwlock);
@@ -6551,14 +6634,14 @@ mrb_UV_uv_rwlock_wrunlock(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_sem_destroy */
-/* sha: 3ff4928029bbd0c2c3bf8261706eeb68d4c8ea3c451cd73c333f40fb694de33b */
+/* sha: 8d5125092b13f8f5cb9b8966fda35b199fb6d092ffe21dbb4d8e3dd43e3306e3 */
 #if BIND_uv_sem_destroy_FUNCTION
 #define uv_sem_destroy_REQUIRED_ARGC 1
 #define uv_sem_destroy_OPTIONAL_ARGC 0
 /* uv_sem_destroy
  *
  * Parameters:
- * - sem: int *
+ * - sem: uv_sem_t *
  * Return Type: void
  */
 mrb_value
@@ -6569,10 +6652,10 @@ mrb_UV_uv_sem_destroy(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &sem);
 
   /* Type checking */
-  TODO_type_check_int_PTR(sem);
+  TODO_type_check_uv_sem_t_PTR(sem);
 
   /* Unbox param: sem */
-  int * native_sem = TODO_mruby_unbox_int_PTR(sem);
+  uv_sem_t * native_sem = TODO_mruby_unbox_uv_sem_t_PTR(sem);
 
   /* Invocation */
   uv_sem_destroy(native_sem);
@@ -6583,14 +6666,14 @@ mrb_UV_uv_sem_destroy(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_sem_init */
-/* sha: 79c19c1f691bd845943089327f4ce19b0859fc36c0c651940b24b066828da8fc */
+/* sha: 65ffa864cfdbd60d93c44f0149247f587dea4518b2b2b6d0c673cafa0a00833a */
 #if BIND_uv_sem_init_FUNCTION
 #define uv_sem_init_REQUIRED_ARGC 2
 #define uv_sem_init_OPTIONAL_ARGC 0
 /* uv_sem_init
  *
  * Parameters:
- * - sem: int *
+ * - sem: uv_sem_t *
  * - value: unsigned int
  * Return Type: int
  */
@@ -6603,10 +6686,10 @@ mrb_UV_uv_sem_init(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oi", &sem, &native_value);
 
   /* Type checking */
-  TODO_type_check_int_PTR(sem);
+  TODO_type_check_uv_sem_t_PTR(sem);
 
   /* Unbox param: sem */
-  int * native_sem = TODO_mruby_unbox_int_PTR(sem);
+  uv_sem_t * native_sem = TODO_mruby_unbox_uv_sem_t_PTR(sem);
 
   /* Invocation */
   int native_return_value = uv_sem_init(native_sem, native_value);
@@ -6620,14 +6703,14 @@ mrb_UV_uv_sem_init(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_sem_post */
-/* sha: e14c12305710c1c55fde533c4ae11742cfe6abca8eec140824e7c9c1eac26492 */
+/* sha: 7346cd3fd3dbe8872cd780ac3214aa28264ee6de2a3fa96d04d498627a205e5a */
 #if BIND_uv_sem_post_FUNCTION
 #define uv_sem_post_REQUIRED_ARGC 1
 #define uv_sem_post_OPTIONAL_ARGC 0
 /* uv_sem_post
  *
  * Parameters:
- * - sem: int *
+ * - sem: uv_sem_t *
  * Return Type: void
  */
 mrb_value
@@ -6638,10 +6721,10 @@ mrb_UV_uv_sem_post(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &sem);
 
   /* Type checking */
-  TODO_type_check_int_PTR(sem);
+  TODO_type_check_uv_sem_t_PTR(sem);
 
   /* Unbox param: sem */
-  int * native_sem = TODO_mruby_unbox_int_PTR(sem);
+  uv_sem_t * native_sem = TODO_mruby_unbox_uv_sem_t_PTR(sem);
 
   /* Invocation */
   uv_sem_post(native_sem);
@@ -6652,14 +6735,14 @@ mrb_UV_uv_sem_post(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_sem_trywait */
-/* sha: a24679e2931ad458739f183b0987f4b3e027d1560dbf2a898870fd23adee59a9 */
+/* sha: 9206fa007d3b2d6fba190456f101138961ac2ddb70c533b402fc692f0615e6be */
 #if BIND_uv_sem_trywait_FUNCTION
 #define uv_sem_trywait_REQUIRED_ARGC 1
 #define uv_sem_trywait_OPTIONAL_ARGC 0
 /* uv_sem_trywait
  *
  * Parameters:
- * - sem: int *
+ * - sem: uv_sem_t *
  * Return Type: int
  */
 mrb_value
@@ -6670,10 +6753,10 @@ mrb_UV_uv_sem_trywait(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &sem);
 
   /* Type checking */
-  TODO_type_check_int_PTR(sem);
+  TODO_type_check_uv_sem_t_PTR(sem);
 
   /* Unbox param: sem */
-  int * native_sem = TODO_mruby_unbox_int_PTR(sem);
+  uv_sem_t * native_sem = TODO_mruby_unbox_uv_sem_t_PTR(sem);
 
   /* Invocation */
   int native_return_value = uv_sem_trywait(native_sem);
@@ -6687,14 +6770,14 @@ mrb_UV_uv_sem_trywait(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_sem_wait */
-/* sha: a84427a67e4d77bb2cf7d36c9dbc34b012e53255777846e707688df9ac44b994 */
+/* sha: 278f326d74423ec4ed4bb9e7c01973492415201f2a0f27d8d37a7352f0b984da */
 #if BIND_uv_sem_wait_FUNCTION
 #define uv_sem_wait_REQUIRED_ARGC 1
 #define uv_sem_wait_OPTIONAL_ARGC 0
 /* uv_sem_wait
  *
  * Parameters:
- * - sem: int *
+ * - sem: uv_sem_t *
  * Return Type: void
  */
 mrb_value
@@ -6705,10 +6788,10 @@ mrb_UV_uv_sem_wait(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &sem);
 
   /* Type checking */
-  TODO_type_check_int_PTR(sem);
+  TODO_type_check_uv_sem_t_PTR(sem);
 
   /* Unbox param: sem */
-  int * native_sem = TODO_mruby_unbox_int_PTR(sem);
+  uv_sem_t * native_sem = TODO_mruby_unbox_uv_sem_t_PTR(sem);
 
   /* Invocation */
   uv_sem_wait(native_sem);
@@ -6822,6 +6905,59 @@ mrb_UV_uv_setup_args(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = TODO_mruby_box_char_PTR_PTR(mrb, native_return_value);
+  
+  return return_value;
+}
+#endif
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: uv_shutdown */
+/* sha: e1f99b4ddf5a9f1c0971d080b2191d3202792f214d847c80033386b55021bfac */
+#if BIND_uv_shutdown_FUNCTION
+#define uv_shutdown_REQUIRED_ARGC 3
+#define uv_shutdown_OPTIONAL_ARGC 0
+/* uv_shutdown
+ *
+ * Parameters:
+ * - req: uv_shutdown_t *
+ * - handle: uv_stream_t *
+ * - cb: uv_shutdown_cb
+ * Return Type: int
+ */
+mrb_value
+mrb_UV_uv_shutdown(mrb_state* mrb, mrb_value self) {
+  mrb_value req;
+  mrb_value handle;
+  mrb_value cb;
+
+  /* Fetch the args */
+  mrb_get_args(mrb, "ooo", &req, &handle, &cb);
+
+  /* Type checking */
+  if (!mrb_obj_is_kind_of(mrb, req, UvShutdownT_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UvShutdownT expected");
+    return mrb_nil_value();
+  }
+  if (!mrb_obj_is_kind_of(mrb, handle, UvStreamT_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
+    return mrb_nil_value();
+  }
+  TODO_type_check_uv_shutdown_cb(cb);
+
+  /* Unbox param: req */
+  uv_shutdown_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_shutdown_t(req));
+
+  /* Unbox param: handle */
+  uv_stream_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_stream_t(handle));
+
+  /* Unbox param: cb */
+  uv_shutdown_cb native_cb = TODO_mruby_unbox_uv_shutdown_cb(cb);
+
+  /* Invocation */
+  int native_return_value = uv_shutdown(native_req, native_handle, native_cb);
+
+  /* Box the return value */
+  mrb_value return_value = mrb_fixnum_value(native_return_value);
   
   return return_value;
 }
@@ -6960,7 +7096,7 @@ mrb_UV_uv_signal_stop(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_spawn */
-/* sha: d71577c784a07d7e2799d57fea6f48664d9004c95f7db957ad3a3b565b14d120 */
+/* sha: 1071424e51998cd318312b921ea078570d9909062ff8972b7449a3dd908ff335 */
 #if BIND_uv_spawn_FUNCTION
 #define uv_spawn_REQUIRED_ARGC 3
 #define uv_spawn_OPTIONAL_ARGC 0
@@ -6990,7 +7126,10 @@ mrb_UV_uv_spawn(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvProcessT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_uv_process_options_t_PTR(options);
+  if (!mrb_obj_is_kind_of(mrb, options, UvProcessOptionsT_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UvProcessOptionsT expected");
+    return mrb_nil_value();
+  }
 
   /* Unbox param: loop */
   uv_loop_t * native_loop = (mrb_nil_p(loop) ? NULL : mruby_unbox_uv_loop_t(loop));
@@ -6999,7 +7138,7 @@ mrb_UV_uv_spawn(mrb_state* mrb, mrb_value self) {
   uv_process_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_process_t(handle));
 
   /* Unbox param: options */
-  const uv_process_options_t * native_options = TODO_mruby_unbox_uv_process_options_t_PTR(options);
+  const uv_process_options_t * native_options = (mrb_nil_p(options) ? NULL : mruby_unbox_uv_process_options_t(options));
 
   /* Invocation */
   int native_return_value = uv_spawn(native_loop, native_handle, native_options);
@@ -7500,7 +7639,7 @@ mrb_UV_uv_tcp_nodelay(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tcp_open */
-/* sha: 11caddf6ecab16db6b64ca3ede48a6d16d8796f23751bab4425074538f29f6c3 */
+/* sha: f86084896a4f760496c8544d1256f4e6bac82014d589e64d50986685978a8387 */
 #if BIND_uv_tcp_open_FUNCTION
 #define uv_tcp_open_REQUIRED_ARGC 2
 #define uv_tcp_open_OPTIONAL_ARGC 0
@@ -7508,25 +7647,29 @@ mrb_UV_uv_tcp_nodelay(mrb_state* mrb, mrb_value self) {
  *
  * Parameters:
  * - handle: uv_tcp_t *
- * - sock: int
+ * - sock: uv_os_sock_t
  * Return Type: int
  */
 mrb_value
 mrb_UV_uv_tcp_open(mrb_state* mrb, mrb_value self) {
   mrb_value handle;
-  mrb_int native_sock;
+  mrb_value sock;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oi", &handle, &native_sock);
+  mrb_get_args(mrb, "oo", &handle, &sock);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, handle, UvTcpT_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvTcpT expected");
     return mrb_nil_value();
   }
+  TODO_type_check_uv_os_sock_t(sock);
 
   /* Unbox param: handle */
   uv_tcp_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_tcp_t(handle));
+
+  /* Unbox param: sock */
+  uv_os_sock_t native_sock = TODO_mruby_unbox_uv_os_sock_t(sock);
 
   /* Invocation */
   int native_return_value = uv_tcp_open(native_handle, native_sock);
@@ -7580,14 +7723,14 @@ mrb_UV_uv_tcp_simultaneous_accepts(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_thread_create */
-/* sha: 7b22e39f37dceb8d89e76ac374dab1db6bbca7c1d622a89c1fdb854a47ba0094 */
+/* sha: 67dc48521009f2001e436b14a306433cf17e5a85ebe51e85ece88d9e02a50b51 */
 #if BIND_uv_thread_create_FUNCTION
 #define uv_thread_create_REQUIRED_ARGC 3
 #define uv_thread_create_OPTIONAL_ARGC 0
 /* uv_thread_create
  *
  * Parameters:
- * - tid: int *
+ * - tid: uv_thread_t *
  * - entry: uv_thread_cb
  * - arg: void *
  * Return Type: int
@@ -7602,12 +7745,12 @@ mrb_UV_uv_thread_create(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooo", &tid, &entry, &arg);
 
   /* Type checking */
-  TODO_type_check_int_PTR(tid);
+  TODO_type_check_uv_thread_t_PTR(tid);
   TODO_type_check_uv_thread_cb(entry);
   TODO_type_check_void_PTR(arg);
 
   /* Unbox param: tid */
-  int * native_tid = TODO_mruby_unbox_int_PTR(tid);
+  uv_thread_t * native_tid = TODO_mruby_unbox_uv_thread_t_PTR(tid);
 
   /* Unbox param: entry */
   uv_thread_cb native_entry = TODO_mruby_unbox_uv_thread_cb(entry);
@@ -7627,15 +7770,15 @@ mrb_UV_uv_thread_create(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_thread_equal */
-/* sha: d5d09f72e703887a904466b861a7d5bfdbcb473d47a7a80208d92608a616de02 */
+/* sha: 894fec8218ae34ce13ae7a52fd081eed6c25452efd34560d7786cc3a12e2f838 */
 #if BIND_uv_thread_equal_FUNCTION
 #define uv_thread_equal_REQUIRED_ARGC 2
 #define uv_thread_equal_OPTIONAL_ARGC 0
 /* uv_thread_equal
  *
  * Parameters:
- * - t1: const int *
- * - t2: const int *
+ * - t1: const uv_thread_t *
+ * - t2: const uv_thread_t *
  * Return Type: int
  */
 mrb_value
@@ -7647,14 +7790,14 @@ mrb_UV_uv_thread_equal(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &t1, &t2);
 
   /* Type checking */
-  TODO_type_check_int_PTR(t1);
-  TODO_type_check_int_PTR(t2);
+  TODO_type_check_uv_thread_t_PTR(t1);
+  TODO_type_check_uv_thread_t_PTR(t2);
 
   /* Unbox param: t1 */
-  const int * native_t1 = TODO_mruby_unbox_int_PTR(t1);
+  const uv_thread_t * native_t1 = TODO_mruby_unbox_uv_thread_t_PTR(t1);
 
   /* Unbox param: t2 */
-  const int * native_t2 = TODO_mruby_unbox_int_PTR(t2);
+  const uv_thread_t * native_t2 = TODO_mruby_unbox_uv_thread_t_PTR(t2);
 
   /* Invocation */
   int native_return_value = uv_thread_equal(native_t1, native_t2);
@@ -7668,14 +7811,14 @@ mrb_UV_uv_thread_equal(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_thread_join */
-/* sha: d13e4da39ae0aab5c2442e8170480812514878e095136be69ce675c3c40a0a89 */
+/* sha: f0e937aa881526346fe9b259bbd5836bb65cf128473e936b4bf1f281b30d921a */
 #if BIND_uv_thread_join_FUNCTION
 #define uv_thread_join_REQUIRED_ARGC 1
 #define uv_thread_join_OPTIONAL_ARGC 0
 /* uv_thread_join
  *
  * Parameters:
- * - tid: int *
+ * - tid: uv_thread_t *
  * Return Type: int
  */
 mrb_value
@@ -7686,10 +7829,10 @@ mrb_UV_uv_thread_join(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &tid);
 
   /* Type checking */
-  TODO_type_check_int_PTR(tid);
+  TODO_type_check_uv_thread_t_PTR(tid);
 
   /* Unbox param: tid */
-  int * native_tid = TODO_mruby_unbox_int_PTR(tid);
+  uv_thread_t * native_tid = TODO_mruby_unbox_uv_thread_t_PTR(tid);
 
   /* Invocation */
   int native_return_value = uv_thread_join(native_tid);
@@ -7703,22 +7846,22 @@ mrb_UV_uv_thread_join(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_thread_self */
-/* sha: c753ef135b06d82e127745136ed4e556551f1b5a7b946359448bf4e92ceb70ce */
+/* sha: aef7fc40f72b7b58a60fd89568eda5fc3ea67f8271cb5f33ec91ccfdcfe7433b */
 #if BIND_uv_thread_self_FUNCTION
 #define uv_thread_self_REQUIRED_ARGC 0
 #define uv_thread_self_OPTIONAL_ARGC 0
 /* uv_thread_self
  *
  * Parameters: None
- * Return Type: int
+ * Return Type: uv_thread_t
  */
 mrb_value
 mrb_UV_uv_thread_self(mrb_state* mrb, mrb_value self) {
   /* Invocation */
-  int native_return_value = uv_thread_self();
+  uv_thread_t native_return_value = uv_thread_self();
 
   /* Box the return value */
-  mrb_value return_value = mrb_fixnum_value(native_return_value);
+  mrb_value return_value = TODO_mruby_box_uv_thread_t(mrb, native_return_value);
   
   return return_value;
 }
@@ -7984,7 +8127,7 @@ mrb_UV_uv_timer_stop(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_try_write */
-/* sha: 62e208a376e84fbb9a182778fb536edc6f4b11e8038de34e9f86221f2e25d4e2 */
+/* sha: eee0c829c1f9977349ea6e16f915346dd143ea840d08c24cba8792d4f995f080 */
 #if BIND_uv_try_write_FUNCTION
 #define uv_try_write_REQUIRED_ARGC 3
 #define uv_try_write_OPTIONAL_ARGC 0
@@ -7992,7 +8135,7 @@ mrb_UV_uv_timer_stop(mrb_state* mrb, mrb_value self) {
  *
  * Parameters:
  * - handle: uv_stream_t *
- * - bufs: const int []
+ * - bufs: const uv_buf_t []
  * - nbufs: unsigned int
  * Return Type: int
  */
@@ -8010,13 +8153,13 @@ mrb_UV_uv_try_write(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_int_[](bufs);
+  TODO_type_check_uv_buf_t_[](bufs);
 
   /* Unbox param: handle */
   uv_stream_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_stream_t(handle));
 
   /* Unbox param: bufs */
-  const int [] native_bufs = TODO_mruby_unbox_int_[](bufs);
+  const uv_buf_t [] native_bufs = TODO_mruby_unbox_uv_buf_t_[](bufs);
 
   /* Invocation */
   int native_return_value = uv_try_write(native_handle, native_bufs, native_nbufs);
@@ -8080,7 +8223,7 @@ mrb_UV_uv_tty_get_winsize(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tty_init */
-/* sha: df995fe7e7d73c6536c014a0cbdf3e7b5c800283d36bcb0a1f2233d3ba2f901a */
+/* sha: 742e6c9426e99aeb65c7457f50a11c765515f794d5afc95e2d5d60d91d92f408 */
 #if BIND_uv_tty_init_FUNCTION
 #define uv_tty_init_REQUIRED_ARGC 4
 #define uv_tty_init_OPTIONAL_ARGC 0
@@ -8089,7 +8232,7 @@ mrb_UV_uv_tty_get_winsize(mrb_state* mrb, mrb_value self) {
  * Parameters:
  * - arg1: uv_loop_t *
  * - arg2: uv_tty_t *
- * - fd: int
+ * - fd: uv_file
  * - readable: int
  * Return Type: int
  */
@@ -8097,11 +8240,11 @@ mrb_value
 mrb_UV_uv_tty_init(mrb_state* mrb, mrb_value self) {
   mrb_value arg1;
   mrb_value arg2;
-  mrb_int native_fd;
+  mrb_value fd;
   mrb_int native_readable;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooii", &arg1, &arg2, &native_fd, &native_readable);
+  mrb_get_args(mrb, "oooi", &arg1, &arg2, &fd, &native_readable);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
@@ -8112,12 +8255,16 @@ mrb_UV_uv_tty_init(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvTtyT expected");
     return mrb_nil_value();
   }
+  TODO_type_check_uv_file(fd);
 
   /* Unbox param: arg1 */
   uv_loop_t * native_arg1 = (mrb_nil_p(arg1) ? NULL : mruby_unbox_uv_loop_t(arg1));
 
   /* Unbox param: arg2 */
   uv_tty_t * native_arg2 = (mrb_nil_p(arg2) ? NULL : mruby_unbox_uv_tty_t(arg2));
+
+  /* Unbox param: fd */
+  uv_file native_fd = TODO_mruby_unbox_uv_file(fd);
 
   /* Invocation */
   int native_return_value = uv_tty_init(native_arg1, native_arg2, native_fd, native_readable);
@@ -8386,7 +8533,7 @@ mrb_UV_uv_udp_init_ex(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_udp_open */
-/* sha: 0b2856712dff0b04dbd553d3833ade086c19c8862bfcb944314fb1176469c2e8 */
+/* sha: 9f149248d3a887a2fafbfe430d32c95cf135109bb4026b15c08be58063c1b844 */
 #if BIND_uv_udp_open_FUNCTION
 #define uv_udp_open_REQUIRED_ARGC 2
 #define uv_udp_open_OPTIONAL_ARGC 0
@@ -8394,25 +8541,29 @@ mrb_UV_uv_udp_init_ex(mrb_state* mrb, mrb_value self) {
  *
  * Parameters:
  * - handle: uv_udp_t *
- * - sock: int
+ * - sock: uv_os_sock_t
  * Return Type: int
  */
 mrb_value
 mrb_UV_uv_udp_open(mrb_state* mrb, mrb_value self) {
   mrb_value handle;
-  mrb_int native_sock;
+  mrb_value sock;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oi", &handle, &native_sock);
+  mrb_get_args(mrb, "oo", &handle, &sock);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, handle, UvUdpT_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvUdpT expected");
     return mrb_nil_value();
   }
+  TODO_type_check_uv_os_sock_t(sock);
 
   /* Unbox param: handle */
   uv_udp_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_udp_t(handle));
+
+  /* Unbox param: sock */
+  uv_os_sock_t native_sock = TODO_mruby_unbox_uv_os_sock_t(sock);
 
   /* Invocation */
   int native_return_value = uv_udp_open(native_handle, native_sock);
@@ -8514,7 +8665,7 @@ mrb_UV_uv_udp_recv_stop(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_udp_send */
-/* sha: cb977d22912f5ff636777d95b1b3889fad459eb9f4d92ecf04d2def92758d401 */
+/* sha: 3013704afc01089cb0df0394076860ef2830107ea418e89f467610b68a13bf07 */
 #if BIND_uv_udp_send_FUNCTION
 #define uv_udp_send_REQUIRED_ARGC 6
 #define uv_udp_send_OPTIONAL_ARGC 0
@@ -8523,7 +8674,7 @@ mrb_UV_uv_udp_recv_stop(mrb_state* mrb, mrb_value self) {
  * Parameters:
  * - req: uv_udp_send_t *
  * - handle: uv_udp_t *
- * - bufs: const int []
+ * - bufs: const uv_buf_t []
  * - nbufs: unsigned int
  * - addr: const struct sockaddr *
  * - send_cb: uv_udp_send_cb
@@ -8550,7 +8701,7 @@ mrb_UV_uv_udp_send(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvUdpT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_int_[](bufs);
+  TODO_type_check_uv_buf_t_[](bufs);
   TODO_type_check_sockaddr_PTR(addr);
   TODO_type_check_uv_udp_send_cb(send_cb);
 
@@ -8561,7 +8712,7 @@ mrb_UV_uv_udp_send(mrb_state* mrb, mrb_value self) {
   uv_udp_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_udp_t(handle));
 
   /* Unbox param: bufs */
-  const int [] native_bufs = TODO_mruby_unbox_int_[](bufs);
+  const uv_buf_t [] native_bufs = TODO_mruby_unbox_uv_buf_t_[](bufs);
 
   /* Unbox param: addr */
   const struct sockaddr * native_addr = TODO_mruby_unbox_sockaddr_PTR(addr);
@@ -8825,7 +8976,7 @@ mrb_UV_uv_udp_set_ttl(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_udp_try_send */
-/* sha: 7db60912b2d951e94c29b3e51465e4eabb5c3262b08e86c3194789d614f6db95 */
+/* sha: d98448e28458c276f4ea4d14519b0ccce2dd1b5d81d676a5d8fe3b9f73459528 */
 #if BIND_uv_udp_try_send_FUNCTION
 #define uv_udp_try_send_REQUIRED_ARGC 4
 #define uv_udp_try_send_OPTIONAL_ARGC 0
@@ -8833,7 +8984,7 @@ mrb_UV_uv_udp_set_ttl(mrb_state* mrb, mrb_value self) {
  *
  * Parameters:
  * - handle: uv_udp_t *
- * - bufs: const int []
+ * - bufs: const uv_buf_t []
  * - nbufs: unsigned int
  * - addr: const struct sockaddr *
  * Return Type: int
@@ -8853,14 +9004,14 @@ mrb_UV_uv_udp_try_send(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvUdpT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_int_[](bufs);
+  TODO_type_check_uv_buf_t_[](bufs);
   TODO_type_check_sockaddr_PTR(addr);
 
   /* Unbox param: handle */
   uv_udp_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_udp_t(handle));
 
   /* Unbox param: bufs */
-  const int [] native_bufs = TODO_mruby_unbox_int_[](bufs);
+  const uv_buf_t [] native_bufs = TODO_mruby_unbox_uv_buf_t_[](bufs);
 
   /* Unbox param: addr */
   const struct sockaddr * native_addr = TODO_mruby_unbox_sockaddr_PTR(addr);
@@ -9075,7 +9226,7 @@ mrb_UV_uv_walk(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_write */
-/* sha: 29ef72f573f1c07f497faff3494cbdf3ad494413a21f2d125be53892ce012e69 */
+/* sha: 135a3ab587b4cfe79c7f092c8d959d8aaba8f0f0c460fb2d3b1d3203c798a8e5 */
 #if BIND_uv_write_FUNCTION
 #define uv_write_REQUIRED_ARGC 5
 #define uv_write_OPTIONAL_ARGC 0
@@ -9084,7 +9235,7 @@ mrb_UV_uv_walk(mrb_state* mrb, mrb_value self) {
  * Parameters:
  * - req: uv_write_t *
  * - handle: uv_stream_t *
- * - bufs: const int []
+ * - bufs: const uv_buf_t []
  * - nbufs: unsigned int
  * - cb: uv_write_cb
  * Return Type: int
@@ -9109,7 +9260,7 @@ mrb_UV_uv_write(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_int_[](bufs);
+  TODO_type_check_uv_buf_t_[](bufs);
   TODO_type_check_uv_write_cb(cb);
 
   /* Unbox param: req */
@@ -9119,7 +9270,7 @@ mrb_UV_uv_write(mrb_state* mrb, mrb_value self) {
   uv_stream_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_stream_t(handle));
 
   /* Unbox param: bufs */
-  const int [] native_bufs = TODO_mruby_unbox_int_[](bufs);
+  const uv_buf_t [] native_bufs = TODO_mruby_unbox_uv_buf_t_[](bufs);
 
   /* Unbox param: cb */
   uv_write_cb native_cb = TODO_mruby_unbox_uv_write_cb(cb);
@@ -9136,7 +9287,7 @@ mrb_UV_uv_write(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_write2 */
-/* sha: 4da65331864ac28f8d2af597c9d84c350c0bf7ad7d03fdcaa686de8846426d0c */
+/* sha: 959bd14f524be1b923d602f11c08e59ee3a6fbf7c9bdf9e2f2200bd3a6bd9e78 */
 #if BIND_uv_write2_FUNCTION
 #define uv_write2_REQUIRED_ARGC 6
 #define uv_write2_OPTIONAL_ARGC 0
@@ -9145,7 +9296,7 @@ mrb_UV_uv_write(mrb_state* mrb, mrb_value self) {
  * Parameters:
  * - req: uv_write_t *
  * - handle: uv_stream_t *
- * - bufs: const int []
+ * - bufs: const uv_buf_t []
  * - nbufs: unsigned int
  * - send_handle: uv_stream_t *
  * - cb: uv_write_cb
@@ -9172,7 +9323,7 @@ mrb_UV_uv_write2(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_int_[](bufs);
+  TODO_type_check_uv_buf_t_[](bufs);
   if (!mrb_obj_is_kind_of(mrb, send_handle, UvStreamT_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
     return mrb_nil_value();
@@ -9186,7 +9337,7 @@ mrb_UV_uv_write2(mrb_state* mrb, mrb_value self) {
   uv_stream_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_stream_t(handle));
 
   /* Unbox param: bufs */
-  const int [] native_bufs = TODO_mruby_unbox_int_[](bufs);
+  const uv_buf_t [] native_bufs = TODO_mruby_unbox_uv_buf_t_[](bufs);
 
   /* Unbox param: send_handle */
   uv_stream_t * native_send_handle = (mrb_nil_p(send_handle) ? NULL : mruby_unbox_uv_stream_t(send_handle));
@@ -9211,16 +9362,10 @@ void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
   mruby_UV_define_macro_constants(mrb);
 
 /* MRUBY_BINDING: class_initializations */
-/* sha: 6d5ba94d909e3d03ef2adecd62128ff5d192abfa26fa85541ca01df446daf191 */
+/* sha: ea2ab7c9eebf5e03380afff8eb5793cc64b802e3a9959acffdf5dcfac6f68a72 */
   /*
    * Initialize class bindings
    */
-#if BIND_SockaddrIn_TYPE
-  mrb_UV_SockaddrIn_init(mrb);
-#endif
-#if BIND_SockaddrIn6_TYPE
-  mrb_UV_SockaddrIn6_init(mrb);
-#endif
 #if BIND_UvAsyncT_TYPE
   mrb_UV_UvAsyncT_init(mrb);
 #endif
@@ -9275,8 +9420,8 @@ void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
 #if BIND_UvPrepareT_TYPE
   mrb_UV_UvPrepareT_init(mrb);
 #endif
-#if BIND_UvProcessOptionsS_TYPE
-  mrb_UV_UvProcessOptionsS_init(mrb);
+#if BIND_UvProcessOptionsT_TYPE
+  mrb_UV_UvProcessOptionsT_init(mrb);
 #endif
 #if BIND_UvProcessT_TYPE
   mrb_UV_UvProcessT_init(mrb);
@@ -9296,8 +9441,8 @@ void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
 #if BIND_UvStatT_TYPE
   mrb_UV_UvStatT_init(mrb);
 #endif
-#if BIND_UvStdioContainerS_TYPE
-  mrb_UV_UvStdioContainerS_init(mrb);
+#if BIND_UvStdioContainerT_TYPE
+  mrb_UV_UvStdioContainerT_init(mrb);
 #endif
 #if BIND_UvStreamT_TYPE
   mrb_UV_UvStreamT_init(mrb);
@@ -9332,7 +9477,7 @@ void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: global_function_definitions */
-/* sha: ec44b35785816895773446a0484e39a198290bd55b4ec128a48b82f2bc1348c7 */
+/* sha: 0c14d44e73dc3af48693c881b2cf0eeafc3c82abf4e4d53e26d628090f527538 */
   /*
    * Global Functions
    */
@@ -9824,6 +9969,9 @@ void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
 #endif
 #if BIND_uv_setup_args_FUNCTION
   mrb_define_class_method(mrb, UV_module, "uv_setup_args", mrb_UV_uv_setup_args, MRB_ARGS_ARG(uv_setup_args_REQUIRED_ARGC, uv_setup_args_OPTIONAL_ARGC));
+#endif
+#if BIND_uv_shutdown_FUNCTION
+  mrb_define_class_method(mrb, UV_module, "uv_shutdown", mrb_UV_uv_shutdown, MRB_ARGS_ARG(uv_shutdown_REQUIRED_ARGC, uv_shutdown_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_signal_init_FUNCTION
   mrb_define_class_method(mrb, UV_module, "uv_signal_init", mrb_UV_uv_signal_init, MRB_ARGS_ARG(uv_signal_init_REQUIRED_ARGC, uv_signal_init_OPTIONAL_ARGC));

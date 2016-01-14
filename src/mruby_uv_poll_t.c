@@ -70,86 +70,47 @@ mrb_UV_UvPollT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
  * Fields
  */
 
-/* MRUBY_BINDING: UvPollT::uv_poll_cb_reader */
-/* sha: 4b56a263edd931ad161b3a8acb96a639049b6e6796c5fb336b1d91c74d044409 */
-#if BIND_UvPollT_uv_poll_cb_FIELD_READER
-/* get_uv_poll_cb
+/* MRUBY_BINDING: UvPollT::poll_cb_reader */
+/* sha: f4229b760f6e91e9397430c5a49f6a5acb5828594468b61664474dc62b65e8b4 */
+#if BIND_UvPollT_poll_cb_FIELD_READER
+/* get_poll_cb
  *
- * Return Type: int
+ * Return Type: uv_poll_cb
  */
 mrb_value
-mrb_UV_UvPollT_get_uv_poll_cb(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvPollT_get_poll_cb(mrb_state* mrb, mrb_value self) {
   uv_poll_t * native_self = mruby_unbox_uv_poll_t(self);
 
-  int native_uv_poll_cb = native_self->uv_poll_cb;
+  uv_poll_cb native_poll_cb = native_self->poll_cb;
 
-  mrb_value uv_poll_cb = mrb_fixnum_value(native_uv_poll_cb);
+  mrb_value poll_cb = TODO_mruby_box_uv_poll_cb(mrb, native_poll_cb);
 
-  return uv_poll_cb;
+  return poll_cb;
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvPollT::uv_poll_cb_writer */
-/* sha: 0d0437cabdec8c550fb0589fe5fabbfe94b46e6796f4a2bee09aa23465468431 */
-#if BIND_UvPollT_uv_poll_cb_FIELD_WRITER
-/* set_uv_poll_cb
+/* MRUBY_BINDING: UvPollT::poll_cb_writer */
+/* sha: 4bbcd0d948f8358579de8530db6d7e0433fa095c90fbc042ac72b5b809084b18 */
+#if BIND_UvPollT_poll_cb_FIELD_WRITER
+/* set_poll_cb
  *
  * Parameters:
- * - value: int
+ * - value: uv_poll_cb
  */
 mrb_value
-mrb_UV_UvPollT_set_uv_poll_cb(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvPollT_set_poll_cb(mrb_state* mrb, mrb_value self) {
   uv_poll_t * native_self = mruby_unbox_uv_poll_t(self);
-  mrb_int native_uv_poll_cb;
+  mrb_value poll_cb;
 
-  mrb_get_args(mrb, "i", &native_uv_poll_cb);
+  mrb_get_args(mrb, "o", &poll_cb);
 
-  native_self->uv_poll_cb = native_uv_poll_cb;
-  
-  mrb_value value_as_mrb_value;
-  mrb_get_args(mrb, "o", &value_as_mrb_value);
-  return value_as_mrb_value;
-}
-#endif
-/* MRUBY_BINDING_END */
+  /* type checking */
+  TODO_type_check_uv_poll_cb(poll_cb);
 
-/* MRUBY_BINDING: UvPollT::_reader */
-/* sha: c11009c1d3863fc29a37e7d45ae4c05eb75be018fcc24c9279ec376a39512594 */
-#if BIND_UvPollT__FIELD_READER
-/* get_
- *
- * Return Type: int
- */
-mrb_value
-mrb_UV_UvPollT_get_(mrb_state* mrb, mrb_value self) {
-  uv_poll_t * native_self = mruby_unbox_uv_poll_t(self);
+  uv_poll_cb native_poll_cb = TODO_mruby_unbox_uv_poll_cb(poll_cb);
 
-  int native_ = native_self->;
-
-  mrb_value  = mrb_fixnum_value(native_);
-
-  return ;
-}
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvPollT::_writer */
-/* sha: 3bf9595e5c2a9000ceafa9f5b02821cf192e573c0fb294d484ed20a6774e6c57 */
-#if BIND_UvPollT__FIELD_WRITER
-/* set_
- *
- * Parameters:
- * - value: int
- */
-mrb_value
-mrb_UV_UvPollT_set_(mrb_state* mrb, mrb_value self) {
-  uv_poll_t * native_self = mruby_unbox_uv_poll_t(self);
-  mrb_int native_;
-
-  mrb_get_args(mrb, "i", &native_);
-
-  native_self-> = native_;
+  native_self->poll_cb = native_poll_cb;
   
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
@@ -176,21 +137,15 @@ void mrb_UV_UvPollT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvPollT::attr_definitions */
-/* sha: 0fc36c7f5b803287e8b54eb60b5081e12651d685e2b3074fae4d0a408479759f */
+/* sha: aae1c144c21e9b67787f623ed6625d147f2ce0914444ea1b7b8ed2683f5204f6 */
   /*
    * Fields
    */
-#if BIND_UvPollT_uv_poll_cb_FIELD_READER
-  mrb_define_method(mrb, UvPollT_class, "uv_poll_cb", mrb_UV_UvPollT_get_uv_poll_cb, MRB_ARGS_ARG(0, 0));
+#if BIND_UvPollT_poll_cb_FIELD_READER
+  mrb_define_method(mrb, UvPollT_class, "poll_cb", mrb_UV_UvPollT_get_poll_cb, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvPollT_uv_poll_cb_FIELD_WRITER
-  mrb_define_method(mrb, UvPollT_class, "uv_poll_cb=", mrb_UV_UvPollT_set_uv_poll_cb, MRB_ARGS_ARG(1, 0));
-#endif
-#if BIND_UvPollT__FIELD_READER
-  mrb_define_method(mrb, UvPollT_class, "", mrb_UV_UvPollT_get_, MRB_ARGS_ARG(0, 0));
-#endif
-#if BIND_UvPollT__FIELD_WRITER
-  mrb_define_method(mrb, UvPollT_class, "=", mrb_UV_UvPollT_set_, MRB_ARGS_ARG(1, 0));
+#if BIND_UvPollT_poll_cb_FIELD_WRITER
+  mrb_define_method(mrb, UvPollT_class, "poll_cb=", mrb_UV_UvPollT_set_poll_cb, MRB_ARGS_ARG(1, 0));
 #endif
 /* MRUBY_BINDING_END */
 

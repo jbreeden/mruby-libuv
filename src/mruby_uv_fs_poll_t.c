@@ -66,6 +66,59 @@ mrb_UV_UvFsPollT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
 }
 /* MRUBY_BINDING_END */
 
+/*
+ * Fields
+ */
+
+/* MRUBY_BINDING: UvFsPollT::poll_ctx_reader */
+/* sha: 656854f88f00e9ebf7f0808f2bf8dbf38ad54f81298a2ccf5366bb314a02f9f4 */
+#if BIND_UvFsPollT_poll_ctx_FIELD_READER
+/* get_poll_ctx
+ *
+ * Return Type: void *
+ */
+mrb_value
+mrb_UV_UvFsPollT_get_poll_ctx(mrb_state* mrb, mrb_value self) {
+  uv_fs_poll_t * native_self = mruby_unbox_uv_fs_poll_t(self);
+
+  void * native_poll_ctx = native_self->poll_ctx;
+
+  mrb_value poll_ctx = TODO_mruby_box_void_PTR(mrb, native_poll_ctx);
+
+  return poll_ctx;
+}
+#endif
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvFsPollT::poll_ctx_writer */
+/* sha: 97990f66a08d5a07ae139705ad4f2212c1d2646fa9957a794aaebfe8c7e1372f */
+#if BIND_UvFsPollT_poll_ctx_FIELD_WRITER
+/* set_poll_ctx
+ *
+ * Parameters:
+ * - value: void *
+ */
+mrb_value
+mrb_UV_UvFsPollT_set_poll_ctx(mrb_state* mrb, mrb_value self) {
+  uv_fs_poll_t * native_self = mruby_unbox_uv_fs_poll_t(self);
+  mrb_value poll_ctx;
+
+  mrb_get_args(mrb, "o", &poll_ctx);
+
+  /* type checking */
+  TODO_type_check_void_PTR(poll_ctx);
+
+  void * native_poll_ctx = TODO_mruby_unbox_void_PTR(poll_ctx);
+
+  native_self->poll_ctx = native_poll_ctx;
+  
+  mrb_value value_as_mrb_value;
+  mrb_get_args(mrb, "o", &value_as_mrb_value);
+  return value_as_mrb_value;
+}
+#endif
+/* MRUBY_BINDING_END */
+
 
 void mrb_UV_UvFsPollT_init(mrb_state* mrb) {
 /* MRUBY_BINDING: UvFsPollT::class_definition */
@@ -84,8 +137,16 @@ void mrb_UV_UvFsPollT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvFsPollT::attr_definitions */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
-
+/* sha: 976c027a6e5b83f6ff5a0a972d5bfd7fa795fd850e66439aea685c3d57aeabf6 */
+  /*
+   * Fields
+   */
+#if BIND_UvFsPollT_poll_ctx_FIELD_READER
+  mrb_define_method(mrb, UvFsPollT_class, "poll_ctx", mrb_UV_UvFsPollT_get_poll_ctx, MRB_ARGS_ARG(0, 0));
+#endif
+#if BIND_UvFsPollT_poll_ctx_FIELD_WRITER
+  mrb_define_method(mrb, UvFsPollT_class, "poll_ctx=", mrb_UV_UvFsPollT_set_poll_ctx, MRB_ARGS_ARG(1, 0));
+#endif
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvFsPollT::instance_method_definitions */

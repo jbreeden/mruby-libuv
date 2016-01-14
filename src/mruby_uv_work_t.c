@@ -70,42 +70,50 @@ mrb_UV_UvWorkT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
  * Fields
  */
 
-/* MRUBY_BINDING: UvWorkT::uv_loop_t_reader */
-/* sha: c87030e36f5d7a8bd2e29766d51cbe662b29d1d02c9148a1112da99705ff23b7 */
-#if BIND_UvWorkT_uv_loop_t_FIELD_READER
-/* get_uv_loop_t
+/* MRUBY_BINDING: UvWorkT::loop_reader */
+/* sha: 8fafb1073c1336c9c0c9e3c460289d9ab001ca205a26590cab26dce5f74a7fdf */
+#if BIND_UvWorkT_loop_FIELD_READER
+/* get_loop
  *
- * Return Type: int
+ * Return Type: uv_loop_t *
  */
 mrb_value
-mrb_UV_UvWorkT_get_uv_loop_t(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvWorkT_get_loop(mrb_state* mrb, mrb_value self) {
   uv_work_t * native_self = mruby_unbox_uv_work_t(self);
 
-  int native_uv_loop_t = native_self->uv_loop_t;
+  uv_loop_t * native_loop = native_self->loop;
 
-  mrb_value uv_loop_t = mrb_fixnum_value(native_uv_loop_t);
+  mrb_value loop = (native_loop == NULL ? mrb_nil_value() : mruby_box_uv_loop_t(mrb, native_loop));
 
-  return uv_loop_t;
+  return loop;
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvWorkT::uv_loop_t_writer */
-/* sha: 0a9bbdc14ed0b9768abd88a63039f20ecc6469508267ea8f6fcc1b5db7a3019d */
-#if BIND_UvWorkT_uv_loop_t_FIELD_WRITER
-/* set_uv_loop_t
+/* MRUBY_BINDING: UvWorkT::loop_writer */
+/* sha: 3dd25894cbc1a071c85910957199220402dd15e13934720c17c4da63a088df9a */
+#if BIND_UvWorkT_loop_FIELD_WRITER
+/* set_loop
  *
  * Parameters:
- * - value: int
+ * - value: uv_loop_t *
  */
 mrb_value
-mrb_UV_UvWorkT_set_uv_loop_t(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvWorkT_set_loop(mrb_state* mrb, mrb_value self) {
   uv_work_t * native_self = mruby_unbox_uv_work_t(self);
-  mrb_int native_uv_loop_t;
+  mrb_value loop;
 
-  mrb_get_args(mrb, "i", &native_uv_loop_t);
+  mrb_get_args(mrb, "o", &loop);
 
-  native_self->uv_loop_t = native_uv_loop_t;
+  /* type checking */
+  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    return mrb_nil_value();
+  }
+
+  uv_loop_t * native_loop = (mrb_nil_p(loop) ? NULL : mruby_unbox_uv_loop_t(loop));
+
+  native_self->loop = native_loop;
   
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
@@ -212,50 +220,6 @@ mrb_UV_UvWorkT_set_after_work_cb(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvWorkT::_reader */
-/* sha: 7748dd73f01af6ffe0d7b1df126a4226eb006a7709365f3fb290afe980fbf009 */
-#if BIND_UvWorkT__FIELD_READER
-/* get_
- *
- * Return Type: int
- */
-mrb_value
-mrb_UV_UvWorkT_get_(mrb_state* mrb, mrb_value self) {
-  uv_work_t * native_self = mruby_unbox_uv_work_t(self);
-
-  int native_ = native_self->;
-
-  mrb_value  = mrb_fixnum_value(native_);
-
-  return ;
-}
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvWorkT::_writer */
-/* sha: c17c918a888a6ab1c2a41a4855ed33b955a0b8d7f82f4469a57b229af49eaaca */
-#if BIND_UvWorkT__FIELD_WRITER
-/* set_
- *
- * Parameters:
- * - value: int
- */
-mrb_value
-mrb_UV_UvWorkT_set_(mrb_state* mrb, mrb_value self) {
-  uv_work_t * native_self = mruby_unbox_uv_work_t(self);
-  mrb_int native_;
-
-  mrb_get_args(mrb, "i", &native_);
-
-  native_self-> = native_;
-  
-  mrb_value value_as_mrb_value;
-  mrb_get_args(mrb, "o", &value_as_mrb_value);
-  return value_as_mrb_value;
-}
-#endif
-/* MRUBY_BINDING_END */
-
 
 void mrb_UV_UvWorkT_init(mrb_state* mrb) {
 /* MRUBY_BINDING: UvWorkT::class_definition */
@@ -274,15 +238,15 @@ void mrb_UV_UvWorkT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvWorkT::attr_definitions */
-/* sha: 732ee13d1d433898e770d9f9754bfcffb2d76283b8ba307944657ac22e2d5900 */
+/* sha: 9e3b11c2aa5fdab6d612017c1d1374452f61e0813f5b64c9f442b971305d0fd1 */
   /*
    * Fields
    */
-#if BIND_UvWorkT_uv_loop_t_FIELD_READER
-  mrb_define_method(mrb, UvWorkT_class, "uv_loop_t", mrb_UV_UvWorkT_get_uv_loop_t, MRB_ARGS_ARG(0, 0));
+#if BIND_UvWorkT_loop_FIELD_READER
+  mrb_define_method(mrb, UvWorkT_class, "loop", mrb_UV_UvWorkT_get_loop, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvWorkT_uv_loop_t_FIELD_WRITER
-  mrb_define_method(mrb, UvWorkT_class, "uv_loop_t=", mrb_UV_UvWorkT_set_uv_loop_t, MRB_ARGS_ARG(1, 0));
+#if BIND_UvWorkT_loop_FIELD_WRITER
+  mrb_define_method(mrb, UvWorkT_class, "loop=", mrb_UV_UvWorkT_set_loop, MRB_ARGS_ARG(1, 0));
 #endif
 #if BIND_UvWorkT_work_cb_FIELD_READER
   mrb_define_method(mrb, UvWorkT_class, "work_cb", mrb_UV_UvWorkT_get_work_cb, MRB_ARGS_ARG(0, 0));
@@ -295,12 +259,6 @@ void mrb_UV_UvWorkT_init(mrb_state* mrb) {
 #endif
 #if BIND_UvWorkT_after_work_cb_FIELD_WRITER
   mrb_define_method(mrb, UvWorkT_class, "after_work_cb=", mrb_UV_UvWorkT_set_after_work_cb, MRB_ARGS_ARG(1, 0));
-#endif
-#if BIND_UvWorkT__FIELD_READER
-  mrb_define_method(mrb, UvWorkT_class, "", mrb_UV_UvWorkT_get_, MRB_ARGS_ARG(0, 0));
-#endif
-#if BIND_UvWorkT__FIELD_WRITER
-  mrb_define_method(mrb, UvWorkT_class, "=", mrb_UV_UvWorkT_set_, MRB_ARGS_ARG(1, 0));
 #endif
 /* MRUBY_BINDING_END */
 

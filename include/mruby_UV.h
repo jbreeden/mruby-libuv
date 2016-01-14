@@ -38,8 +38,6 @@
  */
 
 #define UV_module(mrb) mrb_module_get(mrb, "UV")
-#define SockaddrIn_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "SockaddrIn")
-#define SockaddrIn6_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "SockaddrIn6")
 #define UvAsyncT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvAsyncT")
 #define UvCheckT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvCheckT")
 #define UvConnectT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvConnectT")
@@ -58,14 +56,14 @@
 #define UvPipeT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvPipeT")
 #define UvPollT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvPollT")
 #define UvPrepareT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvPrepareT")
-#define UvProcessOptionsS_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvProcessOptionsS")
+#define UvProcessOptionsT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvProcessOptionsT")
 #define UvProcessT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvProcessT")
 #define UvReqT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvReqT")
 #define UvRusageT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvRusageT")
 #define UvShutdownT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvShutdownT")
 #define UvSignalT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvSignalT")
 #define UvStatT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvStatT")
-#define UvStdioContainerS_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvStdioContainerS")
+#define UvStdioContainerT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvStdioContainerT")
 #define UvStreamT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvStreamT")
 #define UvTcpT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvTcpT")
 #define UvTimerT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvTimerT")
@@ -85,12 +83,6 @@
  * "Class Bindings Options" section above.
  */
 
-#if BIND_SockaddrIn_TYPE
-void mrb_UV_SockaddrIn_init(mrb_state* mrb);
-#endif
-#if BIND_SockaddrIn6_TYPE
-void mrb_UV_SockaddrIn6_init(mrb_state* mrb);
-#endif
 #if BIND_UvAsyncT_TYPE
 void mrb_UV_UvAsyncT_init(mrb_state* mrb);
 #endif
@@ -145,8 +137,8 @@ void mrb_UV_UvPollT_init(mrb_state* mrb);
 #if BIND_UvPrepareT_TYPE
 void mrb_UV_UvPrepareT_init(mrb_state* mrb);
 #endif
-#if BIND_UvProcessOptionsS_TYPE
-void mrb_UV_UvProcessOptionsS_init(mrb_state* mrb);
+#if BIND_UvProcessOptionsT_TYPE
+void mrb_UV_UvProcessOptionsT_init(mrb_state* mrb);
 #endif
 #if BIND_UvProcessT_TYPE
 void mrb_UV_UvProcessT_init(mrb_state* mrb);
@@ -166,8 +158,8 @@ void mrb_UV_UvSignalT_init(mrb_state* mrb);
 #if BIND_UvStatT_TYPE
 void mrb_UV_UvStatT_init(mrb_state* mrb);
 #endif
-#if BIND_UvStdioContainerS_TYPE
-void mrb_UV_UvStdioContainerS_init(mrb_state* mrb);
+#if BIND_UvStdioContainerT_TYPE
+void mrb_UV_UvStdioContainerT_init(mrb_state* mrb);
 #endif
 #if BIND_UvStreamT_TYPE
 void mrb_UV_UvStreamT_init(mrb_state* mrb);

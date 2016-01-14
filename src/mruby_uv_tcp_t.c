@@ -66,54 +66,6 @@ mrb_UV_UvTcpT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
 }
 /* MRUBY_BINDING_END */
 
-/*
- * Fields
- */
-
-/* MRUBY_BINDING: UvTcpT::UV_TCP_PRIVATE_FIELDS_reader */
-/* sha: cdbb6a11e4bc9f5a21c1a04adb6ac029a1ac18721454ae841654aa76408b0103 */
-#if BIND_UvTcpT_UV_TCP_PRIVATE_FIELDS_FIELD_READER
-/* get_UV_TCP_PRIVATE_FIELDS
- *
- * Return Type: int
- */
-mrb_value
-mrb_UV_UvTcpT_get_UV_TCP_PRIVATE_FIELDS(mrb_state* mrb, mrb_value self) {
-  uv_tcp_t * native_self = mruby_unbox_uv_tcp_t(self);
-
-  int native_UV_TCP_PRIVATE_FIELDS = native_self->UV_TCP_PRIVATE_FIELDS;
-
-  mrb_value UV_TCP_PRIVATE_FIELDS = mrb_fixnum_value(native_UV_TCP_PRIVATE_FIELDS);
-
-  return UV_TCP_PRIVATE_FIELDS;
-}
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvTcpT::UV_TCP_PRIVATE_FIELDS_writer */
-/* sha: 091f9b5500987f77d09be1e70dd821b18ddbe30c6048d8a2433fa2271a8774e7 */
-#if BIND_UvTcpT_UV_TCP_PRIVATE_FIELDS_FIELD_WRITER
-/* set_UV_TCP_PRIVATE_FIELDS
- *
- * Parameters:
- * - value: int
- */
-mrb_value
-mrb_UV_UvTcpT_set_UV_TCP_PRIVATE_FIELDS(mrb_state* mrb, mrb_value self) {
-  uv_tcp_t * native_self = mruby_unbox_uv_tcp_t(self);
-  mrb_int native_UV_TCP_PRIVATE_FIELDS;
-
-  mrb_get_args(mrb, "i", &native_UV_TCP_PRIVATE_FIELDS);
-
-  native_self->UV_TCP_PRIVATE_FIELDS = native_UV_TCP_PRIVATE_FIELDS;
-  
-  mrb_value value_as_mrb_value;
-  mrb_get_args(mrb, "o", &value_as_mrb_value);
-  return value_as_mrb_value;
-}
-#endif
-/* MRUBY_BINDING_END */
-
 
 void mrb_UV_UvTcpT_init(mrb_state* mrb) {
 /* MRUBY_BINDING: UvTcpT::class_definition */
@@ -132,16 +84,8 @@ void mrb_UV_UvTcpT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvTcpT::attr_definitions */
-/* sha: 200dd9cff04cef36dd287415eb7a849423d30ae2ff8627606d0652d003accb0d */
-  /*
-   * Fields
-   */
-#if BIND_UvTcpT_UV_TCP_PRIVATE_FIELDS_FIELD_READER
-  mrb_define_method(mrb, UvTcpT_class, "UV_TCP_PRIVATE_FIELDS", mrb_UV_UvTcpT_get_UV_TCP_PRIVATE_FIELDS, MRB_ARGS_ARG(0, 0));
-#endif
-#if BIND_UvTcpT_UV_TCP_PRIVATE_FIELDS_FIELD_WRITER
-  mrb_define_method(mrb, UvTcpT_class, "UV_TCP_PRIVATE_FIELDS=", mrb_UV_UvTcpT_set_UV_TCP_PRIVATE_FIELDS, MRB_ARGS_ARG(1, 0));
-#endif
+/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvTcpT::instance_method_definitions */

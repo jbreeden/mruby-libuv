@@ -35,128 +35,6 @@
 #include "mruby_UV.h"
 
 
-/* MRUBY_BINDING: SockaddrIn_boxing */
-/* sha: 43d60ee4c711e7c067c335e41fe509e4cecef5fa8975ffe2e0366a5c31c09443 */
-#if BIND_SockaddrIn_TYPE
-/*
- * Boxing implementation for struct sockaddr_in
- */
-
-static void free_sockaddr_in(mrb_state* mrb, void* ptr) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
-  if (box->belongs_to_ruby) {
-    if (box->obj != NULL) {
-      free(box->obj);
-      box->obj = NULL;
-    }
-  }
-  free(box);
-}
-
-static const mrb_data_type sockaddr_in_data_type = {
-   "struct sockaddr_in", free_sockaddr_in
-};
-
-mrb_value
-mruby_box_sockaddr_in(mrb_state* mrb, struct sockaddr_in *unboxed) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-  box->belongs_to_ruby = FALSE;
-  box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, SockaddrIn_class(mrb), &sockaddr_in_data_type, box));
-}
-
-mrb_value
-mruby_giftwrap_sockaddr_in(mrb_state* mrb, struct sockaddr_in *unboxed) {
-   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-   box->belongs_to_ruby = TRUE;
-   box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, SockaddrIn_class(mrb), &sockaddr_in_data_type, box));
-}
-
-void
-mruby_set_sockaddr_in_data_ptr(mrb_value obj, struct sockaddr_in *unboxed) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-  box->belongs_to_ruby = FALSE;
-  box->obj = unboxed;
-  mrb_data_init(obj, box, &sockaddr_in_data_type);
-}
-
-void
-mruby_gift_sockaddr_in_data_ptr(mrb_value obj, struct sockaddr_in *unboxed) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-  box->belongs_to_ruby = TRUE;
-  box->obj = unboxed;
-  mrb_data_init(obj, box, &sockaddr_in_data_type);
-}
-
-struct sockaddr_in *
-mruby_unbox_sockaddr_in(mrb_value boxed) {
-  return (struct sockaddr_in *)((mruby_to_native_ref *)DATA_PTR(boxed))->obj;
-}
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: SockaddrIn6_boxing */
-/* sha: f036a109114de5f6f310cd18c6329790ddab189c82db32a9d43845ac8ee08938 */
-#if BIND_SockaddrIn6_TYPE
-/*
- * Boxing implementation for struct sockaddr_in6
- */
-
-static void free_sockaddr_in6(mrb_state* mrb, void* ptr) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
-  if (box->belongs_to_ruby) {
-    if (box->obj != NULL) {
-      free(box->obj);
-      box->obj = NULL;
-    }
-  }
-  free(box);
-}
-
-static const mrb_data_type sockaddr_in6_data_type = {
-   "struct sockaddr_in6", free_sockaddr_in6
-};
-
-mrb_value
-mruby_box_sockaddr_in6(mrb_state* mrb, struct sockaddr_in6 *unboxed) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-  box->belongs_to_ruby = FALSE;
-  box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, SockaddrIn6_class(mrb), &sockaddr_in6_data_type, box));
-}
-
-mrb_value
-mruby_giftwrap_sockaddr_in6(mrb_state* mrb, struct sockaddr_in6 *unboxed) {
-   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-   box->belongs_to_ruby = TRUE;
-   box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, SockaddrIn6_class(mrb), &sockaddr_in6_data_type, box));
-}
-
-void
-mruby_set_sockaddr_in6_data_ptr(mrb_value obj, struct sockaddr_in6 *unboxed) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-  box->belongs_to_ruby = FALSE;
-  box->obj = unboxed;
-  mrb_data_init(obj, box, &sockaddr_in6_data_type);
-}
-
-void
-mruby_gift_sockaddr_in6_data_ptr(mrb_value obj, struct sockaddr_in6 *unboxed) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-  box->belongs_to_ruby = TRUE;
-  box->obj = unboxed;
-  mrb_data_init(obj, box, &sockaddr_in6_data_type);
-}
-
-struct sockaddr_in6 *
-mruby_unbox_sockaddr_in6(mrb_value boxed) {
-  return (struct sockaddr_in6 *)((mruby_to_native_ref *)DATA_PTR(boxed))->obj;
-}
-#endif
-/* MRUBY_BINDING_END */
-
 /* MRUBY_BINDING: UvCpuTimesS_boxing */
 /* sha: 4502be6862da2bce112a6ba415dbb1b1ed2f6134eb74b0358a75384603024bab */
 #if BIND_UvCpuTimesS_TYPE
@@ -214,128 +92,6 @@ mruby_gift_uv_cpu_times_s_data_ptr(mrb_value obj, struct uv_cpu_times_s *unboxed
 struct uv_cpu_times_s *
 mruby_unbox_uv_cpu_times_s(mrb_value boxed) {
   return (struct uv_cpu_times_s *)((mruby_to_native_ref *)DATA_PTR(boxed))->obj;
-}
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvProcessOptionsS_boxing */
-/* sha: 68d1c10da65855017b19e22f7adaea38d082720a7c49e9d293aac7d15a0daebf */
-#if BIND_UvProcessOptionsS_TYPE
-/*
- * Boxing implementation for struct uv_process_options_s
- */
-
-static void free_uv_process_options_s(mrb_state* mrb, void* ptr) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
-  if (box->belongs_to_ruby) {
-    if (box->obj != NULL) {
-      free(box->obj);
-      box->obj = NULL;
-    }
-  }
-  free(box);
-}
-
-static const mrb_data_type uv_process_options_s_data_type = {
-   "struct uv_process_options_s", free_uv_process_options_s
-};
-
-mrb_value
-mruby_box_uv_process_options_s(mrb_state* mrb, struct uv_process_options_s *unboxed) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-  box->belongs_to_ruby = FALSE;
-  box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvProcessOptionsS_class(mrb), &uv_process_options_s_data_type, box));
-}
-
-mrb_value
-mruby_giftwrap_uv_process_options_s(mrb_state* mrb, struct uv_process_options_s *unboxed) {
-   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-   box->belongs_to_ruby = TRUE;
-   box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvProcessOptionsS_class(mrb), &uv_process_options_s_data_type, box));
-}
-
-void
-mruby_set_uv_process_options_s_data_ptr(mrb_value obj, struct uv_process_options_s *unboxed) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-  box->belongs_to_ruby = FALSE;
-  box->obj = unboxed;
-  mrb_data_init(obj, box, &uv_process_options_s_data_type);
-}
-
-void
-mruby_gift_uv_process_options_s_data_ptr(mrb_value obj, struct uv_process_options_s *unboxed) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-  box->belongs_to_ruby = TRUE;
-  box->obj = unboxed;
-  mrb_data_init(obj, box, &uv_process_options_s_data_type);
-}
-
-struct uv_process_options_s *
-mruby_unbox_uv_process_options_s(mrb_value boxed) {
-  return (struct uv_process_options_s *)((mruby_to_native_ref *)DATA_PTR(boxed))->obj;
-}
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvStdioContainerS_boxing */
-/* sha: e667ddfba471fd4125c8833f68b3c75991db9ca408f39c9ec0d949da9c9d54df */
-#if BIND_UvStdioContainerS_TYPE
-/*
- * Boxing implementation for struct uv_stdio_container_s
- */
-
-static void free_uv_stdio_container_s(mrb_state* mrb, void* ptr) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
-  if (box->belongs_to_ruby) {
-    if (box->obj != NULL) {
-      free(box->obj);
-      box->obj = NULL;
-    }
-  }
-  free(box);
-}
-
-static const mrb_data_type uv_stdio_container_s_data_type = {
-   "struct uv_stdio_container_s", free_uv_stdio_container_s
-};
-
-mrb_value
-mruby_box_uv_stdio_container_s(mrb_state* mrb, struct uv_stdio_container_s *unboxed) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-  box->belongs_to_ruby = FALSE;
-  box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvStdioContainerS_class(mrb), &uv_stdio_container_s_data_type, box));
-}
-
-mrb_value
-mruby_giftwrap_uv_stdio_container_s(mrb_state* mrb, struct uv_stdio_container_s *unboxed) {
-   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-   box->belongs_to_ruby = TRUE;
-   box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvStdioContainerS_class(mrb), &uv_stdio_container_s_data_type, box));
-}
-
-void
-mruby_set_uv_stdio_container_s_data_ptr(mrb_value obj, struct uv_stdio_container_s *unboxed) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-  box->belongs_to_ruby = FALSE;
-  box->obj = unboxed;
-  mrb_data_init(obj, box, &uv_stdio_container_s_data_type);
-}
-
-void
-mruby_gift_uv_stdio_container_s_data_ptr(mrb_value obj, struct uv_stdio_container_s *unboxed) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-  box->belongs_to_ruby = TRUE;
-  box->obj = unboxed;
-  mrb_data_init(obj, box, &uv_stdio_container_s_data_type);
-}
-
-struct uv_stdio_container_s *
-mruby_unbox_uv_stdio_container_s(mrb_value boxed) {
-  return (struct uv_stdio_container_s *)((mruby_to_native_ref *)DATA_PTR(boxed))->obj;
 }
 #endif
 /* MRUBY_BINDING_END */
@@ -1377,6 +1133,67 @@ mruby_unbox_uv_prepare_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
+/* MRUBY_BINDING: UvProcessOptionsT_boxing */
+/* sha: c900919a1ce81f8cd1239740a208ea6351b8de63164ad51888d906f7f4b572f4 */
+#if BIND_UvProcessOptionsT_TYPE
+/*
+ * Boxing implementation for uv_process_options_t
+ */
+
+static void free_uv_process_options_t(mrb_state* mrb, void* ptr) {
+  mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
+  if (box->belongs_to_ruby) {
+    if (box->obj != NULL) {
+      free(box->obj);
+      box->obj = NULL;
+    }
+  }
+  free(box);
+}
+
+static const mrb_data_type uv_process_options_t_data_type = {
+   "uv_process_options_t", free_uv_process_options_t
+};
+
+mrb_value
+mruby_box_uv_process_options_t(mrb_state* mrb, uv_process_options_t *unboxed) {
+  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
+  box->belongs_to_ruby = FALSE;
+  box->obj = unboxed;
+  return mrb_obj_value(Data_Wrap_Struct(mrb, UvProcessOptionsT_class(mrb), &uv_process_options_t_data_type, box));
+}
+
+mrb_value
+mruby_giftwrap_uv_process_options_t(mrb_state* mrb, uv_process_options_t *unboxed) {
+   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
+   box->belongs_to_ruby = TRUE;
+   box->obj = unboxed;
+   return mrb_obj_value(Data_Wrap_Struct(mrb, UvProcessOptionsT_class(mrb), &uv_process_options_t_data_type, box));
+}
+
+void
+mruby_set_uv_process_options_t_data_ptr(mrb_value obj, uv_process_options_t *unboxed) {
+  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
+  box->belongs_to_ruby = FALSE;
+  box->obj = unboxed;
+  mrb_data_init(obj, box, &uv_process_options_t_data_type);
+}
+
+void
+mruby_gift_uv_process_options_t_data_ptr(mrb_value obj, uv_process_options_t *unboxed) {
+  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
+  box->belongs_to_ruby = TRUE;
+  box->obj = unboxed;
+  mrb_data_init(obj, box, &uv_process_options_t_data_type);
+}
+
+uv_process_options_t *
+mruby_unbox_uv_process_options_t(mrb_value boxed) {
+  return (uv_process_options_t *)((mruby_to_native_ref *)DATA_PTR(boxed))->obj;
+}
+#endif
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvProcessT_boxing */
 /* sha: 90d197bc16d329c4d1bda2638ad6f8ba3ee79c39caecfb52e01f26d68ee96b9f */
 #if BIND_UvProcessT_TYPE
@@ -1739,6 +1556,67 @@ mruby_gift_uv_stat_t_data_ptr(mrb_value obj, uv_stat_t *unboxed) {
 uv_stat_t *
 mruby_unbox_uv_stat_t(mrb_value boxed) {
   return (uv_stat_t *)((mruby_to_native_ref *)DATA_PTR(boxed))->obj;
+}
+#endif
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvStdioContainerT_boxing */
+/* sha: 6d2face3e9fc29f3c084ea63980d08bf8a8e22c4024538d5119f9d2014050246 */
+#if BIND_UvStdioContainerT_TYPE
+/*
+ * Boxing implementation for uv_stdio_container_t
+ */
+
+static void free_uv_stdio_container_t(mrb_state* mrb, void* ptr) {
+  mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
+  if (box->belongs_to_ruby) {
+    if (box->obj != NULL) {
+      free(box->obj);
+      box->obj = NULL;
+    }
+  }
+  free(box);
+}
+
+static const mrb_data_type uv_stdio_container_t_data_type = {
+   "uv_stdio_container_t", free_uv_stdio_container_t
+};
+
+mrb_value
+mruby_box_uv_stdio_container_t(mrb_state* mrb, uv_stdio_container_t *unboxed) {
+  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
+  box->belongs_to_ruby = FALSE;
+  box->obj = unboxed;
+  return mrb_obj_value(Data_Wrap_Struct(mrb, UvStdioContainerT_class(mrb), &uv_stdio_container_t_data_type, box));
+}
+
+mrb_value
+mruby_giftwrap_uv_stdio_container_t(mrb_state* mrb, uv_stdio_container_t *unboxed) {
+   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
+   box->belongs_to_ruby = TRUE;
+   box->obj = unboxed;
+   return mrb_obj_value(Data_Wrap_Struct(mrb, UvStdioContainerT_class(mrb), &uv_stdio_container_t_data_type, box));
+}
+
+void
+mruby_set_uv_stdio_container_t_data_ptr(mrb_value obj, uv_stdio_container_t *unboxed) {
+  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
+  box->belongs_to_ruby = FALSE;
+  box->obj = unboxed;
+  mrb_data_init(obj, box, &uv_stdio_container_t_data_type);
+}
+
+void
+mruby_gift_uv_stdio_container_t_data_ptr(mrb_value obj, uv_stdio_container_t *unboxed) {
+  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
+  box->belongs_to_ruby = TRUE;
+  box->obj = unboxed;
+  mrb_data_init(obj, box, &uv_stdio_container_t_data_type);
+}
+
+uv_stdio_container_t *
+mruby_unbox_uv_stdio_container_t(mrb_value boxed) {
+  return (uv_stdio_container_t *)((mruby_to_native_ref *)DATA_PTR(boxed))->obj;
 }
 #endif
 /* MRUBY_BINDING_END */

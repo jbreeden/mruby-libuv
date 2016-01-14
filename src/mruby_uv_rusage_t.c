@@ -71,7 +71,7 @@ mrb_UV_UvRusageT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
  */
 
 /* MRUBY_BINDING: UvRusageT::ru_utime_reader */
-/* sha: 34fbb2c52b3ccfc8df4e7fb0fe20acf9ac54c1bac1be6ec6b680a883bbbf9a67 */
+/* sha: 03f2208d21a068f26efa55d62cb00721a6231a171c6ab573e316f8c027710b9f */
 #if BIND_UvRusageT_ru_utime_FIELD_READER
 /* get_ru_utime
  *
@@ -83,7 +83,8 @@ mrb_UV_UvRusageT_get_ru_utime(mrb_state* mrb, mrb_value self) {
 
   uv_timeval_t native_ru_utime = native_self->ru_utime;
 
-  mrb_value ru_utime = TODO_mruby_box_uv_timeval_t(mrb, native_ru_utime);
+  uv_timeval_t* new_ru_utime = TODO_move_uv_timeval_t_to_heap(native_ru_utime);
+  mrb_value ru_utime = mruby_box_uv_timeval_t(mrb, &native_ru_utime);
 
   return ru_utime;
 }
@@ -91,7 +92,7 @@ mrb_UV_UvRusageT_get_ru_utime(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvRusageT::ru_utime_writer */
-/* sha: 92e31d29c742e796d70093b48c279038acb77e697fc980163b46933115a77555 */
+/* sha: b90d359e3e084781bcb0e5b92959418406ea7376ee76975671fd96675abb7e7f */
 #if BIND_UvRusageT_ru_utime_FIELD_WRITER
 /* set_ru_utime
  *
@@ -106,9 +107,12 @@ mrb_UV_UvRusageT_set_ru_utime(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &ru_utime);
 
   /* type checking */
-  TODO_type_check_uv_timeval_t(ru_utime);
+  if (!mrb_obj_is_kind_of(mrb, ru_utime, UvTimevalT_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UvTimevalT expected");
+    return mrb_nil_value();
+  }
 
-  uv_timeval_t native_ru_utime = TODO_mruby_unbox_uv_timeval_t(ru_utime);
+  uv_timeval_t native_ru_utime = *(mruby_unbox_uv_timeval_t(ru_utime));
 
   native_self->ru_utime = native_ru_utime;
   
@@ -120,7 +124,7 @@ mrb_UV_UvRusageT_set_ru_utime(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvRusageT::ru_stime_reader */
-/* sha: bbd7eec74cbda66ba9e254824f7dfbab4155e399d5a04d63ad22f4c837cf9bd4 */
+/* sha: 7380f2506316bd14b773fd445304ca41b4cc02f22b65e772787d1ad94ecbafbe */
 #if BIND_UvRusageT_ru_stime_FIELD_READER
 /* get_ru_stime
  *
@@ -132,7 +136,8 @@ mrb_UV_UvRusageT_get_ru_stime(mrb_state* mrb, mrb_value self) {
 
   uv_timeval_t native_ru_stime = native_self->ru_stime;
 
-  mrb_value ru_stime = TODO_mruby_box_uv_timeval_t(mrb, native_ru_stime);
+  uv_timeval_t* new_ru_stime = TODO_move_uv_timeval_t_to_heap(native_ru_stime);
+  mrb_value ru_stime = mruby_box_uv_timeval_t(mrb, &native_ru_stime);
 
   return ru_stime;
 }
@@ -140,7 +145,7 @@ mrb_UV_UvRusageT_get_ru_stime(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvRusageT::ru_stime_writer */
-/* sha: efb8afbc7a376a7cdc703ea9208cccca678634c924367ab6a6bc04786ca6b8c7 */
+/* sha: 16d5b7aae5395b7cf46ecd79e3e1f3c7ef897da529da194c018417048352800f */
 #if BIND_UvRusageT_ru_stime_FIELD_WRITER
 /* set_ru_stime
  *
@@ -155,9 +160,12 @@ mrb_UV_UvRusageT_set_ru_stime(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &ru_stime);
 
   /* type checking */
-  TODO_type_check_uv_timeval_t(ru_stime);
+  if (!mrb_obj_is_kind_of(mrb, ru_stime, UvTimevalT_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UvTimevalT expected");
+    return mrb_nil_value();
+  }
 
-  uv_timeval_t native_ru_stime = TODO_mruby_unbox_uv_timeval_t(ru_stime);
+  uv_timeval_t native_ru_stime = *(mruby_unbox_uv_timeval_t(ru_stime));
 
   native_self->ru_stime = native_ru_stime;
   

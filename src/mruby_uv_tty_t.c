@@ -66,54 +66,6 @@ mrb_UV_UvTtyT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
 }
 /* MRUBY_BINDING_END */
 
-/*
- * Fields
- */
-
-/* MRUBY_BINDING: UvTtyT::UV_TTY_PRIVATE_FIELDS_reader */
-/* sha: 972869c31f408efe3baff4fb4d38ce6a4b100745a007238c27cac59ea5149a75 */
-#if BIND_UvTtyT_UV_TTY_PRIVATE_FIELDS_FIELD_READER
-/* get_UV_TTY_PRIVATE_FIELDS
- *
- * Return Type: int
- */
-mrb_value
-mrb_UV_UvTtyT_get_UV_TTY_PRIVATE_FIELDS(mrb_state* mrb, mrb_value self) {
-  uv_tty_t * native_self = mruby_unbox_uv_tty_t(self);
-
-  int native_UV_TTY_PRIVATE_FIELDS = native_self->UV_TTY_PRIVATE_FIELDS;
-
-  mrb_value UV_TTY_PRIVATE_FIELDS = mrb_fixnum_value(native_UV_TTY_PRIVATE_FIELDS);
-
-  return UV_TTY_PRIVATE_FIELDS;
-}
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvTtyT::UV_TTY_PRIVATE_FIELDS_writer */
-/* sha: 0687d0b9baed91e9449083a08525681c91acad7d61e91551be323a225ffb2a16 */
-#if BIND_UvTtyT_UV_TTY_PRIVATE_FIELDS_FIELD_WRITER
-/* set_UV_TTY_PRIVATE_FIELDS
- *
- * Parameters:
- * - value: int
- */
-mrb_value
-mrb_UV_UvTtyT_set_UV_TTY_PRIVATE_FIELDS(mrb_state* mrb, mrb_value self) {
-  uv_tty_t * native_self = mruby_unbox_uv_tty_t(self);
-  mrb_int native_UV_TTY_PRIVATE_FIELDS;
-
-  mrb_get_args(mrb, "i", &native_UV_TTY_PRIVATE_FIELDS);
-
-  native_self->UV_TTY_PRIVATE_FIELDS = native_UV_TTY_PRIVATE_FIELDS;
-  
-  mrb_value value_as_mrb_value;
-  mrb_get_args(mrb, "o", &value_as_mrb_value);
-  return value_as_mrb_value;
-}
-#endif
-/* MRUBY_BINDING_END */
-
 
 void mrb_UV_UvTtyT_init(mrb_state* mrb) {
 /* MRUBY_BINDING: UvTtyT::class_definition */
@@ -132,16 +84,8 @@ void mrb_UV_UvTtyT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvTtyT::attr_definitions */
-/* sha: e78d003132ca599e9e8eb964632f8e3044659ad300439c7eac5c19655bf922f3 */
-  /*
-   * Fields
-   */
-#if BIND_UvTtyT_UV_TTY_PRIVATE_FIELDS_FIELD_READER
-  mrb_define_method(mrb, UvTtyT_class, "UV_TTY_PRIVATE_FIELDS", mrb_UV_UvTtyT_get_UV_TTY_PRIVATE_FIELDS, MRB_ARGS_ARG(0, 0));
-#endif
-#if BIND_UvTtyT_UV_TTY_PRIVATE_FIELDS_FIELD_WRITER
-  mrb_define_method(mrb, UvTtyT_class, "UV_TTY_PRIVATE_FIELDS=", mrb_UV_UvTtyT_set_UV_TTY_PRIVATE_FIELDS, MRB_ARGS_ARG(1, 0));
-#endif
+/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvTtyT::instance_method_definitions */

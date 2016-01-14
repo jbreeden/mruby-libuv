@@ -70,86 +70,50 @@ mrb_UV_UvGetnameinfoT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
  * Fields
  */
 
-/* MRUBY_BINDING: UvGetnameinfoT::uv_loop_t_reader */
-/* sha: dfe9bf1733d0cb1afc1f5d9421543dd277eadb72969e3ee58ade17305f5041b7 */
-#if BIND_UvGetnameinfoT_uv_loop_t_FIELD_READER
-/* get_uv_loop_t
+/* MRUBY_BINDING: UvGetnameinfoT::loop_reader */
+/* sha: 6acc7e15231261c536765deda9cd28c702a80df6cf044cb17bc8c4050b3dd321 */
+#if BIND_UvGetnameinfoT_loop_FIELD_READER
+/* get_loop
  *
- * Return Type: int
+ * Return Type: uv_loop_t *
  */
 mrb_value
-mrb_UV_UvGetnameinfoT_get_uv_loop_t(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvGetnameinfoT_get_loop(mrb_state* mrb, mrb_value self) {
   uv_getnameinfo_t * native_self = mruby_unbox_uv_getnameinfo_t(self);
 
-  int native_uv_loop_t = native_self->uv_loop_t;
+  uv_loop_t * native_loop = native_self->loop;
 
-  mrb_value uv_loop_t = mrb_fixnum_value(native_uv_loop_t);
+  mrb_value loop = (native_loop == NULL ? mrb_nil_value() : mruby_box_uv_loop_t(mrb, native_loop));
 
-  return uv_loop_t;
+  return loop;
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvGetnameinfoT::uv_loop_t_writer */
-/* sha: 621fda2f6bb94ad0c685351c90d3b66a323859eea45f3e3fc06e4ad7645ca6bd */
-#if BIND_UvGetnameinfoT_uv_loop_t_FIELD_WRITER
-/* set_uv_loop_t
+/* MRUBY_BINDING: UvGetnameinfoT::loop_writer */
+/* sha: 4fbe9662f30a788b3b89448ff17a1129ddf4c46ac94a4d5be333f5e59a317147 */
+#if BIND_UvGetnameinfoT_loop_FIELD_WRITER
+/* set_loop
  *
  * Parameters:
- * - value: int
+ * - value: uv_loop_t *
  */
 mrb_value
-mrb_UV_UvGetnameinfoT_set_uv_loop_t(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvGetnameinfoT_set_loop(mrb_state* mrb, mrb_value self) {
   uv_getnameinfo_t * native_self = mruby_unbox_uv_getnameinfo_t(self);
-  mrb_int native_uv_loop_t;
+  mrb_value loop;
 
-  mrb_get_args(mrb, "i", &native_uv_loop_t);
+  mrb_get_args(mrb, "o", &loop);
 
-  native_self->uv_loop_t = native_uv_loop_t;
-  
-  mrb_value value_as_mrb_value;
-  mrb_get_args(mrb, "o", &value_as_mrb_value);
-  return value_as_mrb_value;
-}
-#endif
-/* MRUBY_BINDING_END */
+  /* type checking */
+  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    return mrb_nil_value();
+  }
 
-/* MRUBY_BINDING: UvGetnameinfoT::_reader */
-/* sha: 97a7ca18117aea206847401d5ee1be9ce47eff932848ed806d9ed058d0a5c4fa */
-#if BIND_UvGetnameinfoT__FIELD_READER
-/* get_
- *
- * Return Type: int
- */
-mrb_value
-mrb_UV_UvGetnameinfoT_get_(mrb_state* mrb, mrb_value self) {
-  uv_getnameinfo_t * native_self = mruby_unbox_uv_getnameinfo_t(self);
+  uv_loop_t * native_loop = (mrb_nil_p(loop) ? NULL : mruby_unbox_uv_loop_t(loop));
 
-  int native_ = native_self->;
-
-  mrb_value  = mrb_fixnum_value(native_);
-
-  return ;
-}
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvGetnameinfoT::_writer */
-/* sha: bd98e4ce2b4ec0bddfefe007074b6a6718635bf9ecb5f893da3f46b51995896f */
-#if BIND_UvGetnameinfoT__FIELD_WRITER
-/* set_
- *
- * Parameters:
- * - value: int
- */
-mrb_value
-mrb_UV_UvGetnameinfoT_set_(mrb_state* mrb, mrb_value self) {
-  uv_getnameinfo_t * native_self = mruby_unbox_uv_getnameinfo_t(self);
-  mrb_int native_;
-
-  mrb_get_args(mrb, "i", &native_);
-
-  native_self-> = native_;
+  native_self->loop = native_loop;
   
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
@@ -176,21 +140,15 @@ void mrb_UV_UvGetnameinfoT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvGetnameinfoT::attr_definitions */
-/* sha: 67444cfff197c8ea0bc44207bc267ad93d21a1ddae95aa432cefe150a6bd623d */
+/* sha: ff71f8e0b7332acbd72eca277923b9280015dc248df70ec169b382a87fa89564 */
   /*
    * Fields
    */
-#if BIND_UvGetnameinfoT_uv_loop_t_FIELD_READER
-  mrb_define_method(mrb, UvGetnameinfoT_class, "uv_loop_t", mrb_UV_UvGetnameinfoT_get_uv_loop_t, MRB_ARGS_ARG(0, 0));
+#if BIND_UvGetnameinfoT_loop_FIELD_READER
+  mrb_define_method(mrb, UvGetnameinfoT_class, "loop", mrb_UV_UvGetnameinfoT_get_loop, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvGetnameinfoT_uv_loop_t_FIELD_WRITER
-  mrb_define_method(mrb, UvGetnameinfoT_class, "uv_loop_t=", mrb_UV_UvGetnameinfoT_set_uv_loop_t, MRB_ARGS_ARG(1, 0));
-#endif
-#if BIND_UvGetnameinfoT__FIELD_READER
-  mrb_define_method(mrb, UvGetnameinfoT_class, "", mrb_UV_UvGetnameinfoT_get_, MRB_ARGS_ARG(0, 0));
-#endif
-#if BIND_UvGetnameinfoT__FIELD_WRITER
-  mrb_define_method(mrb, UvGetnameinfoT_class, "=", mrb_UV_UvGetnameinfoT_set_, MRB_ARGS_ARG(1, 0));
+#if BIND_UvGetnameinfoT_loop_FIELD_WRITER
+  mrb_define_method(mrb, UvGetnameinfoT_class, "loop=", mrb_UV_UvGetnameinfoT_set_loop, MRB_ARGS_ARG(1, 0));
 #endif
 /* MRUBY_BINDING_END */
 

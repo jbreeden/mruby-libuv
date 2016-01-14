@@ -70,42 +70,47 @@ mrb_UV_UvWriteT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
  * Fields
  */
 
-/* MRUBY_BINDING: UvWriteT::uv_write_cb_reader */
-/* sha: 6f8a96eaf990b82701b930c99d6f56050aa9a8138d04d5dbba317a0d0b77c428 */
-#if BIND_UvWriteT_uv_write_cb_FIELD_READER
-/* get_uv_write_cb
+/* MRUBY_BINDING: UvWriteT::cb_reader */
+/* sha: aa0859230ae7414d5d52957560d2ddddde1458ebb349799294fddc2498238833 */
+#if BIND_UvWriteT_cb_FIELD_READER
+/* get_cb
  *
- * Return Type: int
+ * Return Type: uv_write_cb
  */
 mrb_value
-mrb_UV_UvWriteT_get_uv_write_cb(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvWriteT_get_cb(mrb_state* mrb, mrb_value self) {
   uv_write_t * native_self = mruby_unbox_uv_write_t(self);
 
-  int native_uv_write_cb = native_self->uv_write_cb;
+  uv_write_cb native_cb = native_self->cb;
 
-  mrb_value uv_write_cb = mrb_fixnum_value(native_uv_write_cb);
+  mrb_value cb = TODO_mruby_box_uv_write_cb(mrb, native_cb);
 
-  return uv_write_cb;
+  return cb;
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvWriteT::uv_write_cb_writer */
-/* sha: d78e14bb6fabd8fadbccf2a658afea4a7d38e4ed9b6c9b613466f38519e96747 */
-#if BIND_UvWriteT_uv_write_cb_FIELD_WRITER
-/* set_uv_write_cb
+/* MRUBY_BINDING: UvWriteT::cb_writer */
+/* sha: 16485cb6ecefc66ff30ebb1f84addd78d6fe2c6872b925ef40f73c12d2de2ff9 */
+#if BIND_UvWriteT_cb_FIELD_WRITER
+/* set_cb
  *
  * Parameters:
- * - value: int
+ * - value: uv_write_cb
  */
 mrb_value
-mrb_UV_UvWriteT_set_uv_write_cb(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvWriteT_set_cb(mrb_state* mrb, mrb_value self) {
   uv_write_t * native_self = mruby_unbox_uv_write_t(self);
-  mrb_int native_uv_write_cb;
+  mrb_value cb;
 
-  mrb_get_args(mrb, "i", &native_uv_write_cb);
+  mrb_get_args(mrb, "o", &cb);
 
-  native_self->uv_write_cb = native_uv_write_cb;
+  /* type checking */
+  TODO_type_check_uv_write_cb(cb);
+
+  uv_write_cb native_cb = TODO_mruby_unbox_uv_write_cb(cb);
+
+  native_self->cb = native_cb;
   
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
@@ -218,50 +223,6 @@ mrb_UV_UvWriteT_set_handle(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvWriteT::_reader */
-/* sha: 4c29ec5ae3442bca89bf7128b30f005f742f26d827a32eab91338a469796ab01 */
-#if BIND_UvWriteT__FIELD_READER
-/* get_
- *
- * Return Type: int
- */
-mrb_value
-mrb_UV_UvWriteT_get_(mrb_state* mrb, mrb_value self) {
-  uv_write_t * native_self = mruby_unbox_uv_write_t(self);
-
-  int native_ = native_self->;
-
-  mrb_value  = mrb_fixnum_value(native_);
-
-  return ;
-}
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvWriteT::_writer */
-/* sha: dc23fbb5e9b6993010bc07616d6b251deb63c184b03acc0f903448a7380a8930 */
-#if BIND_UvWriteT__FIELD_WRITER
-/* set_
- *
- * Parameters:
- * - value: int
- */
-mrb_value
-mrb_UV_UvWriteT_set_(mrb_state* mrb, mrb_value self) {
-  uv_write_t * native_self = mruby_unbox_uv_write_t(self);
-  mrb_int native_;
-
-  mrb_get_args(mrb, "i", &native_);
-
-  native_self-> = native_;
-  
-  mrb_value value_as_mrb_value;
-  mrb_get_args(mrb, "o", &value_as_mrb_value);
-  return value_as_mrb_value;
-}
-#endif
-/* MRUBY_BINDING_END */
-
 
 void mrb_UV_UvWriteT_init(mrb_state* mrb) {
 /* MRUBY_BINDING: UvWriteT::class_definition */
@@ -280,15 +241,15 @@ void mrb_UV_UvWriteT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvWriteT::attr_definitions */
-/* sha: 3f6aff6d281fea16ff1f6033066dacee363d0e7c19104d585e7bead1a6b60e66 */
+/* sha: 57791c40a580e0000c7040e449776e7bdb945226274d0e07a03b7620d9925c2a */
   /*
    * Fields
    */
-#if BIND_UvWriteT_uv_write_cb_FIELD_READER
-  mrb_define_method(mrb, UvWriteT_class, "uv_write_cb", mrb_UV_UvWriteT_get_uv_write_cb, MRB_ARGS_ARG(0, 0));
+#if BIND_UvWriteT_cb_FIELD_READER
+  mrb_define_method(mrb, UvWriteT_class, "cb", mrb_UV_UvWriteT_get_cb, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvWriteT_uv_write_cb_FIELD_WRITER
-  mrb_define_method(mrb, UvWriteT_class, "uv_write_cb=", mrb_UV_UvWriteT_set_uv_write_cb, MRB_ARGS_ARG(1, 0));
+#if BIND_UvWriteT_cb_FIELD_WRITER
+  mrb_define_method(mrb, UvWriteT_class, "cb=", mrb_UV_UvWriteT_set_cb, MRB_ARGS_ARG(1, 0));
 #endif
 #if BIND_UvWriteT_send_handle_FIELD_READER
   mrb_define_method(mrb, UvWriteT_class, "send_handle", mrb_UV_UvWriteT_get_send_handle, MRB_ARGS_ARG(0, 0));
@@ -301,12 +262,6 @@ void mrb_UV_UvWriteT_init(mrb_state* mrb) {
 #endif
 #if BIND_UvWriteT_handle_FIELD_WRITER
   mrb_define_method(mrb, UvWriteT_class, "handle=", mrb_UV_UvWriteT_set_handle, MRB_ARGS_ARG(1, 0));
-#endif
-#if BIND_UvWriteT__FIELD_READER
-  mrb_define_method(mrb, UvWriteT_class, "", mrb_UV_UvWriteT_get_, MRB_ARGS_ARG(0, 0));
-#endif
-#if BIND_UvWriteT__FIELD_WRITER
-  mrb_define_method(mrb, UvWriteT_class, "=", mrb_UV_UvWriteT_set_, MRB_ARGS_ARG(1, 0));
 #endif
 /* MRUBY_BINDING_END */
 

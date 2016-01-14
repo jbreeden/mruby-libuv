@@ -36,40 +36,6 @@ typedef struct mruby_to_native_ref_ {
   void* data;
 } mruby_to_native_ref;
 
-#if BIND_SockaddrIn_TYPE
-mrb_value
-mruby_box_sockaddr_in(mrb_state* mrb, struct sockaddr_in *unboxed);
-
-mrb_value
-mruby_giftwrap_sockaddr_in(mrb_state* mrb, struct sockaddr_in *unboxed);
-
-void
-mruby_set_sockaddr_in_data_ptr(mrb_value obj, struct sockaddr_in *unboxed);
-
-void
-mruby_gift_sockaddr_in_data_ptr(mrb_value obj, struct sockaddr_in *unboxed);
-
-struct sockaddr_in *
-mruby_unbox_sockaddr_in(mrb_value boxed);
-#endif
-
-#if BIND_SockaddrIn6_TYPE
-mrb_value
-mruby_box_sockaddr_in6(mrb_state* mrb, struct sockaddr_in6 *unboxed);
-
-mrb_value
-mruby_giftwrap_sockaddr_in6(mrb_state* mrb, struct sockaddr_in6 *unboxed);
-
-void
-mruby_set_sockaddr_in6_data_ptr(mrb_value obj, struct sockaddr_in6 *unboxed);
-
-void
-mruby_gift_sockaddr_in6_data_ptr(mrb_value obj, struct sockaddr_in6 *unboxed);
-
-struct sockaddr_in6 *
-mruby_unbox_sockaddr_in6(mrb_value boxed);
-#endif
-
 #if BIND_UvAsyncT_TYPE
 mrb_value
 mruby_box_uv_async_t(mrb_state* mrb, uv_async_t *unboxed);
@@ -376,21 +342,21 @@ uv_prepare_t *
 mruby_unbox_uv_prepare_t(mrb_value boxed);
 #endif
 
-#if BIND_UvProcessOptionsS_TYPE
+#if BIND_UvProcessOptionsT_TYPE
 mrb_value
-mruby_box_uv_process_options_s(mrb_state* mrb, struct uv_process_options_s *unboxed);
+mruby_box_uv_process_options_t(mrb_state* mrb, uv_process_options_t *unboxed);
 
 mrb_value
-mruby_giftwrap_uv_process_options_s(mrb_state* mrb, struct uv_process_options_s *unboxed);
+mruby_giftwrap_uv_process_options_t(mrb_state* mrb, uv_process_options_t *unboxed);
 
 void
-mruby_set_uv_process_options_s_data_ptr(mrb_value obj, struct uv_process_options_s *unboxed);
+mruby_set_uv_process_options_t_data_ptr(mrb_value obj, uv_process_options_t *unboxed);
 
 void
-mruby_gift_uv_process_options_s_data_ptr(mrb_value obj, struct uv_process_options_s *unboxed);
+mruby_gift_uv_process_options_t_data_ptr(mrb_value obj, uv_process_options_t *unboxed);
 
-struct uv_process_options_s *
-mruby_unbox_uv_process_options_s(mrb_value boxed);
+uv_process_options_t *
+mruby_unbox_uv_process_options_t(mrb_value boxed);
 #endif
 
 #if BIND_UvProcessT_TYPE
@@ -495,21 +461,21 @@ uv_stat_t *
 mruby_unbox_uv_stat_t(mrb_value boxed);
 #endif
 
-#if BIND_UvStdioContainerS_TYPE
+#if BIND_UvStdioContainerT_TYPE
 mrb_value
-mruby_box_uv_stdio_container_s(mrb_state* mrb, struct uv_stdio_container_s *unboxed);
+mruby_box_uv_stdio_container_t(mrb_state* mrb, uv_stdio_container_t *unboxed);
 
 mrb_value
-mruby_giftwrap_uv_stdio_container_s(mrb_state* mrb, struct uv_stdio_container_s *unboxed);
+mruby_giftwrap_uv_stdio_container_t(mrb_state* mrb, uv_stdio_container_t *unboxed);
 
 void
-mruby_set_uv_stdio_container_s_data_ptr(mrb_value obj, struct uv_stdio_container_s *unboxed);
+mruby_set_uv_stdio_container_t_data_ptr(mrb_value obj, uv_stdio_container_t *unboxed);
 
 void
-mruby_gift_uv_stdio_container_s_data_ptr(mrb_value obj, struct uv_stdio_container_s *unboxed);
+mruby_gift_uv_stdio_container_t_data_ptr(mrb_value obj, uv_stdio_container_t *unboxed);
 
-struct uv_stdio_container_s *
-mruby_unbox_uv_stdio_container_s(mrb_value boxed);
+uv_stdio_container_t *
+mruby_unbox_uv_stdio_container_t(mrb_value boxed);
 #endif
 
 #if BIND_UvStreamT_TYPE

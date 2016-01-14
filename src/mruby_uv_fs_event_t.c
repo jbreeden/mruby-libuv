@@ -70,42 +70,47 @@ mrb_UV_UvFsEventT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
  * Fields
  */
 
-/* MRUBY_BINDING: UvFsEventT::_reader */
-/* sha: 0cee04ec781ff69d1841479c1a1ddddfe51bab2f0c4124efe288543f6fee63ad */
-#if BIND_UvFsEventT__FIELD_READER
-/* get_
+/* MRUBY_BINDING: UvFsEventT::path_reader */
+/* sha: 51e46e65854670cf5b3c842cb153d97f4f92e61e356037c8751e39d530adcbc5 */
+#if BIND_UvFsEventT_path_FIELD_READER
+/* get_path
  *
- * Return Type: int
+ * Return Type: char *
  */
 mrb_value
-mrb_UV_UvFsEventT_get_(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvFsEventT_get_path(mrb_state* mrb, mrb_value self) {
   uv_fs_event_t * native_self = mruby_unbox_uv_fs_event_t(self);
 
-  int native_ = native_self->;
+  char * native_path = native_self->path;
 
-  mrb_value  = mrb_fixnum_value(native_);
+  mrb_value path = TODO_mruby_box_char_PTR(mrb, native_path);
 
-  return ;
+  return path;
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsEventT::_writer */
-/* sha: 0d244332ca3849d855dd3a5eb008f3183f06fe3e51bffb8577c614ed59feb4d1 */
-#if BIND_UvFsEventT__FIELD_WRITER
-/* set_
+/* MRUBY_BINDING: UvFsEventT::path_writer */
+/* sha: 3c7a736443257f00c5ebe27b982135f75f3eb014f313cb1b5a5f4ddb216f731b */
+#if BIND_UvFsEventT_path_FIELD_WRITER
+/* set_path
  *
  * Parameters:
- * - value: int
+ * - value: char *
  */
 mrb_value
-mrb_UV_UvFsEventT_set_(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvFsEventT_set_path(mrb_state* mrb, mrb_value self) {
   uv_fs_event_t * native_self = mruby_unbox_uv_fs_event_t(self);
-  mrb_int native_;
+  mrb_value path;
 
-  mrb_get_args(mrb, "i", &native_);
+  mrb_get_args(mrb, "o", &path);
 
-  native_self-> = native_;
+  /* type checking */
+  TODO_type_check_char_PTR(path);
+
+  char * native_path = TODO_mruby_unbox_char_PTR(path);
+
+  native_self->path = native_path;
   
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
@@ -132,15 +137,15 @@ void mrb_UV_UvFsEventT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvFsEventT::attr_definitions */
-/* sha: 38762e03c1340391ba6cc3480d89ca6d195b2555737855ae223582c5b2a94621 */
+/* sha: 803fb5c08e9844ca5433ca6bf6bdc04dcf33d70f7228d8fc88210539c306fa4a */
   /*
    * Fields
    */
-#if BIND_UvFsEventT__FIELD_READER
-  mrb_define_method(mrb, UvFsEventT_class, "", mrb_UV_UvFsEventT_get_, MRB_ARGS_ARG(0, 0));
+#if BIND_UvFsEventT_path_FIELD_READER
+  mrb_define_method(mrb, UvFsEventT_class, "path", mrb_UV_UvFsEventT_get_path, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvFsEventT__FIELD_WRITER
-  mrb_define_method(mrb, UvFsEventT_class, "=", mrb_UV_UvFsEventT_set_, MRB_ARGS_ARG(1, 0));
+#if BIND_UvFsEventT_path_FIELD_WRITER
+  mrb_define_method(mrb, UvFsEventT_class, "path=", mrb_UV_UvFsEventT_set_path, MRB_ARGS_ARG(1, 0));
 #endif
 /* MRUBY_BINDING_END */
 

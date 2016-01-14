@@ -66,54 +66,6 @@ mrb_UV_UvIdleT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
 }
 /* MRUBY_BINDING_END */
 
-/*
- * Fields
- */
-
-/* MRUBY_BINDING: UvIdleT::UV_IDLE_PRIVATE_FIELDS_reader */
-/* sha: 84c517563bfb1bf443aa67cb411b0b5b59299e42ba79c63890b1f2d6a30f26e6 */
-#if BIND_UvIdleT_UV_IDLE_PRIVATE_FIELDS_FIELD_READER
-/* get_UV_IDLE_PRIVATE_FIELDS
- *
- * Return Type: int
- */
-mrb_value
-mrb_UV_UvIdleT_get_UV_IDLE_PRIVATE_FIELDS(mrb_state* mrb, mrb_value self) {
-  uv_idle_t * native_self = mruby_unbox_uv_idle_t(self);
-
-  int native_UV_IDLE_PRIVATE_FIELDS = native_self->UV_IDLE_PRIVATE_FIELDS;
-
-  mrb_value UV_IDLE_PRIVATE_FIELDS = mrb_fixnum_value(native_UV_IDLE_PRIVATE_FIELDS);
-
-  return UV_IDLE_PRIVATE_FIELDS;
-}
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvIdleT::UV_IDLE_PRIVATE_FIELDS_writer */
-/* sha: af3bf012934e83103b95b9d7f8ebe8424f2258d41af00fcc90e7273a28a08d82 */
-#if BIND_UvIdleT_UV_IDLE_PRIVATE_FIELDS_FIELD_WRITER
-/* set_UV_IDLE_PRIVATE_FIELDS
- *
- * Parameters:
- * - value: int
- */
-mrb_value
-mrb_UV_UvIdleT_set_UV_IDLE_PRIVATE_FIELDS(mrb_state* mrb, mrb_value self) {
-  uv_idle_t * native_self = mruby_unbox_uv_idle_t(self);
-  mrb_int native_UV_IDLE_PRIVATE_FIELDS;
-
-  mrb_get_args(mrb, "i", &native_UV_IDLE_PRIVATE_FIELDS);
-
-  native_self->UV_IDLE_PRIVATE_FIELDS = native_UV_IDLE_PRIVATE_FIELDS;
-  
-  mrb_value value_as_mrb_value;
-  mrb_get_args(mrb, "o", &value_as_mrb_value);
-  return value_as_mrb_value;
-}
-#endif
-/* MRUBY_BINDING_END */
-
 
 void mrb_UV_UvIdleT_init(mrb_state* mrb) {
 /* MRUBY_BINDING: UvIdleT::class_definition */
@@ -132,16 +84,8 @@ void mrb_UV_UvIdleT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvIdleT::attr_definitions */
-/* sha: 921c7778f6d8af5d7955239e56e8212578195a8f2211fd325007433db6439c0a */
-  /*
-   * Fields
-   */
-#if BIND_UvIdleT_UV_IDLE_PRIVATE_FIELDS_FIELD_READER
-  mrb_define_method(mrb, UvIdleT_class, "UV_IDLE_PRIVATE_FIELDS", mrb_UV_UvIdleT_get_UV_IDLE_PRIVATE_FIELDS, MRB_ARGS_ARG(0, 0));
-#endif
-#if BIND_UvIdleT_UV_IDLE_PRIVATE_FIELDS_FIELD_WRITER
-  mrb_define_method(mrb, UvIdleT_class, "UV_IDLE_PRIVATE_FIELDS=", mrb_UV_UvIdleT_set_UV_IDLE_PRIVATE_FIELDS, MRB_ARGS_ARG(1, 0));
-#endif
+/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvIdleT::instance_method_definitions */

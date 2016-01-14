@@ -659,7 +659,7 @@ mrb_UV_UvStatT_set_st_gen(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvStatT::st_atim_reader */
-/* sha: a8f1f5c30d0cd3ba2c0754515659743a30230695839ebb50b7b5f4e40db436f2 */
+/* sha: 77069e3fa4995709f1cd95c38474f8dff1d3a064f5e62e0f2fffbfd6be22aa42 */
 #if BIND_UvStatT_st_atim_FIELD_READER
 /* get_st_atim
  *
@@ -671,7 +671,8 @@ mrb_UV_UvStatT_get_st_atim(mrb_state* mrb, mrb_value self) {
 
   uv_timespec_t native_st_atim = native_self->st_atim;
 
-  mrb_value st_atim = TODO_mruby_box_uv_timespec_t(mrb, native_st_atim);
+  uv_timespec_t* new_st_atim = TODO_move_uv_timespec_t_to_heap(native_st_atim);
+  mrb_value st_atim = mruby_box_uv_timespec_t(mrb, &native_st_atim);
 
   return st_atim;
 }
@@ -679,7 +680,7 @@ mrb_UV_UvStatT_get_st_atim(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvStatT::st_atim_writer */
-/* sha: e7d530b496e8c51a11f6282e4883d927a3c404831223a927fd93ee6c39e5f745 */
+/* sha: 7f6b39342e471a974e44c0232b8b385511ebb8c2d1b8d4c4c34c08a9834824c3 */
 #if BIND_UvStatT_st_atim_FIELD_WRITER
 /* set_st_atim
  *
@@ -694,9 +695,12 @@ mrb_UV_UvStatT_set_st_atim(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &st_atim);
 
   /* type checking */
-  TODO_type_check_uv_timespec_t(st_atim);
+  if (!mrb_obj_is_kind_of(mrb, st_atim, UvTimespecT_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UvTimespecT expected");
+    return mrb_nil_value();
+  }
 
-  uv_timespec_t native_st_atim = TODO_mruby_unbox_uv_timespec_t(st_atim);
+  uv_timespec_t native_st_atim = *(mruby_unbox_uv_timespec_t(st_atim));
 
   native_self->st_atim = native_st_atim;
   
@@ -708,7 +712,7 @@ mrb_UV_UvStatT_set_st_atim(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvStatT::st_mtim_reader */
-/* sha: 9fb52e9451f3c58cd809f3a1331be26594ab5c7f872f8d695d6a054f8d137697 */
+/* sha: 7847262c18adcc6cff5910b452ea5761c367173b944ea7c443d326e3be5a4657 */
 #if BIND_UvStatT_st_mtim_FIELD_READER
 /* get_st_mtim
  *
@@ -720,7 +724,8 @@ mrb_UV_UvStatT_get_st_mtim(mrb_state* mrb, mrb_value self) {
 
   uv_timespec_t native_st_mtim = native_self->st_mtim;
 
-  mrb_value st_mtim = TODO_mruby_box_uv_timespec_t(mrb, native_st_mtim);
+  uv_timespec_t* new_st_mtim = TODO_move_uv_timespec_t_to_heap(native_st_mtim);
+  mrb_value st_mtim = mruby_box_uv_timespec_t(mrb, &native_st_mtim);
 
   return st_mtim;
 }
@@ -728,7 +733,7 @@ mrb_UV_UvStatT_get_st_mtim(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvStatT::st_mtim_writer */
-/* sha: b5bb0264609c42853b04faa216f86eaeb1fb4ac648c74b87d4be6600cb2bff9a */
+/* sha: daf7ee031d448e4c7a511c0959de9547379abe30602b02c31e439ef53c046236 */
 #if BIND_UvStatT_st_mtim_FIELD_WRITER
 /* set_st_mtim
  *
@@ -743,9 +748,12 @@ mrb_UV_UvStatT_set_st_mtim(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &st_mtim);
 
   /* type checking */
-  TODO_type_check_uv_timespec_t(st_mtim);
+  if (!mrb_obj_is_kind_of(mrb, st_mtim, UvTimespecT_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UvTimespecT expected");
+    return mrb_nil_value();
+  }
 
-  uv_timespec_t native_st_mtim = TODO_mruby_unbox_uv_timespec_t(st_mtim);
+  uv_timespec_t native_st_mtim = *(mruby_unbox_uv_timespec_t(st_mtim));
 
   native_self->st_mtim = native_st_mtim;
   
@@ -757,7 +765,7 @@ mrb_UV_UvStatT_set_st_mtim(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvStatT::st_ctim_reader */
-/* sha: cf52a96a324435b3c12a8a8f0a1a546059eee03ee20995c88266153992925d50 */
+/* sha: b6d10c7787e2eca5839b75454059097706e1d7ccc6fdedc154e030f9a9275215 */
 #if BIND_UvStatT_st_ctim_FIELD_READER
 /* get_st_ctim
  *
@@ -769,7 +777,8 @@ mrb_UV_UvStatT_get_st_ctim(mrb_state* mrb, mrb_value self) {
 
   uv_timespec_t native_st_ctim = native_self->st_ctim;
 
-  mrb_value st_ctim = TODO_mruby_box_uv_timespec_t(mrb, native_st_ctim);
+  uv_timespec_t* new_st_ctim = TODO_move_uv_timespec_t_to_heap(native_st_ctim);
+  mrb_value st_ctim = mruby_box_uv_timespec_t(mrb, &native_st_ctim);
 
   return st_ctim;
 }
@@ -777,7 +786,7 @@ mrb_UV_UvStatT_get_st_ctim(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvStatT::st_ctim_writer */
-/* sha: 7ab387f3067fcc856e5b49868497a9007262f62729e84da6a8e962aaddf076f7 */
+/* sha: fb65cba62ede0fc8e79ac195c8159a99942245c5b03663ff5b7ef5fab0c07f08 */
 #if BIND_UvStatT_st_ctim_FIELD_WRITER
 /* set_st_ctim
  *
@@ -792,9 +801,12 @@ mrb_UV_UvStatT_set_st_ctim(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &st_ctim);
 
   /* type checking */
-  TODO_type_check_uv_timespec_t(st_ctim);
+  if (!mrb_obj_is_kind_of(mrb, st_ctim, UvTimespecT_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UvTimespecT expected");
+    return mrb_nil_value();
+  }
 
-  uv_timespec_t native_st_ctim = TODO_mruby_unbox_uv_timespec_t(st_ctim);
+  uv_timespec_t native_st_ctim = *(mruby_unbox_uv_timespec_t(st_ctim));
 
   native_self->st_ctim = native_st_ctim;
   
@@ -806,7 +818,7 @@ mrb_UV_UvStatT_set_st_ctim(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvStatT::st_birthtim_reader */
-/* sha: 08461eac7df25aef0c9db512c444356cf9dd6396b38f79b515d185c74b285894 */
+/* sha: d14da4405c22d47b139b6786c442356b78ca6208869d5471dc0b1bd7bef61355 */
 #if BIND_UvStatT_st_birthtim_FIELD_READER
 /* get_st_birthtim
  *
@@ -818,7 +830,8 @@ mrb_UV_UvStatT_get_st_birthtim(mrb_state* mrb, mrb_value self) {
 
   uv_timespec_t native_st_birthtim = native_self->st_birthtim;
 
-  mrb_value st_birthtim = TODO_mruby_box_uv_timespec_t(mrb, native_st_birthtim);
+  uv_timespec_t* new_st_birthtim = TODO_move_uv_timespec_t_to_heap(native_st_birthtim);
+  mrb_value st_birthtim = mruby_box_uv_timespec_t(mrb, &native_st_birthtim);
 
   return st_birthtim;
 }
@@ -826,7 +839,7 @@ mrb_UV_UvStatT_get_st_birthtim(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvStatT::st_birthtim_writer */
-/* sha: 551e34ec363679ba99bb8299a542e5723e798966cbea32262f434e61d6a6fe99 */
+/* sha: 652a488cb3aba8a2bd53311cd88daacf0a6b38b546399de9ad16b8b269a52288 */
 #if BIND_UvStatT_st_birthtim_FIELD_WRITER
 /* set_st_birthtim
  *
@@ -841,9 +854,12 @@ mrb_UV_UvStatT_set_st_birthtim(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &st_birthtim);
 
   /* type checking */
-  TODO_type_check_uv_timespec_t(st_birthtim);
+  if (!mrb_obj_is_kind_of(mrb, st_birthtim, UvTimespecT_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UvTimespecT expected");
+    return mrb_nil_value();
+  }
 
-  uv_timespec_t native_st_birthtim = TODO_mruby_unbox_uv_timespec_t(st_birthtim);
+  uv_timespec_t native_st_birthtim = *(mruby_unbox_uv_timespec_t(st_birthtim));
 
   native_self->st_birthtim = native_st_birthtim;
   

@@ -70,42 +70,42 @@ mrb_UV_UvFsT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
  * Fields
  */
 
-/* MRUBY_BINDING: UvFsT::uv_fs_type_reader */
-/* sha: 028adc5cd123aa9123c1029b42b2667214e181b1445f8bcaf3eedecf81603f76 */
-#if BIND_UvFsT_uv_fs_type_FIELD_READER
-/* get_uv_fs_type
+/* MRUBY_BINDING: UvFsT::fs_type_reader */
+/* sha: 09dfcb142f8573b8ff44050d9b0004e27e4ef65b1158fc0b983552c056c74bbc */
+#if BIND_UvFsT_fs_type_FIELD_READER
+/* get_fs_type
  *
- * Return Type: int
+ * Return Type: uv_fs_type
  */
 mrb_value
-mrb_UV_UvFsT_get_uv_fs_type(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvFsT_get_fs_type(mrb_state* mrb, mrb_value self) {
   uv_fs_t * native_self = mruby_unbox_uv_fs_t(self);
 
-  int native_uv_fs_type = native_self->uv_fs_type;
+  uv_fs_type native_fs_type = native_self->fs_type;
 
-  mrb_value uv_fs_type = mrb_fixnum_value(native_uv_fs_type);
+  mrb_value fs_type = mrb_fixnum_value(native_fs_type);
 
-  return uv_fs_type;
+  return fs_type;
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::uv_fs_type_writer */
-/* sha: 149bdc4fe26f72add9dbc22b42461367e7b80f2edd17da80eb01572c9a5e3044 */
-#if BIND_UvFsT_uv_fs_type_FIELD_WRITER
-/* set_uv_fs_type
+/* MRUBY_BINDING: UvFsT::fs_type_writer */
+/* sha: 3f155e54636a28da8b1863ea082dbd514be8b165e8a532fe797339ea51d2ab58 */
+#if BIND_UvFsT_fs_type_FIELD_WRITER
+/* set_fs_type
  *
  * Parameters:
- * - value: int
+ * - value: uv_fs_type
  */
 mrb_value
-mrb_UV_UvFsT_set_uv_fs_type(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvFsT_set_fs_type(mrb_state* mrb, mrb_value self) {
   uv_fs_t * native_self = mruby_unbox_uv_fs_t(self);
-  mrb_int native_uv_fs_type;
+  mrb_int native_fs_type;
 
-  mrb_get_args(mrb, "i", &native_uv_fs_type);
+  mrb_get_args(mrb, "i", &native_fs_type);
 
-  native_self->uv_fs_type = native_uv_fs_type;
+  native_self->fs_type = native_fs_type;
   
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
@@ -358,7 +358,7 @@ mrb_UV_UvFsT_set_path(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvFsT::statbuf_reader */
-/* sha: 988785aa0a0b6c0bc9318c8638f53a4c6607910607752cf8921120fcaab48514 */
+/* sha: 26a0782ff52fa498eeda07c5f3dac70266c2aa96a79d3fefe406ce200fc62214 */
 #if BIND_UvFsT_statbuf_FIELD_READER
 /* get_statbuf
  *
@@ -370,7 +370,8 @@ mrb_UV_UvFsT_get_statbuf(mrb_state* mrb, mrb_value self) {
 
   uv_stat_t native_statbuf = native_self->statbuf;
 
-  mrb_value statbuf = TODO_mruby_box_uv_stat_t(mrb, native_statbuf);
+  uv_stat_t* new_statbuf = TODO_move_uv_stat_t_to_heap(native_statbuf);
+  mrb_value statbuf = mruby_box_uv_stat_t(mrb, &native_statbuf);
 
   return statbuf;
 }
@@ -378,7 +379,7 @@ mrb_UV_UvFsT_get_statbuf(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvFsT::statbuf_writer */
-/* sha: 7e4acf128080727ddd65802a211cca9508926da4303cf2bba66e522b83c5006c */
+/* sha: 59ebeda8b4491306b2ca45e698e0b49cdef9817359f348064ba43e5212e22681 */
 #if BIND_UvFsT_statbuf_FIELD_WRITER
 /* set_statbuf
  *
@@ -393,55 +394,14 @@ mrb_UV_UvFsT_set_statbuf(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &statbuf);
 
   /* type checking */
-  TODO_type_check_uv_stat_t(statbuf);
+  if (!mrb_obj_is_kind_of(mrb, statbuf, UvStatT_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UvStatT expected");
+    return mrb_nil_value();
+  }
 
-  uv_stat_t native_statbuf = TODO_mruby_unbox_uv_stat_t(statbuf);
+  uv_stat_t native_statbuf = *(mruby_unbox_uv_stat_t(statbuf));
 
   native_self->statbuf = native_statbuf;
-  
-  mrb_value value_as_mrb_value;
-  mrb_get_args(mrb, "o", &value_as_mrb_value);
-  return value_as_mrb_value;
-}
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvFsT::_reader */
-/* sha: 6ed46edd902b80d8e1dee14a1a996b645bd6817c4b4e0630b4dc9b0b6d993544 */
-#if BIND_UvFsT__FIELD_READER
-/* get_
- *
- * Return Type: int
- */
-mrb_value
-mrb_UV_UvFsT_get_(mrb_state* mrb, mrb_value self) {
-  uv_fs_t * native_self = mruby_unbox_uv_fs_t(self);
-
-  int native_ = native_self->;
-
-  mrb_value  = mrb_fixnum_value(native_);
-
-  return ;
-}
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvFsT::_writer */
-/* sha: 063b56653b7bf427349c6346d38725b482243d5e9ad23a889b87e073b5b9ea70 */
-#if BIND_UvFsT__FIELD_WRITER
-/* set_
- *
- * Parameters:
- * - value: int
- */
-mrb_value
-mrb_UV_UvFsT_set_(mrb_state* mrb, mrb_value self) {
-  uv_fs_t * native_self = mruby_unbox_uv_fs_t(self);
-  mrb_int native_;
-
-  mrb_get_args(mrb, "i", &native_);
-
-  native_self-> = native_;
   
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
@@ -468,15 +428,15 @@ void mrb_UV_UvFsT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvFsT::attr_definitions */
-/* sha: f780cafcbae5ebcb1cf05805723b24c088fad0d1ab1bffcb9109b539fcc8dff8 */
+/* sha: 6a9e59e3fbddc5ae36182a67970e52871a940bb5a4ce7b00b920908743b35a9a */
   /*
    * Fields
    */
-#if BIND_UvFsT_uv_fs_type_FIELD_READER
-  mrb_define_method(mrb, UvFsT_class, "uv_fs_type", mrb_UV_UvFsT_get_uv_fs_type, MRB_ARGS_ARG(0, 0));
+#if BIND_UvFsT_fs_type_FIELD_READER
+  mrb_define_method(mrb, UvFsT_class, "fs_type", mrb_UV_UvFsT_get_fs_type, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvFsT_uv_fs_type_FIELD_WRITER
-  mrb_define_method(mrb, UvFsT_class, "uv_fs_type=", mrb_UV_UvFsT_set_uv_fs_type, MRB_ARGS_ARG(1, 0));
+#if BIND_UvFsT_fs_type_FIELD_WRITER
+  mrb_define_method(mrb, UvFsT_class, "fs_type=", mrb_UV_UvFsT_set_fs_type, MRB_ARGS_ARG(1, 0));
 #endif
 #if BIND_UvFsT_loop_FIELD_READER
   mrb_define_method(mrb, UvFsT_class, "loop", mrb_UV_UvFsT_get_loop, MRB_ARGS_ARG(0, 0));
@@ -513,12 +473,6 @@ void mrb_UV_UvFsT_init(mrb_state* mrb) {
 #endif
 #if BIND_UvFsT_statbuf_FIELD_WRITER
   mrb_define_method(mrb, UvFsT_class, "statbuf=", mrb_UV_UvFsT_set_statbuf, MRB_ARGS_ARG(1, 0));
-#endif
-#if BIND_UvFsT__FIELD_READER
-  mrb_define_method(mrb, UvFsT_class, "", mrb_UV_UvFsT_get_, MRB_ARGS_ARG(0, 0));
-#endif
-#if BIND_UvFsT__FIELD_WRITER
-  mrb_define_method(mrb, UvFsT_class, "=", mrb_UV_UvFsT_set_, MRB_ARGS_ARG(1, 0));
 #endif
 /* MRUBY_BINDING_END */
 

@@ -70,42 +70,42 @@ mrb_UV_UvUdpT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
  * Fields
  */
 
-/* MRUBY_BINDING: UvUdpT::size_t_reader */
-/* sha: 611abf08e42af490fed8d8793a328beb2ad289a8a2e200fa4b66ccd245b09bea */
-#if BIND_UvUdpT_size_t_FIELD_READER
-/* get_size_t
+/* MRUBY_BINDING: UvUdpT::send_queue_size_reader */
+/* sha: b84857080d4ee3007c39483aecaaca4bec6da25db78caa8a77bb8e942bad3e72 */
+#if BIND_UvUdpT_send_queue_size_FIELD_READER
+/* get_send_queue_size
  *
- * Return Type: int
+ * Return Type: size_t
  */
 mrb_value
-mrb_UV_UvUdpT_get_size_t(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvUdpT_get_send_queue_size(mrb_state* mrb, mrb_value self) {
   uv_udp_t * native_self = mruby_unbox_uv_udp_t(self);
 
-  int native_size_t = native_self->size_t;
+  size_t native_send_queue_size = native_self->send_queue_size;
 
-  mrb_value size_t = mrb_fixnum_value(native_size_t);
+  mrb_value send_queue_size = mrb_fixnum_value(native_send_queue_size);
 
-  return size_t;
+  return send_queue_size;
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpT::size_t_writer */
-/* sha: 79142de7400ebdf0077680489f4b68c1480b357f3bcabf82faeae49b70de2f60 */
-#if BIND_UvUdpT_size_t_FIELD_WRITER
-/* set_size_t
+/* MRUBY_BINDING: UvUdpT::send_queue_size_writer */
+/* sha: dff3209700ea4ea7a36ad8f9fa3e71e5d105e3c2cc7edb447ec0651fe5f44994 */
+#if BIND_UvUdpT_send_queue_size_FIELD_WRITER
+/* set_send_queue_size
  *
  * Parameters:
- * - value: int
+ * - value: size_t
  */
 mrb_value
-mrb_UV_UvUdpT_set_size_t(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvUdpT_set_send_queue_size(mrb_state* mrb, mrb_value self) {
   uv_udp_t * native_self = mruby_unbox_uv_udp_t(self);
-  mrb_int native_size_t;
+  mrb_int native_send_queue_size;
 
-  mrb_get_args(mrb, "i", &native_size_t);
+  mrb_get_args(mrb, "i", &native_send_queue_size);
 
-  native_self->size_t = native_size_t;
+  native_self->send_queue_size = native_send_queue_size;
   
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
@@ -158,50 +158,6 @@ mrb_UV_UvUdpT_set_send_queue_count(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpT::_reader */
-/* sha: 239af02fcdf5ae7417f2924331d4cdf97ccbf5a62614f922b047e6660fea17eb */
-#if BIND_UvUdpT__FIELD_READER
-/* get_
- *
- * Return Type: int
- */
-mrb_value
-mrb_UV_UvUdpT_get_(mrb_state* mrb, mrb_value self) {
-  uv_udp_t * native_self = mruby_unbox_uv_udp_t(self);
-
-  int native_ = native_self->;
-
-  mrb_value  = mrb_fixnum_value(native_);
-
-  return ;
-}
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvUdpT::_writer */
-/* sha: 4fb0d2a898a7f1856717f8883cf6cd371185c29dd033291d46fe45641cd8a704 */
-#if BIND_UvUdpT__FIELD_WRITER
-/* set_
- *
- * Parameters:
- * - value: int
- */
-mrb_value
-mrb_UV_UvUdpT_set_(mrb_state* mrb, mrb_value self) {
-  uv_udp_t * native_self = mruby_unbox_uv_udp_t(self);
-  mrb_int native_;
-
-  mrb_get_args(mrb, "i", &native_);
-
-  native_self-> = native_;
-  
-  mrb_value value_as_mrb_value;
-  mrb_get_args(mrb, "o", &value_as_mrb_value);
-  return value_as_mrb_value;
-}
-#endif
-/* MRUBY_BINDING_END */
-
 
 void mrb_UV_UvUdpT_init(mrb_state* mrb) {
 /* MRUBY_BINDING: UvUdpT::class_definition */
@@ -220,27 +176,21 @@ void mrb_UV_UvUdpT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvUdpT::attr_definitions */
-/* sha: 3a1e1eec93a789f654d718ef9eb0888fb2166aaf4c52d982dcfd6aefea8e2af6 */
+/* sha: 01fb762be80284bdf2a0c3475ce0958aacff1ee91f03fe34bc24f534c49c59ae */
   /*
    * Fields
    */
-#if BIND_UvUdpT_size_t_FIELD_READER
-  mrb_define_method(mrb, UvUdpT_class, "size_t", mrb_UV_UvUdpT_get_size_t, MRB_ARGS_ARG(0, 0));
+#if BIND_UvUdpT_send_queue_size_FIELD_READER
+  mrb_define_method(mrb, UvUdpT_class, "send_queue_size", mrb_UV_UvUdpT_get_send_queue_size, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvUdpT_size_t_FIELD_WRITER
-  mrb_define_method(mrb, UvUdpT_class, "size_t=", mrb_UV_UvUdpT_set_size_t, MRB_ARGS_ARG(1, 0));
+#if BIND_UvUdpT_send_queue_size_FIELD_WRITER
+  mrb_define_method(mrb, UvUdpT_class, "send_queue_size=", mrb_UV_UvUdpT_set_send_queue_size, MRB_ARGS_ARG(1, 0));
 #endif
 #if BIND_UvUdpT_send_queue_count_FIELD_READER
   mrb_define_method(mrb, UvUdpT_class, "send_queue_count", mrb_UV_UvUdpT_get_send_queue_count, MRB_ARGS_ARG(0, 0));
 #endif
 #if BIND_UvUdpT_send_queue_count_FIELD_WRITER
   mrb_define_method(mrb, UvUdpT_class, "send_queue_count=", mrb_UV_UvUdpT_set_send_queue_count, MRB_ARGS_ARG(1, 0));
-#endif
-#if BIND_UvUdpT__FIELD_READER
-  mrb_define_method(mrb, UvUdpT_class, "", mrb_UV_UvUdpT_get_, MRB_ARGS_ARG(0, 0));
-#endif
-#if BIND_UvUdpT__FIELD_WRITER
-  mrb_define_method(mrb, UvUdpT_class, "=", mrb_UV_UvUdpT_set_, MRB_ARGS_ARG(1, 0));
 #endif
 /* MRUBY_BINDING_END */
 

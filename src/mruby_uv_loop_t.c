@@ -1,6 +1,6 @@
 /*
  * uv_loop_t
- * Defined in file uv.h @ line 200
+ * Defined in file uv.h @ line 1446
  */
 
 #include "mruby_UV.h"
@@ -305,50 +305,6 @@ mrb_UV_UvLoopT_set_stop_flag(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvLoopT::_reader */
-/* sha: 62d086480cadae2240b5885d3781738be385e7782c80045532f3dcbb1d2789eb */
-#if BIND_UvLoopT__FIELD_READER
-/* get_
- *
- * Return Type: int
- */
-mrb_value
-mrb_UV_UvLoopT_get_(mrb_state* mrb, mrb_value self) {
-  uv_loop_t * native_self = mruby_unbox_uv_loop_t(self);
-
-  int native_ = native_self->;
-
-  mrb_value  = mrb_fixnum_value(native_);
-
-  return ;
-}
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvLoopT::_writer */
-/* sha: e4d5933135af9dda8c4343f0b075b90c0f6bba672608eb61486ba18346354031 */
-#if BIND_UvLoopT__FIELD_WRITER
-/* set_
- *
- * Parameters:
- * - value: int
- */
-mrb_value
-mrb_UV_UvLoopT_set_(mrb_state* mrb, mrb_value self) {
-  uv_loop_t * native_self = mruby_unbox_uv_loop_t(self);
-  mrb_int native_;
-
-  mrb_get_args(mrb, "i", &native_);
-
-  native_self-> = native_;
-  
-  mrb_value value_as_mrb_value;
-  mrb_get_args(mrb, "o", &value_as_mrb_value);
-  return value_as_mrb_value;
-}
-#endif
-/* MRUBY_BINDING_END */
-
 
 void mrb_UV_UvLoopT_init(mrb_state* mrb) {
 /* MRUBY_BINDING: UvLoopT::class_definition */
@@ -367,7 +323,7 @@ void mrb_UV_UvLoopT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvLoopT::attr_definitions */
-/* sha: b51a1be17126ad196e2e5dd8e0129de41a0a7d295a4dfe1d673b2ed2ec80d255 */
+/* sha: 94c27a54f6120b625d8ae4179fd4b1fcabf1cf18c3b4e51f08998d4e89970eb4 */
   /*
    * Fields
    */
@@ -400,12 +356,6 @@ void mrb_UV_UvLoopT_init(mrb_state* mrb) {
 #endif
 #if BIND_UvLoopT_stop_flag_FIELD_WRITER
   mrb_define_method(mrb, UvLoopT_class, "stop_flag=", mrb_UV_UvLoopT_set_stop_flag, MRB_ARGS_ARG(1, 0));
-#endif
-#if BIND_UvLoopT__FIELD_READER
-  mrb_define_method(mrb, UvLoopT_class, "", mrb_UV_UvLoopT_get_, MRB_ARGS_ARG(0, 0));
-#endif
-#if BIND_UvLoopT__FIELD_WRITER
-  mrb_define_method(mrb, UvLoopT_class, "=", mrb_UV_UvLoopT_set_, MRB_ARGS_ARG(1, 0));
 #endif
 /* MRUBY_BINDING_END */
 

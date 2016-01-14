@@ -66,54 +66,6 @@ mrb_UV_UvCheckT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
 }
 /* MRUBY_BINDING_END */
 
-/*
- * Fields
- */
-
-/* MRUBY_BINDING: UvCheckT::UV_CHECK_PRIVATE_FIELDS_reader */
-/* sha: 49e5b71a5927567f94ad8b603c765ddc506a151598f0d6d2b356a6fa6a9ecacb */
-#if BIND_UvCheckT_UV_CHECK_PRIVATE_FIELDS_FIELD_READER
-/* get_UV_CHECK_PRIVATE_FIELDS
- *
- * Return Type: int
- */
-mrb_value
-mrb_UV_UvCheckT_get_UV_CHECK_PRIVATE_FIELDS(mrb_state* mrb, mrb_value self) {
-  uv_check_t * native_self = mruby_unbox_uv_check_t(self);
-
-  int native_UV_CHECK_PRIVATE_FIELDS = native_self->UV_CHECK_PRIVATE_FIELDS;
-
-  mrb_value UV_CHECK_PRIVATE_FIELDS = mrb_fixnum_value(native_UV_CHECK_PRIVATE_FIELDS);
-
-  return UV_CHECK_PRIVATE_FIELDS;
-}
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvCheckT::UV_CHECK_PRIVATE_FIELDS_writer */
-/* sha: 32f2405327fe05037b550cb11884db1355d8146c2d0472da319a1b9e583a5354 */
-#if BIND_UvCheckT_UV_CHECK_PRIVATE_FIELDS_FIELD_WRITER
-/* set_UV_CHECK_PRIVATE_FIELDS
- *
- * Parameters:
- * - value: int
- */
-mrb_value
-mrb_UV_UvCheckT_set_UV_CHECK_PRIVATE_FIELDS(mrb_state* mrb, mrb_value self) {
-  uv_check_t * native_self = mruby_unbox_uv_check_t(self);
-  mrb_int native_UV_CHECK_PRIVATE_FIELDS;
-
-  mrb_get_args(mrb, "i", &native_UV_CHECK_PRIVATE_FIELDS);
-
-  native_self->UV_CHECK_PRIVATE_FIELDS = native_UV_CHECK_PRIVATE_FIELDS;
-  
-  mrb_value value_as_mrb_value;
-  mrb_get_args(mrb, "o", &value_as_mrb_value);
-  return value_as_mrb_value;
-}
-#endif
-/* MRUBY_BINDING_END */
-
 
 void mrb_UV_UvCheckT_init(mrb_state* mrb) {
 /* MRUBY_BINDING: UvCheckT::class_definition */
@@ -132,16 +84,8 @@ void mrb_UV_UvCheckT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvCheckT::attr_definitions */
-/* sha: c1c0f697d325075cef89cb91fddd42b099fd6405c8e768a3cb10b9d84786c826 */
-  /*
-   * Fields
-   */
-#if BIND_UvCheckT_UV_CHECK_PRIVATE_FIELDS_FIELD_READER
-  mrb_define_method(mrb, UvCheckT_class, "UV_CHECK_PRIVATE_FIELDS", mrb_UV_UvCheckT_get_UV_CHECK_PRIVATE_FIELDS, MRB_ARGS_ARG(0, 0));
-#endif
-#if BIND_UvCheckT_UV_CHECK_PRIVATE_FIELDS_FIELD_WRITER
-  mrb_define_method(mrb, UvCheckT_class, "UV_CHECK_PRIVATE_FIELDS=", mrb_UV_UvCheckT_set_UV_CHECK_PRIVATE_FIELDS, MRB_ARGS_ARG(1, 0));
-#endif
+/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvCheckT::instance_method_definitions */

@@ -66,54 +66,6 @@ mrb_UV_UvTimerT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
 }
 /* MRUBY_BINDING_END */
 
-/*
- * Fields
- */
-
-/* MRUBY_BINDING: UvTimerT::UV_TIMER_PRIVATE_FIELDS_reader */
-/* sha: d8728cbc000a73d42f36f451b72ebfb469d37b22834fd83e2b95b9572b4f195b */
-#if BIND_UvTimerT_UV_TIMER_PRIVATE_FIELDS_FIELD_READER
-/* get_UV_TIMER_PRIVATE_FIELDS
- *
- * Return Type: int
- */
-mrb_value
-mrb_UV_UvTimerT_get_UV_TIMER_PRIVATE_FIELDS(mrb_state* mrb, mrb_value self) {
-  uv_timer_t * native_self = mruby_unbox_uv_timer_t(self);
-
-  int native_UV_TIMER_PRIVATE_FIELDS = native_self->UV_TIMER_PRIVATE_FIELDS;
-
-  mrb_value UV_TIMER_PRIVATE_FIELDS = mrb_fixnum_value(native_UV_TIMER_PRIVATE_FIELDS);
-
-  return UV_TIMER_PRIVATE_FIELDS;
-}
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvTimerT::UV_TIMER_PRIVATE_FIELDS_writer */
-/* sha: 8b61642637fcb9a303ea2063ea98d8d5b10a2f6f9bb6dcd15c347d9f538d4314 */
-#if BIND_UvTimerT_UV_TIMER_PRIVATE_FIELDS_FIELD_WRITER
-/* set_UV_TIMER_PRIVATE_FIELDS
- *
- * Parameters:
- * - value: int
- */
-mrb_value
-mrb_UV_UvTimerT_set_UV_TIMER_PRIVATE_FIELDS(mrb_state* mrb, mrb_value self) {
-  uv_timer_t * native_self = mruby_unbox_uv_timer_t(self);
-  mrb_int native_UV_TIMER_PRIVATE_FIELDS;
-
-  mrb_get_args(mrb, "i", &native_UV_TIMER_PRIVATE_FIELDS);
-
-  native_self->UV_TIMER_PRIVATE_FIELDS = native_UV_TIMER_PRIVATE_FIELDS;
-  
-  mrb_value value_as_mrb_value;
-  mrb_get_args(mrb, "o", &value_as_mrb_value);
-  return value_as_mrb_value;
-}
-#endif
-/* MRUBY_BINDING_END */
-
 
 void mrb_UV_UvTimerT_init(mrb_state* mrb) {
 /* MRUBY_BINDING: UvTimerT::class_definition */
@@ -132,16 +84,8 @@ void mrb_UV_UvTimerT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvTimerT::attr_definitions */
-/* sha: e729f7da7a143de535065648b0139de6a2ebc98c415472bca7de54a40499e1da */
-  /*
-   * Fields
-   */
-#if BIND_UvTimerT_UV_TIMER_PRIVATE_FIELDS_FIELD_READER
-  mrb_define_method(mrb, UvTimerT_class, "UV_TIMER_PRIVATE_FIELDS", mrb_UV_UvTimerT_get_UV_TIMER_PRIVATE_FIELDS, MRB_ARGS_ARG(0, 0));
-#endif
-#if BIND_UvTimerT_UV_TIMER_PRIVATE_FIELDS_FIELD_WRITER
-  mrb_define_method(mrb, UvTimerT_class, "UV_TIMER_PRIVATE_FIELDS=", mrb_UV_UvTimerT_set_UV_TIMER_PRIVATE_FIELDS, MRB_ARGS_ARG(1, 0));
-#endif
+/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvTimerT::instance_method_definitions */

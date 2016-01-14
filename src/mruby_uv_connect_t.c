@@ -70,42 +70,47 @@ mrb_UV_UvConnectT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
  * Fields
  */
 
-/* MRUBY_BINDING: UvConnectT::uv_connect_cb_reader */
-/* sha: 2cad0539c2925a6fea3259f1fba6672b0598246e382b67f5e995ba6f8d65c16e */
-#if BIND_UvConnectT_uv_connect_cb_FIELD_READER
-/* get_uv_connect_cb
+/* MRUBY_BINDING: UvConnectT::cb_reader */
+/* sha: 77bc5e0714edbc63db2c6be869950dc2d5a9aa1b9a83b26334a752a1ef0bd174 */
+#if BIND_UvConnectT_cb_FIELD_READER
+/* get_cb
  *
- * Return Type: int
+ * Return Type: uv_connect_cb
  */
 mrb_value
-mrb_UV_UvConnectT_get_uv_connect_cb(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvConnectT_get_cb(mrb_state* mrb, mrb_value self) {
   uv_connect_t * native_self = mruby_unbox_uv_connect_t(self);
 
-  int native_uv_connect_cb = native_self->uv_connect_cb;
+  uv_connect_cb native_cb = native_self->cb;
 
-  mrb_value uv_connect_cb = mrb_fixnum_value(native_uv_connect_cb);
+  mrb_value cb = TODO_mruby_box_uv_connect_cb(mrb, native_cb);
 
-  return uv_connect_cb;
+  return cb;
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvConnectT::uv_connect_cb_writer */
-/* sha: da86289f80604103138c51dbfaadc1f33e779c8325346aeff2c1c31ae68694bd */
-#if BIND_UvConnectT_uv_connect_cb_FIELD_WRITER
-/* set_uv_connect_cb
+/* MRUBY_BINDING: UvConnectT::cb_writer */
+/* sha: ecba761ae7ef137135a755a6776e29e287335d11e39747bb4f57b3ad18fe6ca1 */
+#if BIND_UvConnectT_cb_FIELD_WRITER
+/* set_cb
  *
  * Parameters:
- * - value: int
+ * - value: uv_connect_cb
  */
 mrb_value
-mrb_UV_UvConnectT_set_uv_connect_cb(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvConnectT_set_cb(mrb_state* mrb, mrb_value self) {
   uv_connect_t * native_self = mruby_unbox_uv_connect_t(self);
-  mrb_int native_uv_connect_cb;
+  mrb_value cb;
 
-  mrb_get_args(mrb, "i", &native_uv_connect_cb);
+  mrb_get_args(mrb, "o", &cb);
 
-  native_self->uv_connect_cb = native_uv_connect_cb;
+  /* type checking */
+  TODO_type_check_uv_connect_cb(cb);
+
+  uv_connect_cb native_cb = TODO_mruby_unbox_uv_connect_cb(cb);
+
+  native_self->cb = native_cb;
   
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
@@ -166,50 +171,6 @@ mrb_UV_UvConnectT_set_handle(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvConnectT::_reader */
-/* sha: fd2f7b2d5788398a6aff627b2d61f1837bdca5cc790525f7c6a2231c6cc8141f */
-#if BIND_UvConnectT__FIELD_READER
-/* get_
- *
- * Return Type: int
- */
-mrb_value
-mrb_UV_UvConnectT_get_(mrb_state* mrb, mrb_value self) {
-  uv_connect_t * native_self = mruby_unbox_uv_connect_t(self);
-
-  int native_ = native_self->;
-
-  mrb_value  = mrb_fixnum_value(native_);
-
-  return ;
-}
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvConnectT::_writer */
-/* sha: 127e88d65271d249736a70d4b51d7dd456c232fa1582a76270eaa321d757219e */
-#if BIND_UvConnectT__FIELD_WRITER
-/* set_
- *
- * Parameters:
- * - value: int
- */
-mrb_value
-mrb_UV_UvConnectT_set_(mrb_state* mrb, mrb_value self) {
-  uv_connect_t * native_self = mruby_unbox_uv_connect_t(self);
-  mrb_int native_;
-
-  mrb_get_args(mrb, "i", &native_);
-
-  native_self-> = native_;
-  
-  mrb_value value_as_mrb_value;
-  mrb_get_args(mrb, "o", &value_as_mrb_value);
-  return value_as_mrb_value;
-}
-#endif
-/* MRUBY_BINDING_END */
-
 
 void mrb_UV_UvConnectT_init(mrb_state* mrb) {
 /* MRUBY_BINDING: UvConnectT::class_definition */
@@ -228,27 +189,21 @@ void mrb_UV_UvConnectT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvConnectT::attr_definitions */
-/* sha: 6194c5ce2f7f0411b73e791fff8877444c5b3944e7df2b5618d0ae764e04a51d */
+/* sha: 89cefda411a768b8cce42e06e93612aa40104542c6fb41d086972e0b52bb17e0 */
   /*
    * Fields
    */
-#if BIND_UvConnectT_uv_connect_cb_FIELD_READER
-  mrb_define_method(mrb, UvConnectT_class, "uv_connect_cb", mrb_UV_UvConnectT_get_uv_connect_cb, MRB_ARGS_ARG(0, 0));
+#if BIND_UvConnectT_cb_FIELD_READER
+  mrb_define_method(mrb, UvConnectT_class, "cb", mrb_UV_UvConnectT_get_cb, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvConnectT_uv_connect_cb_FIELD_WRITER
-  mrb_define_method(mrb, UvConnectT_class, "uv_connect_cb=", mrb_UV_UvConnectT_set_uv_connect_cb, MRB_ARGS_ARG(1, 0));
+#if BIND_UvConnectT_cb_FIELD_WRITER
+  mrb_define_method(mrb, UvConnectT_class, "cb=", mrb_UV_UvConnectT_set_cb, MRB_ARGS_ARG(1, 0));
 #endif
 #if BIND_UvConnectT_handle_FIELD_READER
   mrb_define_method(mrb, UvConnectT_class, "handle", mrb_UV_UvConnectT_get_handle, MRB_ARGS_ARG(0, 0));
 #endif
 #if BIND_UvConnectT_handle_FIELD_WRITER
   mrb_define_method(mrb, UvConnectT_class, "handle=", mrb_UV_UvConnectT_set_handle, MRB_ARGS_ARG(1, 0));
-#endif
-#if BIND_UvConnectT__FIELD_READER
-  mrb_define_method(mrb, UvConnectT_class, "", mrb_UV_UvConnectT_get_, MRB_ARGS_ARG(0, 0));
-#endif
-#if BIND_UvConnectT__FIELD_WRITER
-  mrb_define_method(mrb, UvConnectT_class, "=", mrb_UV_UvConnectT_set_, MRB_ARGS_ARG(1, 0));
 #endif
 /* MRUBY_BINDING_END */
 

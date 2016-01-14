@@ -70,42 +70,42 @@ mrb_UV_UvPipeT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
  * Fields
  */
 
-/* MRUBY_BINDING: UvPipeT::_reader */
-/* sha: 2632ea7cd0afd11b189cc3624df2e808a124198dffcf99cfd4c914eacf0c1f4e */
-#if BIND_UvPipeT__FIELD_READER
-/* get_
+/* MRUBY_BINDING: UvPipeT::ipc_reader */
+/* sha: f7c0997259b606573411d29f3ea701b2380035da0c16152973c812f795cbd929 */
+#if BIND_UvPipeT_ipc_FIELD_READER
+/* get_ipc
  *
  * Return Type: int
  */
 mrb_value
-mrb_UV_UvPipeT_get_(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvPipeT_get_ipc(mrb_state* mrb, mrb_value self) {
   uv_pipe_t * native_self = mruby_unbox_uv_pipe_t(self);
 
-  int native_ = native_self->;
+  int native_ipc = native_self->ipc;
 
-  mrb_value  = mrb_fixnum_value(native_);
+  mrb_value ipc = mrb_fixnum_value(native_ipc);
 
-  return ;
+  return ipc;
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvPipeT::_writer */
-/* sha: 757a0f4939c9af3f3c708a004d50f7b671b080b3d59cd73a81b1adb149158387 */
-#if BIND_UvPipeT__FIELD_WRITER
-/* set_
+/* MRUBY_BINDING: UvPipeT::ipc_writer */
+/* sha: a2d8208b3df18d07528efb323d10803758b33d8edbc438a0d7fd2554a69cfc7a */
+#if BIND_UvPipeT_ipc_FIELD_WRITER
+/* set_ipc
  *
  * Parameters:
  * - value: int
  */
 mrb_value
-mrb_UV_UvPipeT_set_(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvPipeT_set_ipc(mrb_state* mrb, mrb_value self) {
   uv_pipe_t * native_self = mruby_unbox_uv_pipe_t(self);
-  mrb_int native_;
+  mrb_int native_ipc;
 
-  mrb_get_args(mrb, "i", &native_);
+  mrb_get_args(mrb, "i", &native_ipc);
 
-  native_self-> = native_;
+  native_self->ipc = native_ipc;
   
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
@@ -132,15 +132,15 @@ void mrb_UV_UvPipeT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvPipeT::attr_definitions */
-/* sha: a8db421efcb36440d6b7c22be31eda7da0f147fb705ff3057b9d43761785ce9b */
+/* sha: b67c0c3b288ff918d6d239eb07ee41c9f8463adf7563e68ec2092510f3b23938 */
   /*
    * Fields
    */
-#if BIND_UvPipeT__FIELD_READER
-  mrb_define_method(mrb, UvPipeT_class, "", mrb_UV_UvPipeT_get_, MRB_ARGS_ARG(0, 0));
+#if BIND_UvPipeT_ipc_FIELD_READER
+  mrb_define_method(mrb, UvPipeT_class, "ipc", mrb_UV_UvPipeT_get_ipc, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvPipeT__FIELD_WRITER
-  mrb_define_method(mrb, UvPipeT_class, "=", mrb_UV_UvPipeT_set_, MRB_ARGS_ARG(1, 0));
+#if BIND_UvPipeT_ipc_FIELD_WRITER
+  mrb_define_method(mrb, UvPipeT_class, "ipc=", mrb_UV_UvPipeT_set_ipc, MRB_ARGS_ARG(1, 0));
 #endif
 /* MRUBY_BINDING_END */
 

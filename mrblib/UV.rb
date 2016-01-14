@@ -46,7 +46,7 @@ module UV
   end
 
   module Uv_Errno_T
-    UV_ERRNO_MAX = 76
+    UV_ERRNO_MAX = -4096
   end
 
   module Uv_Fs_Type
@@ -99,8 +99,7 @@ module UV
 
   module Uv_Req_Type
     UV_UNKNOWN_REQ = 0
-    UV_REQ_TYPE_PRIVATE = 10
-    UV_REQ_TYPE_MAX = 11
+    UV_REQ_TYPE_MAX = 10
   end
 
   module Uv_Run_Mode

@@ -70,42 +70,47 @@ mrb_UV_UvSignalT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
  * Fields
  */
 
-/* MRUBY_BINDING: UvSignalT::uv_signal_cb_reader */
-/* sha: 1c86b720243f6572a855ffb58c1346902ef2b7289a9d520feaf780375687b727 */
-#if BIND_UvSignalT_uv_signal_cb_FIELD_READER
-/* get_uv_signal_cb
+/* MRUBY_BINDING: UvSignalT::signal_cb_reader */
+/* sha: f8e0b989adfea0ccfde6df873bcf5d25413522db37148a450fdd33c70f229f74 */
+#if BIND_UvSignalT_signal_cb_FIELD_READER
+/* get_signal_cb
  *
- * Return Type: int
+ * Return Type: uv_signal_cb
  */
 mrb_value
-mrb_UV_UvSignalT_get_uv_signal_cb(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvSignalT_get_signal_cb(mrb_state* mrb, mrb_value self) {
   uv_signal_t * native_self = mruby_unbox_uv_signal_t(self);
 
-  int native_uv_signal_cb = native_self->uv_signal_cb;
+  uv_signal_cb native_signal_cb = native_self->signal_cb;
 
-  mrb_value uv_signal_cb = mrb_fixnum_value(native_uv_signal_cb);
+  mrb_value signal_cb = TODO_mruby_box_uv_signal_cb(mrb, native_signal_cb);
 
-  return uv_signal_cb;
+  return signal_cb;
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvSignalT::uv_signal_cb_writer */
-/* sha: 2949ead8ff81f196fbaaddc9a639f817ab85355eaf7b54f1ad8c25bed309fdb8 */
-#if BIND_UvSignalT_uv_signal_cb_FIELD_WRITER
-/* set_uv_signal_cb
+/* MRUBY_BINDING: UvSignalT::signal_cb_writer */
+/* sha: 88c822dcf68217f5b1b721f4d5a5a7616e4d4e437826c607aaad1676c668eacc */
+#if BIND_UvSignalT_signal_cb_FIELD_WRITER
+/* set_signal_cb
  *
  * Parameters:
- * - value: int
+ * - value: uv_signal_cb
  */
 mrb_value
-mrb_UV_UvSignalT_set_uv_signal_cb(mrb_state* mrb, mrb_value self) {
+mrb_UV_UvSignalT_set_signal_cb(mrb_state* mrb, mrb_value self) {
   uv_signal_t * native_self = mruby_unbox_uv_signal_t(self);
-  mrb_int native_uv_signal_cb;
+  mrb_value signal_cb;
 
-  mrb_get_args(mrb, "i", &native_uv_signal_cb);
+  mrb_get_args(mrb, "o", &signal_cb);
 
-  native_self->uv_signal_cb = native_uv_signal_cb;
+  /* type checking */
+  TODO_type_check_uv_signal_cb(signal_cb);
+
+  uv_signal_cb native_signal_cb = TODO_mruby_unbox_uv_signal_cb(signal_cb);
+
+  native_self->signal_cb = native_signal_cb;
   
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
@@ -158,50 +163,6 @@ mrb_UV_UvSignalT_set_signum(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvSignalT::_reader */
-/* sha: a14d5ad4a8e1d0f1322e1ea6dcb7f2f22644f65fe0903c95125309f5f4afbb90 */
-#if BIND_UvSignalT__FIELD_READER
-/* get_
- *
- * Return Type: int
- */
-mrb_value
-mrb_UV_UvSignalT_get_(mrb_state* mrb, mrb_value self) {
-  uv_signal_t * native_self = mruby_unbox_uv_signal_t(self);
-
-  int native_ = native_self->;
-
-  mrb_value  = mrb_fixnum_value(native_);
-
-  return ;
-}
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvSignalT::_writer */
-/* sha: 735428dc982832b60bfb672d151b3f06fae40c48a2916dd1bea83748d31e4eba */
-#if BIND_UvSignalT__FIELD_WRITER
-/* set_
- *
- * Parameters:
- * - value: int
- */
-mrb_value
-mrb_UV_UvSignalT_set_(mrb_state* mrb, mrb_value self) {
-  uv_signal_t * native_self = mruby_unbox_uv_signal_t(self);
-  mrb_int native_;
-
-  mrb_get_args(mrb, "i", &native_);
-
-  native_self-> = native_;
-  
-  mrb_value value_as_mrb_value;
-  mrb_get_args(mrb, "o", &value_as_mrb_value);
-  return value_as_mrb_value;
-}
-#endif
-/* MRUBY_BINDING_END */
-
 
 void mrb_UV_UvSignalT_init(mrb_state* mrb) {
 /* MRUBY_BINDING: UvSignalT::class_definition */
@@ -220,27 +181,21 @@ void mrb_UV_UvSignalT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvSignalT::attr_definitions */
-/* sha: 8282a108a18913f605ad060f733145efce40bb0fa3e601ccf217d06a8e02b4b0 */
+/* sha: 734764a30ec58ca3fd0065f63f0c1feaf5213ed29bf98212694ebbdb9e653213 */
   /*
    * Fields
    */
-#if BIND_UvSignalT_uv_signal_cb_FIELD_READER
-  mrb_define_method(mrb, UvSignalT_class, "uv_signal_cb", mrb_UV_UvSignalT_get_uv_signal_cb, MRB_ARGS_ARG(0, 0));
+#if BIND_UvSignalT_signal_cb_FIELD_READER
+  mrb_define_method(mrb, UvSignalT_class, "signal_cb", mrb_UV_UvSignalT_get_signal_cb, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvSignalT_uv_signal_cb_FIELD_WRITER
-  mrb_define_method(mrb, UvSignalT_class, "uv_signal_cb=", mrb_UV_UvSignalT_set_uv_signal_cb, MRB_ARGS_ARG(1, 0));
+#if BIND_UvSignalT_signal_cb_FIELD_WRITER
+  mrb_define_method(mrb, UvSignalT_class, "signal_cb=", mrb_UV_UvSignalT_set_signal_cb, MRB_ARGS_ARG(1, 0));
 #endif
 #if BIND_UvSignalT_signum_FIELD_READER
   mrb_define_method(mrb, UvSignalT_class, "signum", mrb_UV_UvSignalT_get_signum, MRB_ARGS_ARG(0, 0));
 #endif
 #if BIND_UvSignalT_signum_FIELD_WRITER
   mrb_define_method(mrb, UvSignalT_class, "signum=", mrb_UV_UvSignalT_set_signum, MRB_ARGS_ARG(1, 0));
-#endif
-#if BIND_UvSignalT__FIELD_READER
-  mrb_define_method(mrb, UvSignalT_class, "", mrb_UV_UvSignalT_get_, MRB_ARGS_ARG(0, 0));
-#endif
-#if BIND_UvSignalT__FIELD_WRITER
-  mrb_define_method(mrb, UvSignalT_class, "=", mrb_UV_UvSignalT_set_, MRB_ARGS_ARG(1, 0));
 #endif
 /* MRUBY_BINDING_END */
 

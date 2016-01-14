@@ -66,54 +66,6 @@ mrb_UV_UvAsyncT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
 }
 /* MRUBY_BINDING_END */
 
-/*
- * Fields
- */
-
-/* MRUBY_BINDING: UvAsyncT::UV_ASYNC_PRIVATE_FIELDS_reader */
-/* sha: 8f8d851b76c71d485d3585d181a5ef277d4ba0dcab8e16a658c33681dcae65e2 */
-#if BIND_UvAsyncT_UV_ASYNC_PRIVATE_FIELDS_FIELD_READER
-/* get_UV_ASYNC_PRIVATE_FIELDS
- *
- * Return Type: int
- */
-mrb_value
-mrb_UV_UvAsyncT_get_UV_ASYNC_PRIVATE_FIELDS(mrb_state* mrb, mrb_value self) {
-  uv_async_t * native_self = mruby_unbox_uv_async_t(self);
-
-  int native_UV_ASYNC_PRIVATE_FIELDS = native_self->UV_ASYNC_PRIVATE_FIELDS;
-
-  mrb_value UV_ASYNC_PRIVATE_FIELDS = mrb_fixnum_value(native_UV_ASYNC_PRIVATE_FIELDS);
-
-  return UV_ASYNC_PRIVATE_FIELDS;
-}
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvAsyncT::UV_ASYNC_PRIVATE_FIELDS_writer */
-/* sha: 234ec4af755d631234f5ff652c2ff1f5d3ea771c077a5962af100dfef7637da8 */
-#if BIND_UvAsyncT_UV_ASYNC_PRIVATE_FIELDS_FIELD_WRITER
-/* set_UV_ASYNC_PRIVATE_FIELDS
- *
- * Parameters:
- * - value: int
- */
-mrb_value
-mrb_UV_UvAsyncT_set_UV_ASYNC_PRIVATE_FIELDS(mrb_state* mrb, mrb_value self) {
-  uv_async_t * native_self = mruby_unbox_uv_async_t(self);
-  mrb_int native_UV_ASYNC_PRIVATE_FIELDS;
-
-  mrb_get_args(mrb, "i", &native_UV_ASYNC_PRIVATE_FIELDS);
-
-  native_self->UV_ASYNC_PRIVATE_FIELDS = native_UV_ASYNC_PRIVATE_FIELDS;
-  
-  mrb_value value_as_mrb_value;
-  mrb_get_args(mrb, "o", &value_as_mrb_value);
-  return value_as_mrb_value;
-}
-#endif
-/* MRUBY_BINDING_END */
-
 
 void mrb_UV_UvAsyncT_init(mrb_state* mrb) {
 /* MRUBY_BINDING: UvAsyncT::class_definition */
@@ -132,16 +84,8 @@ void mrb_UV_UvAsyncT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvAsyncT::attr_definitions */
-/* sha: e2e2a9c94d415f24eea68756075d0f625e9e68525b35157bb527fad6ebad2b1c */
-  /*
-   * Fields
-   */
-#if BIND_UvAsyncT_UV_ASYNC_PRIVATE_FIELDS_FIELD_READER
-  mrb_define_method(mrb, UvAsyncT_class, "UV_ASYNC_PRIVATE_FIELDS", mrb_UV_UvAsyncT_get_UV_ASYNC_PRIVATE_FIELDS, MRB_ARGS_ARG(0, 0));
-#endif
-#if BIND_UvAsyncT_UV_ASYNC_PRIVATE_FIELDS_FIELD_WRITER
-  mrb_define_method(mrb, UvAsyncT_class, "UV_ASYNC_PRIVATE_FIELDS=", mrb_UV_UvAsyncT_set_UV_ASYNC_PRIVATE_FIELDS, MRB_ARGS_ARG(1, 0));
-#endif
+/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvAsyncT::instance_method_definitions */
