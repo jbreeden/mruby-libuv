@@ -21,8 +21,9 @@ namespace :bindings do
     cmd << '-input declarations.json'
     cmd << '-module UV'
     cmd << '-gem mruby-libuv'
-    cmd << '-load mruby-bindings.in/macro_types.rb' if File.exists?('mruby-bindings.in/macro_types.rb')
+    cmd << '-load mruby-bindings.in/ctypes.rb' if File.exists?('mruby-bindings.in/ctypes.rb')
     cmd << '-load mruby-bindings.in/fn_types.rb' if File.exists?('mruby-bindings.in/fn_types.rb')
+    cmd << '-load mruby-bindings.in/macro_types.rb' if File.exists?('mruby-bindings.in/macro_types.rb')
     cmd << '-output bindings'
     cmd << '-force'
     sh cmd.join(' ')
@@ -51,22 +52,22 @@ namespace :bindings do
   end
   
   task :fn_count do
-    sh "cat bindings/include/mruby_UV_functions.h | egrep 'TRUE|FALSE' | wc -l"
+    sh "cat include/mruby_UV_functions.h | egrep 'TRUE|FALSE' | wc -l"
   end
 
   task :bound_fns do
-    sh "cat bindings/include/mruby_UV_functions.h | egrep 'TRUE'"
+    sh "cat include/mruby_UV_functions.h | egrep 'TRUE'"
   end
 
   task :bound_fn_count do
-    sh "cat bindings/include/mruby_UV_functions.h | egrep 'TRUE' | wc -l"
+    sh "cat include/mruby_UV_functions.h | egrep 'TRUE' | wc -l"
   end
 
   task :unbound_fns do
-    sh "cat bindings/include/mruby_UV_functions.h | egrep 'FALSE'"
+    sh "cat include/mruby_UV_functions.h | egrep 'FALSE'"
   end
 
   task :unbound_fn_count do
-    sh "cat bindings/include/mruby_UV_functions.h | egrep 'FALSE' | wc -l"
+    sh "cat include/mruby_UV_functions.h | egrep 'FALSE' | wc -l"
   end
 end

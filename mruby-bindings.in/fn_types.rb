@@ -2,6 +2,18 @@
 # # Param: async_cb (uv_async_cb)
 # CTypes.set_fn_param_type('uv_async_init', 'async_cb', CTypes['???'])
 
+# ## void uv_barrier_destroy(uv_barrier_t * barrier)
+# # Param: barrier (uv_barrier_t *)
+# CTypes.set_fn_param_type('uv_barrier_destroy', 'barrier', CTypes['???'])
+
+# ## int uv_barrier_init(uv_barrier_t * barrier, unsigned int count)
+# # Param: barrier (uv_barrier_t *)
+# CTypes.set_fn_param_type('uv_barrier_init', 'barrier', CTypes['???'])
+
+# ## int uv_barrier_wait(uv_barrier_t * barrier)
+# # Param: barrier (uv_barrier_t *)
+# CTypes.set_fn_param_type('uv_barrier_wait', 'barrier', CTypes['???'])
+
 # ## uv_buf_t uv_buf_init(char * base, unsigned int len)
 # # Return value (uv_buf_t)
 # CTypes.set_fn_return_type('uv_buf_init', CTypes['???'])
@@ -15,6 +27,66 @@
 # ## void uv_close(uv_handle_t * handle, uv_close_cb close_cb)
 # # Param: close_cb (uv_close_cb)
 # CTypes.set_fn_param_type('uv_close', 'close_cb', CTypes['???'])
+
+# ## void uv_cond_broadcast(uv_cond_t * cond)
+# # Param: cond (uv_cond_t *)
+# CTypes.set_fn_param_type('uv_cond_broadcast', 'cond', CTypes['???'])
+
+# ## void uv_cond_destroy(uv_cond_t * cond)
+# # Param: cond (uv_cond_t *)
+# CTypes.set_fn_param_type('uv_cond_destroy', 'cond', CTypes['???'])
+
+# ## int uv_cond_init(uv_cond_t * cond)
+# # Param: cond (uv_cond_t *)
+# CTypes.set_fn_param_type('uv_cond_init', 'cond', CTypes['???'])
+
+# ## void uv_cond_signal(uv_cond_t * cond)
+# # Param: cond (uv_cond_t *)
+# CTypes.set_fn_param_type('uv_cond_signal', 'cond', CTypes['???'])
+
+# ## int uv_cond_timedwait(uv_cond_t * cond, uv_mutex_t * mutex, uint64_t timeout)
+# # Param: cond (uv_cond_t *)
+# CTypes.set_fn_param_type('uv_cond_timedwait', 'cond', CTypes['???'])
+# # Param: mutex (uv_mutex_t *)
+# CTypes.set_fn_param_type('uv_cond_timedwait', 'mutex', CTypes['???'])
+# # Param: timeout (uint64_t)
+# CTypes.set_fn_param_type('uv_cond_timedwait', 'timeout', CTypes['???'])
+
+# ## void uv_cond_wait(uv_cond_t * cond, uv_mutex_t * mutex)
+# # Param: cond (uv_cond_t *)
+# CTypes.set_fn_param_type('uv_cond_wait', 'cond', CTypes['???'])
+# # Param: mutex (uv_mutex_t *)
+# CTypes.set_fn_param_type('uv_cond_wait', 'mutex', CTypes['???'])
+
+# ## int uv_cpu_info(uv_cpu_info_t ** cpu_infos, int * count)
+# # Param: cpu_infos (uv_cpu_info_t **)
+# CTypes.set_fn_param_type('uv_cpu_info', 'cpu_infos', CTypes['???'])
+# # Param: count (int *)
+# CTypes.set_fn_param_type('uv_cpu_info', 'count', CTypes['???'])
+
+# ## int uv_cwd(char * buffer, size_t * size)
+# # Param: buffer (char *)
+# CTypes.set_fn_param_type('uv_cwd', 'buffer', CTypes['???'])
+# # Param: size (size_t *)
+# CTypes.set_fn_param_type('uv_cwd', 'size', CTypes['???'])
+
+# ## void uv_dlclose(uv_lib_t * lib)
+# # Param: lib (uv_lib_t *)
+# CTypes.set_fn_param_type('uv_dlclose', 'lib', CTypes['???'])
+
+# ## const char * uv_dlerror(const uv_lib_t * lib)
+# # Param: lib (const uv_lib_t *)
+# CTypes.set_fn_param_type('uv_dlerror', 'lib', CTypes['???'])
+
+# ## int uv_dlopen(const char * filename, uv_lib_t * lib)
+# # Param: lib (uv_lib_t *)
+# CTypes.set_fn_param_type('uv_dlopen', 'lib', CTypes['???'])
+
+# ## int uv_dlsym(uv_lib_t * lib, const char * name, void ** ptr)
+# # Param: lib (uv_lib_t *)
+# CTypes.set_fn_param_type('uv_dlsym', 'lib', CTypes['???'])
+# # Param: ptr (void **)
+# CTypes.set_fn_param_type('uv_dlsym', 'ptr', CTypes['???'])
 
 # ## int uv_exepath(char * buffer, size_t * size)
 # # Param: buffer (char *)
