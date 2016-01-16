@@ -8,7 +8,7 @@
 #if BIND_UvProcessOptionsT_TYPE
 
 /* MRUBY_BINDING: custom_header */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
@@ -17,18 +17,20 @@
  */
 
 /* MRUBY_BINDING: UvProcessOptionsT::initialize */
-/* sha: 98293aa915a5814e7973d4ea51d47d3ba837cbad428f39024edc7de839f71844 */
+/* sha: ea964c50071c3a934968f9d7e4b9d8906085f626406900dad820badf41efbe43 */
 #if BIND_UvProcessOptionsT_INITIALIZE
 mrb_value
 mrb_UV_UvProcessOptionsT_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Uncomment (and optionally replace) if an initializer is desired.
   uv_process_options_t* native_object = (uv_process_options_t*)calloc(1, sizeof(uv_process_options_t));
-  mruby_giftwrap_uv_process_options_t_data_ptr(self, native_object);
+  mruby_gift_uv_process_options_t_data_ptr(self, native_object);
   return self;
+*/
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvProcessOptionsT::initialize */
+/* MRUBY_BINDING: UvProcessOptionsT::disown */
 /* sha: 235594dc27b5e024a33ccbc86a5554712643b0645e9be012f65d7b157b1293bd */
 mrb_value
 mrb_UV_UvProcessOptionsT_disown(mrb_state* mrb, mrb_value self) {
@@ -545,10 +547,23 @@ mrb_UV_UvProcessOptionsT_set_gid(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_UvProcessOptionsT_init(mrb_state* mrb) {
+/* MRUBY_BINDING: UvProcessOptionsT::class_init_header */
+/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
+  /* Don't double-init. */
+  static int initialized = 0;
+  if (initialized) return;
+  else initialized = 1;
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvProcessOptionsT::class_definition */
 /* sha: 254455d9a07a81502053ba7692edb287073ac4c212e7e10ecc13aa25d3d5557c */
   struct RClass* UvProcessOptionsT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvProcessOptionsT", mrb->object_class);
   MRB_SET_INSTANCE_TT(UvProcessOptionsT_class, MRB_TT_DATA);
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvProcessOptionsT::custom_pre_class_method_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvProcessOptionsT::class_method_definitions */
@@ -558,6 +573,11 @@ void mrb_UV_UvProcessOptionsT_init(mrb_state* mrb) {
 #endif
   mrb_define_class_method(mrb, UvProcessOptionsT_class, "disown", mrb_UV_UvProcessOptionsT_disown, MRB_ARGS_ARG(1, 0));
   mrb_define_class_method(mrb, UvProcessOptionsT_class, "belongs_to_ruby?", mrb_UV_UvProcessOptionsT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvProcessOptionsT::custom_pre_attr_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvProcessOptionsT::attr_definitions */
@@ -627,10 +647,24 @@ void mrb_UV_UvProcessOptionsT_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
+/* MRUBY_BINDING: UvProcessOptionsT::custom_pre_instance_method_definitions */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvProcessOptionsT::instance_method_definitions */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvProcessOptionsT::class_init_footer */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 }
 
+/* MRUBY_BINDING: custom_footer */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
 #endif

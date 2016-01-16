@@ -8,7 +8,7 @@
 #if BIND_UvFsPollT_TYPE
 
 /* MRUBY_BINDING: custom_header */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
@@ -17,18 +17,20 @@
  */
 
 /* MRUBY_BINDING: UvFsPollT::initialize */
-/* sha: f80c87517fac7f00520115d11f89e5fbd0bcfe2c4003531832c7dee155f460d0 */
+/* sha: a529ad010bf7fb06d61f58f76e7b5467368200ada22c7dc38211ababa2dbab6b */
 #if BIND_UvFsPollT_INITIALIZE
 mrb_value
 mrb_UV_UvFsPollT_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Uncomment (and optionally replace) if an initializer is desired.
   uv_fs_poll_t* native_object = (uv_fs_poll_t*)calloc(1, sizeof(uv_fs_poll_t));
-  mruby_giftwrap_uv_fs_poll_t_data_ptr(self, native_object);
+  mruby_gift_uv_fs_poll_t_data_ptr(self, native_object);
   return self;
+*/
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsPollT::initialize */
+/* MRUBY_BINDING: UvFsPollT::disown */
 /* sha: 3313c16f21bf5f4e8229e63a47e1a5bbf8bae62868463620a07124136c9688a0 */
 mrb_value
 mrb_UV_UvFsPollT_disown(mrb_state* mrb, mrb_value self) {
@@ -121,10 +123,23 @@ mrb_UV_UvFsPollT_set_poll_ctx(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_UvFsPollT_init(mrb_state* mrb) {
+/* MRUBY_BINDING: UvFsPollT::class_init_header */
+/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
+  /* Don't double-init. */
+  static int initialized = 0;
+  if (initialized) return;
+  else initialized = 1;
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvFsPollT::class_definition */
 /* sha: 991efabed9822fe2783fb73f98d30f97bf6677587238eba301a6a428f818fd22 */
-  struct RClass* UvFsPollT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvFsPollT", mrb->object_class);
+  struct RClass* UvFsPollT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvFsPollT", UvHandleT_class(mrb));
   MRB_SET_INSTANCE_TT(UvFsPollT_class, MRB_TT_DATA);
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvFsPollT::custom_pre_class_method_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvFsPollT::class_method_definitions */
@@ -134,6 +149,11 @@ void mrb_UV_UvFsPollT_init(mrb_state* mrb) {
 #endif
   mrb_define_class_method(mrb, UvFsPollT_class, "disown", mrb_UV_UvFsPollT_disown, MRB_ARGS_ARG(1, 0));
   mrb_define_class_method(mrb, UvFsPollT_class, "belongs_to_ruby?", mrb_UV_UvFsPollT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvFsPollT::custom_pre_attr_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvFsPollT::attr_definitions */
@@ -149,10 +169,24 @@ void mrb_UV_UvFsPollT_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
+/* MRUBY_BINDING: UvFsPollT::custom_pre_instance_method_definitions */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvFsPollT::instance_method_definitions */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvFsPollT::class_init_footer */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 }
 
+/* MRUBY_BINDING: custom_footer */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
 #endif

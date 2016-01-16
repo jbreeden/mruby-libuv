@@ -8,7 +8,7 @@
 #if BIND_UvTimerT_TYPE
 
 /* MRUBY_BINDING: custom_header */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
@@ -17,18 +17,20 @@
  */
 
 /* MRUBY_BINDING: UvTimerT::initialize */
-/* sha: 23521ed96ddd3e8014bf774cff9db204ec17eef100998feada1b63607adbf1d3 */
+/* sha: 662fb1bbea770840b0935127167b910f998b6111856f85eddcbe2271d89e8c0d */
 #if BIND_UvTimerT_INITIALIZE
 mrb_value
 mrb_UV_UvTimerT_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Uncomment (and optionally replace) if an initializer is desired.
   uv_timer_t* native_object = (uv_timer_t*)calloc(1, sizeof(uv_timer_t));
-  mruby_giftwrap_uv_timer_t_data_ptr(self, native_object);
+  mruby_gift_uv_timer_t_data_ptr(self, native_object);
   return self;
+*/
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvTimerT::initialize */
+/* MRUBY_BINDING: UvTimerT::disown */
 /* sha: 6636c70564015e903df9da3c56f4e997e4508b8e1520387d20fd1f9025bc4cfb */
 mrb_value
 mrb_UV_UvTimerT_disown(mrb_state* mrb, mrb_value self) {
@@ -68,10 +70,23 @@ mrb_UV_UvTimerT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_UvTimerT_init(mrb_state* mrb) {
+/* MRUBY_BINDING: UvTimerT::class_init_header */
+/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
+  /* Don't double-init. */
+  static int initialized = 0;
+  if (initialized) return;
+  else initialized = 1;
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvTimerT::class_definition */
 /* sha: d8fabb692cac8c297b3ca055e17e3dcc02d8a1676113a20850bab2741563a341 */
-  struct RClass* UvTimerT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvTimerT", mrb->object_class);
+  struct RClass* UvTimerT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvTimerT", UvHandleT_class(mrb));
   MRB_SET_INSTANCE_TT(UvTimerT_class, MRB_TT_DATA);
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvTimerT::custom_pre_class_method_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvTimerT::class_method_definitions */
@@ -83,15 +98,34 @@ void mrb_UV_UvTimerT_init(mrb_state* mrb) {
   mrb_define_class_method(mrb, UvTimerT_class, "belongs_to_ruby?", mrb_UV_UvTimerT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
 /* MRUBY_BINDING_END */
 
+/* MRUBY_BINDING: UvTimerT::custom_pre_attr_definitions */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvTimerT::attr_definitions */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvTimerT::custom_pre_instance_method_definitions */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvTimerT::instance_method_definitions */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvTimerT::class_init_footer */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 }
 
+/* MRUBY_BINDING: custom_footer */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
 #endif

@@ -13,6 +13,10 @@ namespace :bindings do
     headers.each do |header|
       sh "clang2json #{header} >> declarations.json"
     end
+    
+    # libuv uses macros for some struct members that clang2json doesn't pick up.
+    # Append hand-written declarations
+    sh "cat mruby-bindings.in/declarations_patch.json >> declarations.json"
   end
 
   desc 'Generate bindings'
@@ -49,6 +53,11 @@ namespace :bindings do
     task :mrblib do
       sh "mrbind merge -from bindings -to . mrblib"
     end
+  end
+  
+  desc 'Regenerate functions & classes headers'
+  task :'enable-functions' do
+    sh 'mrbind enable-functions -m UV -g mruby-libuv -o .'
   end
   
   task :fn_count do

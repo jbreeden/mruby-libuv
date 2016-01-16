@@ -8,7 +8,7 @@
 #if BIND_UvTtyT_TYPE
 
 /* MRUBY_BINDING: custom_header */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
@@ -17,18 +17,20 @@
  */
 
 /* MRUBY_BINDING: UvTtyT::initialize */
-/* sha: 93b54cbd4ba84af5580932af953104fdcf9f8b6654fc94e7ee858c309aa29c55 */
+/* sha: b3e7ea5f47ac3113e248a30a35e9073506469a36a0493a1e3e878780e4acfbc3 */
 #if BIND_UvTtyT_INITIALIZE
 mrb_value
 mrb_UV_UvTtyT_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Uncomment (and optionally replace) if an initializer is desired.
   uv_tty_t* native_object = (uv_tty_t*)calloc(1, sizeof(uv_tty_t));
-  mruby_giftwrap_uv_tty_t_data_ptr(self, native_object);
+  mruby_gift_uv_tty_t_data_ptr(self, native_object);
   return self;
+*/
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvTtyT::initialize */
+/* MRUBY_BINDING: UvTtyT::disown */
 /* sha: 1a15b32dd9d3d5ac6cfe54064c5cc2d507bad788ccc59148d32b62b9a6619010 */
 mrb_value
 mrb_UV_UvTtyT_disown(mrb_state* mrb, mrb_value self) {
@@ -68,10 +70,23 @@ mrb_UV_UvTtyT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_UvTtyT_init(mrb_state* mrb) {
+/* MRUBY_BINDING: UvTtyT::class_init_header */
+/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
+  /* Don't double-init. */
+  static int initialized = 0;
+  if (initialized) return;
+  else initialized = 1;
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvTtyT::class_definition */
 /* sha: 6c5425f797837fa0383c33d3f0e058af46aa0551295cb9549519c6691face3e5 */
-  struct RClass* UvTtyT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvTtyT", mrb->object_class);
+  struct RClass* UvTtyT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvTtyT", UvHandleT_class(mrb));
   MRB_SET_INSTANCE_TT(UvTtyT_class, MRB_TT_DATA);
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvTtyT::custom_pre_class_method_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvTtyT::class_method_definitions */
@@ -83,15 +98,34 @@ void mrb_UV_UvTtyT_init(mrb_state* mrb) {
   mrb_define_class_method(mrb, UvTtyT_class, "belongs_to_ruby?", mrb_UV_UvTtyT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
 /* MRUBY_BINDING_END */
 
+/* MRUBY_BINDING: UvTtyT::custom_pre_attr_definitions */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvTtyT::attr_definitions */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvTtyT::custom_pre_instance_method_definitions */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvTtyT::instance_method_definitions */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvTtyT::class_init_footer */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 }
 
+/* MRUBY_BINDING: custom_footer */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
 #endif

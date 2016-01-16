@@ -8,7 +8,7 @@
 #if BIND_UvInterfaceAddressT_TYPE
 
 /* MRUBY_BINDING: custom_header */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
@@ -17,18 +17,20 @@
  */
 
 /* MRUBY_BINDING: UvInterfaceAddressT::initialize */
-/* sha: 1c665a5a852911010ad8a2c4123dd814538428c1743c80bf989dbd209a66945f */
+/* sha: 2be5d6193734493c70437367abcea419c58529ea601e7d039bccd52ee46813c4 */
 #if BIND_UvInterfaceAddressT_INITIALIZE
 mrb_value
 mrb_UV_UvInterfaceAddressT_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Uncomment (and optionally replace) if an initializer is desired.
   uv_interface_address_t* native_object = (uv_interface_address_t*)calloc(1, sizeof(uv_interface_address_t));
-  mruby_giftwrap_uv_interface_address_t_data_ptr(self, native_object);
+  mruby_gift_uv_interface_address_t_data_ptr(self, native_object);
   return self;
+*/
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvInterfaceAddressT::initialize */
+/* MRUBY_BINDING: UvInterfaceAddressT::disown */
 /* sha: ee7959752a0fd2b952371bc2b4829f21a53efac3739656a683480f359259b16a */
 mrb_value
 mrb_UV_UvInterfaceAddressT_disown(mrb_state* mrb, mrb_value self) {
@@ -312,10 +314,23 @@ mrb_UV_UvInterfaceAddressT_set_netmask(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_UvInterfaceAddressT_init(mrb_state* mrb) {
+/* MRUBY_BINDING: UvInterfaceAddressT::class_init_header */
+/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
+  /* Don't double-init. */
+  static int initialized = 0;
+  if (initialized) return;
+  else initialized = 1;
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvInterfaceAddressT::class_definition */
 /* sha: 86ab2cb8d1ca9f755de5d5f17fedbd966593ac2afbb75e8a0227126b8fcf5408 */
   struct RClass* UvInterfaceAddressT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvInterfaceAddressT", mrb->object_class);
   MRB_SET_INSTANCE_TT(UvInterfaceAddressT_class, MRB_TT_DATA);
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvInterfaceAddressT::custom_pre_class_method_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvInterfaceAddressT::class_method_definitions */
@@ -325,6 +340,11 @@ void mrb_UV_UvInterfaceAddressT_init(mrb_state* mrb) {
 #endif
   mrb_define_class_method(mrb, UvInterfaceAddressT_class, "disown", mrb_UV_UvInterfaceAddressT_disown, MRB_ARGS_ARG(1, 0));
   mrb_define_class_method(mrb, UvInterfaceAddressT_class, "belongs_to_ruby?", mrb_UV_UvInterfaceAddressT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvInterfaceAddressT::custom_pre_attr_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvInterfaceAddressT::attr_definitions */
@@ -364,10 +384,24 @@ void mrb_UV_UvInterfaceAddressT_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
+/* MRUBY_BINDING: UvInterfaceAddressT::custom_pre_instance_method_definitions */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvInterfaceAddressT::instance_method_definitions */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvInterfaceAddressT::class_init_footer */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 }
 
+/* MRUBY_BINDING: custom_footer */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
 #endif

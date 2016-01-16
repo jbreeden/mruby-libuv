@@ -8,7 +8,7 @@
 #if BIND_UvTimevalT_TYPE
 
 /* MRUBY_BINDING: custom_header */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
@@ -17,18 +17,20 @@
  */
 
 /* MRUBY_BINDING: UvTimevalT::initialize */
-/* sha: 228cdb037eb1b9fb5c38d5f00dd3db26f5eb8b4b0f6734c11136c68f6988d08c */
+/* sha: a4fdecf396ca1cf0b5484425cd9410ed57787e5fdabc801d42877d20bb72f41c */
 #if BIND_UvTimevalT_INITIALIZE
 mrb_value
 mrb_UV_UvTimevalT_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Uncomment (and optionally replace) if an initializer is desired.
   uv_timeval_t* native_object = (uv_timeval_t*)calloc(1, sizeof(uv_timeval_t));
-  mruby_giftwrap_uv_timeval_t_data_ptr(self, native_object);
+  mruby_gift_uv_timeval_t_data_ptr(self, native_object);
   return self;
+*/
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvTimevalT::initialize */
+/* MRUBY_BINDING: UvTimevalT::disown */
 /* sha: 37f3f860b40dc95a6e75dc0f04f807c8ef7fea6b68a36fca19877fbb049b1f29 */
 mrb_value
 mrb_UV_UvTimevalT_disown(mrb_state* mrb, mrb_value self) {
@@ -160,10 +162,23 @@ mrb_UV_UvTimevalT_set_tv_usec(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_UvTimevalT_init(mrb_state* mrb) {
+/* MRUBY_BINDING: UvTimevalT::class_init_header */
+/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
+  /* Don't double-init. */
+  static int initialized = 0;
+  if (initialized) return;
+  else initialized = 1;
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvTimevalT::class_definition */
 /* sha: 5eb6fac059070ed92ff172dc6a213dfee4e75d3e8435116afae0ec370c552d93 */
   struct RClass* UvTimevalT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvTimevalT", mrb->object_class);
   MRB_SET_INSTANCE_TT(UvTimevalT_class, MRB_TT_DATA);
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvTimevalT::custom_pre_class_method_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvTimevalT::class_method_definitions */
@@ -173,6 +188,11 @@ void mrb_UV_UvTimevalT_init(mrb_state* mrb) {
 #endif
   mrb_define_class_method(mrb, UvTimevalT_class, "disown", mrb_UV_UvTimevalT_disown, MRB_ARGS_ARG(1, 0));
   mrb_define_class_method(mrb, UvTimevalT_class, "belongs_to_ruby?", mrb_UV_UvTimevalT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvTimevalT::custom_pre_attr_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvTimevalT::attr_definitions */
@@ -194,10 +214,24 @@ void mrb_UV_UvTimevalT_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
+/* MRUBY_BINDING: UvTimevalT::custom_pre_instance_method_definitions */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvTimevalT::instance_method_definitions */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvTimevalT::class_init_footer */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 }
 
+/* MRUBY_BINDING: custom_footer */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
 #endif

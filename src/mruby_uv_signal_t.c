@@ -8,7 +8,7 @@
 #if BIND_UvSignalT_TYPE
 
 /* MRUBY_BINDING: custom_header */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
@@ -17,18 +17,20 @@
  */
 
 /* MRUBY_BINDING: UvSignalT::initialize */
-/* sha: 7bc6549dfcc9a683a9a9b6bca16348f5354c92afe8d3070abdc382dfade8a431 */
+/* sha: 269263393ae737c6b3a143fbb1b013d6e2372d45ad48a38218cb3cf1f5fd08f6 */
 #if BIND_UvSignalT_INITIALIZE
 mrb_value
 mrb_UV_UvSignalT_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Uncomment (and optionally replace) if an initializer is desired.
   uv_signal_t* native_object = (uv_signal_t*)calloc(1, sizeof(uv_signal_t));
-  mruby_giftwrap_uv_signal_t_data_ptr(self, native_object);
+  mruby_gift_uv_signal_t_data_ptr(self, native_object);
   return self;
+*/
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvSignalT::initialize */
+/* MRUBY_BINDING: UvSignalT::disown */
 /* sha: 2d7224072eafa0d1922bb2f44c5713d608174d412da1620951f22363917110eb */
 mrb_value
 mrb_UV_UvSignalT_disown(mrb_state* mrb, mrb_value self) {
@@ -165,10 +167,23 @@ mrb_UV_UvSignalT_set_signum(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_UvSignalT_init(mrb_state* mrb) {
+/* MRUBY_BINDING: UvSignalT::class_init_header */
+/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
+  /* Don't double-init. */
+  static int initialized = 0;
+  if (initialized) return;
+  else initialized = 1;
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvSignalT::class_definition */
 /* sha: 28c4ac1ca45cbb61913dd1c958fba4a5c973394efe70c9bd98778879509002a8 */
-  struct RClass* UvSignalT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvSignalT", mrb->object_class);
+  struct RClass* UvSignalT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvSignalT", UvHandleT_class(mrb));
   MRB_SET_INSTANCE_TT(UvSignalT_class, MRB_TT_DATA);
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvSignalT::custom_pre_class_method_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvSignalT::class_method_definitions */
@@ -178,6 +193,11 @@ void mrb_UV_UvSignalT_init(mrb_state* mrb) {
 #endif
   mrb_define_class_method(mrb, UvSignalT_class, "disown", mrb_UV_UvSignalT_disown, MRB_ARGS_ARG(1, 0));
   mrb_define_class_method(mrb, UvSignalT_class, "belongs_to_ruby?", mrb_UV_UvSignalT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvSignalT::custom_pre_attr_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvSignalT::attr_definitions */
@@ -199,10 +219,24 @@ void mrb_UV_UvSignalT_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
+/* MRUBY_BINDING: UvSignalT::custom_pre_instance_method_definitions */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvSignalT::instance_method_definitions */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvSignalT::class_init_footer */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 }
 
+/* MRUBY_BINDING: custom_footer */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
 #endif

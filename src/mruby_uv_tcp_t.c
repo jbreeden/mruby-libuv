@@ -8,7 +8,7 @@
 #if BIND_UvTcpT_TYPE
 
 /* MRUBY_BINDING: custom_header */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
@@ -17,18 +17,20 @@
  */
 
 /* MRUBY_BINDING: UvTcpT::initialize */
-/* sha: ec8b38897a9ffbfa05d620ffd1238b2fb9f191eab4716af3f3cdc20de70c6c23 */
+/* sha: af1b44df68a0ade7f726982b0772dfe95ae56fa69431d1db6577df79cc6f8449 */
 #if BIND_UvTcpT_INITIALIZE
 mrb_value
 mrb_UV_UvTcpT_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Uncomment (and optionally replace) if an initializer is desired.
   uv_tcp_t* native_object = (uv_tcp_t*)calloc(1, sizeof(uv_tcp_t));
-  mruby_giftwrap_uv_tcp_t_data_ptr(self, native_object);
+  mruby_gift_uv_tcp_t_data_ptr(self, native_object);
   return self;
+*/
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvTcpT::initialize */
+/* MRUBY_BINDING: UvTcpT::disown */
 /* sha: 0ffa0c5784d52ce38cbb14eabddb386a09f556877553ff0d3fd86d4b6e6bb189 */
 mrb_value
 mrb_UV_UvTcpT_disown(mrb_state* mrb, mrb_value self) {
@@ -68,10 +70,23 @@ mrb_UV_UvTcpT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_UvTcpT_init(mrb_state* mrb) {
+/* MRUBY_BINDING: UvTcpT::class_init_header */
+/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
+  /* Don't double-init. */
+  static int initialized = 0;
+  if (initialized) return;
+  else initialized = 1;
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvTcpT::class_definition */
 /* sha: b46c27f8334d32c02c51944766b708b6136e8aedee5861507611a677e5f425d2 */
-  struct RClass* UvTcpT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvTcpT", mrb->object_class);
+  struct RClass* UvTcpT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvTcpT", UvHandleT_class(mrb));
   MRB_SET_INSTANCE_TT(UvTcpT_class, MRB_TT_DATA);
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvTcpT::custom_pre_class_method_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvTcpT::class_method_definitions */
@@ -83,15 +98,34 @@ void mrb_UV_UvTcpT_init(mrb_state* mrb) {
   mrb_define_class_method(mrb, UvTcpT_class, "belongs_to_ruby?", mrb_UV_UvTcpT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
 /* MRUBY_BINDING_END */
 
+/* MRUBY_BINDING: UvTcpT::custom_pre_attr_definitions */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvTcpT::attr_definitions */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvTcpT::custom_pre_instance_method_definitions */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvTcpT::instance_method_definitions */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvTcpT::class_init_footer */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 }
 
+/* MRUBY_BINDING: custom_footer */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
 #endif

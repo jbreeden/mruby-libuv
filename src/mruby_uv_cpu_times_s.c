@@ -8,7 +8,7 @@
 #if BIND_UvCpuTimesS_TYPE
 
 /* MRUBY_BINDING: custom_header */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
@@ -17,18 +17,20 @@
  */
 
 /* MRUBY_BINDING: UvCpuTimesS::initialize */
-/* sha: cd2c16d2630c8572949033a6e4e37e4aef055f37858f2f036826351cc34a557d */
+/* sha: 1b9b6157be2d20835ff34503630e3bea93752cd65a62f806be8db7742981d810 */
 #if BIND_UvCpuTimesS_INITIALIZE
 mrb_value
 mrb_UV_UvCpuTimesS_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Uncomment (and optionally replace) if an initializer is desired.
   struct uv_cpu_times_s* native_object = (struct uv_cpu_times_s*)calloc(1, sizeof(struct uv_cpu_times_s));
-  mruby_giftwrap_uv_cpu_times_s_data_ptr(self, native_object);
+  mruby_gift_uv_cpu_times_s_data_ptr(self, native_object);
   return self;
+*/
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvCpuTimesS::initialize */
+/* MRUBY_BINDING: UvCpuTimesS::disown */
 /* sha: 4409f2f935c81c853ad865dd7d90be0a0ae60844bf0d2a67a8c2e7b8c027cde9 */
 mrb_value
 mrb_UV_UvCpuTimesS_disown(mrb_state* mrb, mrb_value self) {
@@ -317,10 +319,23 @@ mrb_UV_UvCpuTimesS_set_irq(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_UvCpuTimesS_init(mrb_state* mrb) {
+/* MRUBY_BINDING: UvCpuTimesS::class_init_header */
+/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
+  /* Don't double-init. */
+  static int initialized = 0;
+  if (initialized) return;
+  else initialized = 1;
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvCpuTimesS::class_definition */
 /* sha: 9f8508cae1be8442c59f75083511c99f526197943afd552c1c5f83abab0610c2 */
   struct RClass* UvCpuTimesS_class = mrb_define_class_under(mrb, UV_module(mrb), "UvCpuTimesS", mrb->object_class);
   MRB_SET_INSTANCE_TT(UvCpuTimesS_class, MRB_TT_DATA);
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvCpuTimesS::custom_pre_class_method_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvCpuTimesS::class_method_definitions */
@@ -330,6 +345,11 @@ void mrb_UV_UvCpuTimesS_init(mrb_state* mrb) {
 #endif
   mrb_define_class_method(mrb, UvCpuTimesS_class, "disown", mrb_UV_UvCpuTimesS_disown, MRB_ARGS_ARG(1, 0));
   mrb_define_class_method(mrb, UvCpuTimesS_class, "belongs_to_ruby?", mrb_UV_UvCpuTimesS_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvCpuTimesS::custom_pre_attr_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvCpuTimesS::attr_definitions */
@@ -369,10 +389,24 @@ void mrb_UV_UvCpuTimesS_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
+/* MRUBY_BINDING: UvCpuTimesS::custom_pre_instance_method_definitions */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvCpuTimesS::instance_method_definitions */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvCpuTimesS::class_init_footer */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 }
 
+/* MRUBY_BINDING: custom_footer */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
 #endif

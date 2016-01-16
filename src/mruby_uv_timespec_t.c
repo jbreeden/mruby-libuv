@@ -8,7 +8,7 @@
 #if BIND_UvTimespecT_TYPE
 
 /* MRUBY_BINDING: custom_header */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
@@ -17,18 +17,20 @@
  */
 
 /* MRUBY_BINDING: UvTimespecT::initialize */
-/* sha: 9f4dd1054de6ebd04dc8865095950835b8cf5920c7973da4191b3b2aa2b5a910 */
+/* sha: a7538dd92d2a1ebacfb622dd5495d1dd2b4e09f42d7e149dc4b67f09da232a50 */
 #if BIND_UvTimespecT_INITIALIZE
 mrb_value
 mrb_UV_UvTimespecT_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Uncomment (and optionally replace) if an initializer is desired.
   uv_timespec_t* native_object = (uv_timespec_t*)calloc(1, sizeof(uv_timespec_t));
-  mruby_giftwrap_uv_timespec_t_data_ptr(self, native_object);
+  mruby_gift_uv_timespec_t_data_ptr(self, native_object);
   return self;
+*/
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvTimespecT::initialize */
+/* MRUBY_BINDING: UvTimespecT::disown */
 /* sha: fa37aaf9dd0482eb57a7b3d4e18c56f1012e73976ac1ea328f4576c94a8ce47d */
 mrb_value
 mrb_UV_UvTimespecT_disown(mrb_state* mrb, mrb_value self) {
@@ -160,10 +162,23 @@ mrb_UV_UvTimespecT_set_tv_nsec(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_UvTimespecT_init(mrb_state* mrb) {
+/* MRUBY_BINDING: UvTimespecT::class_init_header */
+/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
+  /* Don't double-init. */
+  static int initialized = 0;
+  if (initialized) return;
+  else initialized = 1;
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvTimespecT::class_definition */
 /* sha: 8685c7a8d7c37d95bda797428afd0179006f32e1b47455ab845dfc9097d8ba02 */
   struct RClass* UvTimespecT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvTimespecT", mrb->object_class);
   MRB_SET_INSTANCE_TT(UvTimespecT_class, MRB_TT_DATA);
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvTimespecT::custom_pre_class_method_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvTimespecT::class_method_definitions */
@@ -173,6 +188,11 @@ void mrb_UV_UvTimespecT_init(mrb_state* mrb) {
 #endif
   mrb_define_class_method(mrb, UvTimespecT_class, "disown", mrb_UV_UvTimespecT_disown, MRB_ARGS_ARG(1, 0));
   mrb_define_class_method(mrb, UvTimespecT_class, "belongs_to_ruby?", mrb_UV_UvTimespecT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvTimespecT::custom_pre_attr_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvTimespecT::attr_definitions */
@@ -194,10 +214,24 @@ void mrb_UV_UvTimespecT_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
+/* MRUBY_BINDING: UvTimespecT::custom_pre_instance_method_definitions */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvTimespecT::instance_method_definitions */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvTimespecT::class_init_footer */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 }
 
+/* MRUBY_BINDING: custom_footer */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
 #endif

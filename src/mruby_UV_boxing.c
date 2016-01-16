@@ -34,6 +34,19 @@
  */
 #include "mruby_UV.h"
 
+/* MRUBY_BINDING: custom_boxing_header */
+/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+
+#define UNREGISTER_HANDLE_DATA(obj)                  \
+do {                                                 \
+  uv_handle_t * handle = (uv_handle_t *)obj;         \
+  if (handle->data != NULL) {                        \
+    mrb_value value = *((mrb_value*)handle->data);   \
+    mrb_gc_unregister(mrb, value);                   \
+  }                                                  \
+} while (0);
+
+/* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvCpuTimesS_boxing */
 /* sha: 4502be6862da2bce112a6ba415dbb1b1ed2f6134eb74b0358a75384603024bab */
@@ -717,6 +730,7 @@ static void free_uv_handle_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
+      UNREGISTER_HANDLE_DATA(box->obj);
       free(box->obj);
       box->obj = NULL;
     }
@@ -778,6 +792,7 @@ static void free_uv_idle_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
+      UNREGISTER_HANDLE_DATA(box->obj);
       free(box->obj);
       box->obj = NULL;
     }
@@ -900,6 +915,7 @@ static void free_uv_loop_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
+      uv_loop_close(box->obj);
       free(box->obj);
       box->obj = NULL;
     }
@@ -2231,3 +2247,7 @@ mruby_unbox_uv_write_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
+/* MRUBY_BINDING: custom_boxing_footer */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */

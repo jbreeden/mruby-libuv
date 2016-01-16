@@ -8,7 +8,7 @@
 #if BIND_UvWriteT_TYPE
 
 /* MRUBY_BINDING: custom_header */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
@@ -17,18 +17,20 @@
  */
 
 /* MRUBY_BINDING: UvWriteT::initialize */
-/* sha: d3b06cdcf4b9a36ce9a4221c2a28612be7b43e38eaad373d392f0daf579cb3ee */
+/* sha: 724af6fc5e3049f316140516645ab9e41e1794653692ec6a748ade56344b967a */
 #if BIND_UvWriteT_INITIALIZE
 mrb_value
 mrb_UV_UvWriteT_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Uncomment (and optionally replace) if an initializer is desired.
   uv_write_t* native_object = (uv_write_t*)calloc(1, sizeof(uv_write_t));
-  mruby_giftwrap_uv_write_t_data_ptr(self, native_object);
+  mruby_gift_uv_write_t_data_ptr(self, native_object);
   return self;
+*/
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvWriteT::initialize */
+/* MRUBY_BINDING: UvWriteT::disown */
 /* sha: 17e2173dfc6cecadaa68f77b3037bdc1b25b84dfc2dc35a04d95a431d01a5a67 */
 mrb_value
 mrb_UV_UvWriteT_disown(mrb_state* mrb, mrb_value self) {
@@ -225,10 +227,23 @@ mrb_UV_UvWriteT_set_handle(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_UvWriteT_init(mrb_state* mrb) {
+/* MRUBY_BINDING: UvWriteT::class_init_header */
+/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
+  /* Don't double-init. */
+  static int initialized = 0;
+  if (initialized) return;
+  else initialized = 1;
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvWriteT::class_definition */
 /* sha: c882fbb9a584a916f2433dfa715533c79b92564324fe9de6d87bb10e749e1b67 */
-  struct RClass* UvWriteT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvWriteT", mrb->object_class);
+  struct RClass* UvWriteT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvWriteT", UvReqT_class(mrb));
   MRB_SET_INSTANCE_TT(UvWriteT_class, MRB_TT_DATA);
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvWriteT::custom_pre_class_method_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvWriteT::class_method_definitions */
@@ -238,6 +253,11 @@ void mrb_UV_UvWriteT_init(mrb_state* mrb) {
 #endif
   mrb_define_class_method(mrb, UvWriteT_class, "disown", mrb_UV_UvWriteT_disown, MRB_ARGS_ARG(1, 0));
   mrb_define_class_method(mrb, UvWriteT_class, "belongs_to_ruby?", mrb_UV_UvWriteT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvWriteT::custom_pre_attr_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvWriteT::attr_definitions */
@@ -265,10 +285,24 @@ void mrb_UV_UvWriteT_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
+/* MRUBY_BINDING: UvWriteT::custom_pre_instance_method_definitions */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvWriteT::instance_method_definitions */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvWriteT::class_init_footer */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 }
 
+/* MRUBY_BINDING: custom_footer */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
 #endif

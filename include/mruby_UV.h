@@ -15,10 +15,18 @@
  *       you will need to prepend the relative path.
  */
 
+/* MRUBY_BINDING: pre_includes */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: includes */
+/* sha: ad50fb1bacb680a84edd0d1438157e7feb696a3e8cc2e5bc040d00fed726b260 */
 #include <stdlib.h>
 #include "mruby.h"
 #include "mruby/array.h"
 #include "mruby/class.h"
+#include "mruby/compile.h"
 #include "mruby/data.h"
 #include "mruby/string.h"
 #include "mruby/value.h"
@@ -29,6 +37,12 @@
 #include "mruby_UV_functions.h"
 #include "mruby_UV_classes.h"
 #include "mruby_UV_boxing.h"
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: post_includes */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
 
 /*
  * RClass Macros
@@ -37,6 +51,13 @@
  * Macros for retrieving the RClass*'s defined by this gem.
  */
 
+/* MRUBY_BINDING: pre_class_macros */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: class_macros */
+/* sha: 6b5d3eb33e7156feddb6afebb73e756eaf927f110aee5b5efc56d38990fcadc1 */
 #define UV_module(mrb) mrb_module_get(mrb, "UV")
 #define UvAsyncT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvAsyncT")
 #define UvCheckT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvCheckT")
@@ -74,15 +95,25 @@
 #define UvUdpT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvUdpT")
 #define UvWorkT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvWorkT")
 #define UvWriteT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvWriteT")
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: post_class_macros */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
 
 /*
  * Class initialization function declarations
  * ------------------------------------------
- *
- * These declarations are controlled by the macros in the
- * "Class Bindings Options" section above.
  */
 
+/* MRUBY_BINDING: pre_class_init_decls */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: pre_class_init_decls */
+/* sha: 2a1118d505d650406c327cb17e1c5c11ec2f171669b8f1a01fd2b6fa73d4e22b */
 #if BIND_UvAsyncT_TYPE
 void mrb_UV_UvAsyncT_init(mrb_state* mrb);
 #endif
@@ -191,6 +222,12 @@ void mrb_UV_UvWorkT_init(mrb_state* mrb);
 #if BIND_UvWriteT_TYPE
 void mrb_UV_UvWriteT_init(mrb_state* mrb);
 #endif
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: post_class_init_decls */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
 
 /*
  * Macro definition function declaration

@@ -2,18 +2,6 @@
 # # Param: async_cb (uv_async_cb)
 # CTypes.set_fn_param_type('uv_async_init', 'async_cb', CTypes['???'])
 
-# ## void uv_barrier_destroy(uv_barrier_t * barrier)
-# # Param: barrier (uv_barrier_t *)
-# CTypes.set_fn_param_type('uv_barrier_destroy', 'barrier', CTypes['???'])
-
-# ## int uv_barrier_init(uv_barrier_t * barrier, unsigned int count)
-# # Param: barrier (uv_barrier_t *)
-# CTypes.set_fn_param_type('uv_barrier_init', 'barrier', CTypes['???'])
-
-# ## int uv_barrier_wait(uv_barrier_t * barrier)
-# # Param: barrier (uv_barrier_t *)
-# CTypes.set_fn_param_type('uv_barrier_wait', 'barrier', CTypes['???'])
-
 # ## uv_buf_t uv_buf_init(char * base, unsigned int len)
 # # Return value (uv_buf_t)
 # CTypes.set_fn_return_type('uv_buf_init', CTypes['???'])

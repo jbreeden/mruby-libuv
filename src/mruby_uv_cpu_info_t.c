@@ -8,7 +8,7 @@
 #if BIND_UvCpuInfoT_TYPE
 
 /* MRUBY_BINDING: custom_header */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
@@ -17,18 +17,20 @@
  */
 
 /* MRUBY_BINDING: UvCpuInfoT::initialize */
-/* sha: 4bad1128969c55311a301819139bdc23db5bb0e536e1f8e68620d19f18b708da */
+/* sha: cddc793189dd0d09848cd9ac4d0b1c083a0eff5b1646ff9573aebda2752b8350 */
 #if BIND_UvCpuInfoT_INITIALIZE
 mrb_value
 mrb_UV_UvCpuInfoT_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Uncomment (and optionally replace) if an initializer is desired.
   uv_cpu_info_t* native_object = (uv_cpu_info_t*)calloc(1, sizeof(uv_cpu_info_t));
-  mruby_giftwrap_uv_cpu_info_t_data_ptr(self, native_object);
+  mruby_gift_uv_cpu_info_t_data_ptr(self, native_object);
   return self;
+*/
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvCpuInfoT::initialize */
+/* MRUBY_BINDING: UvCpuInfoT::disown */
 /* sha: cb29a7cd3d64ccac2f80f59d17fe7b04ff6254bc428c410f3a329b02925b9612 */
 mrb_value
 mrb_UV_UvCpuInfoT_disown(mrb_state* mrb, mrb_value self) {
@@ -218,10 +220,23 @@ mrb_UV_UvCpuInfoT_set_cpu_times(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_UvCpuInfoT_init(mrb_state* mrb) {
+/* MRUBY_BINDING: UvCpuInfoT::class_init_header */
+/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
+  /* Don't double-init. */
+  static int initialized = 0;
+  if (initialized) return;
+  else initialized = 1;
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvCpuInfoT::class_definition */
 /* sha: 8ed13f64f442c810d448f8510f8310de7046c1db6365ce29bb7462d78bc79ac0 */
   struct RClass* UvCpuInfoT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvCpuInfoT", mrb->object_class);
   MRB_SET_INSTANCE_TT(UvCpuInfoT_class, MRB_TT_DATA);
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvCpuInfoT::custom_pre_class_method_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvCpuInfoT::class_method_definitions */
@@ -231,6 +246,11 @@ void mrb_UV_UvCpuInfoT_init(mrb_state* mrb) {
 #endif
   mrb_define_class_method(mrb, UvCpuInfoT_class, "disown", mrb_UV_UvCpuInfoT_disown, MRB_ARGS_ARG(1, 0));
   mrb_define_class_method(mrb, UvCpuInfoT_class, "belongs_to_ruby?", mrb_UV_UvCpuInfoT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvCpuInfoT::custom_pre_attr_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvCpuInfoT::attr_definitions */
@@ -258,10 +278,24 @@ void mrb_UV_UvCpuInfoT_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
+/* MRUBY_BINDING: UvCpuInfoT::custom_pre_instance_method_definitions */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvCpuInfoT::instance_method_definitions */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvCpuInfoT::class_init_footer */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 }
 
+/* MRUBY_BINDING: custom_footer */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
 #endif

@@ -8,7 +8,7 @@
 #if BIND_UvStdioContainerT_TYPE
 
 /* MRUBY_BINDING: custom_header */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
@@ -17,18 +17,20 @@
  */
 
 /* MRUBY_BINDING: UvStdioContainerT::initialize */
-/* sha: 1f5cebd930c0d65a17fafbf50d4ec64e28cf4a818552e6a8520d4dafb28af4d3 */
+/* sha: 7b8f4242c0e5cfaf6586e86d76aa30ccd2fc4abb5e5967d27b7ce1a0d0edb169 */
 #if BIND_UvStdioContainerT_INITIALIZE
 mrb_value
 mrb_UV_UvStdioContainerT_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Uncomment (and optionally replace) if an initializer is desired.
   uv_stdio_container_t* native_object = (uv_stdio_container_t*)calloc(1, sizeof(uv_stdio_container_t));
-  mruby_giftwrap_uv_stdio_container_t_data_ptr(self, native_object);
+  mruby_gift_uv_stdio_container_t_data_ptr(self, native_object);
   return self;
+*/
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvStdioContainerT::initialize */
+/* MRUBY_BINDING: UvStdioContainerT::disown */
 /* sha: 4e90ea3d8ced690c9bc4cb14f27fc95688c3ae26f173b52e50e32ff2a4bbc6bb */
 mrb_value
 mrb_UV_UvStdioContainerT_disown(mrb_state* mrb, mrb_value self) {
@@ -165,10 +167,23 @@ mrb_UV_UvStdioContainerT_set_data(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_UvStdioContainerT_init(mrb_state* mrb) {
+/* MRUBY_BINDING: UvStdioContainerT::class_init_header */
+/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
+  /* Don't double-init. */
+  static int initialized = 0;
+  if (initialized) return;
+  else initialized = 1;
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvStdioContainerT::class_definition */
 /* sha: bcdd9ca49598f0c046b087ea5582d8db6fde67b89ad39b76e6873ec59ef83210 */
   struct RClass* UvStdioContainerT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvStdioContainerT", mrb->object_class);
   MRB_SET_INSTANCE_TT(UvStdioContainerT_class, MRB_TT_DATA);
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvStdioContainerT::custom_pre_class_method_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvStdioContainerT::class_method_definitions */
@@ -178,6 +193,11 @@ void mrb_UV_UvStdioContainerT_init(mrb_state* mrb) {
 #endif
   mrb_define_class_method(mrb, UvStdioContainerT_class, "disown", mrb_UV_UvStdioContainerT_disown, MRB_ARGS_ARG(1, 0));
   mrb_define_class_method(mrb, UvStdioContainerT_class, "belongs_to_ruby?", mrb_UV_UvStdioContainerT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvStdioContainerT::custom_pre_attr_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvStdioContainerT::attr_definitions */
@@ -199,10 +219,24 @@ void mrb_UV_UvStdioContainerT_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
+/* MRUBY_BINDING: UvStdioContainerT::custom_pre_instance_method_definitions */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvStdioContainerT::instance_method_definitions */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvStdioContainerT::class_init_footer */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 }
 
+/* MRUBY_BINDING: custom_footer */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
 #endif

@@ -8,7 +8,7 @@
 #if BIND_UvStatT_TYPE
 
 /* MRUBY_BINDING: custom_header */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
@@ -17,18 +17,20 @@
  */
 
 /* MRUBY_BINDING: UvStatT::initialize */
-/* sha: 3e8a7ff18e2b0802a9b191a867ec9697b7dfe509fc93d219a877f6ab935190f7 */
+/* sha: b47ebd5bf14a1538ff672e229e66d83a05282d6625566fb6184245bb6d454300 */
 #if BIND_UvStatT_INITIALIZE
 mrb_value
 mrb_UV_UvStatT_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Uncomment (and optionally replace) if an initializer is desired.
   uv_stat_t* native_object = (uv_stat_t*)calloc(1, sizeof(uv_stat_t));
-  mruby_giftwrap_uv_stat_t_data_ptr(self, native_object);
+  mruby_gift_uv_stat_t_data_ptr(self, native_object);
   return self;
+*/
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvStatT::initialize */
+/* MRUBY_BINDING: UvStatT::disown */
 /* sha: ec6f896f2c9f19389939ce8a84795e77596fa8b4d84e62471e62222a35467fd6 */
 mrb_value
 mrb_UV_UvStatT_disown(mrb_state* mrb, mrb_value self) {
@@ -872,10 +874,23 @@ mrb_UV_UvStatT_set_st_birthtim(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_UvStatT_init(mrb_state* mrb) {
+/* MRUBY_BINDING: UvStatT::class_init_header */
+/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
+  /* Don't double-init. */
+  static int initialized = 0;
+  if (initialized) return;
+  else initialized = 1;
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvStatT::class_definition */
 /* sha: 866886d81b3ddc18e12831dd100728122c62541f843aeb2fce405c9a0f1b902c */
   struct RClass* UvStatT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvStatT", mrb->object_class);
   MRB_SET_INSTANCE_TT(UvStatT_class, MRB_TT_DATA);
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvStatT::custom_pre_class_method_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvStatT::class_method_definitions */
@@ -885,6 +900,11 @@ void mrb_UV_UvStatT_init(mrb_state* mrb) {
 #endif
   mrb_define_class_method(mrb, UvStatT_class, "disown", mrb_UV_UvStatT_disown, MRB_ARGS_ARG(1, 0));
   mrb_define_class_method(mrb, UvStatT_class, "belongs_to_ruby?", mrb_UV_UvStatT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvStatT::custom_pre_attr_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvStatT::attr_definitions */
@@ -990,10 +1010,24 @@ void mrb_UV_UvStatT_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
+/* MRUBY_BINDING: UvStatT::custom_pre_instance_method_definitions */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvStatT::instance_method_definitions */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvStatT::class_init_footer */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 }
 
+/* MRUBY_BINDING: custom_footer */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
 #endif

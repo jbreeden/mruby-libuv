@@ -8,7 +8,7 @@
 #if BIND_UvFsT_TYPE
 
 /* MRUBY_BINDING: custom_header */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
@@ -17,18 +17,20 @@
  */
 
 /* MRUBY_BINDING: UvFsT::initialize */
-/* sha: 9f3c1dd306f36f1344b59761072f52b9ed3bbc382ae14e19947bd2d53b010f7e */
+/* sha: daa7c1bd12b537c8a6f448ece083677776c289aa2c73c94bd2ab3da99feb95a5 */
 #if BIND_UvFsT_INITIALIZE
 mrb_value
 mrb_UV_UvFsT_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Uncomment (and optionally replace) if an initializer is desired.
   uv_fs_t* native_object = (uv_fs_t*)calloc(1, sizeof(uv_fs_t));
-  mruby_giftwrap_uv_fs_t_data_ptr(self, native_object);
+  mruby_gift_uv_fs_t_data_ptr(self, native_object);
   return self;
+*/
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::initialize */
+/* MRUBY_BINDING: UvFsT::disown */
 /* sha: 9edcd64c3789b16ecfd94c0e3da188ebf61ff55cc4cb7ec6301074a06848e7cf */
 mrb_value
 mrb_UV_UvFsT_disown(mrb_state* mrb, mrb_value self) {
@@ -412,10 +414,23 @@ mrb_UV_UvFsT_set_statbuf(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_UvFsT_init(mrb_state* mrb) {
+/* MRUBY_BINDING: UvFsT::class_init_header */
+/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
+  /* Don't double-init. */
+  static int initialized = 0;
+  if (initialized) return;
+  else initialized = 1;
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvFsT::class_definition */
 /* sha: 02aa9cbbdb10f9cfe5a609202ed36e8ac5afa549658c66513736b8a9bc4318fa */
-  struct RClass* UvFsT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvFsT", mrb->object_class);
+  struct RClass* UvFsT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvFsT", UvReqT_class(mrb));
   MRB_SET_INSTANCE_TT(UvFsT_class, MRB_TT_DATA);
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvFsT::custom_pre_class_method_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvFsT::class_method_definitions */
@@ -425,6 +440,11 @@ void mrb_UV_UvFsT_init(mrb_state* mrb) {
 #endif
   mrb_define_class_method(mrb, UvFsT_class, "disown", mrb_UV_UvFsT_disown, MRB_ARGS_ARG(1, 0));
   mrb_define_class_method(mrb, UvFsT_class, "belongs_to_ruby?", mrb_UV_UvFsT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvFsT::custom_pre_attr_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvFsT::attr_definitions */
@@ -476,10 +496,24 @@ void mrb_UV_UvFsT_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
+/* MRUBY_BINDING: UvFsT::custom_pre_instance_method_definitions */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvFsT::instance_method_definitions */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvFsT::class_init_footer */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 }
 
+/* MRUBY_BINDING: custom_footer */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
 #endif

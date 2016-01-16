@@ -1,7 +1,7 @@
 #include "mruby_UV.h"
 
 /* MRUBY_BINDING: custom_header */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
@@ -9358,14 +9358,21 @@ mrb_UV_uv_write2(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
+/* MRUBY_BINDING: custom_module_init_header */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+  
   struct RClass* UV_module = mrb_define_module(mrb, "UV");
   mruby_UV_define_macro_constants(mrb);
 
+/* MRUBY_BINDING: custom_pre_class_initializations */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: class_initializations */
-/* sha: ea2ab7c9eebf5e03380afff8eb5793cc64b802e3a9959acffdf5dcfac6f68a72 */
-  /*
-   * Initialize class bindings
-   */
+/* sha: ba203c2f056121bc30f56510c645ebb96e4cc6fe8f1447d426ba81f7a8591450 */
 #if BIND_UvAsyncT_TYPE
   mrb_UV_UvAsyncT_init(mrb);
 #endif
@@ -9474,6 +9481,11 @@ void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
 #if BIND_UvWriteT_TYPE
   mrb_UV_UvWriteT_init(mrb);
 #endif
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: custom_pre_global_function_initializations */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: global_function_definitions */
@@ -10140,16 +10152,15 @@ void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: custom_module_init */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* MRUBY_BINDING: custom_module_init_footer */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
-
 }
 
 void mrb_mruby_libuv_gem_final(mrb_state* mrb){
 /* MRUBY_BINDING: custom_module_final */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 }

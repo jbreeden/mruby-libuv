@@ -8,7 +8,7 @@
 #if BIND_UvCheckT_TYPE
 
 /* MRUBY_BINDING: custom_header */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
@@ -17,18 +17,20 @@
  */
 
 /* MRUBY_BINDING: UvCheckT::initialize */
-/* sha: 1eb36d9f217a60237100a9d77c474989032f9af57b4a09db06389a572115d0c1 */
+/* sha: bfb3edeb5b865a13af4d73c6a67e708dd532a89d009f365419160685dcaeb8a6 */
 #if BIND_UvCheckT_INITIALIZE
 mrb_value
 mrb_UV_UvCheckT_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Uncomment (and optionally replace) if an initializer is desired.
   uv_check_t* native_object = (uv_check_t*)calloc(1, sizeof(uv_check_t));
-  mruby_giftwrap_uv_check_t_data_ptr(self, native_object);
+  mruby_gift_uv_check_t_data_ptr(self, native_object);
   return self;
+*/
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvCheckT::initialize */
+/* MRUBY_BINDING: UvCheckT::disown */
 /* sha: 6c17a09b19dc23375af3b42b33ae16ca04b388b8b6e7c617b140f3b3ffe2a4ff */
 mrb_value
 mrb_UV_UvCheckT_disown(mrb_state* mrb, mrb_value self) {
@@ -68,10 +70,23 @@ mrb_UV_UvCheckT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_UvCheckT_init(mrb_state* mrb) {
+/* MRUBY_BINDING: UvCheckT::class_init_header */
+/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
+  /* Don't double-init. */
+  static int initialized = 0;
+  if (initialized) return;
+  else initialized = 1;
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvCheckT::class_definition */
 /* sha: 0b7be8e8cbba3b1d610d7900d584dddd21a7d3f095a06e3d5ec49bb40dcc2a24 */
-  struct RClass* UvCheckT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvCheckT", mrb->object_class);
+  struct RClass* UvCheckT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvCheckT", UvHandleT_class(mrb));
   MRB_SET_INSTANCE_TT(UvCheckT_class, MRB_TT_DATA);
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvCheckT::custom_pre_class_method_definitions */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvCheckT::class_method_definitions */
@@ -83,15 +98,34 @@ void mrb_UV_UvCheckT_init(mrb_state* mrb) {
   mrb_define_class_method(mrb, UvCheckT_class, "belongs_to_ruby?", mrb_UV_UvCheckT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
 /* MRUBY_BINDING_END */
 
+/* MRUBY_BINDING: UvCheckT::custom_pre_attr_definitions */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvCheckT::attr_definitions */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvCheckT::custom_pre_instance_method_definitions */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvCheckT::instance_method_definitions */
-/* sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: UvCheckT::class_init_footer */
+/* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 }
 
+/* MRUBY_BINDING: custom_footer */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
 #endif
