@@ -7,7 +7,7 @@
 
 #if BIND_UvSignalT_TYPE
 
-/* MRUBY_BINDING: custom_header */
+/* MRUBY_BINDING: header */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
@@ -21,11 +21,9 @@
 #if BIND_UvSignalT_INITIALIZE
 mrb_value
 mrb_UV_UvSignalT_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Uncomment (and optionally replace) if an initializer is desired.
-  uv_signal_t* native_object = (uv_signal_t*)calloc(1, sizeof(uv_signal_t));
+  uv_signal_t* native_object = (uv_signal_t*)new_mruby_uv_handle(mrb, self, sizeof(uv_signal_t));
   mruby_gift_uv_signal_t_data_ptr(self, native_object);
   return self;
-*/
 }
 #endif
 /* MRUBY_BINDING_END */
@@ -181,7 +179,7 @@ void mrb_UV_UvSignalT_init(mrb_state* mrb) {
   MRB_SET_INSTANCE_TT(UvSignalT_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvSignalT::custom_pre_class_method_definitions */
+/* MRUBY_BINDING: UvSignalT::pre_class_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
@@ -195,7 +193,7 @@ void mrb_UV_UvSignalT_init(mrb_state* mrb) {
   mrb_define_class_method(mrb, UvSignalT_class, "belongs_to_ruby?", mrb_UV_UvSignalT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvSignalT::custom_pre_attr_definitions */
+/* MRUBY_BINDING: UvSignalT::pre_attr_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
@@ -219,14 +217,17 @@ void mrb_UV_UvSignalT_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvSignalT::custom_pre_instance_method_definitions */
+/* MRUBY_BINDING: UvSignalT::pre_instance_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvSignalT::instance_method_definitions */
-/* sha: user_defined */
-
+/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
+  /*
+   * Member Functions
+   */
+  /* None */
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvSignalT::class_init_footer */
@@ -235,7 +236,7 @@ void mrb_UV_UvSignalT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 }
 
-/* MRUBY_BINDING: custom_footer */
+/* MRUBY_BINDING: footer */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

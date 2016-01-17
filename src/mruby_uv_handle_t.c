@@ -7,7 +7,7 @@
 
 #if BIND_UvHandleT_TYPE
 
-/* MRUBY_BINDING: custom_header */
+/* MRUBY_BINDING: header */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
@@ -104,18 +104,19 @@ mrb_value
 mrb_UV_UvHandleT_set_data(mrb_state* mrb, mrb_value self) {
   uv_handle_t * native_self = mruby_unbox_uv_handle_t(self);
   mrb_value data;
-  mrb_get_args(mrb, "o", &data);
-  
-  if (mrb_nil_p(data)) {
-    native_self->data = NULL;
-  } else {
-    mrb_value * heap_copy = (mrb_value*)calloc(1, sizeof(mrb_value));
-    memcpy(heap_copy, &data, sizeof(mrb_value));
-    mrb_gc_register(mrb, *heap_copy);
-    native_self->data = heap_copy;
-  }
 
-  return data;
+  mrb_get_args(mrb, "o", &data);
+
+  /* type checking */
+  TODO_type_check_void_PTR(data);
+
+  void * native_data = TODO_mruby_unbox_void_PTR(data);
+
+  native_self->data = native_data;
+  
+  mrb_value value_as_mrb_value;
+  mrb_get_args(mrb, "o", &value_as_mrb_value);
+  return value_as_mrb_value;
 }
 #endif
 /* MRUBY_BINDING_END */
@@ -188,7 +189,7 @@ void mrb_UV_UvHandleT_init(mrb_state* mrb) {
   MRB_SET_INSTANCE_TT(UvHandleT_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvHandleT::custom_pre_class_method_definitions */
+/* MRUBY_BINDING: UvHandleT::pre_class_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
@@ -202,7 +203,7 @@ void mrb_UV_UvHandleT_init(mrb_state* mrb) {
   mrb_define_class_method(mrb, UvHandleT_class, "belongs_to_ruby?", mrb_UV_UvHandleT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvHandleT::custom_pre_attr_definitions */
+/* MRUBY_BINDING: UvHandleT::pre_attr_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
@@ -226,14 +227,17 @@ void mrb_UV_UvHandleT_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvHandleT::custom_pre_instance_method_definitions */
+/* MRUBY_BINDING: UvHandleT::pre_instance_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvHandleT::instance_method_definitions */
-/* sha: user_defined */
-
+/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
+  /*
+   * Member Functions
+   */
+  /* None */
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvHandleT::class_init_footer */
@@ -242,7 +246,7 @@ void mrb_UV_UvHandleT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 }
 
-/* MRUBY_BINDING: custom_footer */
+/* MRUBY_BINDING: footer */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

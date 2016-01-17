@@ -13,9 +13,9 @@
 #define BIND_uv_cancel_FUNCTION TRUE
 #define BIND_uv_chdir_FUNCTION TRUE
 #define BIND_uv_check_init_FUNCTION TRUE
-#define BIND_uv_check_start_FUNCTION FALSE
+#define BIND_uv_check_start_FUNCTION TRUE
 #define BIND_uv_check_stop_FUNCTION TRUE
-#define BIND_uv_close_FUNCTION FALSE
+#define BIND_uv_close_FUNCTION TRUE
 #define BIND_uv_cond_broadcast_FUNCTION FALSE
 #define BIND_uv_cond_destroy_FUNCTION FALSE
 #define BIND_uv_cond_init_FUNCTION FALSE
@@ -42,7 +42,7 @@
 #define BIND_uv_fs_close_FUNCTION FALSE
 #define BIND_uv_fs_event_getpath_FUNCTION FALSE
 #define BIND_uv_fs_event_init_FUNCTION TRUE
-#define BIND_uv_fs_event_start_FUNCTION FALSE
+#define BIND_uv_fs_event_start_FUNCTION TRUE
 #define BIND_uv_fs_event_stop_FUNCTION TRUE
 #define BIND_uv_fs_fchmod_FUNCTION FALSE
 #define BIND_uv_fs_fchown_FUNCTION FALSE
@@ -56,9 +56,9 @@
 #define BIND_uv_fs_mkdir_FUNCTION FALSE
 #define BIND_uv_fs_mkdtemp_FUNCTION FALSE
 #define BIND_uv_fs_open_FUNCTION FALSE
-#define BIND_uv_fs_poll_getpath_FUNCTION FALSE
+#define BIND_uv_fs_poll_getpath_FUNCTION TRUE
 #define BIND_uv_fs_poll_init_FUNCTION TRUE
-#define BIND_uv_fs_poll_start_FUNCTION FALSE
+#define BIND_uv_fs_poll_start_FUNCTION TRUE
 #define BIND_uv_fs_poll_stop_FUNCTION TRUE
 #define BIND_uv_fs_read_FUNCTION FALSE
 #define BIND_uv_fs_readlink_FUNCTION FALSE
@@ -85,7 +85,7 @@
 #define BIND_uv_has_ref_FUNCTION TRUE
 #define BIND_uv_hrtime_FUNCTION FALSE
 #define BIND_uv_idle_init_FUNCTION TRUE
-#define BIND_uv_idle_start_FUNCTION FALSE
+#define BIND_uv_idle_start_FUNCTION TRUE
 #define BIND_uv_idle_stop_FUNCTION TRUE
 #define BIND_uv_inet_ntop_FUNCTION FALSE
 #define BIND_uv_inet_pton_FUNCTION FALSE
@@ -103,7 +103,7 @@
 #define BIND_uv_key_get_FUNCTION FALSE
 #define BIND_uv_key_set_FUNCTION FALSE
 #define BIND_uv_kill_FUNCTION TRUE
-#define BIND_uv_listen_FUNCTION FALSE
+#define BIND_uv_listen_FUNCTION TRUE
 #define BIND_uv_loadavg_FUNCTION FALSE
 #define BIND_uv_loop_alive_FUNCTION TRUE
 #define BIND_uv_loop_close_FUNCTION TRUE
@@ -119,7 +119,7 @@
 #define BIND_uv_mutex_unlock_FUNCTION FALSE
 #define BIND_uv_now_FUNCTION FALSE
 #define BIND_uv_once_FUNCTION FALSE
-#define BIND_uv_os_homedir_FUNCTION FALSE
+#define BIND_uv_os_homedir_FUNCTION TRUE
 #define BIND_uv_pipe_bind_FUNCTION TRUE
 #define BIND_uv_pipe_connect_FUNCTION FALSE
 #define BIND_uv_pipe_getpeername_FUNCTION FALSE
@@ -131,16 +131,16 @@
 #define BIND_uv_pipe_pending_type_FUNCTION TRUE
 #define BIND_uv_poll_init_FUNCTION TRUE
 #define BIND_uv_poll_init_socket_FUNCTION FALSE
-#define BIND_uv_poll_start_FUNCTION FALSE
+#define BIND_uv_poll_start_FUNCTION TRUE
 #define BIND_uv_poll_stop_FUNCTION TRUE
 #define BIND_uv_prepare_init_FUNCTION TRUE
-#define BIND_uv_prepare_start_FUNCTION FALSE
+#define BIND_uv_prepare_start_FUNCTION TRUE
 #define BIND_uv_prepare_stop_FUNCTION TRUE
 #define BIND_uv_print_active_handles_FUNCTION FALSE
 #define BIND_uv_print_all_handles_FUNCTION FALSE
 #define BIND_uv_process_kill_FUNCTION TRUE
 #define BIND_uv_queue_work_FUNCTION FALSE
-#define BIND_uv_read_start_FUNCTION FALSE
+#define BIND_uv_read_start_FUNCTION TRUE
 #define BIND_uv_read_stop_FUNCTION TRUE
 #define BIND_uv_recv_buffer_size_FUNCTION FALSE
 #define BIND_uv_ref_FUNCTION TRUE
@@ -166,7 +166,7 @@
 #define BIND_uv_setup_args_FUNCTION FALSE
 #define BIND_uv_shutdown_FUNCTION FALSE
 #define BIND_uv_signal_init_FUNCTION TRUE
-#define BIND_uv_signal_start_FUNCTION FALSE
+#define BIND_uv_signal_start_FUNCTION TRUE
 #define BIND_uv_signal_stop_FUNCTION TRUE
 #define BIND_uv_spawn_FUNCTION TRUE
 #define BIND_uv_stop_FUNCTION TRUE
@@ -190,7 +190,7 @@
 #define BIND_uv_timer_get_repeat_FUNCTION FALSE
 #define BIND_uv_timer_init_FUNCTION TRUE
 #define BIND_uv_timer_set_repeat_FUNCTION FALSE
-#define BIND_uv_timer_start_FUNCTION FALSE
+#define BIND_uv_timer_start_FUNCTION TRUE
 #define BIND_uv_timer_stop_FUNCTION TRUE
 #define BIND_uv_try_write_FUNCTION FALSE
 #define BIND_uv_tty_get_winsize_FUNCTION FALSE

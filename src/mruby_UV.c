@@ -1,6 +1,6 @@
 #include "mruby_UV.h"
 
-/* MRUBY_BINDING: custom_header */
+/* MRUBY_BINDING: header */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
@@ -69,43 +69,47 @@ mrb_UV_uv_accept(mrb_state* mrb, mrb_value self) {
  * - async_cb: uv_async_cb
  * Return Type: int
  */
-mrb_value
-mrb_UV_uv_async_init(mrb_state* mrb, mrb_value self) {
-  mrb_value arg1;
-  mrb_value async;
-  mrb_value async_cb;
 
-  /* Fetch the args */
-  mrb_get_args(mrb, "ooo", &arg1, &async, &async_cb);
+// TODO: Maybe when we start using multiple event loops
 
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
-    return mrb_nil_value();
-  }
-  if (!mrb_obj_is_kind_of(mrb, async, UvAsyncT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvAsyncT expected");
-    return mrb_nil_value();
-  }
-  TODO_type_check_uv_async_cb(async_cb);
-
-  /* Unbox param: arg1 */
-  uv_loop_t * native_arg1 = (mrb_nil_p(arg1) ? NULL : mruby_unbox_uv_loop_t(arg1));
-
-  /* Unbox param: async */
-  uv_async_t * native_async = (mrb_nil_p(async) ? NULL : mruby_unbox_uv_async_t(async));
-
-  /* Unbox param: async_cb */
-  uv_async_cb native_async_cb = TODO_mruby_unbox_uv_async_cb(async_cb);
-
-  /* Invocation */
-  int native_return_value = uv_async_init(native_arg1, native_async, native_async_cb);
-
-  /* Box the return value */
-  mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
-  return return_value;
-}
+// mrb_value
+// mrb_UV_uv_async_init(mrb_state* mrb, mrb_value self) {
+//   mrb_value arg1;
+//   mrb_value async;
+//   mrb_value async_cb;
+// 
+//   /* Fetch the args */
+//   mrb_get_args(mrb, "oo&", &arg1, &async, &async_cb);
+// 
+//   /* Type checking */
+//   if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
+//     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+//     return mrb_nil_value();
+//   }
+//   if (!mrb_obj_is_kind_of(mrb, async, UvAsyncT_class(mrb))) {
+//     mrb_raise(mrb, E_TYPE_ERROR, "UvAsyncT expected");
+//     return mrb_nil_value();
+//   }
+//   if (mrb_nil_p(async_cb)) {
+//     mrb_raise(mrb, E_ARGUMENT_ERROR, "uv_async_init requires a block");
+//     return mrb_nil_value();
+//   }
+//   mrb_iv_set(mrb, async, mrb_intern_cstr(mrb, "@mruby_uv_async_cb"), async_cb);
+// 
+//   /* Unbox param: arg1 */
+//   uv_loop_t * native_arg1 = (mrb_nil_p(arg1) ? NULL : mruby_unbox_uv_loop_t(arg1));
+// 
+//   /* Unbox param: async */
+//   uv_async_t * native_async = (mrb_nil_p(async) ? NULL : mruby_unbox_uv_async_t(async));
+// 
+//   /* Invocation */
+//   int native_return_value = uv_async_init(native_arg1, native_async, mruby_uv_async_cb_thunk);
+// 
+//   /* Box the return value */
+//   mrb_value return_value = mrb_fixnum_value(native_return_value);
+//   
+//   return return_value;
+// }
 #endif
 /* MRUBY_BINDING_END */
 
@@ -469,6 +473,8 @@ mrb_UV_uv_check_init(mrb_state* mrb, mrb_value self) {
 
   /* Invocation */
   int native_return_value = uv_check_init(native_arg1, native_check);
+  
+  SET_LOOP_REF(check);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -496,23 +502,24 @@ mrb_UV_uv_check_start(mrb_state* mrb, mrb_value self) {
   mrb_value cb;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oo", &check, &cb);
+  mrb_get_args(mrb, "o&", &check, &cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, check, UvCheckT_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvCheckT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_uv_check_cb(cb);
-
+  if (mrb_nil_p(cb)) {
+    mrb_raise(mrb, E_ARGUMENT_ERROR, "uv_check_start requires a block");
+    return mrb_nil_value();
+  }
+  mrb_iv_set(mrb, check, mrb_intern_cstr(mrb, "@mruby_uv_check_cb"), cb);
+  
   /* Unbox param: check */
   uv_check_t * native_check = (mrb_nil_p(check) ? NULL : mruby_unbox_uv_check_t(check));
 
-  /* Unbox param: cb */
-  uv_check_cb native_cb = TODO_mruby_unbox_uv_check_cb(cb);
-
   /* Invocation */
-  int native_return_value = uv_check_start(native_check, native_cb);
+  int native_return_value = uv_check_start(native_check, mruby_uv_check_cb_thunk);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -578,23 +585,23 @@ mrb_UV_uv_close(mrb_state* mrb, mrb_value self) {
   mrb_value close_cb;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oo", &handle, &close_cb);
+  mrb_get_args(mrb, "o&", &handle, &close_cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, handle, UvHandleT_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvHandleT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_uv_close_cb(close_cb);
+  if (!mrb_nil_p(close_cb)) {
+    mrb_iv_set(mrb, handle, mrb_intern_cstr(mrb, "@mruby_uv_close_cb"), close_cb);
+  }
 
   /* Unbox param: handle */
   uv_handle_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_handle_t(handle));
-
-  /* Unbox param: close_cb */
-  uv_close_cb native_close_cb = TODO_mruby_unbox_uv_close_cb(close_cb);
-
+  
   /* Invocation */
-  uv_close(native_handle, native_close_cb);
+  uv_close(native_handle, mruby_uv_close_cb_thunk);
+  UNSET_LOOP_REF(handle);
 
   return mrb_nil_value();
 }
@@ -913,9 +920,11 @@ mrb_value
 mrb_UV_uv_default_loop(mrb_state* mrb, mrb_value self) {
   /* Invocation */
   uv_loop_t * native_return_value = uv_default_loop();
-
+  
   /* Box the return value */
   mrb_value return_value = (native_return_value == NULL ? mrb_nil_value() : mruby_box_uv_loop_t(mrb, native_return_value));
+  
+  INIT_LOOP_DATA(native_return_value, mrb, return_value);
   
   return return_value;
 }
@@ -1637,6 +1646,7 @@ mrb_UV_uv_fs_event_init(mrb_state* mrb, mrb_value self) {
 
   /* Invocation */
   int native_return_value = uv_fs_event_init(native_loop, native_handle);
+  SET_LOOP_REF(handle);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -1668,23 +1678,24 @@ mrb_UV_uv_fs_event_start(mrb_state* mrb, mrb_value self) {
   mrb_int native_flags;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oozi", &handle, &cb, &native_path, &native_flags);
+  mrb_get_args(mrb, "ozi&", &handle, &native_path, &native_flags, &cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, handle, UvFsEventT_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsEventT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_uv_fs_event_cb(cb);
+  if (mrb_nil_p(cb)) {
+    mrb_raise(mrb, E_ARGUMENT_ERROR, "uv_fs_event_start requires a block");
+    return mrb_nil_value();
+  }
+  mrb_iv_set(mrb, handle, mrb_intern_cstr(mrb, "@mruby_uv_fs_event_cb"), cb);
 
   /* Unbox param: handle */
   uv_fs_event_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_fs_event_t(handle));
 
-  /* Unbox param: cb */
-  uv_fs_event_cb native_cb = TODO_mruby_unbox_uv_fs_event_cb(cb);
-
   /* Invocation */
-  int native_return_value = uv_fs_event_start(native_handle, native_cb, native_path, native_flags);
+  int native_return_value = uv_fs_event_start(native_handle, mruby_uv_fs_event_cb_thunk, native_path, native_flags);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -2455,7 +2466,7 @@ mrb_UV_uv_fs_open(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING: uv_fs_poll_getpath */
 /* sha: e0ad3e0d6b93637c8a3300a0fa95cd1dabb7b26cd7f3b2aa36be80655cf93f46 */
 #if BIND_uv_fs_poll_getpath_FUNCTION
-#define uv_fs_poll_getpath_REQUIRED_ARGC 3
+#define uv_fs_poll_getpath_REQUIRED_ARGC 1
 #define uv_fs_poll_getpath_OPTIONAL_ARGC 0
 /* uv_fs_poll_getpath
  *
@@ -2468,36 +2479,31 @@ mrb_UV_uv_fs_open(mrb_state* mrb, mrb_value self) {
 mrb_value
 mrb_UV_uv_fs_poll_getpath(mrb_state* mrb, mrb_value self) {
   mrb_value handle;
-  mrb_value buffer;
-  mrb_value size;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooo", &handle, &buffer, &size);
+  mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, handle, UvFsPollT_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsPollT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_char_PTR(buffer);
-  TODO_type_check_size_t_PTR(size);
 
   /* Unbox param: handle */
   uv_fs_poll_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_fs_poll_t(handle));
 
-  /* Unbox param: buffer */
-  char * native_buffer = TODO_mruby_unbox_char_PTR(buffer);
-
-  /* Unbox param: size */
-  size_t * native_size = TODO_mruby_unbox_size_t_PTR(size);
+  size_t native_size = 1024;
+  char * native_buffer = (char*)calloc(native_size, sizeof(char));
 
   /* Invocation */
-  int native_return_value = uv_fs_poll_getpath(native_handle, native_buffer, native_size);
-
-  /* Box the return value */
-  mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
-  return return_value;
+  if (0 == uv_fs_poll_getpath(native_handle, native_buffer, &native_size)) {
+    mrb_value result = mrb_str_new(mrb, native_buffer, native_size);
+    free(native_buffer);
+    return result;
+  } else {
+    /* xxx: Raise the errno somehow */
+    return mrb_nil_value();
+  }
 }
 #endif
 /* MRUBY_BINDING_END */
@@ -2540,6 +2546,7 @@ mrb_UV_uv_fs_poll_init(mrb_state* mrb, mrb_value self) {
 
   /* Invocation */
   int native_return_value = uv_fs_poll_init(native_loop, native_handle);
+  SET_LOOP_REF(handle);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -2571,23 +2578,24 @@ mrb_UV_uv_fs_poll_start(mrb_state* mrb, mrb_value self) {
   mrb_int native_interval;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oozi", &handle, &poll_cb, &native_path, &native_interval);
+  mrb_get_args(mrb, "ozi&", &handle, &native_path, &native_interval, &poll_cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, handle, UvFsPollT_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsPollT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_uv_fs_poll_cb(poll_cb);
+  if (mrb_nil_p(poll_cb)) {
+    mrb_raise(mrb, E_ARGUMENT_ERROR, "uv_fs_poll_start requires a block");
+    return mrb_nil_value();
+  }
+  mrb_iv_set(mrb, handle, mrb_intern_cstr(mrb, "@mruby_uv_fs_poll_cb"), poll_cb);
 
   /* Unbox param: handle */
   uv_fs_poll_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_fs_poll_t(handle));
 
-  /* Unbox param: poll_cb */
-  uv_fs_poll_cb native_poll_cb = TODO_mruby_unbox_uv_fs_poll_cb(poll_cb);
-
   /* Invocation */
-  int native_return_value = uv_fs_poll_start(native_handle, native_poll_cb, native_path, native_interval);
+  int native_return_value = uv_fs_poll_start(native_handle, mruby_uv_fs_poll_cb_thunk, native_path, native_interval);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -3851,6 +3859,7 @@ mrb_UV_uv_idle_init(mrb_state* mrb, mrb_value self) {
 
   /* Invocation */
   int native_return_value = uv_idle_init(native_arg1, native_idle);
+  SET_LOOP_REF(idle);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -3878,23 +3887,24 @@ mrb_UV_uv_idle_start(mrb_state* mrb, mrb_value self) {
   mrb_value cb;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oo", &idle, &cb);
+  mrb_get_args(mrb, "o&", &idle, &cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, idle, UvIdleT_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvIdleT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_uv_idle_cb(cb);
+  if (mrb_nil_p(cb)) {
+    mrb_raise(mrb, E_ARGUMENT_ERROR, "uv_idle_start requires a block");
+    return mrb_nil_value();
+  }
+  mrb_iv_set(mrb, idle, mrb_intern_cstr(mrb, "@mruby_uv_idle_cb"), cb);
 
   /* Unbox param: idle */
   uv_idle_t * native_idle = (mrb_nil_p(idle) ? NULL : mruby_unbox_uv_idle_t(idle));
 
-  /* Unbox param: cb */
-  uv_idle_cb native_cb = TODO_mruby_unbox_uv_idle_cb(cb);
-
   /* Invocation */
-  int native_return_value = uv_idle_start(native_idle, native_cb);
+  int native_return_value = uv_idle_start(native_idle, mruby_uv_idle_cb_thunk);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -4574,23 +4584,24 @@ mrb_UV_uv_listen(mrb_state* mrb, mrb_value self) {
   mrb_value cb;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oio", &stream, &native_backlog, &cb);
+  mrb_get_args(mrb, "oi&", &stream, &native_backlog, &cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, stream, UvStreamT_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_uv_connection_cb(cb);
+  if (mrb_nil_p(cb)) {
+    mrb_raise(mrb, E_ARGUMENT_ERROR, "uv_listen requires a block");
+    return mrb_nil_value();
+  }
+  mrb_iv_set(mrb, stream, mrb_intern_cstr(mrb, "@mruby_uv_connection_cb"), cb);
 
   /* Unbox param: stream */
   uv_stream_t * native_stream = (mrb_nil_p(stream) ? NULL : mruby_unbox_uv_stream_t(stream));
 
-  /* Unbox param: cb */
-  uv_connection_cb native_cb = TODO_mruby_unbox_uv_connection_cb(cb);
-
   /* Invocation */
-  int native_return_value = uv_listen(native_stream, native_backlog, native_cb);
+  int native_return_value = uv_listen(native_stream, native_backlog, mruby_uv_connection_cb_thunk);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -5112,7 +5123,7 @@ mrb_UV_uv_once(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING: uv_os_homedir */
 /* sha: e4e23999cbd9c3d9b72aecdd3b8a98ea30c494ccd0f17c21d38e906de68665ba */
 #if BIND_uv_os_homedir_FUNCTION
-#define uv_os_homedir_REQUIRED_ARGC 2
+#define uv_os_homedir_REQUIRED_ARGC 0
 #define uv_os_homedir_OPTIONAL_ARGC 0
 /* uv_os_homedir
  *
@@ -5123,29 +5134,18 @@ mrb_UV_uv_once(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_UV_uv_os_homedir(mrb_state* mrb, mrb_value self) {
-  mrb_value buffer;
-  mrb_value size;
-
-  /* Fetch the args */
-  mrb_get_args(mrb, "oo", &buffer, &size);
-
-  /* Type checking */
-  TODO_type_check_char_PTR(buffer);
-  TODO_type_check_size_t_PTR(size);
-
-  /* Unbox param: buffer */
-  char * native_buffer = TODO_mruby_unbox_char_PTR(buffer);
-
-  /* Unbox param: size */
-  size_t * native_size = TODO_mruby_unbox_size_t_PTR(size);
+  /* Should be enough space... */
+  size_t native_size = 1024;
+  char * native_buffer = (char*)calloc(native_size, sizeof(char));
 
   /* Invocation */
-  int native_return_value = uv_os_homedir(native_buffer, native_size);
-
-  /* Box the return value */
-  mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
-  return return_value;
+  if (uv_os_homedir(native_buffer, &native_size)) {
+    return mrb_nil_value();
+  } else {
+    mrb_value result = mrb_str_new(mrb, native_buffer, native_size);
+    free(native_buffer);
+    return result;
+  }
 }
 #endif
 /* MRUBY_BINDING_END */
@@ -5382,6 +5382,7 @@ mrb_UV_uv_pipe_init(mrb_state* mrb, mrb_value self) {
 
   /* Invocation */
   int native_return_value = uv_pipe_init(native_arg1, native_handle, native_ipc);
+  SET_LOOP_REF(handle);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -5588,6 +5589,7 @@ mrb_UV_uv_poll_init(mrb_state* mrb, mrb_value self) {
 
   /* Invocation */
   int native_return_value = uv_poll_init(native_loop, native_handle, native_fd);
+  SET_LOOP_REF(handle);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -5670,23 +5672,24 @@ mrb_UV_uv_poll_start(mrb_state* mrb, mrb_value self) {
   mrb_value cb;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oio", &handle, &native_events, &cb);
+  mrb_get_args(mrb, "oi&", &handle, &native_events, &cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, handle, UvPollT_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvPollT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_uv_poll_cb(cb);
+  if (mrb_nil_p(cb)) {
+    mrb_raise(mrb, E_ARGUMENT_ERROR, "uv_poll_start requires a block");
+    return mrb_nil_value();
+  }
+  mrb_iv_set(mrb, handle, mrb_intern_cstr(mrb, "@mruby_uv_poll_cb"), cb);
 
   /* Unbox param: handle */
   uv_poll_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_poll_t(handle));
 
-  /* Unbox param: cb */
-  uv_poll_cb native_cb = TODO_mruby_unbox_uv_poll_cb(cb);
-
   /* Invocation */
-  int native_return_value = uv_poll_start(native_handle, native_events, native_cb);
+  int native_return_value = uv_poll_start(native_handle, native_events, mruby_uv_poll_cb_thunk);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -5772,6 +5775,7 @@ mrb_UV_uv_prepare_init(mrb_state* mrb, mrb_value self) {
 
   /* Invocation */
   int native_return_value = uv_prepare_init(native_arg1, native_prepare);
+  SET_LOOP_REF(prepare);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -5799,23 +5803,24 @@ mrb_UV_uv_prepare_start(mrb_state* mrb, mrb_value self) {
   mrb_value cb;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oo", &prepare, &cb);
+  mrb_get_args(mrb, "o&", &prepare, &cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, prepare, UvPrepareT_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvPrepareT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_uv_prepare_cb(cb);
+  if (mrb_nil_p(cb)) {
+    mrb_raise(mrb, E_ARGUMENT_ERROR, "uv_prepare_start requires a block");
+    return mrb_nil_value();
+  }
+  mrb_iv_set(mrb, prepare, mrb_intern_cstr(mrb, "@mruby_uv_prepare_cb"), cb);
 
   /* Unbox param: prepare */
   uv_prepare_t * native_prepare = (mrb_nil_p(prepare) ? NULL : mruby_unbox_uv_prepare_t(prepare));
 
-  /* Unbox param: cb */
-  uv_prepare_cb native_cb = TODO_mruby_unbox_uv_prepare_cb(cb);
-
   /* Invocation */
-  int native_return_value = uv_prepare_start(native_prepare, native_cb);
+  int native_return_value = uv_prepare_start(native_prepare, mruby_uv_prepare_cb_thunk);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -6047,7 +6052,7 @@ mrb_UV_uv_queue_work(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING: uv_read_start */
 /* sha: 93e3b04bf6d47e9d061b82fad9c1fb50da22ed7a9fc1a39799184645e12bd1f2 */
 #if BIND_uv_read_start_FUNCTION
-#define uv_read_start_REQUIRED_ARGC 3
+#define uv_read_start_REQUIRED_ARGC 2
 #define uv_read_start_OPTIONAL_ARGC 0
 /* uv_read_start
  *
@@ -6059,32 +6064,28 @@ mrb_UV_uv_queue_work(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_UV_uv_read_start(mrb_state* mrb, mrb_value self) {
-  mrb_value arg1;
-  mrb_value alloc_cb;
+  mrb_value stream;
   mrb_value read_cb;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooo", &arg1, &alloc_cb, &read_cb);
+  mrb_get_args(mrb, "o&", &stream, &read_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvStreamT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, stream, UvStreamT_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_uv_alloc_cb(alloc_cb);
-  TODO_type_check_uv_read_cb(read_cb);
+  if (mrb_nil_p(read_cb)) {
+    mrb_raise(mrb, E_ARGUMENT_ERROR, "uv_read_start requires a block");
+    return mrb_nil_value();
+  }
+  mrb_iv_set(mrb, stream, mrb_intern_cstr(mrb, "@mruby_uv_read_cb"), read_cb);
 
-  /* Unbox param: arg1 */
-  uv_stream_t * native_arg1 = (mrb_nil_p(arg1) ? NULL : mruby_unbox_uv_stream_t(arg1));
-
-  /* Unbox param: alloc_cb */
-  uv_alloc_cb native_alloc_cb = TODO_mruby_unbox_uv_alloc_cb(alloc_cb);
-
-  /* Unbox param: read_cb */
-  uv_read_cb native_read_cb = TODO_mruby_unbox_uv_read_cb(read_cb);
-
+  /* Unbox param: stream */
+  uv_stream_t * native_stream = (mrb_nil_p(stream) ? NULL : mruby_unbox_uv_stream_t(stream));
+  
   /* Invocation */
-  int native_return_value = uv_read_start(native_arg1, native_alloc_cb, native_read_cb);
+  int native_return_value = uv_read_start(native_stream, mruby_uv_alloc_cb, mruby_uv_read_cb_thunk);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -6331,8 +6332,8 @@ mrb_UV_uv_resident_set_memory(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING: uv_run */
 /* sha: 3f8f8508ac2c9828e3c4892ee0c37f97eca7a4b68ce8005eba2d5109ed25696c */
 #if BIND_uv_run_FUNCTION
-#define uv_run_REQUIRED_ARGC 2
-#define uv_run_OPTIONAL_ARGC 0
+#define uv_run_REQUIRED_ARGC 1
+#define uv_run_OPTIONAL_ARGC 1
 /* uv_run
  *
  * Parameters:
@@ -6343,10 +6344,10 @@ mrb_UV_uv_resident_set_memory(mrb_state* mrb, mrb_value self) {
 mrb_value
 mrb_UV_uv_run(mrb_state* mrb, mrb_value self) {
   mrb_value arg1;
-  mrb_int native_mode;
+  mrb_int native_mode = UV_RUN_DEFAULT;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oi", &arg1, &native_mode);
+  mrb_get_args(mrb, "o|i", &arg1, &native_mode);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
@@ -7002,6 +7003,7 @@ mrb_UV_uv_signal_init(mrb_state* mrb, mrb_value self) {
 
   /* Invocation */
   int native_return_value = uv_signal_init(native_loop, native_handle);
+  SET_LOOP_REF(handle);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -7031,23 +7033,24 @@ mrb_UV_uv_signal_start(mrb_state* mrb, mrb_value self) {
   mrb_int native_signum;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooi", &handle, &signal_cb, &native_signum);
+  mrb_get_args(mrb, "oi&", &handle, &native_signum, &signal_cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, handle, UvSignalT_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvSignalT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_uv_signal_cb(signal_cb);
+  if (mrb_nil_p(signal_cb)) {
+    mrb_raise(mrb, E_ARGUMENT_ERROR, "uv_signal_start requires a block");
+    return mrb_nil_value();
+  }
+  mrb_iv_set(mrb, handle, mrb_intern_cstr(mrb, "@mruby_uv_signal_cb"), signal_cb);
 
   /* Unbox param: handle */
   uv_signal_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_signal_t(handle));
 
-  /* Unbox param: signal_cb */
-  uv_signal_cb native_signal_cb = TODO_mruby_unbox_uv_signal_cb(signal_cb);
-
   /* Invocation */
-  int native_return_value = uv_signal_start(native_handle, native_signal_cb, native_signum);
+  int native_return_value = uv_signal_start(native_handle, mruby_uv_signal_cb_thunk, native_signum);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -7498,6 +7501,7 @@ mrb_UV_uv_tcp_init(mrb_state* mrb, mrb_value self) {
 
   /* Invocation */
   int native_return_value = uv_tcp_init(native_arg1, native_handle);
+  SET_LOOP_REF(handle);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -7982,6 +7986,7 @@ mrb_UV_uv_timer_init(mrb_state* mrb, mrb_value self) {
 
   /* Invocation */
   int native_return_value = uv_timer_init(native_arg1, native_handle);
+  SET_LOOP_REF(handle);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -8050,35 +8055,28 @@ mrb_value
 mrb_UV_uv_timer_start(mrb_state* mrb, mrb_value self) {
   mrb_value handle;
   mrb_value cb;
-  mrb_value timeout;
-  mrb_value repeat;
+  mrb_int native_timeout;
+  mrb_int native_repeat;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oooo", &handle, &cb, &timeout, &repeat);
+  mrb_get_args(mrb, "oii&", &handle, &native_timeout, &native_repeat, &cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, handle, UvTimerT_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvTimerT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_uv_timer_cb(cb);
-  TODO_type_check_uint64_t(timeout);
-  TODO_type_check_uint64_t(repeat);
+  if (mrb_nil_p(cb)) {
+    mrb_raise(mrb, E_ARGUMENT_ERROR, "uv_timer_start requires a block");
+    return mrb_nil_value();
+  }
+  mrb_iv_set(mrb, handle, mrb_intern_cstr(mrb, "@mruby_uv_timer_cb"), cb);  
 
   /* Unbox param: handle */
   uv_timer_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_timer_t(handle));
 
-  /* Unbox param: cb */
-  uv_timer_cb native_cb = TODO_mruby_unbox_uv_timer_cb(cb);
-
-  /* Unbox param: timeout */
-  uint64_t native_timeout = TODO_mruby_unbox_uint64_t(timeout);
-
-  /* Unbox param: repeat */
-  uint64_t native_repeat = TODO_mruby_unbox_uint64_t(repeat);
-
   /* Invocation */
-  int native_return_value = uv_timer_start(native_handle, native_cb, native_timeout, native_repeat);
+  int native_return_value = uv_timer_start(native_handle, mruby_uv_timer_cb_thunk, native_timeout, native_repeat);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -8268,6 +8266,7 @@ mrb_UV_uv_tty_init(mrb_state* mrb, mrb_value self) {
 
   /* Invocation */
   int native_return_value = uv_tty_init(native_arg1, native_arg2, native_fd, native_readable);
+  SET_LOOP_REF(arg2);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -8474,6 +8473,7 @@ mrb_UV_uv_udp_init(mrb_state* mrb, mrb_value self) {
 
   /* Invocation */
   int native_return_value = uv_udp_init(native_arg1, native_handle);
+  SET_LOOP_REF(handle);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -9358,7 +9358,7 @@ mrb_UV_uv_write2(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
-/* MRUBY_BINDING: custom_module_init_header */
+/* MRUBY_BINDING: pre_module_definition */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
@@ -9366,9 +9366,14 @@ void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
   struct RClass* UV_module = mrb_define_module(mrb, "UV");
   mruby_UV_define_macro_constants(mrb);
 
-/* MRUBY_BINDING: custom_pre_class_initializations */
+/* MRUBY_BINDING: pre_class_initializations */
 /* sha: user_defined */
-
+#if BIND_UvHandleT_TYPE
+  mrb_UV_UvHandleT_init(mrb);
+#endif
+#if BIND_UvReqT_TYPE
+  mrb_UV_UvReqT_init(mrb);
+#endif
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: class_initializations */
@@ -9483,7 +9488,7 @@ void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: custom_pre_global_function_initializations */
+/* MRUBY_BINDING: pre_global_function_initializations */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
@@ -10152,18 +10157,23 @@ void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: custom_module_init_footer */
+/* MRUBY_BINDING: post_module_definition */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 }
 
 void mrb_mruby_libuv_gem_final(mrb_state* mrb){
-/* MRUBY_BINDING: custom_module_final */
+/* MRUBY_BINDING: module_final */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 }
+
+/* MRUBY_BINDING: footer */
+/* sha: user_defined */
+
+/* MRUBY_BINDING_END */
 
 #ifdef __cplusplus
 }

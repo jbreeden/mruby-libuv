@@ -7,7 +7,7 @@
 
 #if BIND_UvIdleT_TYPE
 
-/* MRUBY_BINDING: custom_header */
+/* MRUBY_BINDING: header */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
@@ -21,7 +21,7 @@
 #if BIND_UvIdleT_INITIALIZE
 mrb_value
 mrb_UV_UvIdleT_initialize(mrb_state* mrb, mrb_value self) {
-  uv_idle_t* native_object = (uv_idle_t*)calloc(1, sizeof(uv_idle_t));
+  uv_idle_t* native_object = (uv_idle_t*)new_mruby_uv_handle(mrb, self, sizeof(uv_idle_t));
   mruby_gift_uv_idle_t_data_ptr(self, native_object);
   return self;
 }
@@ -82,7 +82,7 @@ void mrb_UV_UvIdleT_init(mrb_state* mrb) {
   MRB_SET_INSTANCE_TT(UvIdleT_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvIdleT::custom_pre_class_method_definitions */
+/* MRUBY_BINDING: UvIdleT::pre_class_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
@@ -96,24 +96,30 @@ void mrb_UV_UvIdleT_init(mrb_state* mrb) {
   mrb_define_class_method(mrb, UvIdleT_class, "belongs_to_ruby?", mrb_UV_UvIdleT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvIdleT::custom_pre_attr_definitions */
+/* MRUBY_BINDING: UvIdleT::pre_attr_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvIdleT::attr_definitions */
-/* sha: user_defined */
-
+/* sha: 50c2844963333e47202eca17b7b61f03790fb1b7cbacbaff3f287c0ac8fd59a3 */
+  /*
+   * Fields
+   */
+  /* None */
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvIdleT::custom_pre_instance_method_definitions */
+/* MRUBY_BINDING: UvIdleT::pre_instance_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvIdleT::instance_method_definitions */
-/* sha: user_defined */
-
+/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
+  /*
+   * Member Functions
+   */
+  /* None */
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvIdleT::class_init_footer */
@@ -122,7 +128,7 @@ void mrb_UV_UvIdleT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 }
 
-/* MRUBY_BINDING: custom_footer */
+/* MRUBY_BINDING: footer */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

@@ -7,7 +7,7 @@
 
 #if BIND_UvTcpT_TYPE
 
-/* MRUBY_BINDING: custom_header */
+/* MRUBY_BINDING: header */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
@@ -21,11 +21,9 @@
 #if BIND_UvTcpT_INITIALIZE
 mrb_value
 mrb_UV_UvTcpT_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Uncomment (and optionally replace) if an initializer is desired.
-  uv_tcp_t* native_object = (uv_tcp_t*)calloc(1, sizeof(uv_tcp_t));
+  uv_tcp_t* native_object = (uv_tcp_t*)new_mruby_uv_handle(mrb, self, sizeof(uv_tcp_t));
   mruby_gift_uv_tcp_t_data_ptr(self, native_object);
   return self;
-*/
 }
 #endif
 /* MRUBY_BINDING_END */
@@ -84,7 +82,7 @@ void mrb_UV_UvTcpT_init(mrb_state* mrb) {
   MRB_SET_INSTANCE_TT(UvTcpT_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvTcpT::custom_pre_class_method_definitions */
+/* MRUBY_BINDING: UvTcpT::pre_class_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
@@ -98,24 +96,30 @@ void mrb_UV_UvTcpT_init(mrb_state* mrb) {
   mrb_define_class_method(mrb, UvTcpT_class, "belongs_to_ruby?", mrb_UV_UvTcpT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvTcpT::custom_pre_attr_definitions */
+/* MRUBY_BINDING: UvTcpT::pre_attr_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvTcpT::attr_definitions */
-/* sha: user_defined */
-
+/* sha: 50c2844963333e47202eca17b7b61f03790fb1b7cbacbaff3f287c0ac8fd59a3 */
+  /*
+   * Fields
+   */
+  /* None */
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvTcpT::custom_pre_instance_method_definitions */
+/* MRUBY_BINDING: UvTcpT::pre_instance_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvTcpT::instance_method_definitions */
-/* sha: user_defined */
-
+/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
+  /*
+   * Member Functions
+   */
+  /* None */
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvTcpT::class_init_footer */
@@ -124,7 +128,7 @@ void mrb_UV_UvTcpT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 }
 
-/* MRUBY_BINDING: custom_footer */
+/* MRUBY_BINDING: footer */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

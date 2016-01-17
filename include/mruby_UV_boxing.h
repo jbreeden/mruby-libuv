@@ -1,7 +1,7 @@
 #ifndef MRUBY_UV_BOXING_HEADER
 #define MRUBY_UV_BOXING_HEADER
 
-/* MRUBY_BINDING: pre_boxing_decls */
+/* MRUBY_BINDING: header */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
@@ -761,7 +761,7 @@ mruby_unbox_uv_write_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: post_boxing_decls */
+/* MRUBY_BINDING: footer */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

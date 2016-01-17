@@ -7,7 +7,7 @@
 
 #if BIND_UvPipeT_TYPE
 
-/* MRUBY_BINDING: custom_header */
+/* MRUBY_BINDING: header */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
@@ -21,11 +21,9 @@
 #if BIND_UvPipeT_INITIALIZE
 mrb_value
 mrb_UV_UvPipeT_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Uncomment (and optionally replace) if an initializer is desired.
-  uv_pipe_t* native_object = (uv_pipe_t*)calloc(1, sizeof(uv_pipe_t));
+  uv_pipe_t* native_object = (uv_pipe_t*)new_mruby_uv_handle(mrb, self, sizeof(uv_pipe_t));
   mruby_gift_uv_pipe_t_data_ptr(self, native_object);
   return self;
-*/
 }
 #endif
 /* MRUBY_BINDING_END */
@@ -132,7 +130,7 @@ void mrb_UV_UvPipeT_init(mrb_state* mrb) {
   MRB_SET_INSTANCE_TT(UvPipeT_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvPipeT::custom_pre_class_method_definitions */
+/* MRUBY_BINDING: UvPipeT::pre_class_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
@@ -146,7 +144,7 @@ void mrb_UV_UvPipeT_init(mrb_state* mrb) {
   mrb_define_class_method(mrb, UvPipeT_class, "belongs_to_ruby?", mrb_UV_UvPipeT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvPipeT::custom_pre_attr_definitions */
+/* MRUBY_BINDING: UvPipeT::pre_attr_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
@@ -164,14 +162,17 @@ void mrb_UV_UvPipeT_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvPipeT::custom_pre_instance_method_definitions */
+/* MRUBY_BINDING: UvPipeT::pre_instance_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvPipeT::instance_method_definitions */
-/* sha: user_defined */
-
+/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
+  /*
+   * Member Functions
+   */
+  /* None */
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvPipeT::class_init_footer */
@@ -180,7 +181,7 @@ void mrb_UV_UvPipeT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 }
 
-/* MRUBY_BINDING: custom_footer */
+/* MRUBY_BINDING: footer */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

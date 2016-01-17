@@ -7,7 +7,7 @@
 
 #if BIND_UvReqT_TYPE
 
-/* MRUBY_BINDING: custom_header */
+/* MRUBY_BINDING: header */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
@@ -179,7 +179,7 @@ void mrb_UV_UvReqT_init(mrb_state* mrb) {
   MRB_SET_INSTANCE_TT(UvReqT_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvReqT::custom_pre_class_method_definitions */
+/* MRUBY_BINDING: UvReqT::pre_class_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
@@ -193,7 +193,7 @@ void mrb_UV_UvReqT_init(mrb_state* mrb) {
   mrb_define_class_method(mrb, UvReqT_class, "belongs_to_ruby?", mrb_UV_UvReqT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvReqT::custom_pre_attr_definitions */
+/* MRUBY_BINDING: UvReqT::pre_attr_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
@@ -217,14 +217,17 @@ void mrb_UV_UvReqT_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvReqT::custom_pre_instance_method_definitions */
+/* MRUBY_BINDING: UvReqT::pre_instance_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvReqT::instance_method_definitions */
-/* sha: user_defined */
-
+/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
+  /*
+   * Member Functions
+   */
+  /* None */
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvReqT::class_init_footer */
@@ -233,7 +236,7 @@ void mrb_UV_UvReqT_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 }
 
-/* MRUBY_BINDING: custom_footer */
+/* MRUBY_BINDING: footer */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

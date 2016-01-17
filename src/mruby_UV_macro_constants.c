@@ -1,6 +1,6 @@
 #include "mruby_UV.h"
 
-/* MRUBY_BINDING: macro_definition_header */
+/* MRUBY_BINDING: header */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
@@ -19,7 +19,7 @@ mruby_UV_define_macro_constants(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 }
 
-/* MRUBY_BINDING: macro_definition_footer */
+/* MRUBY_BINDING: footer */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

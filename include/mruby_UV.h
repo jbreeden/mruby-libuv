@@ -41,6 +41,31 @@
 
 /* MRUBY_BINDING: post_includes */
 /* sha: user_defined */
+#include "mruby_UV_callback_thunks.h"
+
+typedef struct mrb_uv_handle_data_s {
+  mrb_state* mrb;
+  mrb_value self;
+} mruby_uv_handle_data_t;
+
+#define MRUBY_UV_HANDLE_SELF(handle) ((mruby_uv_handle_data_t*)((uv_handle_t*)handle)->data)->self
+#define MRUBY_UV_HANDLE_MRB(handle) ((mruby_uv_handle_data_t*)((uv_handle_t*)handle)->data)->mrb
+
+void free_mruby_uv_handle(uv_handle_t * handle);
+uv_handle_t * new_mruby_uv_handle(mrb_state* mrb, mrb_value self, size_t size);
+
+#define INIT_LOOP_DATA(loop, mrb, _self) \
+if (loop->data == NULL) { \
+  mruby_uv_handle_data_t * data = (mruby_uv_handle_data_t*)calloc(1, sizeof(mruby_uv_handle_data_t)); \
+  data->mrb = mrb; \
+  data->self = _self; \
+  loop->data = data; \
+}
+
+int set_loop_reference(mrb_state*, mrb_value);
+int unset_loop_reference(mrb_state*, mrb_value);
+#define SET_LOOP_REF(rb_handle) if (set_loop_reference(mrb, rb_handle)) return mrb_nil_value();
+#define UNSET_LOOP_REF(rb_handle) if (unset_loop_reference(mrb, rb_handle)) return mrb_nil_value();
 
 /* MRUBY_BINDING_END */
 

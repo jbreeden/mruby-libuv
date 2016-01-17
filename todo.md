@@ -1,0 +1,2 @@
+- close on GC, use callback to free mem
+- unref all handles when stopped
