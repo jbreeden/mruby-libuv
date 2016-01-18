@@ -69,12 +69,12 @@
 #define BIND_uv_fs_rmdir_FUNCTION TRUE
 #define BIND_uv_fs_scandir_FUNCTION TRUE
 #define BIND_uv_fs_scandir_next_FUNCTION TRUE
-#define BIND_uv_fs_sendfile_FUNCTION FALSE
+#define BIND_uv_fs_sendfile_FUNCTION TRUE
 #define BIND_uv_fs_stat_FUNCTION TRUE
 #define BIND_uv_fs_symlink_FUNCTION TRUE
 #define BIND_uv_fs_unlink_FUNCTION TRUE
 #define BIND_uv_fs_utime_FUNCTION TRUE
-#define BIND_uv_fs_write_FUNCTION FALSE
+#define BIND_uv_fs_write_FUNCTION TRUE
 #define BIND_uv_get_free_memory_FUNCTION FALSE
 #define BIND_uv_get_process_title_FUNCTION FALSE
 #define BIND_uv_get_total_memory_FUNCTION FALSE

@@ -2432,7 +2432,7 @@ mrb_UV_uv_fs_open(mrb_state* mrb, mrb_value self) {
 
   /* Invocation */
   int native_return_value = uv_fs_open(native_loop, native_req, native_path, native_flags, native_mode, thunk);
-
+  
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
   
@@ -3083,13 +3083,13 @@ mrb_UV_uv_fs_sendfile(mrb_state* mrb, mrb_value self) {
   mrb_value req;
   mrb_int native_out_fd;
   mrb_int native_in_fd;
-  mrb_value in_offset;
+  mrb_int native_in_offset;
   mrb_int native_length;
   mrb_value native_cb = mrb_nil_value();
   uv_fs_cb thunk = NULL;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooiioi|&", &loop, &req, &native_out_fd, &native_in_fd, &in_offset, &native_length, &native_cb);
+  mrb_get_args(mrb, "ooiioi|&", &loop, &req, &native_out_fd, &native_in_fd, &native_in_offset, &native_length, &native_cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
@@ -3100,7 +3100,6 @@ mrb_UV_uv_fs_sendfile(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_int64_t(in_offset);
   if (!mrb_nil_p(native_cb)) {
     thunk = mruby_uv_fs_cb_thunk;
     mrb_iv_set(mrb, req, mrb_intern_cstr(mrb, "@mruby_uv_fs_cb"), native_cb);
@@ -3111,9 +3110,6 @@ mrb_UV_uv_fs_sendfile(mrb_state* mrb, mrb_value self) {
 
   /* Unbox param: req */
   uv_fs_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_fs_t(req));
-
-  /* Unbox param: in_offset */
-  int64_t native_in_offset = TODO_mruby_unbox_int64_t(in_offset);
 
   /* Invocation */
   int native_return_value = uv_fs_sendfile(native_loop, native_req, native_out_fd, native_in_fd, native_in_offset, native_length, thunk);
@@ -3361,7 +3357,7 @@ mrb_UV_uv_fs_utime(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING: uv_fs_write */
 /* sha: 4bd17bad6df67e0589ccfa4f93019edd3c11218c1081ae692ba7b2789f73ff8e */
 #if BIND_uv_fs_write_FUNCTION
-#define uv_fs_write_REQUIRED_ARGC 6
+#define uv_fs_write_REQUIRED_ARGC 5
 #define uv_fs_write_OPTIONAL_ARGC 1
 /* uv_fs_write
  *
@@ -3380,14 +3376,14 @@ mrb_UV_uv_fs_write(mrb_state* mrb, mrb_value self) {
   mrb_value loop;
   mrb_value req;
   mrb_int native_file;
-  mrb_value bufs;
-  mrb_int native_nbufs;
-  mrb_value offset;
+  char * native_buf = NULL;
+  mrb_int native_buf_len = 0;
+  mrb_int native_offset;
   mrb_value native_cb;
   uv_fs_cb thunk = NULL;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooioio|&", &loop, &req, &native_file, &bufs, &native_nbufs, &offset, &native_cb);
+  mrb_get_args(mrb, "ooisi|&", &loop, &req, &native_file, &native_buf, &native_buf_len, &native_offset, &native_cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
@@ -3398,8 +3394,6 @@ mrb_UV_uv_fs_write(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_uv_buf_t_[](bufs);
-  TODO_type_check_int64_t(offset);
   if (!mrb_nil_p(native_cb)) {
     thunk = mruby_uv_fs_cb_thunk;
     mrb_iv_set(mrb, req, mrb_intern_cstr(mrb, "@mruby_uv_fs_cb"), native_cb);
@@ -3412,13 +3406,12 @@ mrb_UV_uv_fs_write(mrb_state* mrb, mrb_value self) {
   uv_fs_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_fs_t(req));
 
   /* Unbox param: bufs */
-  const uv_buf_t [] native_bufs = TODO_mruby_unbox_uv_buf_t_[](bufs);
-
-  /* Unbox param: offset */
-  int64_t native_offset = TODO_mruby_unbox_int64_t(offset);
+  uv_buf_t buf;
+  buf.len = native_buf_len;
+  buf.base = native_buf;
 
   /* Invocation */
-  int native_return_value = uv_fs_write(native_loop, native_req, native_file, native_bufs, native_nbufs, native_offset, thunk);
+  int native_return_value = uv_fs_write(native_loop, native_req, native_file, &buf, 1, native_offset, thunk);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);

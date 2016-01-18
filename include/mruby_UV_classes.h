@@ -70,11 +70,6 @@
 #define BIND_UvGetnameinfoT_loop_FIELD_READER TRUE
 #define BIND_UvGetnameinfoT_loop_FIELD_WRITER TRUE
 #define BIND_UvHandleT_TYPE TRUE
-#define BIND_UvHandleT_INITIALIZE FALSE
-#define BIND_UvHandleT_data_FIELD_READER TRUE
-#define BIND_UvHandleT_data_FIELD_WRITER TRUE
-#define BIND_UvHandleT_loop_FIELD_READER TRUE
-#define BIND_UvHandleT_loop_FIELD_WRITER TRUE
 #define BIND_UvIdleT_TYPE TRUE
 #define BIND_UvIdleT_INITIALIZE TRUE
 #define BIND_UvInterfaceAddressT_TYPE TRUE
@@ -140,11 +135,6 @@
 #define BIND_UvProcessT_pid_FIELD_READER TRUE
 #define BIND_UvProcessT_pid_FIELD_WRITER TRUE
 #define BIND_UvReqT_TYPE TRUE
-#define BIND_UvReqT_INITIALIZE TRUE
-#define BIND_UvReqT_data_FIELD_READER TRUE
-#define BIND_UvReqT_data_FIELD_WRITER TRUE
-#define BIND_UvReqT_type_FIELD_READER TRUE
-#define BIND_UvReqT_type_FIELD_WRITER TRUE
 #define BIND_UvRusageT_TYPE TRUE
 #define BIND_UvRusageT_INITIALIZE FALSE
 #define BIND_UvRusageT_ru_utime_FIELD_READER FALSE
@@ -192,7 +182,6 @@
 #define BIND_UvSignalT_signum_FIELD_READER TRUE
 #define BIND_UvSignalT_signum_FIELD_WRITER TRUE
 #define BIND_UvStatT_TYPE TRUE
-#define BIND_UvStatT_INITIALIZE FALSE
 #define BIND_UvStatT_st_dev_FIELD_READER TRUE
 #define BIND_UvStatT_st_mode_FIELD_READER TRUE
 #define BIND_UvStatT_st_nlink_FIELD_READER TRUE
