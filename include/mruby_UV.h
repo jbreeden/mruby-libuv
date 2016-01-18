@@ -43,20 +43,29 @@
 /* sha: user_defined */
 #include "mruby_UV_callback_thunks.h"
 
-typedef struct mrb_uv_handle_data_s {
+typedef struct {
   mrb_state* mrb;
   mrb_value self;
-} mruby_uv_handle_data_t;
+} mruby_uv_data_t;
 
-#define MRUBY_UV_HANDLE_SELF(handle) ((mruby_uv_handle_data_t*)((uv_handle_t*)handle)->data)->self
-#define MRUBY_UV_HANDLE_MRB(handle) ((mruby_uv_handle_data_t*)((uv_handle_t*)handle)->data)->mrb
+typedef struct {
+  uv_fs_t handle_data;
+  uv_buf_t buf;
+} uv_fs_and_buf_t;
+
+#define MRUBY_UV_HANDLE_SELF(handle) ((mruby_uv_data_t*)((uv_handle_t*)handle)->data)->self
+#define MRUBY_UV_HANDLE_MRB(handle) ((mruby_uv_data_t*)((uv_handle_t*)handle)->data)->mrb
+#define MRUBY_UV_REQ_SELF(handle) ((mruby_uv_data_t*)((uv_handle_t*)handle)->data)->self
+#define MRUBY_UV_REQ_MRB(handle) ((mruby_uv_data_t*)((uv_handle_t*)handle)->data)->mrb
 
 void free_mruby_uv_handle(uv_handle_t * handle);
+void free_mruby_uv_req(uv_req_t * req);
 uv_handle_t * new_mruby_uv_handle(mrb_state* mrb, mrb_value self, size_t size);
+uv_req_t * new_mruby_uv_req(mrb_state* mrb, mrb_value self, size_t size);
 
 #define INIT_LOOP_DATA(loop, mrb, _self) \
 if (loop->data == NULL) { \
-  mruby_uv_handle_data_t * data = (mruby_uv_handle_data_t*)calloc(1, sizeof(mruby_uv_handle_data_t)); \
+  mruby_uv_data_t * data = (mruby_uv_data_t*)calloc(1, sizeof(mruby_uv_data_t)); \
   data->mrb = mrb; \
   data->self = _self; \
   loop->data = data; \

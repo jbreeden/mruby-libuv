@@ -21,11 +21,9 @@
 #if BIND_UvGetaddrinfoT_INITIALIZE
 mrb_value
 mrb_UV_UvGetaddrinfoT_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Uncomment (and optionally replace) if an initializer is desired.
-  uv_getaddrinfo_t* native_object = (uv_getaddrinfo_t*)calloc(1, sizeof(uv_getaddrinfo_t));
+  uv_getaddrinfo_t* native_object = (uv_getaddrinfo_t*)new_mruby_uv_req(mrb, self, sizeof(uv_getaddrinfo_t));
   mruby_gift_uv_getaddrinfo_t_data_ptr(self, native_object);
   return self;
-*/
 }
 #endif
 /* MRUBY_BINDING_END */

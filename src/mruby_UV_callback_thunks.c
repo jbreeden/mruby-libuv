@@ -8,9 +8,10 @@ void mruby_uv_alloc_cb(uv_handle_t * handle, size_t suggested_size, uv_buf_t * b
 /*
  * Handle Thunks
  */
- 
+
+/* Used for handles & requests. 'Merica */ 
 #define UNWRAP_MRB_HANDLE_CONTEXT(handle) \
-mruby_uv_handle_data_t * data = ((mruby_uv_handle_data_t*)handle->data); \
+mruby_uv_data_t * data = ((mruby_uv_data_t*)handle->data); \
 mrb_state * mrb = data->mrb; \
 mrb_value self = data->self;
  
@@ -199,15 +200,37 @@ void mruby_uv_signal_cb_thunk(uv_signal_t * handle, int signal_num) {
 /*
  * Request Callback Thunks
  */
-// 
+
 // void mruby_uv_connect_cb_thunk(uv_connect_t *, int) {
 // 
 // }
-// 
-// void mruby_uv_fs_cb_thunk(uv_fs_t *) {
-// 
-// }
-// 
+
+void mruby_uv_fs_cb_thunk(uv_fs_t * req) {
+  UNWRAP_MRB_HANDLE_CONTEXT(req);
+  uv_buf_t * buf = &((uv_fs_and_buf_t*)req)->buf;
+  
+  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_fs_cb"));
+  /* xxx: This should never happen... might want an assert for this */
+  if (mrb_nil_p(callback)) return;
+  
+  /* Save off the buffer in a ruby string, then ALWAYS free & NULLify the old buf */
+  if (buf->base == NULL || req->result < 0) {
+    /* Explicitly set to NULL in case this object is being reused. */
+    mrb_iv_set(mrb, MRUBY_UV_REQ_SELF(req), mrb_intern_cstr(mrb, "@buf"), mrb_nil_value());
+  } else {
+    mrb_iv_set(mrb, MRUBY_UV_REQ_SELF(req), mrb_intern_cstr(mrb, "@buf"), mrb_str_new(mrb, buf->base, req->result));
+  }
+  
+  if (buf->base != NULL) {
+    free(buf->base);
+    buf->base = NULL;
+    buf->len = 0;
+  }
+  
+  /* Invoke callback */
+  mrb_funcall(mrb, callback, "call", 1, MRUBY_UV_REQ_SELF(req));
+}
+
 // void mruby_uv_getaddrinfo_cb_thunk(uv_getaddrinfo_t *, int, struct addrinfo *) {
 // 
 // }

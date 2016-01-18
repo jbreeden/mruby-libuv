@@ -14,6 +14,10 @@ namespace :bindings do
       sh "clang2json #{header} >> declarations.json"
     end
     
+    # Don't want to scan the platform dependent headers, so I've
+    # plucked a few required declarations into another file
+    sh "clang2json mruby-bindings.in/dummy_decls.h >> declarations.json"
+    
     # libuv uses macros for some struct members that clang2json doesn't pick up.
     # Append hand-written declarations
     sh "cat mruby-bindings.in/declarations_patch.json >> declarations.json"

@@ -47,7 +47,7 @@ int set_loop_reference(mrb_state* mrb, mrb_value obj) {
     mrb_raise(mrb, E_RUNTIME_ERROR, "Attempt to SET_LOOP_REF on native handle with no associated loop");
     return 1;
   }
-  mruby_uv_handle_data_t * data = (mruby_uv_handle_data_t *)(handle->loop->data);
+  mruby_uv_data_t * data = (mruby_uv_data_t *)(handle->loop->data);
   mrb_funcall(mrb, data->self, "ref", 1, obj);
   return 0;
 }
@@ -58,15 +58,25 @@ int unset_loop_reference(mrb_state* mrb, mrb_value obj) {
     /* No loop associated, so nothing to be done. Not an error. */
     return 0;
   }
-  mruby_uv_handle_data_t * data = (mruby_uv_handle_data_t *)(handle->loop->data);
+  mruby_uv_data_t * data = (mruby_uv_data_t *)(handle->loop->data);
   mrb_funcall(mrb, data->self, "unref", 1, obj);
   return 0;
+}
+
+uv_req_t *
+new_mruby_uv_req(mrb_state* mrb, mrb_value self, size_t size) {
+  uv_req_t* req = (uv_req_t*)calloc(1, size);
+  mruby_uv_data_t* data = (mruby_uv_data_t*)calloc(1, sizeof(mruby_uv_data_t));
+  data->mrb = mrb;
+  data->self = self;
+  req->data = data;
+  return req;
 }
 
 uv_handle_t *
 new_mruby_uv_handle(mrb_state* mrb, mrb_value self, size_t size) {
   uv_handle_t* handle = (uv_handle_t*)calloc(1, size);
-  mruby_uv_handle_data_t* data = (mruby_uv_handle_data_t*)calloc(1, sizeof(mruby_uv_handle_data_t));
+  mruby_uv_data_t* data = (mruby_uv_data_t*)calloc(1, sizeof(mruby_uv_data_t));
   data->mrb = mrb;
   data->self = self;
   handle->data = data;
@@ -75,6 +85,14 @@ new_mruby_uv_handle(mrb_state* mrb, mrb_value self, size_t size) {
 
 void
 free_mruby_uv_handle(uv_handle_t * handle) {
+  if (handle->data != NULL) {
+    free(handle->data);
+  }
+  free(handle);
+}
+
+void
+free_mruby_uv_req(uv_req_t * handle) {
   if (handle->data != NULL) {
     free(handle->data);
   }
@@ -276,7 +294,7 @@ static void free_uv_connect_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free(box->obj);
+      free_mruby_uv_req((uv_req_t*)box->obj);
       box->obj = NULL;
     }
   }
@@ -581,7 +599,13 @@ static void free_uv_fs_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free(box->obj);
+      uv_fs_req_cleanup((uv_fs_t*)box->obj);
+      uv_buf_t buf = ((uv_fs_and_buf_t*)box->obj)->buf;
+      if (buf.base != NULL) {
+        free(buf.base);
+        buf.base = NULL;
+      }
+      free_mruby_uv_req((uv_req_t*)box->obj);
       box->obj = NULL;
     }
   }
@@ -642,7 +666,7 @@ static void free_uv_getaddrinfo_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free(box->obj);
+      free_mruby_uv_req((uv_req_t*)box->obj);
       box->obj = NULL;
     }
   }
@@ -703,7 +727,7 @@ static void free_uv_getnameinfo_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free(box->obj);
+      free_mruby_uv_req((uv_req_t*)box->obj);
       box->obj = NULL;
     }
   }
@@ -1436,7 +1460,7 @@ static void free_uv_shutdown_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free(box->obj);
+      free_mruby_uv_req((uv_req_t*)box->obj);
       box->obj = NULL;
     }
   }
@@ -2046,7 +2070,7 @@ static void free_uv_udp_send_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free_mruby_uv_handle((uv_handle_t*)box->obj);
+      free_mruby_uv_req((uv_req_t*)box->obj);
       box->obj = NULL;
     }
   }
@@ -2168,7 +2192,7 @@ static void free_uv_work_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free(box->obj);
+      free_mruby_uv_req((uv_req_t*)box->obj);
       box->obj = NULL;
     }
   }
@@ -2229,7 +2253,7 @@ static void free_uv_write_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free(box->obj);
+      free_mruby_uv_req((uv_req_t*)box->obj);
       box->obj = NULL;
     }
   }

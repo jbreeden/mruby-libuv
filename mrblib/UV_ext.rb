@@ -8,3 +8,7 @@ class UV::UvLoopT
     @refs.delete(obj) if @refs
   end
 end
+
+class UV::UvFsT
+  attr_reader :buf
+end

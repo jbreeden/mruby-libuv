@@ -21,11 +21,9 @@
 #if BIND_UvShutdownT_INITIALIZE
 mrb_value
 mrb_UV_UvShutdownT_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Uncomment (and optionally replace) if an initializer is desired.
-  uv_shutdown_t* native_object = (uv_shutdown_t*)calloc(1, sizeof(uv_shutdown_t));
+  uv_shutdown_t* native_object = (uv_shutdown_t*)new_mruby_uv_req(mrb, self, sizeof(uv_shutdown_t));
   mruby_gift_uv_shutdown_t_data_ptr(self, native_object);
   return self;
-*/
 }
 #endif
 /* MRUBY_BINDING_END */

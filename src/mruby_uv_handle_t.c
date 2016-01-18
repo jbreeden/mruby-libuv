@@ -81,13 +81,7 @@ mrb_UV_UvHandleT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_UV_UvHandleT_get_data(mrb_state* mrb, mrb_value self) {
-  uv_handle_t * native_self = mruby_unbox_uv_handle_t(self);
-  void * native_data = native_self->data;
-  if (native_data == NULL) {
-    return mrb_nil_value();
-  } else {
-    return *((mrb_value*)(native_data));
-  }
+  return mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@data"));
 }
 #endif
 /* MRUBY_BINDING_END */
@@ -102,21 +96,10 @@ mrb_UV_UvHandleT_get_data(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_UV_UvHandleT_set_data(mrb_state* mrb, mrb_value self) {
-  uv_handle_t * native_self = mruby_unbox_uv_handle_t(self);
   mrb_value data;
-
   mrb_get_args(mrb, "o", &data);
-
-  /* type checking */
-  TODO_type_check_void_PTR(data);
-
-  void * native_data = TODO_mruby_unbox_void_PTR(data);
-
-  native_self->data = native_data;
-  
-  mrb_value value_as_mrb_value;
-  mrb_get_args(mrb, "o", &value_as_mrb_value);
-  return value_as_mrb_value;
+  mrb_iv_set(mrb, self, mrb_intern_cstr(mrb, "@data"), data);
+  return data;
 }
 #endif
 /* MRUBY_BINDING_END */

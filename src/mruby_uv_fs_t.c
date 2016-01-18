@@ -21,11 +21,9 @@
 #if BIND_UvFsT_INITIALIZE
 mrb_value
 mrb_UV_UvFsT_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Uncomment (and optionally replace) if an initializer is desired.
-  uv_fs_t* native_object = (uv_fs_t*)calloc(1, sizeof(uv_fs_t));
+  uv_fs_t* native_object = (uv_fs_t*)new_mruby_uv_req(mrb, self, sizeof(uv_fs_and_buf_t));
   mruby_gift_uv_fs_t_data_ptr(self, native_object);
   return self;
-*/
 }
 #endif
 /* MRUBY_BINDING_END */
@@ -169,7 +167,7 @@ mrb_UV_UvFsT_set_loop(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvFsT::cb_reader */
-/* sha: bc0c6879d08687ae7e5db052520d7da4838088d91510f1b5c14bb63cbd781876 */
+/* sha: 6a0e8f716ff3373b5d4cf21a6a53ae812d9ba035c36b140860a324397b38f065 */
 #if BIND_UvFsT_cb_FIELD_READER
 /* get_cb
  *
@@ -181,7 +179,7 @@ mrb_UV_UvFsT_get_cb(mrb_state* mrb, mrb_value self) {
 
   uv_fs_cb native_cb = native_self->cb;
 
-  mrb_value cb = TODO_mruby_box_uv_fs_cb(mrb, native_cb);
+  cb = TODO_mruby_box_uv_fs_cb(native_cb);
 
   return cb;
 }
@@ -189,7 +187,7 @@ mrb_UV_UvFsT_get_cb(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UvFsT::cb_writer */
-/* sha: a57b71177629b3372a4bf3a4fa89a0173dcf2238a8999ccea4514187e64bd707 */
+/* sha: 05a6f1e53a6213067b52d598ec06e4d48f2ce197e0fb5cfcb76c29369658f458 */
 #if BIND_UvFsT_cb_FIELD_WRITER
 /* set_cb
  *
@@ -199,14 +197,16 @@ mrb_UV_UvFsT_get_cb(mrb_state* mrb, mrb_value self) {
 mrb_value
 mrb_UV_UvFsT_set_cb(mrb_state* mrb, mrb_value self) {
   uv_fs_t * native_self = mruby_unbox_uv_fs_t(self);
-  mrb_value cb;
+  mrb_value native_cb;
 
-  mrb_get_args(mrb, "o", &cb);
+  mrb_get_args(mrb, "&", &native_cb);
 
   /* type checking */
-  TODO_type_check_uv_fs_cb(cb);
-
-  uv_fs_cb native_cb = TODO_mruby_unbox_uv_fs_cb(cb);
+  if (mrb_nil_p(native_cb)) {
+    mrb_raise(mrb, E_ARGUMENT_ERROR, "No block provided");
+    return mrb_nil_value();
+  }
+  // TODO: mrb_iv_set(mrb, req???, mrb_intern_cstr(mrb, "@mruby_uv_fs_cb"), native_cb);
 
   native_self->cb = native_cb;
   
@@ -230,7 +230,7 @@ mrb_UV_UvFsT_get_result(mrb_state* mrb, mrb_value self) {
 
   ssize_t native_result = native_self->result;
 
-  mrb_value result = TODO_mruby_box_ssize_t(mrb, native_result);
+  mrb_value result = mrb_fixnum_value(native_result);
 
   return result;
 }

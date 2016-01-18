@@ -2,6 +2,18 @@
 # # Param: async_cb (uv_async_cb)
 # CTypes.set_fn_param_type('uv_async_init', 'async_cb', CTypes['???'])
 
+# ## void uv_barrier_destroy(uv_barrier_t * barrier)
+# # Param: barrier (uv_barrier_t *)
+# CTypes.set_fn_param_type('uv_barrier_destroy', 'barrier', CTypes['???'])
+
+# ## int uv_barrier_init(uv_barrier_t * barrier, unsigned int count)
+# # Param: barrier (uv_barrier_t *)
+# CTypes.set_fn_param_type('uv_barrier_init', 'barrier', CTypes['???'])
+
+# ## int uv_barrier_wait(uv_barrier_t * barrier)
+# # Param: barrier (uv_barrier_t *)
+# CTypes.set_fn_param_type('uv_barrier_wait', 'barrier', CTypes['???'])
+
 # ## uv_buf_t uv_buf_init(char * base, unsigned int len)
 # # Return value (uv_buf_t)
 # CTypes.set_fn_return_type('uv_buf_init', CTypes['???'])
@@ -107,8 +119,6 @@
 # CTypes.set_fn_param_type('uv_fs_chown', 'cb', CTypes['???'])
 
 # ## int uv_fs_close(uv_loop_t * loop, uv_fs_t * req, uv_file file, uv_fs_cb cb)
-# # Param: file (uv_file)
-# CTypes.set_fn_param_type('uv_fs_close', 'file', CTypes['???'])
 # # Param: cb (uv_fs_cb)
 # CTypes.set_fn_param_type('uv_fs_close', 'cb', CTypes['???'])
 
@@ -123,14 +133,10 @@
 # CTypes.set_fn_param_type('uv_fs_event_start', 'cb', CTypes['???'])
 
 # ## int uv_fs_fchmod(uv_loop_t * loop, uv_fs_t * req, uv_file file, int mode, uv_fs_cb cb)
-# # Param: file (uv_file)
-# CTypes.set_fn_param_type('uv_fs_fchmod', 'file', CTypes['???'])
 # # Param: cb (uv_fs_cb)
 # CTypes.set_fn_param_type('uv_fs_fchmod', 'cb', CTypes['???'])
 
 # ## int uv_fs_fchown(uv_loop_t * loop, uv_fs_t * req, uv_file file, uv_uid_t uid, uv_gid_t gid, uv_fs_cb cb)
-# # Param: file (uv_file)
-# CTypes.set_fn_param_type('uv_fs_fchown', 'file', CTypes['???'])
 # # Param: uid (uv_uid_t)
 # CTypes.set_fn_param_type('uv_fs_fchown', 'uid', CTypes['???'])
 # # Param: gid (uv_gid_t)
@@ -139,34 +145,24 @@
 # CTypes.set_fn_param_type('uv_fs_fchown', 'cb', CTypes['???'])
 
 # ## int uv_fs_fdatasync(uv_loop_t * loop, uv_fs_t * req, uv_file file, uv_fs_cb cb)
-# # Param: file (uv_file)
-# CTypes.set_fn_param_type('uv_fs_fdatasync', 'file', CTypes['???'])
 # # Param: cb (uv_fs_cb)
 # CTypes.set_fn_param_type('uv_fs_fdatasync', 'cb', CTypes['???'])
 
 # ## int uv_fs_fstat(uv_loop_t * loop, uv_fs_t * req, uv_file file, uv_fs_cb cb)
-# # Param: file (uv_file)
-# CTypes.set_fn_param_type('uv_fs_fstat', 'file', CTypes['???'])
 # # Param: cb (uv_fs_cb)
 # CTypes.set_fn_param_type('uv_fs_fstat', 'cb', CTypes['???'])
 
 # ## int uv_fs_fsync(uv_loop_t * loop, uv_fs_t * req, uv_file file, uv_fs_cb cb)
-# # Param: file (uv_file)
-# CTypes.set_fn_param_type('uv_fs_fsync', 'file', CTypes['???'])
 # # Param: cb (uv_fs_cb)
 # CTypes.set_fn_param_type('uv_fs_fsync', 'cb', CTypes['???'])
 
 # ## int uv_fs_ftruncate(uv_loop_t * loop, uv_fs_t * req, uv_file file, int64_t offset, uv_fs_cb cb)
-# # Param: file (uv_file)
-# CTypes.set_fn_param_type('uv_fs_ftruncate', 'file', CTypes['???'])
 # # Param: offset (int64_t)
 # CTypes.set_fn_param_type('uv_fs_ftruncate', 'offset', CTypes['???'])
 # # Param: cb (uv_fs_cb)
 # CTypes.set_fn_param_type('uv_fs_ftruncate', 'cb', CTypes['???'])
 
 # ## int uv_fs_futime(uv_loop_t * loop, uv_fs_t * req, uv_file file, double atime, double mtime, uv_fs_cb cb)
-# # Param: file (uv_file)
-# CTypes.set_fn_param_type('uv_fs_futime', 'file', CTypes['???'])
 # # Param: cb (uv_fs_cb)
 # CTypes.set_fn_param_type('uv_fs_futime', 'cb', CTypes['???'])
 
@@ -201,8 +197,6 @@
 # CTypes.set_fn_param_type('uv_fs_poll_start', 'poll_cb', CTypes['???'])
 
 # ## int uv_fs_read(uv_loop_t * loop, uv_fs_t * req, uv_file file, const uv_buf_t [] bufs, unsigned int nbufs, int64_t offset, uv_fs_cb cb)
-# # Param: file (uv_file)
-# CTypes.set_fn_param_type('uv_fs_read', 'file', CTypes['???'])
 # # Param: bufs (const uv_buf_t [])
 # CTypes.set_fn_param_type('uv_fs_read', 'bufs', CTypes['???'])
 # # Param: offset (int64_t)
@@ -231,10 +225,6 @@
 # CTypes.set_fn_param_type('uv_fs_scandir', 'cb', CTypes['???'])
 
 # ## int uv_fs_sendfile(uv_loop_t * loop, uv_fs_t * req, uv_file out_fd, uv_file in_fd, int64_t in_offset, size_t length, uv_fs_cb cb)
-# # Param: out_fd (uv_file)
-# CTypes.set_fn_param_type('uv_fs_sendfile', 'out_fd', CTypes['???'])
-# # Param: in_fd (uv_file)
-# CTypes.set_fn_param_type('uv_fs_sendfile', 'in_fd', CTypes['???'])
 # # Param: in_offset (int64_t)
 # CTypes.set_fn_param_type('uv_fs_sendfile', 'in_offset', CTypes['???'])
 # # Param: cb (uv_fs_cb)
@@ -257,8 +247,6 @@
 # CTypes.set_fn_param_type('uv_fs_utime', 'cb', CTypes['???'])
 
 # ## int uv_fs_write(uv_loop_t * loop, uv_fs_t * req, uv_file file, const uv_buf_t [] bufs, unsigned int nbufs, int64_t offset, uv_fs_cb cb)
-# # Param: file (uv_file)
-# CTypes.set_fn_param_type('uv_fs_write', 'file', CTypes['???'])
 # # Param: bufs (const uv_buf_t [])
 # CTypes.set_fn_param_type('uv_fs_write', 'bufs', CTypes['???'])
 # # Param: offset (int64_t)
@@ -289,10 +277,6 @@
 # CTypes.set_fn_param_type('uv_getnameinfo', 'getnameinfo_cb', CTypes['???'])
 # # Param: addr (const struct sockaddr *)
 # CTypes.set_fn_param_type('uv_getnameinfo', 'addr', CTypes['???'])
-
-# ## uv_handle_type uv_guess_handle(uv_file file)
-# # Param: file (uv_file)
-# CTypes.set_fn_param_type('uv_guess_handle', 'file', CTypes['???'])
 
 # ## uint64_t uv_hrtime()
 # # Return value (uint64_t)
@@ -417,10 +401,6 @@
 # CTypes.set_fn_param_type('uv_pipe_getsockname', 'buffer', CTypes['???'])
 # # Param: size (size_t *)
 # CTypes.set_fn_param_type('uv_pipe_getsockname', 'size', CTypes['???'])
-
-# ## int uv_pipe_open(uv_pipe_t * arg1, uv_file file)
-# # Param: file (uv_file)
-# CTypes.set_fn_param_type('uv_pipe_open', 'file', CTypes['???'])
 
 # ## int uv_poll_init_socket(uv_loop_t * loop, uv_poll_t * handle, uv_os_sock_t socket)
 # # Param: socket (uv_os_sock_t)
@@ -615,10 +595,6 @@
 # CTypes.set_fn_param_type('uv_tty_get_winsize', 'width', CTypes['???'])
 # # Param: height (int *)
 # CTypes.set_fn_param_type('uv_tty_get_winsize', 'height', CTypes['???'])
-
-# ## int uv_tty_init(uv_loop_t * arg1, uv_tty_t * arg2, uv_file fd, int readable)
-# # Param: fd (uv_file)
-# CTypes.set_fn_param_type('uv_tty_init', 'fd', CTypes['???'])
 
 # ## int uv_udp_bind(uv_udp_t * handle, const struct sockaddr * addr, unsigned int flags)
 # # Param: addr (const struct sockaddr *)

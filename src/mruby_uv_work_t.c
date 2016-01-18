@@ -21,11 +21,9 @@
 #if BIND_UvWorkT_INITIALIZE
 mrb_value
 mrb_UV_UvWorkT_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Uncomment (and optionally replace) if an initializer is desired.
-  uv_work_t* native_object = (uv_work_t*)calloc(1, sizeof(uv_work_t));
+  uv_work_t* native_object = (uv_work_t*)new_mruby_uv_req(mrb, self, sizeof(uv_work_t));
   mruby_gift_uv_work_t_data_ptr(self, native_object);
   return self;
-*/
 }
 #endif
 /* MRUBY_BINDING_END */
