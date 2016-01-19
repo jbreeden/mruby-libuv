@@ -21,7 +21,7 @@
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: includes */
-/* sha: ad50fb1bacb680a84edd0d1438157e7feb696a3e8cc2e5bc040d00fed726b260 */
+/* sha: 717c8c5e289e0fb293beebdbe0868ece2c361e9e12de5b1c22b43c25aa6a6112 */
 #include <stdlib.h>
 #include "mruby.h"
 #include "mruby/array.h"
@@ -42,11 +42,17 @@
 /* MRUBY_BINDING: post_includes */
 /* sha: user_defined */
 
-#ifndef __WIN32
+#ifdef __WIN32
+#  include "Ws2tcpip.h"
+#else
 #  include "unistd.h"
+#  include "sys/socket.h"
+#  include "sys/types.h"
 #endif
 
 #include "mruby_UV_callback_thunks.h"
+
+#define MRUBY_UV_PATH_BUF_SIZE 1024
 
 typedef struct {
   mrb_state* mrb;
@@ -97,8 +103,9 @@ void unset_loop_reference(mrb_state*, mrb_value);
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: class_macros */
-/* sha: 6b5d3eb33e7156feddb6afebb73e756eaf927f110aee5b5efc56d38990fcadc1 */
+/* sha: 6f6bcf4e9dfc815838a1f759090655a4c6a0413fd110d724f46866dab2aa122c */
 #define UV_module(mrb) mrb_module_get(mrb, "UV")
+#define Addrinfo_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Addrinfo")
 #define UvAsyncT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvAsyncT")
 #define UvCheckT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvCheckT")
 #define UvConnectT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvConnectT")
@@ -153,7 +160,10 @@ void unset_loop_reference(mrb_state*, mrb_value);
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: pre_class_init_decls */
-/* sha: 2a1118d505d650406c327cb17e1c5c11ec2f171669b8f1a01fd2b6fa73d4e22b */
+/* sha: a4f72c70c78eef559d801120c598bb2776096f73b23296d959010f5492e0e331 */
+#if BIND_Addrinfo_TYPE
+void mrb_UV_Addrinfo_init(mrb_state* mrb);
+#endif
 #if BIND_UvAsyncT_TYPE
 void mrb_UV_UvAsyncT_init(mrb_state* mrb);
 #endif

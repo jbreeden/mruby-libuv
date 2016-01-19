@@ -23,7 +23,7 @@
 #define BIND_uv_cond_timedwait_FUNCTION FALSE
 #define BIND_uv_cond_wait_FUNCTION FALSE
 #define BIND_uv_cpu_info_FUNCTION FALSE
-#define BIND_uv_cwd_FUNCTION FALSE
+#define BIND_uv_cwd_FUNCTION TRUE
 #define BIND_uv_default_loop_FUNCTION TRUE
 #define BIND_uv_disable_stdio_inheritance_FUNCTION TRUE
 #define BIND_uv_dlclose_FUNCTION FALSE
@@ -31,11 +31,11 @@
 #define BIND_uv_dlopen_FUNCTION FALSE
 #define BIND_uv_dlsym_FUNCTION FALSE
 #define BIND_uv_err_name_FUNCTION TRUE
-#define BIND_uv_exepath_FUNCTION FALSE
+#define BIND_uv_exepath_FUNCTION TRUE
 #define BIND_uv_fileno_FUNCTION FALSE
 #define BIND_uv_free_cpu_info_FUNCTION TRUE
 #define BIND_uv_free_interface_addresses_FUNCTION TRUE
-#define BIND_uv_freeaddrinfo_FUNCTION FALSE
+#define BIND_uv_freeaddrinfo_FUNCTION TRUE
 #define BIND_uv_fs_access_FUNCTION TRUE
 #define BIND_uv_fs_chmod_FUNCTION TRUE
 #define BIND_uv_fs_chown_FUNCTION FALSE
@@ -75,9 +75,9 @@
 #define BIND_uv_fs_unlink_FUNCTION TRUE
 #define BIND_uv_fs_utime_FUNCTION TRUE
 #define BIND_uv_fs_write_FUNCTION TRUE
-#define BIND_uv_get_free_memory_FUNCTION FALSE
+#define BIND_uv_get_free_memory_FUNCTION TRUE
 #define BIND_uv_get_process_title_FUNCTION FALSE
-#define BIND_uv_get_total_memory_FUNCTION FALSE
+#define BIND_uv_get_total_memory_FUNCTION TRUE
 #define BIND_uv_getaddrinfo_FUNCTION FALSE
 #define BIND_uv_getnameinfo_FUNCTION FALSE
 #define BIND_uv_getrusage_FUNCTION TRUE
@@ -195,7 +195,7 @@
 #define BIND_uv_timer_stop_FUNCTION TRUE
 #define BIND_uv_try_write_FUNCTION FALSE
 #define BIND_uv_tty_get_winsize_FUNCTION FALSE
-#define BIND_uv_tty_init_FUNCTION FALSE
+#define BIND_uv_tty_init_FUNCTION TRUE
 #define BIND_uv_tty_reset_mode_FUNCTION TRUE
 #define BIND_uv_tty_set_mode_FUNCTION TRUE
 #define BIND_uv_udp_bind_FUNCTION FALSE

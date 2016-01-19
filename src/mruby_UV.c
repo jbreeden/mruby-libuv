@@ -473,7 +473,6 @@ mrb_UV_uv_check_init(mrb_state* mrb, mrb_value self) {
 
   /* Invocation */
   int native_return_value = uv_check_init(native_arg1, native_check);
-  
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -866,7 +865,7 @@ mrb_UV_uv_cpu_info(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING: uv_cwd */
 /* sha: 81144ae06fbc908226260cb9ec0b8e92a6b61d975463c1d14755d66df0f1dc52 */
 #if BIND_uv_cwd_FUNCTION
-#define uv_cwd_REQUIRED_ARGC 2
+#define uv_cwd_REQUIRED_ARGC 0
 #define uv_cwd_OPTIONAL_ARGC 0
 /* uv_cwd
  *
@@ -877,28 +876,15 @@ mrb_UV_uv_cpu_info(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_UV_uv_cwd(mrb_state* mrb, mrb_value self) {
-  mrb_value buffer;
-  mrb_value size;
-
-  /* Fetch the args */
-  mrb_get_args(mrb, "oo", &buffer, &size);
-
-  /* Type checking */
-  TODO_type_check_char_PTR(buffer);
-  TODO_type_check_size_t_PTR(size);
-
-  /* Unbox param: buffer */
-  char * native_buffer = TODO_mruby_unbox_char_PTR(buffer);
-
-  /* Unbox param: size */
-  size_t * native_size = TODO_mruby_unbox_size_t_PTR(size);
-
-  /* Invocation */
-  int native_return_value = uv_cwd(native_buffer, native_size);
-
-  /* Box the return value */
-  mrb_value return_value = mrb_fixnum_value(native_return_value);
+  char * native_buffer = calloc(MRUBY_UV_PATH_BUF_SIZE, sizeof(char));
+  size_t native_size = MRUBY_UV_PATH_BUF_SIZE;
   
+  /* Invocation */
+  mrb_value return_value = mrb_nil_value();
+  if (0 == uv_cwd(native_buffer, &native_size)) {
+    return_value = mrb_str_new_cstr(mrb, native_buffer);
+  }
+  free(native_buffer);
   return return_value;
 }
 #endif
@@ -1128,7 +1114,7 @@ mrb_UV_uv_err_name(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING: uv_exepath */
 /* sha: cde85ca5174171ac4b5c7be361126b9cbaf958394dac93171e204934ed7688ef */
 #if BIND_uv_exepath_FUNCTION
-#define uv_exepath_REQUIRED_ARGC 2
+#define uv_exepath_REQUIRED_ARGC 0
 #define uv_exepath_OPTIONAL_ARGC 0
 /* uv_exepath
  *
@@ -1139,29 +1125,16 @@ mrb_UV_uv_err_name(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_UV_uv_exepath(mrb_state* mrb, mrb_value self) {
-  mrb_value buffer;
-  mrb_value size;
-
-  /* Fetch the args */
-  mrb_get_args(mrb, "oo", &buffer, &size);
-
-  /* Type checking */
-  TODO_type_check_char_PTR(buffer);
-  TODO_type_check_size_t_PTR(size);
-
-  /* Unbox param: buffer */
-  char * native_buffer = TODO_mruby_unbox_char_PTR(buffer);
-
-  /* Unbox param: size */
-  size_t * native_size = TODO_mruby_unbox_size_t_PTR(size);
-
-  /* Invocation */
-  int native_return_value = uv_exepath(native_buffer, native_size);
-
-  /* Box the return value */
-  mrb_value return_value = mrb_fixnum_value(native_return_value);
+  char * native_buffer = (char*)calloc(MRUBY_UV_PATH_BUF_SIZE, sizeof(char));
+  size_t size = MRUBY_UV_PATH_BUF_SIZE;
   
-  return return_value;
+  mrb_value result = mrb_nil_value();
+  if (0 == uv_exepath(native_buffer, &size)) {
+    result = mrb_str_new_cstr(mrb, native_buffer);
+  }
+  
+  free(native_buffer);
+  return result;
 }
 #endif
 /* MRUBY_BINDING_END */
@@ -1285,7 +1258,7 @@ mrb_UV_uv_free_interface_addresses(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_freeaddrinfo */
-/* sha: 366b802b261e81bb789749f580b5d5d1e21acd85fe84fc063a052a94775cc199 */
+/* sha: a87282605872315ae629bbd140ecc748a3fbb6d872c83e4926041fc7caa1e3ac */
 #if BIND_uv_freeaddrinfo_FUNCTION
 #define uv_freeaddrinfo_REQUIRED_ARGC 1
 #define uv_freeaddrinfo_OPTIONAL_ARGC 0
@@ -1303,10 +1276,13 @@ mrb_UV_uv_freeaddrinfo(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &ai);
 
   /* Type checking */
-  TODO_type_check_addrinfo_PTR(ai);
+  if (!mrb_obj_is_kind_of(mrb, ai, Addrinfo_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Addrinfo expected");
+    return mrb_nil_value();
+  }
 
   /* Unbox param: ai */
-  struct addrinfo * native_ai = TODO_mruby_unbox_addrinfo_PTR(ai);
+  struct addrinfo * native_ai = (mrb_nil_p(ai) ? NULL : mruby_unbox_addrinfo(ai));
 
   /* Invocation */
   uv_freeaddrinfo(native_ai);
@@ -3433,9 +3409,11 @@ mrb_UV_uv_get_free_memory(mrb_state* mrb, mrb_value self) {
   uint64_t native_return_value = uv_get_free_memory();
 
   /* Box the return value */
-  mrb_value return_value = TODO_mruby_box_uint64_t(mrb, native_return_value);
-  
-  return return_value;
+  if (native_return_value > MRB_INT_MAX) {
+    mrb_raise(mrb, mrb_class_get(mrb, "RangeError"), "Out of range");
+    return mrb_nil_value();
+  }
+  return mrb_fixnum_value(native_return_value);
 }
 #endif
 /* MRUBY_BINDING_END */
@@ -3491,20 +3469,21 @@ mrb_value
 mrb_UV_uv_get_total_memory(mrb_state* mrb, mrb_value self) {
   /* Invocation */
   uint64_t native_return_value = uv_get_total_memory();
-
-  /* Box the return value */
-  mrb_value return_value = TODO_mruby_box_uint64_t(mrb, native_return_value);
   
-  return return_value;
+  if (native_return_value > MRB_INT_MAX) {
+    mrb_raise(mrb, mrb_class_get(mrb, "RangeError"), "Out of range");
+    return mrb_nil_value();
+  }
+  return mrb_fixnum_value(native_return_value);
 }
 #endif
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_getaddrinfo */
-/* sha: cf897c881163d7d2fa196c019ed9910e2ccc2402529f94390ad21b714b652e5f */
+/* sha: db80218c1eeaa7d42dab43ec450b7356e7258c8ae07c2f11ad97ed930b0349e0 */
 #if BIND_uv_getaddrinfo_FUNCTION
-#define uv_getaddrinfo_REQUIRED_ARGC 6
-#define uv_getaddrinfo_OPTIONAL_ARGC 0
+#define uv_getaddrinfo_REQUIRED_ARGC 5
+#define uv_getaddrinfo_OPTIONAL_ARGC 1
 /* uv_getaddrinfo
  *
  * Parameters:
@@ -3526,7 +3505,7 @@ mrb_UV_uv_getaddrinfo(mrb_state* mrb, mrb_value self) {
   mrb_value hints;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooozzo", &loop, &req, &getaddrinfo_cb, &native_node, &native_service, &hints);
+  mrb_get_args(mrb, "ooozz|o&", &loop, &req, &native_node, &native_service, &hints, &getaddrinfo_cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
@@ -3537,8 +3516,19 @@ mrb_UV_uv_getaddrinfo(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvGetaddrinfoT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_uv_getaddrinfo_cb(getaddrinfo_cb);
-  TODO_type_check_addrinfo_PTR(hints);
+  if (!mrb_obj_is_kind_of(mrb, req, UvGetaddrinfoT_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UvGetaddrinfoT expected");
+    return mrb_nil_value();
+  }
+  if (!mrb_obj_is_kind_of(mrb, hints, Addrinfo_class(mrb)) || mrb_nil_p(hints)) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Addrinfo expected");
+    return mrb_nil_value();
+  }
+  uv_getaddrinfo_cb thunk = NULL;
+  if (!mrb_nil_p(getaddrinfo_cb)) {
+    thunk = mruby_uv_getaddrinfo_cb_thunk;
+    MRUBY_UV_PREPARE_REQ_THUNK(req, "@mruby_uv_getaddrinfo_cb_thunk")
+  }
 
   /* Unbox param: loop */
   uv_loop_t * native_loop = (mrb_nil_p(loop) ? NULL : mruby_unbox_uv_loop_t(loop));
@@ -3546,14 +3536,11 @@ mrb_UV_uv_getaddrinfo(mrb_state* mrb, mrb_value self) {
   /* Unbox param: req */
   uv_getaddrinfo_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_getaddrinfo_t(req));
 
-  /* Unbox param: getaddrinfo_cb */
-  uv_getaddrinfo_cb native_getaddrinfo_cb = TODO_mruby_unbox_uv_getaddrinfo_cb(getaddrinfo_cb);
-
   /* Unbox param: hints */
-  const struct addrinfo * native_hints = TODO_mruby_unbox_addrinfo_PTR(hints);
+  const struct addrinfo * native_hints = (mrb_nil_p(hints) ? NULL : mruby_unbox_addrinfo(hints));
 
   /* Invocation */
-  int native_return_value = uv_getaddrinfo(native_loop, native_req, native_getaddrinfo_cb, native_node, native_service, native_hints);
+  int native_return_value = uv_getaddrinfo(native_loop, native_req, thunk, native_node, native_service, native_hints);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -8170,7 +8157,7 @@ mrb_UV_uv_tty_get_winsize(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tty_init */
-/* sha: 742e6c9426e99aeb65c7457f50a11c765515f794d5afc95e2d5d60d91d92f408 */
+/* sha: 77970ce92262a738ac68b7a1c5f3a699c092be210e940dec7eda6ef49e54ad32 */
 #if BIND_uv_tty_init_FUNCTION
 #define uv_tty_init_REQUIRED_ARGC 4
 #define uv_tty_init_OPTIONAL_ARGC 0
@@ -8187,11 +8174,11 @@ mrb_value
 mrb_UV_uv_tty_init(mrb_state* mrb, mrb_value self) {
   mrb_value arg1;
   mrb_value arg2;
-  mrb_value fd;
+  mrb_int native_fd;
   mrb_int native_readable;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oooi", &arg1, &arg2, &fd, &native_readable);
+  mrb_get_args(mrb, "ooii", &arg1, &arg2, &native_fd, &native_readable);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
@@ -8202,16 +8189,12 @@ mrb_UV_uv_tty_init(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvTtyT expected");
     return mrb_nil_value();
   }
-  TODO_type_check_uv_file(fd);
 
   /* Unbox param: arg1 */
   uv_loop_t * native_arg1 = (mrb_nil_p(arg1) ? NULL : mruby_unbox_uv_loop_t(arg1));
 
   /* Unbox param: arg2 */
   uv_tty_t * native_arg2 = (mrb_nil_p(arg2) ? NULL : mruby_unbox_uv_tty_t(arg2));
-
-  /* Unbox param: fd */
-  uv_file native_fd = TODO_mruby_unbox_uv_file(fd);
 
   /* Invocation */
   int native_return_value = uv_tty_init(native_arg1, native_arg2, native_fd, native_readable);
@@ -9324,7 +9307,10 @@ void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: class_initializations */
-/* sha: ba203c2f056121bc30f56510c645ebb96e4cc6fe8f1447d426ba81f7a8591450 */
+/* sha: c4f0535ff427323f9f005ea96bab21336ec1a4e0af0c226df53219c3659c806b */
+#if BIND_Addrinfo_TYPE
+  mrb_UV_Addrinfo_init(mrb);
+#endif
 #if BIND_UvAsyncT_TYPE
   mrb_UV_UvAsyncT_init(mrb);
 #endif

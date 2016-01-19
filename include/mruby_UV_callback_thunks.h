@@ -20,9 +20,7 @@
 { mrb_gc_register(mrb, self); \
   mrb_iv_set(mrb, self, mrb_intern_cstr(mrb, thunk_name), proc); }
   
-#define MRUBY_UV_FINALIZE_REQ_THUNK(self, thunk_name, proc) \
-{ mrb_gc_unregister(mrb, self); \
-  mrb_iv_set(mrb, self, mrb_intern_cstr(mrb, thunk_name), proc); }
+#define MRUBY_UV_FINALIZE_REQ_THUNK(self) mrb_gc_unregister(mrb, self);
   
 void mruby_uv_alloc_cb(uv_handle_t *, size_t, uv_buf_t *);
 void mruby_uv_close_cb_thunk(uv_handle_t *);

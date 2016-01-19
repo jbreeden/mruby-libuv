@@ -41,6 +41,26 @@ typedef struct mruby_to_native_ref_ {
   void* data;
 } mruby_to_native_ref;
 
+/* MRUBY_BINDING: Addrinfo::boxing_decls */
+/* sha: 6b9b283610bbb66f97487efdd356297cef265f22a9f820352c8980f6def36d0e */
+#if BIND_Addrinfo_TYPE
+mrb_value
+mruby_box_addrinfo(mrb_state* mrb, struct addrinfo *unboxed);
+
+mrb_value
+mruby_giftwrap_addrinfo(mrb_state* mrb, struct addrinfo *unboxed);
+
+void
+mruby_set_addrinfo_data_ptr(mrb_value obj, struct addrinfo *unboxed);
+
+void
+mruby_gift_addrinfo_data_ptr(mrb_value obj, struct addrinfo *unboxed);
+
+struct addrinfo *
+mruby_unbox_addrinfo(mrb_value boxed);
+#endif
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvAsyncT::boxing_decls */
 /* sha: e8126d5e58130414c4d54ce01b62045518702932772b42987bd92895cf3efdbf */
 #if BIND_UvAsyncT_TYPE

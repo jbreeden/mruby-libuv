@@ -1,6 +1,20 @@
 #ifndef MRUBY_UV_CLASSES_HEADER
 #define MRUBY_UV_CLASSES_HEADER
 
+#define BIND_Addrinfo_TYPE TRUE
+#define BIND_Addrinfo_INITIALIZE TRUE
+#define BIND_Addrinfo_ai_flags_FIELD_READER TRUE
+#define BIND_Addrinfo_ai_flags_FIELD_WRITER TRUE
+#define BIND_Addrinfo_ai_family_FIELD_READER TRUE
+#define BIND_Addrinfo_ai_family_FIELD_WRITER TRUE
+#define BIND_Addrinfo_ai_socktype_FIELD_READER TRUE
+#define BIND_Addrinfo_ai_socktype_FIELD_WRITER TRUE
+#define BIND_Addrinfo_ai_protocol_FIELD_READER TRUE
+#define BIND_Addrinfo_ai_protocol_FIELD_WRITER TRUE
+#define BIND_Addrinfo_ai_addrlen_FIELD_READER TRUE
+#define BIND_Addrinfo_ai_addrlen_FIELD_WRITER TRUE
+#define BIND_Addrinfo_ai_canonname_FIELD_READER TRUE
+#define BIND_Addrinfo_ai_canonname_FIELD_WRITER FALSE
 #define BIND_UvAsyncT_TYPE TRUE
 #define BIND_UvAsyncT_INITIALIZE TRUE
 #define BIND_UvCheckT_TYPE TRUE

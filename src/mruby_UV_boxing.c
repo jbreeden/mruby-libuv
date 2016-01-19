@@ -113,6 +113,67 @@ free_mruby_uv_req(uv_req_t * handle) {
 }
 /* MRUBY_BINDING_END */
 
+/* MRUBY_BINDING: Addrinfo_boxing */
+/* sha: 9f11f4036eef3fa993e3c1ca299d2a1b9e827a5a62ca9767211e4d46650dceba */
+#if BIND_Addrinfo_TYPE
+/*
+ * Boxing implementation for struct addrinfo
+ */
+
+static void free_addrinfo(mrb_state* mrb, void* ptr) {
+  mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
+  if (box->belongs_to_ruby) {
+    if (box->obj != NULL) {
+      free(box->obj);
+      box->obj = NULL;
+    }
+  }
+  free(box);
+}
+
+static const mrb_data_type addrinfo_data_type = {
+   "struct addrinfo", free_addrinfo
+};
+
+mrb_value
+mruby_box_addrinfo(mrb_state* mrb, struct addrinfo *unboxed) {
+  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
+  box->belongs_to_ruby = FALSE;
+  box->obj = unboxed;
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Addrinfo_class(mrb), &addrinfo_data_type, box));
+}
+
+mrb_value
+mruby_giftwrap_addrinfo(mrb_state* mrb, struct addrinfo *unboxed) {
+   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
+   box->belongs_to_ruby = TRUE;
+   box->obj = unboxed;
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Addrinfo_class(mrb), &addrinfo_data_type, box));
+}
+
+void
+mruby_set_addrinfo_data_ptr(mrb_value obj, struct addrinfo *unboxed) {
+  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
+  box->belongs_to_ruby = FALSE;
+  box->obj = unboxed;
+  mrb_data_init(obj, box, &addrinfo_data_type);
+}
+
+void
+mruby_gift_addrinfo_data_ptr(mrb_value obj, struct addrinfo *unboxed) {
+  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
+  box->belongs_to_ruby = TRUE;
+  box->obj = unboxed;
+  mrb_data_init(obj, box, &addrinfo_data_type);
+}
+
+struct addrinfo *
+mruby_unbox_addrinfo(mrb_value boxed) {
+  return (struct addrinfo *)((mruby_to_native_ref *)DATA_PTR(boxed))->obj;
+}
+#endif
+/* MRUBY_BINDING_END */
+
 /* MRUBY_BINDING: UvCpuTimesS_boxing */
 /* sha: 4502be6862da2bce112a6ba415dbb1b1ed2f6134eb74b0358a75384603024bab */
 #if BIND_UvCpuTimesS_TYPE
