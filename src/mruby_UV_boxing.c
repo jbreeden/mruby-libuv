@@ -36,6 +36,8 @@
 
 /* MRUBY_BINDING: header */
 /* sha: user_defined */
+#define MRUBY_UV_UNITIALIZE_HANDLE_TYPE UV_HANDLE_TYPE_MAX
+
 void *
 mruby_unbox_as_void_ptr(mrb_value boxed) {
   return ((mruby_to_native_ref *)DATA_PTR(boxed))->obj;
@@ -52,15 +54,15 @@ int set_loop_reference(mrb_state* mrb, mrb_value obj) {
   return 0;
 }
 
-int unset_loop_reference(mrb_state* mrb, mrb_value obj) {
+void unset_loop_reference(mrb_state* mrb, mrb_value obj) {
   uv_handle_t * handle = (uv_handle_t *)(mruby_unbox_as_void_ptr(obj));
   if (handle->loop == NULL) {
     /* No loop associated, so nothing to be done. Not an error. */
-    return 0;
+    return;
   }
   mruby_uv_data_t * data = (mruby_uv_data_t *)(handle->loop->data);
   mrb_funcall(mrb, data->self, "unref", 1, obj);
-  return 0;
+  return;
 }
 
 uv_req_t *
@@ -80,15 +82,26 @@ new_mruby_uv_handle(mrb_state* mrb, mrb_value self, size_t size) {
   data->mrb = mrb;
   data->self = self;
   handle->data = data;
+  handle->type = MRUBY_UV_UNITIALIZE_HANDLE_TYPE;
   return handle;
 }
 
 void
 free_mruby_uv_handle(uv_handle_t * handle) {
-  if (handle->data != NULL) {
-    free(handle->data);
+  /*
+   * NOT THREAD SAFE
+   */
+  
+  if (MRUBY_UV_UNITIALIZE_HANDLE_TYPE != handle->type
+      && !uv_is_closing(handle)) {
+    uv_close(handle, free_mruby_uv_handle);
+  } else {
+    if (handle->data != NULL) {
+      free(handle->data);
+      handle->data = NULL;
+    }
+    free(handle);
   }
-  free(handle);
 }
 
 void

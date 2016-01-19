@@ -29,6 +29,20 @@ mrb_UV_UvHandleT_get_loop(mrb_state* mrb, mrb_value self) {
   return loop;
 }
 
+mrb_value
+mrb_UV_UvHandleT_ref(mrb_state* mrb, mrb_value self) {
+  uv_handle_t * native_self = mruby_unbox_uv_handle_t(self);
+  uv_ref(native_self);
+  return mrb_nil_value();
+}
+
+mrb_value
+mrb_UV_UvHandleT_unref(mrb_state* mrb, mrb_value self) {
+  uv_handle_t * native_self = mruby_unbox_uv_handle_t(self);
+  uv_unref(native_self);
+  return mrb_nil_value();
+}
+
 void mrb_UV_UvHandleT_init(mrb_state* mrb) {
   static int initialized = 0;
   if (initialized) return;
@@ -40,5 +54,7 @@ void mrb_UV_UvHandleT_init(mrb_state* mrb) {
   mrb_define_method(mrb, UvHandleT_class, "data", mrb_UV_UvHandleT_get_data, MRB_ARGS_ARG(0, 0));
   mrb_define_method(mrb, UvHandleT_class, "data=", mrb_UV_UvHandleT_set_data, MRB_ARGS_ARG(1, 0));
   mrb_define_method(mrb, UvHandleT_class, "loop", mrb_UV_UvHandleT_get_loop, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, UvHandleT_class, "ref", mrb_UV_UvHandleT_ref, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, UvHandleT_class, "unref", mrb_UV_UvHandleT_unref, MRB_ARGS_ARG(0, 0));
 }
 #endif

@@ -8,17 +8,27 @@ void mruby_uv_alloc_cb(uv_handle_t * handle, size_t suggested_size, uv_buf_t * b
 /*
  * Handle Thunks
  */
-
-/* Used for handles & requests. 'Merica */ 
-#define UNWRAP_MRB_HANDLE_CONTEXT(handle) \
-mruby_uv_data_t * data = ((mruby_uv_data_t*)handle->data); \
-mrb_state * mrb = data->mrb; \
-mrb_value self = data->self;
+ 
+void mruby_uv_close_cb_thunk(uv_handle_t * handle) {
+  mrb_state * mrb = MRUBY_UV_HANDLE_MRB(handle);
+  mrb_value self = MRUBY_UV_HANDLE_SELF(handle);
+  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_close_cb_thunk"));
+  
+  if (!mrb_nil_p(callback)) {
+    mrb_funcall(mrb, callback, "call", 3, MRUBY_UV_HANDLE_SELF(handle));
+  }
+  
+  /*
+   * Now that the handle has been closed, and any callbacks triggered,
+   * we can unset the loop ref (potentially freeing the handle for GC).
+   */
+  UNSET_LOOP_REF(self);
+}
  
 void mruby_uv_read_cb_thunk(uv_stream_t * handle, ssize_t size, const uv_buf_t * buf) {
-  UNWRAP_MRB_HANDLE_CONTEXT(handle);
-  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_read_cb"));
-  if (mrb_nil_p(callback)) return;
+  mrb_state * mrb = MRUBY_UV_HANDLE_MRB(handle);
+  mrb_value self = MRUBY_UV_HANDLE_SELF(handle);
+  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_read_cb_thunk"));
   
   /* Box Parameters */
   mrb_value rb_size = mrb_fixnum_value(size);
@@ -29,12 +39,15 @@ void mruby_uv_read_cb_thunk(uv_stream_t * handle, ssize_t size, const uv_buf_t *
   free(buf->base);
   
   /* Invoke callback */
+  if (mrb_nil_p(callback)) return;
   mrb_funcall(mrb, callback, "call", 3, MRUBY_UV_HANDLE_SELF(handle), rb_size, rb_buf);
+  MRUBY_UV_FINALIZE_HANDLE_THUNK(self);
 }
  
 void mruby_uv_connection_cb_thunk(uv_stream_t * handle, int status) {
-  UNWRAP_MRB_HANDLE_CONTEXT(handle);
-  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_connection_cb"));
+  mrb_state * mrb = MRUBY_UV_HANDLE_MRB(handle);
+  mrb_value self = MRUBY_UV_HANDLE_SELF(handle);
+  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_connection_cb_thunk"));
   if (mrb_nil_p(callback)) return;
   
   /* Box Parameters */
@@ -42,20 +55,13 @@ void mruby_uv_connection_cb_thunk(uv_stream_t * handle, int status) {
   
   /* Invoke callback */
   mrb_funcall(mrb, callback, "call", 2, MRUBY_UV_HANDLE_SELF(handle), rb_status);
-}
- 
-void mruby_uv_close_cb_thunk(uv_handle_t * handle) {
-  UNWRAP_MRB_HANDLE_CONTEXT(handle);
-  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_close_cb"));
-  if (mrb_nil_p(callback)) return;
-  
-  /* Invoke callback */
-  mrb_funcall(mrb, callback, "call", 1, MRUBY_UV_HANDLE_SELF(handle));
+  MRUBY_UV_FINALIZE_HANDLE_THUNK(self);
 }
  
 void mruby_uv_poll_cb_thunk(uv_poll_t * handle, int status, int events) {
-  UNWRAP_MRB_HANDLE_CONTEXT(handle);
-  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_poll_cb"));
+  mrb_state * mrb = MRUBY_UV_HANDLE_MRB(handle);
+  mrb_value self = MRUBY_UV_HANDLE_SELF(handle);
+  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_poll_cb_thunk"));
   if (mrb_nil_p(callback)) return;
   
   /* Box Parameters */
@@ -64,56 +70,68 @@ void mruby_uv_poll_cb_thunk(uv_poll_t * handle, int status, int events) {
   
   /* Invoke callback */
   mrb_funcall(mrb, callback, "call", 3, MRUBY_UV_HANDLE_SELF(handle), rb_status, rb_events);
+  MRUBY_UV_FINALIZE_HANDLE_THUNK(self);
 }
  
 void mruby_uv_timer_cb_thunk(uv_timer_t * handle) {
-  UNWRAP_MRB_HANDLE_CONTEXT(handle);
-  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_timer_cb"));
+  mrb_state * mrb = MRUBY_UV_HANDLE_MRB(handle);
+  mrb_value self = MRUBY_UV_HANDLE_SELF(handle);
+  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_timer_cb_thunk"));
   if (mrb_nil_p(callback)) return;
   
   /* Invoke callback */
   mrb_funcall(mrb, callback, "call", 1, MRUBY_UV_HANDLE_SELF(handle));
+  MRUBY_UV_FINALIZE_HANDLE_THUNK(self);
 }
  
 void mruby_uv_async_cb_thunk(uv_async_t * handle) {
-  UNWRAP_MRB_HANDLE_CONTEXT(handle);
-  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_async_cb"));
+  mrb_state * mrb = MRUBY_UV_HANDLE_MRB(handle);
+  mrb_value self = MRUBY_UV_HANDLE_SELF(handle);
+  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_async_cb_thunk"));
   if (mrb_nil_p(callback)) return;
   
   /* Invoke callback */
   mrb_funcall(mrb, callback, "call", 1, MRUBY_UV_HANDLE_SELF(handle));
+  MRUBY_UV_FINALIZE_HANDLE_THUNK(self);
 }
 
 void mruby_uv_prepare_cb_thunk(uv_prepare_t * handle) {
-  UNWRAP_MRB_HANDLE_CONTEXT(handle);
-  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_prepare_cb"));
+  mrb_state * mrb = MRUBY_UV_HANDLE_MRB(handle);
+  mrb_value self = MRUBY_UV_HANDLE_SELF(handle);
+  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_prepare_cb_thunk"));
   if (mrb_nil_p(callback)) return;
   
   /* Invoke callback */
   mrb_funcall(mrb, callback, "call", 1, MRUBY_UV_HANDLE_SELF(handle));
+  MRUBY_UV_FINALIZE_HANDLE_THUNK(self);
 }
  
 void mruby_uv_check_cb_thunk(uv_check_t * handle) {
-  UNWRAP_MRB_HANDLE_CONTEXT(handle);
-  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_check_cb"));
+  mrb_state * mrb = MRUBY_UV_HANDLE_MRB(handle);
+  mrb_value self = MRUBY_UV_HANDLE_SELF(handle);
+  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_check_cb_thunk"));
   if (mrb_nil_p(callback)) return;
   
   /* Invoke callback */
   mrb_funcall(mrb, callback, "call", 1, MRUBY_UV_HANDLE_SELF(handle));
+  MRUBY_UV_FINALIZE_HANDLE_THUNK(self);
 }
  
 void mruby_uv_idle_cb_thunk(uv_idle_t * handle) {
-  UNWRAP_MRB_HANDLE_CONTEXT(handle);
-  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_idle_cb"));
+  mrb_state * mrb = MRUBY_UV_HANDLE_MRB(handle);
+  mrb_value self = MRUBY_UV_HANDLE_SELF(handle);
+  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_idle_cb_thunk"));
   if (mrb_nil_p(callback)) return;
   
   /* Invoke callback */
   mrb_funcall(mrb, callback, "call", 1, MRUBY_UV_HANDLE_SELF(handle));
+  MRUBY_UV_FINALIZE_HANDLE_THUNK(self);
 }
  
 void mruby_uv_exit_cb_thunk(uv_process_t * handle, int64_t exit_status, int term_signal) {
-  UNWRAP_MRB_HANDLE_CONTEXT(handle);
-  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_exit_cb"));
+  mrb_state * mrb = MRUBY_UV_HANDLE_MRB(handle);
+  mrb_value self = MRUBY_UV_HANDLE_SELF(handle);
+  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_exit_cb_thunk"));
   if (mrb_nil_p(callback)) return;
   
   /* Box Parameters */
@@ -122,26 +140,19 @@ void mruby_uv_exit_cb_thunk(uv_process_t * handle, int64_t exit_status, int term
   
   /* Invoke callback */
   mrb_funcall(mrb, callback, "call", 3, MRUBY_UV_HANDLE_SELF(handle), rb_exit_status, rb_term_signal);
+  MRUBY_UV_FINALIZE_HANDLE_THUNK(self);
 }
 
 //// TODO: Could do this with a proc... but need to figure out how to protect
 ////       it from GC until after the walk completes. (No handle to associate it with,
 ////       and I'm not sure how to tell when it's done.)
 // void mruby_uv_walk_cb_thunk(uv_handle_t * handle, void * arg) {
-//   UNWRAP_MRB_HANDLE_CONTEXT(handle);
-//   mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_walk_cb"));
-//   if (mrb_nil_p(callback)) return;
-//   
-//   /* NOTE: Arg is unused */
-//   
-//   /* Invoke callback */
-//   /* NOTE: "self" is each handle being walked. */
-//   mrb_funcall(mrb, callback, "call", 1, self);
 // }
  
 void mruby_uv_fs_event_cb_thunk(uv_fs_event_t * handle, const char * filename, int events, int status) {
-  UNWRAP_MRB_HANDLE_CONTEXT(handle);
-  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_fs_event_cb"));
+  mrb_state * mrb = MRUBY_UV_HANDLE_MRB(handle);
+  mrb_value self = MRUBY_UV_HANDLE_SELF(handle);
+  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_fs_event_cb_thunk"));
   if (mrb_nil_p(callback)) return;
   
   /* Box Parameters */
@@ -151,11 +162,13 @@ void mruby_uv_fs_event_cb_thunk(uv_fs_event_t * handle, const char * filename, i
   
   /* Invoke callback */
   mrb_funcall(mrb, callback, "call", 4, MRUBY_UV_HANDLE_SELF(handle), rb_filename, rb_events, rb_status);
+  MRUBY_UV_FINALIZE_HANDLE_THUNK(self);
 }
  
 void mruby_uv_fs_poll_cb_thunk(uv_fs_poll_t * handle, int status, const uv_stat_t * prev, const uv_stat_t * curr) {
-  UNWRAP_MRB_HANDLE_CONTEXT(handle);
-  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_fs_poll_cb"));
+  mrb_state * mrb = MRUBY_UV_HANDLE_MRB(handle);
+  mrb_value self = MRUBY_UV_HANDLE_SELF(handle);
+  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_fs_poll_cb_thunk"));
   if (mrb_nil_p(callback)) return;
   
   /* Box Parameters */
@@ -169,11 +182,13 @@ void mruby_uv_fs_poll_cb_thunk(uv_fs_poll_t * handle, int status, const uv_stat_
   
   /* Invoke callback */
   mrb_funcall(mrb, callback, "call", 4, MRUBY_UV_HANDLE_SELF(handle), rb_status, rb_prev, rb_curr);
+  MRUBY_UV_FINALIZE_HANDLE_THUNK(self);
 }
  
 void mruby_uv_signal_cb_thunk(uv_signal_t * handle, int signal_num) {
-  UNWRAP_MRB_HANDLE_CONTEXT(handle);
-  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_signal_cb"));
+  mrb_state * mrb = MRUBY_UV_HANDLE_MRB(handle);
+  mrb_value self = MRUBY_UV_HANDLE_SELF(handle);
+  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_signal_cb_thunk"));
   if (mrb_nil_p(callback)) return;
   
   /* Box Parameters */
@@ -181,20 +196,11 @@ void mruby_uv_signal_cb_thunk(uv_signal_t * handle, int signal_num) {
   
   /* Invoke callback */
   mrb_funcall(mrb, callback, "call", 2, MRUBY_UV_HANDLE_SELF(handle), rb_signal);
+  MRUBY_UV_FINALIZE_HANDLE_THUNK(self);
 }
  
 // TODO: Need to setup sockaddr wrapper for this one
 // void mruby_uv_udp_recv_cb_thunk(uv_udp_t * handle, ssize_t size, const uv_buf_t * buf, const struct sockaddr * addr, unsigned int flags) {
-//   UNWRAP_MRB_HANDLE_CONTEXT(handle);
-//   mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_udp_recv_cb"));
-//   if (mrb_nil_p(callback)) return;
-//   
-//   /* Box Parameters */
-//   mrb_value rb_size = mrb_fixnum_value(size);
-//   mrb_value 
-//   
-//   /* Invoke callback */
-//   mrb_funcall(mrb, callback, "call", ...);
 // }
 
 /*
@@ -206,10 +212,11 @@ void mruby_uv_signal_cb_thunk(uv_signal_t * handle, int signal_num) {
 // }
 
 void mruby_uv_fs_cb_thunk(uv_fs_t * req) {
-  UNWRAP_MRB_HANDLE_CONTEXT(req);
+  mrb_state * mrb = MRUBY_UV_REQ_MRB(req);
+  mrb_value self = MRUBY_UV_REQ_SELF(req);
   uv_buf_t * buf = &((uv_fs_and_buf_t*)req)->buf;
   
-  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_fs_cb"));
+  mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_fs_cb_thunk"));
   /* xxx: This should never happen... might want an assert for this */
   if (mrb_nil_p(callback)) return;
   

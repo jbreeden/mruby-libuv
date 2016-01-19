@@ -41,6 +41,11 @@
 
 /* MRUBY_BINDING: post_includes */
 /* sha: user_defined */
+
+#ifndef __WIN32
+#  include "unistd.h"
+#endif
+
 #include "mruby_UV_callback_thunks.h"
 
 typedef struct {
@@ -57,6 +62,7 @@ typedef struct {
 #define MRUBY_UV_HANDLE_MRB(handle) ((mruby_uv_data_t*)((uv_handle_t*)handle)->data)->mrb
 #define MRUBY_UV_REQ_SELF(handle) ((mruby_uv_data_t*)((uv_handle_t*)handle)->data)->self
 #define MRUBY_UV_REQ_MRB(handle) ((mruby_uv_data_t*)((uv_handle_t*)handle)->data)->mrb
+#define MRUBY_UV_REQ_MRB(handle) ((mruby_uv_data_t*)((uv_handle_t*)handle)->data)->mrb
 
 void free_mruby_uv_handle(uv_handle_t * handle);
 void free_mruby_uv_req(uv_req_t * req);
@@ -72,9 +78,9 @@ if (loop->data == NULL) { \
 }
 
 int set_loop_reference(mrb_state*, mrb_value);
-int unset_loop_reference(mrb_state*, mrb_value);
+void unset_loop_reference(mrb_state*, mrb_value);
 #define SET_LOOP_REF(rb_handle) if (set_loop_reference(mrb, rb_handle)) return mrb_nil_value();
-#define UNSET_LOOP_REF(rb_handle) if (unset_loop_reference(mrb, rb_handle)) return mrb_nil_value();
+#define UNSET_LOOP_REF(rb_handle) unset_loop_reference(mrb, rb_handle);
 
 /* MRUBY_BINDING_END */
 

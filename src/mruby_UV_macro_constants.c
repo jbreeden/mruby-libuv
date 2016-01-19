@@ -10,31 +10,17 @@ mruby_UV_define_macro_constants(mrb_state* mrb) {
 /* MRUBY_BINDING: pre_macro_definitions */
 /* sha: user_defined */
   struct RClass * uv_module = UV_module(mrb);
-#ifdef SYMLINK_DIR
-  mrb_define_const(mrb, uv_module), "SYMLINK_DIR", mrb_fixnum_value(UV_FS_SYMLINK_DIR));
-#endif
-#ifdef SYMLINK_JUNCTION
-  mrb_define_const(mrb, uv_module, "SYMLINK_JUNCTION", mrb_fixnum_value(UV_FS_SYMLINK_JUNCTION));
-#endif
 
-#ifdef O_RDONLY
+  mrb_define_const(mrb, uv_module, "SYMLINK_DIR", mrb_fixnum_value(UV_FS_SYMLINK_DIR));
+  mrb_define_const(mrb, uv_module, "SYMLINK_JUNCTION", mrb_fixnum_value(UV_FS_SYMLINK_JUNCTION));
+
   mrb_define_const(mrb, uv_module, "O_RDONLY", mrb_fixnum_value(O_RDONLY));
-#endif
-#ifdef O_WRONLY
   mrb_define_const(mrb, uv_module, "O_WRONLY", mrb_fixnum_value(O_WRONLY));
-#endif
-#ifdef O_RDWR
   mrb_define_const(mrb, uv_module, "O_RDWR", mrb_fixnum_value(O_RDWR));
-#endif
-#ifdef O_CREAT
   mrb_define_const(mrb, uv_module, "O_CREAT", mrb_fixnum_value(O_CREAT));
-#endif
-#ifdef O_TRUNC
   mrb_define_const(mrb, uv_module, "O_TRUNC", mrb_fixnum_value(O_TRUNC));
-#endif
-#ifdef O_APPEND
   mrb_define_const(mrb, uv_module, "O_APPEND", mrb_fixnum_value(O_APPEND));
-#endif
+
 #ifdef O_TEXT
   mrb_define_const(mrb, uv_module, "O_TEXT", mrb_fixnum_value(O_TEXT));
 #endif
@@ -52,18 +38,10 @@ mruby_UV_define_macro_constants(mrb_state* mrb) {
   mrb_define_const(mrb, uv_module, "S_IEXEC", mrb_fixnum_value(S_IXUSR));
 #endif
 
-#ifdef F_OK
   mrb_define_const(mrb, uv_module, "F_OK", mrb_fixnum_value(F_OK));
-#endif
-#ifdef R_OK
   mrb_define_const(mrb, uv_module, "R_OK", mrb_fixnum_value(R_OK));
-#endif
-#ifdef W_OK
   mrb_define_const(mrb, uv_module, "W_OK", mrb_fixnum_value(W_OK));
-#endif
-#ifdef X_OK
   mrb_define_const(mrb, uv_module, "X_OK", mrb_fixnum_value(X_OK));
-#endif
 
 #ifdef SIGINT
   mrb_define_const(mrb, uv_module, "SIGINT", mrb_fixnum_value(SIGINT));
