@@ -216,8 +216,6 @@ void mruby_uv_signal_cb_thunk(uv_signal_t * handle, int signal_num) {
 //   mrb_value rb_addr = mruby_box_sockddr(mrb, addr);
 //   mrb_value rb_flags = mrb_fixnum_value(flags);
 //   
-//   /* TODO: Free buf? */
-//   
 //   /* Invoke callback */
 //   MRUBY_UV_FINALIZE_HANDLE_THUNK(self);
 //   mrb_funcall(mrb, callback, "call", 5, MRUBY_UV_HANDLE_SELF(handle), rb_nread, rb_buf, rb_addr, rb_flags);
