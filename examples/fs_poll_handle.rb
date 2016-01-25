@@ -1,9 +1,9 @@
 main_loop = UV.uv_default_loop
 
 puts "Creating fs poll handles"
-dir_poll = UV::UvFsPollT.new
+dir_poll = UV::FSPollT.new
 UV.uv_fs_poll_init(main_loop, dir_poll)
-file_poll = UV::UvFsPollT.new
+file_poll = UV::FSPollT.new
 UV.uv_fs_poll_init(main_loop, file_poll)
 
 home = UV.uv_os_homedir

@@ -61,9 +61,9 @@ mruby_unbox_addrinfo(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvAsyncT::boxing_decls */
-/* sha: e8126d5e58130414c4d54ce01b62045518702932772b42987bd92895cf3efdbf */
-#if BIND_UvAsyncT_TYPE
+/* MRUBY_BINDING: Async::boxing_decls */
+/* sha: b65d1ee99f7fc4908e06331a798fa82ee426693fb912cca1db86997607fe3fa7 */
+#if BIND_Async_TYPE
 mrb_value
 mruby_box_uv_async_t(mrb_state* mrb, uv_async_t *unboxed);
 
@@ -81,9 +81,9 @@ mruby_unbox_uv_async_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvCheckT::boxing_decls */
-/* sha: faab253c6c718459064c77cd14ff365b286c29303c71c0af8af36c6e119b5b3e */
-#if BIND_UvCheckT_TYPE
+/* MRUBY_BINDING: Check::boxing_decls */
+/* sha: b17117f399baa2c025213f8b12dbebef0365f7f9eaa59087dd2f41f237a91a2f */
+#if BIND_Check_TYPE
 mrb_value
 mruby_box_uv_check_t(mrb_state* mrb, uv_check_t *unboxed);
 
@@ -101,9 +101,9 @@ mruby_unbox_uv_check_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvConnectT::boxing_decls */
-/* sha: e325af07162dd68974a3246097ff42fc6eb133f90dbad53b3f46b2e256f9c0a9 */
-#if BIND_UvConnectT_TYPE
+/* MRUBY_BINDING: Connect::boxing_decls */
+/* sha: a2a518765b5cb1a6c76503c572db333c0a2aaa97b1afd0271d0ce28830fd09c4 */
+#if BIND_Connect_TYPE
 mrb_value
 mruby_box_uv_connect_t(mrb_state* mrb, uv_connect_t *unboxed);
 
@@ -121,9 +121,9 @@ mruby_unbox_uv_connect_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvCpuInfoT::boxing_decls */
-/* sha: ea431f435149ff679f8d3e6acf763e745b84cc68f3087f965b451bcbb6d32432 */
-#if BIND_UvCpuInfoT_TYPE
+/* MRUBY_BINDING: CpuInfo::boxing_decls */
+/* sha: a4b38ff055ed56651e3937e1de0cc8d9b84cc86e5dd318cfa2d9b0572bd380c7 */
+#if BIND_CpuInfo_TYPE
 mrb_value
 mruby_box_uv_cpu_info_t(mrb_state* mrb, uv_cpu_info_t *unboxed);
 
@@ -141,9 +141,9 @@ mruby_unbox_uv_cpu_info_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvCpuTimesS::boxing_decls */
-/* sha: 4d1a893749737378eeaf63d81315825901de1315931ecfe2d729bb0c0e5275e7 */
-#if BIND_UvCpuTimesS_TYPE
+/* MRUBY_BINDING: CpuTimesS::boxing_decls */
+/* sha: b3f9dafe0383da3bafaeca010903b4d5502f8ac6dae5a8d4bcadd41fc7832a4e */
+#if BIND_CpuTimesS_TYPE
 mrb_value
 mruby_box_uv_cpu_times_s(mrb_state* mrb, struct uv_cpu_times_s *unboxed);
 
@@ -161,9 +161,9 @@ mruby_unbox_uv_cpu_times_s(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvDirentT::boxing_decls */
-/* sha: 4559e5c4d6cfac0e31ab25c057520dd701f4448a320f33b7353eee974f383dcd */
-#if BIND_UvDirentT_TYPE
+/* MRUBY_BINDING: Dirent::boxing_decls */
+/* sha: baf9b803a749200a852501a3f88c6b2853236e4269b4ffad5987748b3ad3e928 */
+#if BIND_Dirent_TYPE
 mrb_value
 mruby_box_uv_dirent_t(mrb_state* mrb, uv_dirent_t *unboxed);
 
@@ -181,49 +181,9 @@ mruby_unbox_uv_dirent_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsEventT::boxing_decls */
-/* sha: 9041ab2888b28e23440235f4864e865612ea7350d77459dfd35d96deab6205e9 */
-#if BIND_UvFsEventT_TYPE
-mrb_value
-mruby_box_uv_fs_event_t(mrb_state* mrb, uv_fs_event_t *unboxed);
-
-mrb_value
-mruby_giftwrap_uv_fs_event_t(mrb_state* mrb, uv_fs_event_t *unboxed);
-
-void
-mruby_set_uv_fs_event_t_data_ptr(mrb_value obj, uv_fs_event_t *unboxed);
-
-void
-mruby_gift_uv_fs_event_t_data_ptr(mrb_value obj, uv_fs_event_t *unboxed);
-
-uv_fs_event_t *
-mruby_unbox_uv_fs_event_t(mrb_value boxed);
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvFsPollT::boxing_decls */
-/* sha: baff8f4246e5f0140e72c5770929148a5e0930e7aa1d6ddff044b0c69a817121 */
-#if BIND_UvFsPollT_TYPE
-mrb_value
-mruby_box_uv_fs_poll_t(mrb_state* mrb, uv_fs_poll_t *unboxed);
-
-mrb_value
-mruby_giftwrap_uv_fs_poll_t(mrb_state* mrb, uv_fs_poll_t *unboxed);
-
-void
-mruby_set_uv_fs_poll_t_data_ptr(mrb_value obj, uv_fs_poll_t *unboxed);
-
-void
-mruby_gift_uv_fs_poll_t_data_ptr(mrb_value obj, uv_fs_poll_t *unboxed);
-
-uv_fs_poll_t *
-mruby_unbox_uv_fs_poll_t(mrb_value boxed);
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvFsT::boxing_decls */
-/* sha: b919940fb71c1f488b84d6baa80f4f0d7af680b88fe241f5e6171fe37a066939 */
-#if BIND_UvFsT_TYPE
+/* MRUBY_BINDING: FS::boxing_decls */
+/* sha: 98ab871d6b6284fb75798acffd274c64dc48ecab1a6868483c63f60da87bbc0d */
+#if BIND_FS_TYPE
 mrb_value
 mruby_box_uv_fs_t(mrb_state* mrb, uv_fs_t *unboxed);
 
@@ -241,9 +201,49 @@ mruby_unbox_uv_fs_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvGetaddrinfoT::boxing_decls */
-/* sha: 4447f02a92734a2325faaca55c460010a5f3cfa6f8a60dc26513e4f25cdfa15a */
-#if BIND_UvGetaddrinfoT_TYPE
+/* MRUBY_BINDING: FSEvent::boxing_decls */
+/* sha: 3c21c88d79161edbfb744e30624d07522bf84242af7577b60ced3da0591ea5a4 */
+#if BIND_FSEvent_TYPE
+mrb_value
+mruby_box_uv_fs_event_t(mrb_state* mrb, uv_fs_event_t *unboxed);
+
+mrb_value
+mruby_giftwrap_uv_fs_event_t(mrb_state* mrb, uv_fs_event_t *unboxed);
+
+void
+mruby_set_uv_fs_event_t_data_ptr(mrb_value obj, uv_fs_event_t *unboxed);
+
+void
+mruby_gift_uv_fs_event_t_data_ptr(mrb_value obj, uv_fs_event_t *unboxed);
+
+uv_fs_event_t *
+mruby_unbox_uv_fs_event_t(mrb_value boxed);
+#endif
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: FSPoll::boxing_decls */
+/* sha: f26d687a1c3d9f15dad728efe628523c6ac78dc85ca47c455b6ec4c2e0f779dd */
+#if BIND_FSPoll_TYPE
+mrb_value
+mruby_box_uv_fs_poll_t(mrb_state* mrb, uv_fs_poll_t *unboxed);
+
+mrb_value
+mruby_giftwrap_uv_fs_poll_t(mrb_state* mrb, uv_fs_poll_t *unboxed);
+
+void
+mruby_set_uv_fs_poll_t_data_ptr(mrb_value obj, uv_fs_poll_t *unboxed);
+
+void
+mruby_gift_uv_fs_poll_t_data_ptr(mrb_value obj, uv_fs_poll_t *unboxed);
+
+uv_fs_poll_t *
+mruby_unbox_uv_fs_poll_t(mrb_value boxed);
+#endif
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: Getaddrinfo::boxing_decls */
+/* sha: f5ea1a5cd6e540ec89367c482a32662a105094eef7067aea095df6c3350bbed0 */
+#if BIND_Getaddrinfo_TYPE
 mrb_value
 mruby_box_uv_getaddrinfo_t(mrb_state* mrb, uv_getaddrinfo_t *unboxed);
 
@@ -261,9 +261,9 @@ mruby_unbox_uv_getaddrinfo_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvGetnameinfoT::boxing_decls */
-/* sha: 44d161f8e56e58857e3758c64c1e3f4a141cf91770648ccd330b02671fe7582a */
-#if BIND_UvGetnameinfoT_TYPE
+/* MRUBY_BINDING: Getnameinfo::boxing_decls */
+/* sha: 8546ec1d7f56e72270b11fb3b325b0730492a4cb5d2af1ba90f0ba564a4e9b6f */
+#if BIND_Getnameinfo_TYPE
 mrb_value
 mruby_box_uv_getnameinfo_t(mrb_state* mrb, uv_getnameinfo_t *unboxed);
 
@@ -281,9 +281,9 @@ mruby_unbox_uv_getnameinfo_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvHandleT::boxing_decls */
-/* sha: 4ba2f6fb9426ee6fb6589b0c69f7ecfe01290d97f33a626912730c0a4f9fdd05 */
-#if BIND_UvHandleT_TYPE
+/* MRUBY_BINDING: Handle::boxing_decls */
+/* sha: 3f4613051c694b823b7970b64690b4321282c3bac075f94420822a59090d96ba */
+#if BIND_Handle_TYPE
 mrb_value
 mruby_box_uv_handle_t(mrb_state* mrb, uv_handle_t *unboxed);
 
@@ -301,9 +301,9 @@ mruby_unbox_uv_handle_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvIdleT::boxing_decls */
-/* sha: 3d747041a8756c3b7124936b90f6de865ac09645a08a11f6693cc61d19dd3ecb */
-#if BIND_UvIdleT_TYPE
+/* MRUBY_BINDING: Idle::boxing_decls */
+/* sha: 5b24df57984df252393cbac5e773dcce1974b5fd60065ff853007eed563d9620 */
+#if BIND_Idle_TYPE
 mrb_value
 mruby_box_uv_idle_t(mrb_state* mrb, uv_idle_t *unboxed);
 
@@ -321,9 +321,9 @@ mruby_unbox_uv_idle_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvInterfaceAddressT::boxing_decls */
-/* sha: de4881270301499394f2e71fa7f013e8a7a2161d4a54c0f86c6582f23e1fa4d5 */
-#if BIND_UvInterfaceAddressT_TYPE
+/* MRUBY_BINDING: InterfaceAddress::boxing_decls */
+/* sha: 0f7092b2529ecf44b85da9c71296610b4b29641775ff1dcf860fe7901b7f7ec1 */
+#if BIND_InterfaceAddress_TYPE
 mrb_value
 mruby_box_uv_interface_address_t(mrb_state* mrb, uv_interface_address_t *unboxed);
 
@@ -341,9 +341,9 @@ mruby_unbox_uv_interface_address_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvLoopT::boxing_decls */
-/* sha: 7439339d54ac7139e943d18dc78de662bec417fd60dd24bc312063b089a73b28 */
-#if BIND_UvLoopT_TYPE
+/* MRUBY_BINDING: Loop::boxing_decls */
+/* sha: 61953a94d5f6048269f7611a6357a849c94bef7212b6799b45e45f960a19ca6a */
+#if BIND_Loop_TYPE
 mrb_value
 mruby_box_uv_loop_t(mrb_state* mrb, uv_loop_t *unboxed);
 
@@ -361,9 +361,9 @@ mruby_unbox_uv_loop_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvPipeT::boxing_decls */
-/* sha: 83a5da9af56d0639cd07a0268d8ef66e92c3117f2a5b25e6eeba3bdf91b24174 */
-#if BIND_UvPipeT_TYPE
+/* MRUBY_BINDING: Pipe::boxing_decls */
+/* sha: de41faaef9dfac78f85a10dec1a0594749554d1395b2558205a4502c8783f2f1 */
+#if BIND_Pipe_TYPE
 mrb_value
 mruby_box_uv_pipe_t(mrb_state* mrb, uv_pipe_t *unboxed);
 
@@ -381,9 +381,9 @@ mruby_unbox_uv_pipe_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvPollT::boxing_decls */
-/* sha: 23f3ea3d2046880279d563b49c8d4087270e635fe70eda3073f0e02895980669 */
-#if BIND_UvPollT_TYPE
+/* MRUBY_BINDING: Poll::boxing_decls */
+/* sha: 57198fd9dd0b887879783e5f72bb719884b986515c5220b36a4cb35702df8010 */
+#if BIND_Poll_TYPE
 mrb_value
 mruby_box_uv_poll_t(mrb_state* mrb, uv_poll_t *unboxed);
 
@@ -401,9 +401,9 @@ mruby_unbox_uv_poll_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvPrepareT::boxing_decls */
-/* sha: 44624ffa3b8f9d8676debd24f7482033cce095b98a01ef864da0650dd1ceb07f */
-#if BIND_UvPrepareT_TYPE
+/* MRUBY_BINDING: Prepare::boxing_decls */
+/* sha: fffe60dae2e458833b0f039c8f5a6d0fe0a2fcfafc3c8f9c38b780bb5adf8dd1 */
+#if BIND_Prepare_TYPE
 mrb_value
 mruby_box_uv_prepare_t(mrb_state* mrb, uv_prepare_t *unboxed);
 
@@ -421,29 +421,9 @@ mruby_unbox_uv_prepare_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvProcessOptionsT::boxing_decls */
-/* sha: 5ade5a1ab559c24bc2ec130af90f75950a667e671017b590239cbf06d2508b42 */
-#if BIND_UvProcessOptionsT_TYPE
-mrb_value
-mruby_box_uv_process_options_t(mrb_state* mrb, uv_process_options_t *unboxed);
-
-mrb_value
-mruby_giftwrap_uv_process_options_t(mrb_state* mrb, uv_process_options_t *unboxed);
-
-void
-mruby_set_uv_process_options_t_data_ptr(mrb_value obj, uv_process_options_t *unboxed);
-
-void
-mruby_gift_uv_process_options_t_data_ptr(mrb_value obj, uv_process_options_t *unboxed);
-
-uv_process_options_t *
-mruby_unbox_uv_process_options_t(mrb_value boxed);
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvProcessT::boxing_decls */
-/* sha: 13e0673fdd86635a9100cfd805b8cce27ea108f3380313a2da4612a4028771d4 */
-#if BIND_UvProcessT_TYPE
+/* MRUBY_BINDING: Process::boxing_decls */
+/* sha: 34f03e3c441f20e3e32fe1570c64e930ed0d3e5628d2be1c36307970f2f96d08 */
+#if BIND_Process_TYPE
 mrb_value
 mruby_box_uv_process_t(mrb_state* mrb, uv_process_t *unboxed);
 
@@ -461,9 +441,29 @@ mruby_unbox_uv_process_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvReqT::boxing_decls */
-/* sha: 0a82b81262de1522df4ebe791ad1631a2a5fa42bd3f82074cc7c4095692ddf1f */
-#if BIND_UvReqT_TYPE
+/* MRUBY_BINDING: ProcessOptions::boxing_decls */
+/* sha: c91b2798b211ba819ce96bdac933b5f5e17b48e0f7415e50eaf0b0bcbf203393 */
+#if BIND_ProcessOptions_TYPE
+mrb_value
+mruby_box_uv_process_options_t(mrb_state* mrb, uv_process_options_t *unboxed);
+
+mrb_value
+mruby_giftwrap_uv_process_options_t(mrb_state* mrb, uv_process_options_t *unboxed);
+
+void
+mruby_set_uv_process_options_t_data_ptr(mrb_value obj, uv_process_options_t *unboxed);
+
+void
+mruby_gift_uv_process_options_t_data_ptr(mrb_value obj, uv_process_options_t *unboxed);
+
+uv_process_options_t *
+mruby_unbox_uv_process_options_t(mrb_value boxed);
+#endif
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: Req::boxing_decls */
+/* sha: a729204d488b961eda3c17de3416680a9dbba5e4135dc667c9839ee9a5ad0dbd */
+#if BIND_Req_TYPE
 mrb_value
 mruby_box_uv_req_t(mrb_state* mrb, uv_req_t *unboxed);
 
@@ -481,9 +481,9 @@ mruby_unbox_uv_req_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvRusageT::boxing_decls */
-/* sha: 496af37c8d81dc4e80aeee7fc2842720d3ae997c4df1f02832837942963676a5 */
-#if BIND_UvRusageT_TYPE
+/* MRUBY_BINDING: RUsage::boxing_decls */
+/* sha: 346444b52817c4ec949a97a4d20200f1ca097883dc819f947dfb74eee162550e */
+#if BIND_RUsage_TYPE
 mrb_value
 mruby_box_uv_rusage_t(mrb_state* mrb, uv_rusage_t *unboxed);
 
@@ -501,9 +501,9 @@ mruby_unbox_uv_rusage_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvShutdownT::boxing_decls */
-/* sha: 073333f5c131fe03d765d9bb9b1fb2419aff1bf593ec1b88a069d2a90a48d877 */
-#if BIND_UvShutdownT_TYPE
+/* MRUBY_BINDING: Shutdown::boxing_decls */
+/* sha: 16fc2c5b498ef9278884e9bcb7daf8d8a479d672e19804630bdefd1b94b7d494 */
+#if BIND_Shutdown_TYPE
 mrb_value
 mruby_box_uv_shutdown_t(mrb_state* mrb, uv_shutdown_t *unboxed);
 
@@ -521,9 +521,9 @@ mruby_unbox_uv_shutdown_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvSignalT::boxing_decls */
-/* sha: 01c13038119fe680d1b75fa309d8beb0bc9fa088bfaa027759620ae3033b8cb7 */
-#if BIND_UvSignalT_TYPE
+/* MRUBY_BINDING: Signal::boxing_decls */
+/* sha: 96530b61d998fd2a2c9057b2864beeb6288aae9312b24f14c2b1d12b51386e72 */
+#if BIND_Signal_TYPE
 mrb_value
 mruby_box_uv_signal_t(mrb_state* mrb, uv_signal_t *unboxed);
 
@@ -541,9 +541,9 @@ mruby_unbox_uv_signal_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvStatT::boxing_decls */
-/* sha: 25ad15bdbbb21d1605401301c80973e9bb43e08e927616ab3102efdd9a6abb60 */
-#if BIND_UvStatT_TYPE
+/* MRUBY_BINDING: Stat::boxing_decls */
+/* sha: a42ae9eb1fd39c2be6b15ab659878344afc86d1f8c84f1b563f27979a5dd63aa */
+#if BIND_Stat_TYPE
 mrb_value
 mruby_box_uv_stat_t(mrb_state* mrb, uv_stat_t *unboxed);
 
@@ -561,9 +561,9 @@ mruby_unbox_uv_stat_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvStdioContainerT::boxing_decls */
-/* sha: dd9e334db45947189197f6fc6377987a96f8d2ce4cb076519ad8849a740acadb */
-#if BIND_UvStdioContainerT_TYPE
+/* MRUBY_BINDING: StdioContainer::boxing_decls */
+/* sha: f0bed249a5d19e4e9aac8e82635bd447b1a8c9290aaf516af47a48d62a40386d */
+#if BIND_StdioContainer_TYPE
 mrb_value
 mruby_box_uv_stdio_container_t(mrb_state* mrb, uv_stdio_container_t *unboxed);
 
@@ -581,9 +581,9 @@ mruby_unbox_uv_stdio_container_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvStreamT::boxing_decls */
-/* sha: 8992e0617d9188ec49cdcff0d3a0e269a46eb034b8561b474258ff2540f14145 */
-#if BIND_UvStreamT_TYPE
+/* MRUBY_BINDING: Stream::boxing_decls */
+/* sha: e82908535f7ffd443031f2a54b39baf9949caf0016a7ed6f92269efe3ea15b30 */
+#if BIND_Stream_TYPE
 mrb_value
 mruby_box_uv_stream_t(mrb_state* mrb, uv_stream_t *unboxed);
 
@@ -601,9 +601,9 @@ mruby_unbox_uv_stream_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvTcpT::boxing_decls */
-/* sha: 4195f43089d0cc4e3a6f61c5e4afa7fd21d4fb8e51f3a3e951c2f50438e4323d */
-#if BIND_UvTcpT_TYPE
+/* MRUBY_BINDING: TCP::boxing_decls */
+/* sha: 0d95f6073cdb82231b4426cd7d2e2ed312060c3f98e72fbfb316691215aef7ab */
+#if BIND_TCP_TYPE
 mrb_value
 mruby_box_uv_tcp_t(mrb_state* mrb, uv_tcp_t *unboxed);
 
@@ -621,9 +621,9 @@ mruby_unbox_uv_tcp_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvTimerT::boxing_decls */
-/* sha: ffa476cff1cad439e428a6274b39440fa2eac969f09a3f8d615890aaf6431bb4 */
-#if BIND_UvTimerT_TYPE
+/* MRUBY_BINDING: Timer::boxing_decls */
+/* sha: 2f6693cbaf40d390874b4e8e5156b5fc5a33d230a537f744ffd229b168d1a064 */
+#if BIND_Timer_TYPE
 mrb_value
 mruby_box_uv_timer_t(mrb_state* mrb, uv_timer_t *unboxed);
 
@@ -641,9 +641,9 @@ mruby_unbox_uv_timer_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvTimespecT::boxing_decls */
-/* sha: cb7d4c5792f9b76c49dd46617e3ec1d9a40bd1fe04fecea750087d2ddefdfb73 */
-#if BIND_UvTimespecT_TYPE
+/* MRUBY_BINDING: Timespec::boxing_decls */
+/* sha: e6169b3b891900acf5e95dfc00954ede727914d93373d1f706ce9081ea2c7d4a */
+#if BIND_Timespec_TYPE
 mrb_value
 mruby_box_uv_timespec_t(mrb_state* mrb, uv_timespec_t *unboxed);
 
@@ -661,9 +661,9 @@ mruby_unbox_uv_timespec_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvTimevalT::boxing_decls */
-/* sha: 8f4daa3c6fe47832b92ed0de0571fd879fc3653b9428f17f556741177165fa1f */
-#if BIND_UvTimevalT_TYPE
+/* MRUBY_BINDING: Timeval::boxing_decls */
+/* sha: f0e63266875eefae714c33530937661516940e9b5f5cf547b2357c30192f4a09 */
+#if BIND_Timeval_TYPE
 mrb_value
 mruby_box_uv_timeval_t(mrb_state* mrb, uv_timeval_t *unboxed);
 
@@ -681,9 +681,9 @@ mruby_unbox_uv_timeval_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvTtyT::boxing_decls */
-/* sha: 53ea993c993d2bcccd62219cc52b98afa5fa4f87c4895fc19d727fb00e9996df */
-#if BIND_UvTtyT_TYPE
+/* MRUBY_BINDING: Tty::boxing_decls */
+/* sha: 0197f3becd7a52c1e7677ecf1e1ffcb8b24436812b6e26b08f5cf90ed7abfba3 */
+#if BIND_Tty_TYPE
 mrb_value
 mruby_box_uv_tty_t(mrb_state* mrb, uv_tty_t *unboxed);
 
@@ -701,29 +701,9 @@ mruby_unbox_uv_tty_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpSendT::boxing_decls */
-/* sha: 2d70247532911c69a4380b911e7695db1eba752109fa376fa53865a7c7eb7a98 */
-#if BIND_UvUdpSendT_TYPE
-mrb_value
-mruby_box_uv_udp_send_t(mrb_state* mrb, uv_udp_send_t *unboxed);
-
-mrb_value
-mruby_giftwrap_uv_udp_send_t(mrb_state* mrb, uv_udp_send_t *unboxed);
-
-void
-mruby_set_uv_udp_send_t_data_ptr(mrb_value obj, uv_udp_send_t *unboxed);
-
-void
-mruby_gift_uv_udp_send_t_data_ptr(mrb_value obj, uv_udp_send_t *unboxed);
-
-uv_udp_send_t *
-mruby_unbox_uv_udp_send_t(mrb_value boxed);
-#endif
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvUdpT::boxing_decls */
-/* sha: 6a8757e5771ac236cc97eed13a59634d30e9fa9d75d4c4e6876bbe79ba7ac1d1 */
-#if BIND_UvUdpT_TYPE
+/* MRUBY_BINDING: UDP::boxing_decls */
+/* sha: 33c5b175a8a56a288df8744b18e1164958a3c9217f3ed8f02d8ae2958bad2df6 */
+#if BIND_UDP_TYPE
 mrb_value
 mruby_box_uv_udp_t(mrb_state* mrb, uv_udp_t *unboxed);
 
@@ -741,9 +721,29 @@ mruby_unbox_uv_udp_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvWorkT::boxing_decls */
-/* sha: 62fc862a279fa76cde311f2d905dd64fa2e93b75e8061e2c1a3c95cd06587c1c */
-#if BIND_UvWorkT_TYPE
+/* MRUBY_BINDING: UDPSend::boxing_decls */
+/* sha: c10f36c5d210dd6d938762b5afb0a1dfff747da793d5b7c54e9f597ed39da905 */
+#if BIND_UDPSend_TYPE
+mrb_value
+mruby_box_uv_udp_send_t(mrb_state* mrb, uv_udp_send_t *unboxed);
+
+mrb_value
+mruby_giftwrap_uv_udp_send_t(mrb_state* mrb, uv_udp_send_t *unboxed);
+
+void
+mruby_set_uv_udp_send_t_data_ptr(mrb_value obj, uv_udp_send_t *unboxed);
+
+void
+mruby_gift_uv_udp_send_t_data_ptr(mrb_value obj, uv_udp_send_t *unboxed);
+
+uv_udp_send_t *
+mruby_unbox_uv_udp_send_t(mrb_value boxed);
+#endif
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: Work::boxing_decls */
+/* sha: 01f7981e188ce6b2bea931d7a376c81f6babda245ea26857d6aac7ee35ec0b49 */
+#if BIND_Work_TYPE
 mrb_value
 mruby_box_uv_work_t(mrb_state* mrb, uv_work_t *unboxed);
 
@@ -761,9 +761,9 @@ mruby_unbox_uv_work_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvWriteT::boxing_decls */
-/* sha: 8afce7031fe7daed204789cd6e4eb6ef8459d825f6f496aa5d284f9fdbd45670 */
-#if BIND_UvWriteT_TYPE
+/* MRUBY_BINDING: Write::boxing_decls */
+/* sha: ce5c4d919853257c67467177575c0adb7185933033cf36fcc721c640f04270e9 */
+#if BIND_Write_TYPE
 mrb_value
 mruby_box_uv_write_t(mrb_state* mrb, uv_write_t *unboxed);
 

@@ -10,7 +10,7 @@ extern "C" {
 #endif
 
 /* MRUBY_BINDING: uv_accept */
-/* sha: 9d8144c2636cb5a9b06d7c519a1edb30acdfb5f8d3f57acffc692e0c106a1c24 */
+/* sha: ba8e76d4236d057fac5989ca67ea4de98f6382167d1a53fc4c6562362cea57d7 */
 #if BIND_uv_accept_FUNCTION
 #define uv_accept_REQUIRED_ARGC 2
 #define uv_accept_OPTIONAL_ARGC 0
@@ -30,12 +30,12 @@ mrb_UV_uv_accept(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &server, &client);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, server, UvStreamT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
+  if (!mrb_obj_is_kind_of(mrb, server, Stream_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Stream expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, client, UvStreamT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
+  if (!mrb_obj_is_kind_of(mrb, client, Stream_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Stream expected");
     return mrb_nil_value();
   }
 
@@ -82,11 +82,11 @@ mrb_UV_uv_accept(mrb_state* mrb, mrb_value self) {
 //   mrb_get_args(mrb, "oo&", &arg1, &async, &async_cb);
 // 
 //   /* Type checking */
-//   if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
+//   if (!mrb_obj_is_kind_of(mrb, arg1, Loop_class(mrb))) {
 //     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
 //     return mrb_nil_value();
 //   }
-//   if (!mrb_obj_is_kind_of(mrb, async, UvAsyncT_class(mrb))) {
+//   if (!mrb_obj_is_kind_of(mrb, async, Async_class(mrb))) {
 //     mrb_raise(mrb, E_TYPE_ERROR, "UvAsyncT expected");
 //     return mrb_nil_value();
 //   }
@@ -114,7 +114,7 @@ mrb_UV_uv_accept(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_async_send */
-/* sha: 891b669f6ff01e57166989d4085ea01c8c7535e7a966d1ad6cc743f107aa0e12 */
+/* sha: f6ccf490fc855e801f12bedc79b58a08203d01db1683ef09f7f029ca7ac7a121 */
 #if BIND_uv_async_send_FUNCTION
 #define uv_async_send_REQUIRED_ARGC 1
 #define uv_async_send_OPTIONAL_ARGC 0
@@ -132,8 +132,8 @@ mrb_UV_uv_async_send(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &async);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, async, UvAsyncT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvAsyncT expected");
+  if (!mrb_obj_is_kind_of(mrb, async, Async_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Async expected");
     return mrb_nil_value();
   }
 
@@ -152,7 +152,7 @@ mrb_UV_uv_async_send(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_backend_fd */
-/* sha: 2de3429f0af568f0c692d0bb5139ea2e31a4e0fd262b4d8e68be0f79b0635daa */
+/* sha: 86f0cdabef329cced2b6e58cdff4d416c0601fb5166ba6f93686b7523e945155 */
 #if BIND_uv_backend_fd_FUNCTION
 #define uv_backend_fd_REQUIRED_ARGC 1
 #define uv_backend_fd_OPTIONAL_ARGC 0
@@ -170,8 +170,8 @@ mrb_UV_uv_backend_fd(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &arg1);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
 
@@ -190,7 +190,7 @@ mrb_UV_uv_backend_fd(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_backend_timeout */
-/* sha: 74d06f797140b3cace24842ea9b51b6ced45dbdf3f01285da530675ef865a628 */
+/* sha: c7ccdcd6b820fd66953c5064208ab046af3a750c121bdae8b555118ffa13de07 */
 #if BIND_uv_backend_timeout_FUNCTION
 #define uv_backend_timeout_REQUIRED_ARGC 1
 #define uv_backend_timeout_OPTIONAL_ARGC 0
@@ -208,8 +208,8 @@ mrb_UV_uv_backend_timeout(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &arg1);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
 
@@ -369,7 +369,7 @@ mrb_UV_uv_buf_init(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_cancel */
-/* sha: e9ed9e6b89b87ac16f8d6daf7f393a8fdd449fba8bf3aacdd175d74a62d0cbad */
+/* sha: 444386381037c4fbd5e0f1c7591bd88e8bab7265c125a234e34480b88c8f4e9b */
 #if BIND_uv_cancel_FUNCTION
 #define uv_cancel_REQUIRED_ARGC 1
 #define uv_cancel_OPTIONAL_ARGC 0
@@ -387,8 +387,8 @@ mrb_UV_uv_cancel(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &req);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, req, UvReqT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvReqT expected");
+  if (!mrb_obj_is_kind_of(mrb, req, Req_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Req expected");
     return mrb_nil_value();
   }
 
@@ -436,7 +436,7 @@ mrb_UV_uv_chdir(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_check_init */
-/* sha: a50227090d34c8cdc874cce9446e8d887b1ea4a43b798b266e770b820e18030f */
+/* sha: 36fcc0aa180a5cf0bb3b1fcef9772675e47787ccbe99df8513d9ce0fa55ee76d */
 #if BIND_uv_check_init_FUNCTION
 #define uv_check_init_REQUIRED_ARGC 2
 #define uv_check_init_OPTIONAL_ARGC 0
@@ -456,12 +456,12 @@ mrb_UV_uv_check_init(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &arg1, &check);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, check, UvCheckT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvCheckT expected");
+  if (!mrb_obj_is_kind_of(mrb, check, Check_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Check expected");
     return mrb_nil_value();
   }
 
@@ -503,7 +503,7 @@ mrb_UV_uv_check_start(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o&", &check, &cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, check, UvCheckT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, check, Check_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvCheckT expected");
     return mrb_nil_value();
   }
@@ -528,7 +528,7 @@ mrb_UV_uv_check_start(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_check_stop */
-/* sha: 54834fca5905f3303ce33ffaca5819309f8cc28127a01a0902e7b32adaca0a9d */
+/* sha: cb5f481f33e51d413ae5eb609250efd5f6770ac99a9a10f010975369b4bc60a8 */
 #if BIND_uv_check_stop_FUNCTION
 #define uv_check_stop_REQUIRED_ARGC 1
 #define uv_check_stop_OPTIONAL_ARGC 0
@@ -546,8 +546,8 @@ mrb_UV_uv_check_stop(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &check);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, check, UvCheckT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvCheckT expected");
+  if (!mrb_obj_is_kind_of(mrb, check, Check_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Check expected");
     return mrb_nil_value();
   }
 
@@ -586,7 +586,7 @@ mrb_UV_uv_close(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o|&", &handle, &cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvHandleT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, handle, Handle_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvHandleT expected");
     return mrb_nil_value();
   }
@@ -1140,7 +1140,7 @@ mrb_UV_uv_exepath(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_fileno */
-/* sha: f6cce66434ff8986a252b4f7857425d9ed152151178816cdf7228e1f8cb4ced5 */
+/* sha: e852c4cd3b33f3d0aa22a873d54f839d7156af6a0823e2efdd3406475bcd0a27 */
 #if BIND_uv_fileno_FUNCTION
 #define uv_fileno_REQUIRED_ARGC 2
 #define uv_fileno_OPTIONAL_ARGC 0
@@ -1160,8 +1160,8 @@ mrb_UV_uv_fileno(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &handle, &fd);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvHandleT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvHandleT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Handle_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Handle expected");
     return mrb_nil_value();
   }
   TODO_type_check_uv_os_fd_t_PTR(fd);
@@ -1184,7 +1184,7 @@ mrb_UV_uv_fileno(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_free_cpu_info */
-/* sha: 8b9e1993aea55aa2613dd31a758d77acfec9b5274bf6b84a98b3a39c52dfaa6c */
+/* sha: d1de07e90c5e86a7d33e2ec286bb5bbddf0fbe368e23c2030abc1dd2fc1dea98 */
 #if BIND_uv_free_cpu_info_FUNCTION
 #define uv_free_cpu_info_REQUIRED_ARGC 2
 #define uv_free_cpu_info_OPTIONAL_ARGC 0
@@ -1204,8 +1204,8 @@ mrb_UV_uv_free_cpu_info(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oi", &cpu_infos, &native_count);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, cpu_infos, UvCpuInfoT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvCpuInfoT expected");
+  if (!mrb_obj_is_kind_of(mrb, cpu_infos, CpuInfo_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "CpuInfo expected");
     return mrb_nil_value();
   }
 
@@ -1221,7 +1221,7 @@ mrb_UV_uv_free_cpu_info(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_free_interface_addresses */
-/* sha: 6cff8daaf24cd090f3a2cd1c643deef85a167d95c4379e0649bf35306680fea7 */
+/* sha: bd97ad66cdee4a0950f486eb9b88b03e2f79380c41d96119371945df02b999de */
 #if BIND_uv_free_interface_addresses_FUNCTION
 #define uv_free_interface_addresses_REQUIRED_ARGC 2
 #define uv_free_interface_addresses_OPTIONAL_ARGC 0
@@ -1241,8 +1241,8 @@ mrb_UV_uv_free_interface_addresses(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oi", &addresses, &native_count);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, addresses, UvInterfaceAddressT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvInterfaceAddressT expected");
+  if (!mrb_obj_is_kind_of(mrb, addresses, InterfaceAddress_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "InterfaceAddress expected");
     return mrb_nil_value();
   }
 
@@ -1320,11 +1320,11 @@ mrb_UV_uv_fs_access(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oozi|&", &loop, &req, &native_path, &native_mode, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -1378,11 +1378,11 @@ mrb_UV_uv_fs_chmod(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oozi|&", &loop, &req, &native_path, &native_mode, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -1438,11 +1438,11 @@ mrb_UV_uv_fs_chown(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oozoo|&", &loop, &req, &native_path, &uid, &gid, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -1502,11 +1502,11 @@ mrb_UV_uv_fs_close(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooi|&", &loop, &req, &native_file, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -1553,7 +1553,7 @@ mrb_UV_uv_fs_event_getpath(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvFsEventT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, handle, FsEvent_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsEventT expected");
     return mrb_nil_value();
   }
@@ -1578,7 +1578,7 @@ mrb_UV_uv_fs_event_getpath(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_fs_event_init */
-/* sha: 456c6288bf1a34437444e933b6495fcc23a7ee2856233f980cf2d25363a23ae7 */
+/* sha: 4c06a816c1a0cd0c0a393333aec9cee8675fef8774c471739b4a66090dc7b286 */
 #if BIND_uv_fs_event_init_FUNCTION
 #define uv_fs_event_init_REQUIRED_ARGC 2
 #define uv_fs_event_init_OPTIONAL_ARGC 0
@@ -1598,12 +1598,12 @@ mrb_UV_uv_fs_event_init(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &loop, &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, handle, UvFsEventT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsEventT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, FSEvent_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "FSEvent expected");
     return mrb_nil_value();
   }
 
@@ -1649,7 +1649,7 @@ mrb_UV_uv_fs_event_start(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ozi&", &handle, &native_path, &native_flags, &cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvFsEventT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, handle, FsEvent_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsEventT expected");
     return mrb_nil_value();
   }
@@ -1674,7 +1674,7 @@ mrb_UV_uv_fs_event_start(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_fs_event_stop */
-/* sha: b9a0fedaf6b13467ad44b3cf9f86a7ae29cc4f69fecdadd94b1b4c00c18358f1 */
+/* sha: 01c276b14769e21c2fecca921b30273b2f24ae82d2cae05e429629b12539c70c */
 #if BIND_uv_fs_event_stop_FUNCTION
 #define uv_fs_event_stop_REQUIRED_ARGC 1
 #define uv_fs_event_stop_OPTIONAL_ARGC 0
@@ -1692,8 +1692,8 @@ mrb_UV_uv_fs_event_stop(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvFsEventT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsEventT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, FSEvent_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "FSEvent expected");
     return mrb_nil_value();
   }
 
@@ -1739,11 +1739,11 @@ mrb_UV_uv_fs_fchmod(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooii|&", &loop, &req, &native_file, &native_mode, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -1799,11 +1799,11 @@ mrb_UV_uv_fs_fchown(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooioo|&", &loop, &req, &native_file, &uid, &gid, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -1863,11 +1863,11 @@ mrb_UV_uv_fs_fdatasync(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooi|&", &loop, &req, &native_file, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -1919,11 +1919,11 @@ mrb_UV_uv_fs_fstat(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooi|&", &loop, &req, &native_file, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -1975,11 +1975,11 @@ mrb_UV_uv_fs_fsync(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooi|&", &loop, &req, &native_file, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -2033,11 +2033,11 @@ mrb_UV_uv_fs_ftruncate(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooii|&", &loop, &req, &native_file, &native_offset, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -2096,11 +2096,11 @@ mrb_UV_uv_fs_futime(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooiff|&", &loop, &req, &native_file, &native_atime, &native_mtime, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -2154,11 +2154,11 @@ mrb_UV_uv_fs_link(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oozz|&", &loop, &req, &native_path, &native_new_path, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -2210,11 +2210,11 @@ mrb_UV_uv_fs_lstat(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooz|&", &loop, &req, &native_path, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -2268,11 +2268,11 @@ mrb_UV_uv_fs_mkdir(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oozi|&", &loop, &req, &native_path, &native_mode, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -2324,11 +2324,11 @@ mrb_UV_uv_fs_mkdtemp(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooz|&", &loop, &req, &native_tpl, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -2384,11 +2384,11 @@ mrb_UV_uv_fs_open(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oozii|&", &loop, &req, &native_path, &native_flags, &native_mode, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -2435,8 +2435,8 @@ mrb_UV_uv_fs_poll_getpath(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvFsPollT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsPollT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, FSPoll_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "FSPollT expected");
     return mrb_nil_value();
   }
 
@@ -2460,7 +2460,7 @@ mrb_UV_uv_fs_poll_getpath(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_fs_poll_init */
-/* sha: 264f390889bb061145599155346d008dfd273592bad57be3c8b2529a6bfd4bea */
+/* sha: fbbbc9365b9b7b75dd8f6bcb3d56881d46b66275fc4c31413e01e16a6ee7c83c */
 #if BIND_uv_fs_poll_init_FUNCTION
 #define uv_fs_poll_init_REQUIRED_ARGC 2
 #define uv_fs_poll_init_OPTIONAL_ARGC 0
@@ -2480,12 +2480,12 @@ mrb_UV_uv_fs_poll_init(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &loop, &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, handle, UvFsPollT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsPollT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, FSPoll_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "FSPoll expected");
     return mrb_nil_value();
   }
 
@@ -2531,8 +2531,8 @@ mrb_UV_uv_fs_poll_start(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ozi&", &handle, &native_path, &native_interval, &poll_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvFsPollT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsPollT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, FSPoll_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "FSPollT expected");
     return mrb_nil_value();
   }
   if (mrb_nil_p(poll_cb)) {
@@ -2556,7 +2556,7 @@ mrb_UV_uv_fs_poll_start(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_fs_poll_stop */
-/* sha: 959b2f19ca98716bdd4a6c5cb88383fdcf8413d51271c1413c038aa0f0ad8ba9 */
+/* sha: 6afff6f0db7e3549fc70b680d9718ca84709ad6ba6e272d399480b094291f0ca */
 #if BIND_uv_fs_poll_stop_FUNCTION
 #define uv_fs_poll_stop_REQUIRED_ARGC 1
 #define uv_fs_poll_stop_OPTIONAL_ARGC 0
@@ -2574,8 +2574,8 @@ mrb_UV_uv_fs_poll_stop(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvFsPollT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsPollT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, FSPoll_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "FSPoll expected");
     return mrb_nil_value();
   }
 
@@ -2624,11 +2624,11 @@ mrb_UV_uv_fs_read(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooiii|&", &loop, &req, &native_file, &native_size, &native_offset, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -2689,11 +2689,11 @@ mrb_UV_uv_fs_readlink(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooz|&", &loop, &req, &native_path, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -2748,11 +2748,11 @@ mrb_UV_uv_fs_realpath(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooz|&", &loop, &req, &native_path, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -2806,11 +2806,11 @@ mrb_UV_uv_fs_rename(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oozz|&", &loop, &req, &native_path, &native_new_path, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -2837,7 +2837,7 @@ mrb_UV_uv_fs_rename(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_fs_req_cleanup */
-/* sha: d557003f66276327e056440b27da4e5d50b93bf1df4c6c8930dc6a60696c8d4a */
+/* sha: f29a5a9aad642b7ccb6248ede4757b927962f86e87777d510c8b62766a850090 */
 #if BIND_uv_fs_req_cleanup_FUNCTION
 #define uv_fs_req_cleanup_REQUIRED_ARGC 1
 #define uv_fs_req_cleanup_OPTIONAL_ARGC 0
@@ -2855,8 +2855,8 @@ mrb_UV_uv_fs_req_cleanup(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &req);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
 
@@ -2897,11 +2897,11 @@ mrb_UV_uv_fs_rmdir(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooz|&", &loop, &req, &native_path, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -2955,11 +2955,11 @@ mrb_UV_uv_fs_scandir(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oozi|&", &loop, &req, &native_path, &native_flags, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -2986,7 +2986,7 @@ mrb_UV_uv_fs_scandir(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_fs_scandir_next */
-/* sha: eca8a0dfbd9737627e3ab6472594e3a19be6215f3941844ad7a635ec0974223f */
+/* sha: dd9024215d5bb0c32e7a6999f66f3e0acfee9f64e6e61f82521efd7766b602a6 */
 #if BIND_uv_fs_scandir_next_FUNCTION
 #define uv_fs_scandir_next_REQUIRED_ARGC 2
 #define uv_fs_scandir_next_OPTIONAL_ARGC 0
@@ -3006,12 +3006,12 @@ mrb_UV_uv_fs_scandir_next(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &req, &ent);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, ent, UvDirentT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvDirentT expected");
+  if (!mrb_obj_is_kind_of(mrb, ent, Dirent_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Dirent expected");
     return mrb_nil_value();
   }
 
@@ -3064,11 +3064,11 @@ mrb_UV_uv_fs_sendfile(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooiioi|&", &loop, &req, &native_out_fd, &native_in_fd, &native_in_offset, &native_length, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -3120,11 +3120,11 @@ mrb_UV_uv_fs_stat(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooz|&", &loop, &req, &native_path, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -3180,11 +3180,11 @@ mrb_UV_uv_fs_symlink(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oozzi|&", &loop, &req, &native_path, &native_new_path, &native_flags, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -3236,11 +3236,11 @@ mrb_UV_uv_fs_unlink(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooz|&", &loop, &req, &native_path, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -3296,11 +3296,11 @@ mrb_UV_uv_fs_utime(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oozff|&", &loop, &req, &native_path, &native_atime, &native_mtime, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -3358,11 +3358,11 @@ mrb_UV_uv_fs_write(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooisi|&", &loop, &req, &native_file, &native_buf, &native_buf_len, &native_offset, &native_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvFsT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
     return mrb_nil_value();
   }
@@ -3508,15 +3508,15 @@ mrb_UV_uv_getaddrinfo(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooozz|o&", &loop, &req, &native_node, &native_service, &hints, &getaddrinfo_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvGetaddrinfoT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, Getaddrinfo_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvGetaddrinfoT expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvGetaddrinfoT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, req, Getaddrinfo_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvGetaddrinfoT expected");
     return mrb_nil_value();
   }
@@ -3527,7 +3527,7 @@ mrb_UV_uv_getaddrinfo(mrb_state* mrb, mrb_value self) {
   uv_getaddrinfo_cb thunk = NULL;
   if (!mrb_nil_p(getaddrinfo_cb)) {
     thunk = mruby_uv_getaddrinfo_cb_thunk;
-    MRUBY_UV_PREPARE_REQ_THUNK(req, "@mruby_uv_getaddrinfo_cb_thunk")
+    MRUBY_UV_PREPARE_REQ_THUNK(req, "@mruby_uv_getaddrinfo_cb_thunk", /* TODO XXX */)
   }
 
   /* Unbox param: loop */
@@ -3551,7 +3551,7 @@ mrb_UV_uv_getaddrinfo(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_getnameinfo */
-/* sha: b068483e399cf58dab1dcb19f2eba18faedaa8955efbb0f9ca4652b42d778ed3 */
+/* sha: f97cf565f89a022a13207a95fcafbb69963503d839de4cbb576d3ece53367edc */
 #if BIND_uv_getnameinfo_FUNCTION
 #define uv_getnameinfo_REQUIRED_ARGC 5
 #define uv_getnameinfo_OPTIONAL_ARGC 0
@@ -3577,12 +3577,12 @@ mrb_UV_uv_getnameinfo(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooooi", &loop, &req, &getnameinfo_cb, &addr, &native_flags);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvGetnameinfoT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvGetnameinfoT expected");
+  if (!mrb_obj_is_kind_of(mrb, req, Getnameinfo_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Getnameinfo expected");
     return mrb_nil_value();
   }
   TODO_type_check_uv_getnameinfo_cb(getnameinfo_cb);
@@ -3612,7 +3612,7 @@ mrb_UV_uv_getnameinfo(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_getrusage */
-/* sha: 2447b1d006ce8829d65a740638d6ef3754ba9969ccaf74ae15c7af9063c9e50d */
+/* sha: 397c3b343f51eeb9f3254f30b6fa9951717c092e292ccd0d26a17ab1b1dfefd2 */
 #if BIND_uv_getrusage_FUNCTION
 #define uv_getrusage_REQUIRED_ARGC 1
 #define uv_getrusage_OPTIONAL_ARGC 0
@@ -3630,8 +3630,8 @@ mrb_UV_uv_getrusage(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &rusage);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, rusage, UvRusageT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvRusageT expected");
+  if (!mrb_obj_is_kind_of(mrb, rusage, RUsage_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "RUsage expected");
     return mrb_nil_value();
   }
 
@@ -3708,7 +3708,7 @@ mrb_UV_uv_handle_size(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_has_ref */
-/* sha: 42733fd4fc9bdd3028519192564655db8706bd90304665e7a839eb5a89a4a9cc */
+/* sha: f7c5a796f3e507a37708fe519a8aa11a6b00d7c85b08b3ff5938ceb22bf9e0c2 */
 #if BIND_uv_has_ref_FUNCTION
 #define uv_has_ref_REQUIRED_ARGC 1
 #define uv_has_ref_OPTIONAL_ARGC 0
@@ -3726,8 +3726,8 @@ mrb_UV_uv_has_ref(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &arg1);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvHandleT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvHandleT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Handle_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Handle expected");
     return mrb_nil_value();
   }
 
@@ -3769,7 +3769,7 @@ mrb_UV_uv_hrtime(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_idle_init */
-/* sha: 4cd408a623b498ab315294a5dc52dde5b199869685af53c16e710d2637691225 */
+/* sha: 54b289be62adbea8a5684cb59c344c9fa870d1bc22444be16c9a29505fbaa94f */
 #if BIND_uv_idle_init_FUNCTION
 #define uv_idle_init_REQUIRED_ARGC 2
 #define uv_idle_init_OPTIONAL_ARGC 0
@@ -3789,12 +3789,12 @@ mrb_UV_uv_idle_init(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &arg1, &idle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, idle, UvIdleT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvIdleT expected");
+  if (!mrb_obj_is_kind_of(mrb, idle, Idle_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Idle expected");
     return mrb_nil_value();
   }
 
@@ -3836,7 +3836,7 @@ mrb_UV_uv_idle_start(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o&", &idle, &cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, idle, UvIdleT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, idle, Idle_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvIdleT expected");
     return mrb_nil_value();
   }
@@ -3861,7 +3861,7 @@ mrb_UV_uv_idle_start(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_idle_stop */
-/* sha: 641f7e4595d0a16d86e02616b1df1bdfff7360186e59bca9127ba6513e6d48c6 */
+/* sha: b4b4a35898bf065ed9b97c14ed8670da3deb9d974bcd78b23895e90307a63da8 */
 #if BIND_uv_idle_stop_FUNCTION
 #define uv_idle_stop_REQUIRED_ARGC 1
 #define uv_idle_stop_OPTIONAL_ARGC 0
@@ -3879,8 +3879,8 @@ mrb_UV_uv_idle_stop(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &idle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, idle, UvIdleT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvIdleT expected");
+  if (!mrb_obj_is_kind_of(mrb, idle, Idle_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Idle expected");
     return mrb_nil_value();
   }
 
@@ -4188,7 +4188,7 @@ mrb_UV_uv_ip6_name(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_is_active */
-/* sha: 57d879560791c00e2232d83cfd3e2ff4ba24bc0f926083c31a31613deb13fb2b */
+/* sha: 0c63bfa6ad750c5963c328c183ce82135e561fc7ca07f52355b5405489209c29 */
 #if BIND_uv_is_active_FUNCTION
 #define uv_is_active_REQUIRED_ARGC 1
 #define uv_is_active_OPTIONAL_ARGC 0
@@ -4206,8 +4206,8 @@ mrb_UV_uv_is_active(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvHandleT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvHandleT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Handle_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Handle expected");
     return mrb_nil_value();
   }
 
@@ -4226,7 +4226,7 @@ mrb_UV_uv_is_active(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_is_closing */
-/* sha: 80914f39148cc0124d5beb0b10119c0747e914898edd8beb7aa270436bfe0ad7 */
+/* sha: 4d31adbe8df06881059dbdeda138bee796081310367b05833224df3576dd99fe */
 #if BIND_uv_is_closing_FUNCTION
 #define uv_is_closing_REQUIRED_ARGC 1
 #define uv_is_closing_OPTIONAL_ARGC 0
@@ -4244,8 +4244,8 @@ mrb_UV_uv_is_closing(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvHandleT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvHandleT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Handle_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Handle expected");
     return mrb_nil_value();
   }
 
@@ -4264,7 +4264,7 @@ mrb_UV_uv_is_closing(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_is_readable */
-/* sha: 5bc85a4cf015c5cea63b1db843d209ca3d2bd7c72efa73dd5289537170956a23 */
+/* sha: 3295cd97358decdcdc771dfd7a29f9ba1aa829b4e211136045767a33bb2814ad */
 #if BIND_uv_is_readable_FUNCTION
 #define uv_is_readable_REQUIRED_ARGC 1
 #define uv_is_readable_OPTIONAL_ARGC 0
@@ -4282,8 +4282,8 @@ mrb_UV_uv_is_readable(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvStreamT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Stream_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Stream expected");
     return mrb_nil_value();
   }
 
@@ -4302,7 +4302,7 @@ mrb_UV_uv_is_readable(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_is_writable */
-/* sha: 316edf6744e462159127802bf29a7346cdb71147311d69580cc455afda7746f9 */
+/* sha: 11383f922d6f4bae6db9c750aaff52a536ae734bcb0dfeffe0672e53f2cea78c */
 #if BIND_uv_is_writable_FUNCTION
 #define uv_is_writable_REQUIRED_ARGC 1
 #define uv_is_writable_OPTIONAL_ARGC 0
@@ -4320,8 +4320,8 @@ mrb_UV_uv_is_writable(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvStreamT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Stream_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Stream expected");
     return mrb_nil_value();
   }
 
@@ -4533,7 +4533,7 @@ mrb_UV_uv_listen(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oi&", &stream, &native_backlog, &cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, stream, UvStreamT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, stream, Stream_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
     return mrb_nil_value();
   }
@@ -4590,7 +4590,7 @@ mrb_UV_uv_loadavg(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_loop_alive */
-/* sha: c45e1d7c26e8f9f349d4def05fa7265476b8e573f35de899e5dc7dc84f8d1197 */
+/* sha: f71d805620e3b7c1fa4e0d43e6e7200a5e9619672b9ef30aba8cdf9c0433903e */
 #if BIND_uv_loop_alive_FUNCTION
 #define uv_loop_alive_REQUIRED_ARGC 1
 #define uv_loop_alive_OPTIONAL_ARGC 0
@@ -4608,8 +4608,8 @@ mrb_UV_uv_loop_alive(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &loop);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
 
@@ -4628,7 +4628,7 @@ mrb_UV_uv_loop_alive(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_loop_close */
-/* sha: fb0081f04bb3cee1e6a165c8362c067e015439c2d1529cc011971c8c511165c3 */
+/* sha: 09ccb8e395a8b9f40d86ab7f553aceb272325d966de8fcf243befc88db60dabd */
 #if BIND_uv_loop_close_FUNCTION
 #define uv_loop_close_REQUIRED_ARGC 1
 #define uv_loop_close_OPTIONAL_ARGC 0
@@ -4646,8 +4646,8 @@ mrb_UV_uv_loop_close(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &loop);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
 
@@ -4666,7 +4666,7 @@ mrb_UV_uv_loop_close(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_loop_configure */
-/* sha: 678179d2c458f93903190adf9d87548c8390c2c13b21cd60da9261e9c529a338 */
+/* sha: 9239036cf7ae74188cf207476e0babad002cb1e96e51993abaa1dade61bb308a */
 #if BIND_uv_loop_configure_FUNCTION
 #define uv_loop_configure_REQUIRED_ARGC 2
 #define uv_loop_configure_OPTIONAL_ARGC 0
@@ -4686,8 +4686,8 @@ mrb_UV_uv_loop_configure(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oi", &loop, &native_option);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
 
@@ -4706,7 +4706,7 @@ mrb_UV_uv_loop_configure(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_loop_delete */
-/* sha: 8c40c2f145aee5fe42477229b7a2928c6cd6f0410e015b3460980d2c05335a05 */
+/* sha: 755e9c36cd51db190696c5fb49da2bb2714e6b0fee9ef4ff60e5e1d0e8ad1319 */
 #if BIND_uv_loop_delete_FUNCTION
 #define uv_loop_delete_REQUIRED_ARGC 1
 #define uv_loop_delete_OPTIONAL_ARGC 0
@@ -4724,8 +4724,8 @@ mrb_UV_uv_loop_delete(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &arg1);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
 
@@ -4741,7 +4741,7 @@ mrb_UV_uv_loop_delete(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_loop_init */
-/* sha: 33d5f294d8ffd8848f336eae089d93513c4e2f121f3ccd69328e623f705015df */
+/* sha: 4273effcc2eb3a571d66a7802fd8aabcfb0d798e283f83943c9ba83ddd106466 */
 #if BIND_uv_loop_init_FUNCTION
 #define uv_loop_init_REQUIRED_ARGC 1
 #define uv_loop_init_OPTIONAL_ARGC 0
@@ -4759,8 +4759,8 @@ mrb_UV_uv_loop_init(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &loop);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
 
@@ -4991,7 +4991,7 @@ mrb_UV_uv_mutex_unlock(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_now */
-/* sha: 31fa772e5ba616d98ee2b377c942603ebba7881d15644989b91d12fd5cfcfcb2 */
+/* sha: 8e1011557cbcf4f708d4ab6e1d3b421d0a5627de023d70e4eef4659f60eb68d4 */
 #if BIND_uv_now_FUNCTION
 #define uv_now_REQUIRED_ARGC 1
 #define uv_now_OPTIONAL_ARGC 0
@@ -5009,8 +5009,8 @@ mrb_UV_uv_now(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &arg1);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
 
@@ -5097,7 +5097,7 @@ mrb_UV_uv_os_homedir(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_pipe_bind */
-/* sha: acfbbcfc3049adc48a47fa8073fd6e1ab4a5a270e61f299003f199f18a8d9ac7 */
+/* sha: f4d37a2b6aab27cea41062c338dd58feaacf781e5cd0bc2cfdd11f4c4086da03 */
 #if BIND_uv_pipe_bind_FUNCTION
 #define uv_pipe_bind_REQUIRED_ARGC 2
 #define uv_pipe_bind_OPTIONAL_ARGC 0
@@ -5117,8 +5117,8 @@ mrb_UV_uv_pipe_bind(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oz", &handle, &native_name);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvPipeT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvPipeT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Pipe_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Pipe expected");
     return mrb_nil_value();
   }
 
@@ -5137,7 +5137,7 @@ mrb_UV_uv_pipe_bind(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_pipe_connect */
-/* sha: 5a5c332e7c80e4390381bcf05b75ab79c87b0a1b9885c164afe4155c2b432723 */
+/* sha: de2941eabbf35f6e206bc0cd2503a913972f7d25da705b243c8ec7abeedf7838 */
 #if BIND_uv_pipe_connect_FUNCTION
 #define uv_pipe_connect_REQUIRED_ARGC 4
 #define uv_pipe_connect_OPTIONAL_ARGC 0
@@ -5161,12 +5161,12 @@ mrb_UV_uv_pipe_connect(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oozo", &req, &handle, &native_name, &cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, req, UvConnectT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvConnectT expected");
+  if (!mrb_obj_is_kind_of(mrb, req, Connect_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Connect expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, handle, UvPipeT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvPipeT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Pipe_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Pipe expected");
     return mrb_nil_value();
   }
   TODO_type_check_uv_connect_cb(cb);
@@ -5189,7 +5189,7 @@ mrb_UV_uv_pipe_connect(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_pipe_getpeername */
-/* sha: 89b83dde26ad9dbc656dfd02d8c9bc4c8599b4d8fabc97fcae32f98c16492b45 */
+/* sha: 0aa064eadec6a2eddff97c3bf7822c0ea030c6bf7db6c684017190bccd3473e9 */
 #if BIND_uv_pipe_getpeername_FUNCTION
 #define uv_pipe_getpeername_REQUIRED_ARGC 3
 #define uv_pipe_getpeername_OPTIONAL_ARGC 0
@@ -5211,8 +5211,8 @@ mrb_UV_uv_pipe_getpeername(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooo", &handle, &buffer, &size);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvPipeT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvPipeT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Pipe_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Pipe expected");
     return mrb_nil_value();
   }
   TODO_type_check_char_PTR(buffer);
@@ -5239,7 +5239,7 @@ mrb_UV_uv_pipe_getpeername(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_pipe_getsockname */
-/* sha: 54e62b6c5d47ad558fc586103a465d90e1b6ecc9d855f59877f2ccf3c3571a60 */
+/* sha: af348b01ff411a7229135da4962ffabf87ddadee572dd8381446998890af0e84 */
 #if BIND_uv_pipe_getsockname_FUNCTION
 #define uv_pipe_getsockname_REQUIRED_ARGC 3
 #define uv_pipe_getsockname_OPTIONAL_ARGC 0
@@ -5261,8 +5261,8 @@ mrb_UV_uv_pipe_getsockname(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooo", &handle, &buffer, &size);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvPipeT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvPipeT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Pipe_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Pipe expected");
     return mrb_nil_value();
   }
   TODO_type_check_char_PTR(buffer);
@@ -5289,7 +5289,7 @@ mrb_UV_uv_pipe_getsockname(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_pipe_init */
-/* sha: 7558074cf11bc34b5b30435b7d9a54219b534847bb688e43fee9423599e6a689 */
+/* sha: 15d9dd3867207829dc2b5c738328b22f1b31e86aaa83ce229ed29d4e63b628df */
 #if BIND_uv_pipe_init_FUNCTION
 #define uv_pipe_init_REQUIRED_ARGC 3
 #define uv_pipe_init_OPTIONAL_ARGC 0
@@ -5311,12 +5311,12 @@ mrb_UV_uv_pipe_init(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooi", &arg1, &handle, &native_ipc);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, handle, UvPipeT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvPipeT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Pipe_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Pipe expected");
     return mrb_nil_value();
   }
 
@@ -5338,7 +5338,7 @@ mrb_UV_uv_pipe_init(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_pipe_open */
-/* sha: 7503b1b93b8b63b83fa17a079046ac8b47ebf42b2149ed9711d353429b31a8c0 */
+/* sha: 950e8677ff09a1a7b13e42aef6cbd9518a9ae0ff6d116b2dd17ac077a10bed31 */
 #if BIND_uv_pipe_open_FUNCTION
 #define uv_pipe_open_REQUIRED_ARGC 2
 #define uv_pipe_open_OPTIONAL_ARGC 0
@@ -5358,8 +5358,8 @@ mrb_UV_uv_pipe_open(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oi", &arg1, &native_file);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvPipeT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvPipeT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Pipe_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Pipe expected");
     return mrb_nil_value();
   }
 
@@ -5378,7 +5378,7 @@ mrb_UV_uv_pipe_open(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_pipe_pending_count */
-/* sha: 28181c46f54ad25009dacdc29e8a54b04d84b25404c0154a8ff2d29d215d36e0 */
+/* sha: 15db514023e759a55d1f78cdfb14ad7468693ef83c6f842096df293269c4bdf4 */
 #if BIND_uv_pipe_pending_count_FUNCTION
 #define uv_pipe_pending_count_REQUIRED_ARGC 1
 #define uv_pipe_pending_count_OPTIONAL_ARGC 0
@@ -5396,8 +5396,8 @@ mrb_UV_uv_pipe_pending_count(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvPipeT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvPipeT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Pipe_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Pipe expected");
     return mrb_nil_value();
   }
 
@@ -5416,7 +5416,7 @@ mrb_UV_uv_pipe_pending_count(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_pipe_pending_instances */
-/* sha: 3ef7d78b379aea30390111937ddd122a675693989d011a94b3d48678a6b0a3f5 */
+/* sha: a61367975293ba0bd14309bb47490cbde1aeba197be9d3932cbf6285e886926c */
 #if BIND_uv_pipe_pending_instances_FUNCTION
 #define uv_pipe_pending_instances_REQUIRED_ARGC 2
 #define uv_pipe_pending_instances_OPTIONAL_ARGC 0
@@ -5436,8 +5436,8 @@ mrb_UV_uv_pipe_pending_instances(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oi", &handle, &native_count);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvPipeT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvPipeT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Pipe_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Pipe expected");
     return mrb_nil_value();
   }
 
@@ -5453,7 +5453,7 @@ mrb_UV_uv_pipe_pending_instances(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_pipe_pending_type */
-/* sha: 7b3e4d471a64cc4fbaf2a46267956b07be744743419b93e82a3c64f00cedfa23 */
+/* sha: 254bb32a0a6e708c7ffb86b6c3f1170bab0ac9b76a25adb10500367b35acc7ce */
 #if BIND_uv_pipe_pending_type_FUNCTION
 #define uv_pipe_pending_type_REQUIRED_ARGC 1
 #define uv_pipe_pending_type_OPTIONAL_ARGC 0
@@ -5471,8 +5471,8 @@ mrb_UV_uv_pipe_pending_type(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvPipeT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvPipeT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Pipe_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Pipe expected");
     return mrb_nil_value();
   }
 
@@ -5491,7 +5491,7 @@ mrb_UV_uv_pipe_pending_type(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_poll_init */
-/* sha: d8d35a4b2019f9fc859066b2b38e6f5a9a03acc44d70f47486ec7ba92fbb302a */
+/* sha: 1c1d883442c975eac82b1fa834dd001609d7ef505102709e2d896496300e5079 */
 #if BIND_uv_poll_init_FUNCTION
 #define uv_poll_init_REQUIRED_ARGC 3
 #define uv_poll_init_OPTIONAL_ARGC 0
@@ -5513,12 +5513,12 @@ mrb_UV_uv_poll_init(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooi", &loop, &handle, &native_fd);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, handle, UvPollT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvPollT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Poll_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Poll expected");
     return mrb_nil_value();
   }
 
@@ -5540,7 +5540,7 @@ mrb_UV_uv_poll_init(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_poll_init_socket */
-/* sha: 01052454b9859451a216c6def1dd7160a9c2d6efa1f8e85ec18e5838b29a76f9 */
+/* sha: 3fc4962991fa7f99181b24839d74d855c763f869fb9f1168cc7d7bc9e222e67c */
 #if BIND_uv_poll_init_socket_FUNCTION
 #define uv_poll_init_socket_REQUIRED_ARGC 3
 #define uv_poll_init_socket_OPTIONAL_ARGC 0
@@ -5562,12 +5562,12 @@ mrb_UV_uv_poll_init_socket(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooo", &loop, &handle, &socket);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, handle, UvPollT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvPollT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Poll_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Poll expected");
     return mrb_nil_value();
   }
   TODO_type_check_uv_os_sock_t(socket);
@@ -5615,7 +5615,7 @@ mrb_UV_uv_poll_start(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oi&", &handle, &native_events, &cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvPollT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, handle, Poll_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvPollT expected");
     return mrb_nil_value();
   }
@@ -5640,7 +5640,7 @@ mrb_UV_uv_poll_start(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_poll_stop */
-/* sha: 560e0bb907a7fa62d1d40de0cf543c5c2fe03f54e6db46c08f75297d188c0102 */
+/* sha: 4fcba36334ffe58353fbe0ce34072b2f49a1c63abfba8d889e8acd045fe1ee8f */
 #if BIND_uv_poll_stop_FUNCTION
 #define uv_poll_stop_REQUIRED_ARGC 1
 #define uv_poll_stop_OPTIONAL_ARGC 0
@@ -5658,8 +5658,8 @@ mrb_UV_uv_poll_stop(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvPollT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvPollT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Poll_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Poll expected");
     return mrb_nil_value();
   }
 
@@ -5678,7 +5678,7 @@ mrb_UV_uv_poll_stop(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_prepare_init */
-/* sha: 46c36e79640be42cdeda6ec9d3bfff1242a2d3aaecc11c769ef1de1c0ee4062f */
+/* sha: cd73f00d7b4a4bd1783eac4652f71ec5429b7c5a5a077a89e9d3957bd3e49c26 */
 #if BIND_uv_prepare_init_FUNCTION
 #define uv_prepare_init_REQUIRED_ARGC 2
 #define uv_prepare_init_OPTIONAL_ARGC 0
@@ -5698,12 +5698,12 @@ mrb_UV_uv_prepare_init(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &arg1, &prepare);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, prepare, UvPrepareT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvPrepareT expected");
+  if (!mrb_obj_is_kind_of(mrb, prepare, Prepare_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Prepare expected");
     return mrb_nil_value();
   }
 
@@ -5745,7 +5745,7 @@ mrb_UV_uv_prepare_start(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o&", &prepare, &cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, prepare, UvPrepareT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, prepare, Prepare_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvPrepareT expected");
     return mrb_nil_value();
   }
@@ -5770,7 +5770,7 @@ mrb_UV_uv_prepare_start(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_prepare_stop */
-/* sha: a094d5d7c31123b21a50d7d558789d7f003e3ca86bf1aa0298b7d7be147e24b4 */
+/* sha: c07c8ee1594bf7c6e2422d109b65f455d6f85b1aacbc5f6ab63d4dbf0d644346 */
 #if BIND_uv_prepare_stop_FUNCTION
 #define uv_prepare_stop_REQUIRED_ARGC 1
 #define uv_prepare_stop_OPTIONAL_ARGC 0
@@ -5788,8 +5788,8 @@ mrb_UV_uv_prepare_stop(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &prepare);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, prepare, UvPrepareT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvPrepareT expected");
+  if (!mrb_obj_is_kind_of(mrb, prepare, Prepare_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Prepare expected");
     return mrb_nil_value();
   }
 
@@ -5808,7 +5808,7 @@ mrb_UV_uv_prepare_stop(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_print_active_handles */
-/* sha: 14b80609b66d6bf70620de31ce24b98011eb9e94648221139df30c614b290c7e */
+/* sha: 277a7c041193f92ded58e599d87f4b9d429877d8ee32e3a5817ac45284407b64 */
 #if BIND_uv_print_active_handles_FUNCTION
 #define uv_print_active_handles_REQUIRED_ARGC 2
 #define uv_print_active_handles_OPTIONAL_ARGC 0
@@ -5828,8 +5828,8 @@ mrb_UV_uv_print_active_handles(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &loop, &stream);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   TODO_type_check_FILE_PTR(stream);
@@ -5849,7 +5849,7 @@ mrb_UV_uv_print_active_handles(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_print_all_handles */
-/* sha: 4b0908152136324d9275e7775952bb8e29183f736fa7db2fd68b5dcdd77186dd */
+/* sha: f347dde3419ad8a503e609aa324e0bf5b72e8453497736fa3a119396adc2725f */
 #if BIND_uv_print_all_handles_FUNCTION
 #define uv_print_all_handles_REQUIRED_ARGC 2
 #define uv_print_all_handles_OPTIONAL_ARGC 0
@@ -5869,8 +5869,8 @@ mrb_UV_uv_print_all_handles(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &loop, &stream);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   TODO_type_check_FILE_PTR(stream);
@@ -5890,7 +5890,7 @@ mrb_UV_uv_print_all_handles(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_process_kill */
-/* sha: 845d8e72cb59c12e1e3ee437cafdfaaadee5d3ba9ded3116a030c25c6f99b69d */
+/* sha: 7cb4c1a8ffb04a862c4d7feacbadd70fe067b9e49c9e6a31b2ebae2f0b96dd3d */
 #if BIND_uv_process_kill_FUNCTION
 #define uv_process_kill_REQUIRED_ARGC 2
 #define uv_process_kill_OPTIONAL_ARGC 0
@@ -5910,8 +5910,8 @@ mrb_UV_uv_process_kill(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oi", &arg1, &native_signum);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvProcessT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvProcessT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Process_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Process expected");
     return mrb_nil_value();
   }
 
@@ -5930,7 +5930,7 @@ mrb_UV_uv_process_kill(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_queue_work */
-/* sha: 27b06024906c6998b5872835d36ed0c7d6e52b13a806dee44a696a6b730e22b8 */
+/* sha: 99c002e4da27eeaf92673dee3ddb9642e80cbb600a6b35cf07c7e739e5545fb5 */
 #if BIND_uv_queue_work_FUNCTION
 #define uv_queue_work_REQUIRED_ARGC 4
 #define uv_queue_work_OPTIONAL_ARGC 0
@@ -5954,12 +5954,12 @@ mrb_UV_uv_queue_work(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oooo", &loop, &req, &work_cb, &after_work_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, UvWorkT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvWorkT expected");
+  if (!mrb_obj_is_kind_of(mrb, req, Work_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Work expected");
     return mrb_nil_value();
   }
   TODO_type_check_uv_work_cb(work_cb);
@@ -6010,7 +6010,7 @@ mrb_UV_uv_read_start(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o&", &stream, &read_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, stream, UvStreamT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, stream, Stream_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
     return mrb_nil_value();
   }
@@ -6035,7 +6035,7 @@ mrb_UV_uv_read_start(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_read_stop */
-/* sha: af4ce39fd718223b70f11ffd3625b858c29586274e7c0259a5ad53687ca7dcd1 */
+/* sha: 06010047ad712b70d2338c39fbfe48b8f6bdc40c1c79790ee454b0c3d7ae036b */
 #if BIND_uv_read_stop_FUNCTION
 #define uv_read_stop_REQUIRED_ARGC 1
 #define uv_read_stop_OPTIONAL_ARGC 0
@@ -6053,8 +6053,8 @@ mrb_UV_uv_read_stop(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &arg1);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvStreamT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Stream_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Stream expected");
     return mrb_nil_value();
   }
 
@@ -6073,7 +6073,7 @@ mrb_UV_uv_read_stop(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_recv_buffer_size */
-/* sha: 5352b92fa3be84445c5ef5ffeb410baaafab717e1e9abc6021206c3f3eea27dd */
+/* sha: e6337a4b8795a882f14aa8dc0eb2464c71f443824b2df5aa5a60bb4770858dbd */
 #if BIND_uv_recv_buffer_size_FUNCTION
 #define uv_recv_buffer_size_REQUIRED_ARGC 2
 #define uv_recv_buffer_size_OPTIONAL_ARGC 0
@@ -6093,8 +6093,8 @@ mrb_UV_uv_recv_buffer_size(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &handle, &value);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvHandleT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvHandleT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Handle_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Handle expected");
     return mrb_nil_value();
   }
   TODO_type_check_int_PTR(value);
@@ -6117,7 +6117,7 @@ mrb_UV_uv_recv_buffer_size(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_ref */
-/* sha: a78e3ddf620c2721a79ff5f21bedc1bc433307b8c0a200ebfbf505976398d9ab */
+/* sha: 419f2693228b3494aa753fe1c6aad8b1c490b84228847d23a9dbe731a1aa1735 */
 #if BIND_uv_ref_FUNCTION
 #define uv_ref_REQUIRED_ARGC 1
 #define uv_ref_OPTIONAL_ARGC 0
@@ -6135,8 +6135,8 @@ mrb_UV_uv_ref(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &arg1);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvHandleT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvHandleT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Handle_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Handle expected");
     return mrb_nil_value();
   }
 
@@ -6289,7 +6289,7 @@ mrb_UV_uv_run(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o|i", &arg1, &native_mode);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, arg1, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
     return mrb_nil_value();
   }
@@ -6742,7 +6742,7 @@ mrb_UV_uv_sem_wait(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_send_buffer_size */
-/* sha: 0d4218a793c6c08e7af142712dc6976018390229fe0e32fd1f79f8ce51d106b6 */
+/* sha: 69a4723a6acb228808a4731f758a0b7f5f56df615c7f62c23695aaa295d58ad2 */
 #if BIND_uv_send_buffer_size_FUNCTION
 #define uv_send_buffer_size_REQUIRED_ARGC 2
 #define uv_send_buffer_size_OPTIONAL_ARGC 0
@@ -6762,8 +6762,8 @@ mrb_UV_uv_send_buffer_size(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &handle, &value);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvHandleT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvHandleT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Handle_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Handle expected");
     return mrb_nil_value();
   }
   TODO_type_check_int_PTR(value);
@@ -6852,7 +6852,7 @@ mrb_UV_uv_setup_args(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_shutdown */
-/* sha: e1f99b4ddf5a9f1c0971d080b2191d3202792f214d847c80033386b55021bfac */
+/* sha: 3a6972eae758cecfeeb85e72d7e1ff1303247251bd58e2f4a7fe4d6e8dd8c144 */
 #if BIND_uv_shutdown_FUNCTION
 #define uv_shutdown_REQUIRED_ARGC 3
 #define uv_shutdown_OPTIONAL_ARGC 0
@@ -6874,12 +6874,12 @@ mrb_UV_uv_shutdown(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooo", &req, &handle, &cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, req, UvShutdownT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvShutdownT expected");
+  if (!mrb_obj_is_kind_of(mrb, req, Shutdown_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Shutdown expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, handle, UvStreamT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Stream_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Stream expected");
     return mrb_nil_value();
   }
   TODO_type_check_uv_shutdown_cb(cb);
@@ -6905,7 +6905,7 @@ mrb_UV_uv_shutdown(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_signal_init */
-/* sha: a823a7c6bcb992d4a1c1e42239869f9e14524797153cce46536aba95fe5b5f01 */
+/* sha: d6647c619c9a9bb32e9551ac00a535fe02161aa1415bb69a57091a2d3c9c22a8 */
 #if BIND_uv_signal_init_FUNCTION
 #define uv_signal_init_REQUIRED_ARGC 2
 #define uv_signal_init_OPTIONAL_ARGC 0
@@ -6925,12 +6925,12 @@ mrb_UV_uv_signal_init(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &loop, &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, handle, UvSignalT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvSignalT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Signal_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Signal expected");
     return mrb_nil_value();
   }
 
@@ -6974,7 +6974,7 @@ mrb_UV_uv_signal_start(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oi&", &handle, &native_signum, &signal_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvSignalT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, handle, Signal_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvSignalT expected");
     return mrb_nil_value();
   }
@@ -6999,7 +6999,7 @@ mrb_UV_uv_signal_start(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_signal_stop */
-/* sha: f36cf4b6568341851d5f9182fc27cf61360c18de33f7e86f76025ba25312dce4 */
+/* sha: 9f63b57a80a2ea0556dd475a9e74afd02e67354b5a73e19d6e41ca5784254fde */
 #if BIND_uv_signal_stop_FUNCTION
 #define uv_signal_stop_REQUIRED_ARGC 1
 #define uv_signal_stop_OPTIONAL_ARGC 0
@@ -7017,8 +7017,8 @@ mrb_UV_uv_signal_stop(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvSignalT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvSignalT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Signal_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Signal expected");
     return mrb_nil_value();
   }
 
@@ -7037,7 +7037,7 @@ mrb_UV_uv_signal_stop(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_spawn */
-/* sha: 1071424e51998cd318312b921ea078570d9909062ff8972b7449a3dd908ff335 */
+/* sha: bf07238a6017150b5000882e1e2461565887c69a7e09c0659c9d32f0ba269be0 */
 #if BIND_uv_spawn_FUNCTION
 #define uv_spawn_REQUIRED_ARGC 3
 #define uv_spawn_OPTIONAL_ARGC 0
@@ -7059,16 +7059,16 @@ mrb_UV_uv_spawn(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooo", &loop, &handle, &options);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, handle, UvProcessT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvProcessT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Process_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Process expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, options, UvProcessOptionsT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvProcessOptionsT expected");
+  if (!mrb_obj_is_kind_of(mrb, options, ProcessOptions_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "ProcessOptions expected");
     return mrb_nil_value();
   }
 
@@ -7093,7 +7093,7 @@ mrb_UV_uv_spawn(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_stop */
-/* sha: 229ba9352030e7f09f77c784afb3e7e625f06ad0e8436a028245635b1bdd5912 */
+/* sha: d54bbd7bf5e48948ca4a486d389a7ab700cd47f6296641fd36d157d3f9e737b6 */
 #if BIND_uv_stop_FUNCTION
 #define uv_stop_REQUIRED_ARGC 1
 #define uv_stop_OPTIONAL_ARGC 0
@@ -7111,8 +7111,8 @@ mrb_UV_uv_stop(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &arg1);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
 
@@ -7128,7 +7128,7 @@ mrb_UV_uv_stop(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_stream_set_blocking */
-/* sha: 7dd4284f3b806ab8ff15427853d67ec08cf02dc0f336b94720726f663d16d8b5 */
+/* sha: ff1818e38df3890143a92a99779aa191c12de4d1f69cda1a9b381415ae6f7811 */
 #if BIND_uv_stream_set_blocking_FUNCTION
 #define uv_stream_set_blocking_REQUIRED_ARGC 2
 #define uv_stream_set_blocking_OPTIONAL_ARGC 0
@@ -7148,8 +7148,8 @@ mrb_UV_uv_stream_set_blocking(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oi", &handle, &native_blocking);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvStreamT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Stream_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Stream expected");
     return mrb_nil_value();
   }
 
@@ -7197,7 +7197,7 @@ mrb_UV_uv_strerror(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tcp_bind */
-/* sha: 153efacecf7f0f83d262690c08fa2aab2b1da71121fcab4fc1afd0dd19ca291f */
+/* sha: 740a018dbd5b796b411f88c0cf43b5ffd5f546dea31c4ce85558fd45d7a580d1 */
 #if BIND_uv_tcp_bind_FUNCTION
 #define uv_tcp_bind_REQUIRED_ARGC 3
 #define uv_tcp_bind_OPTIONAL_ARGC 0
@@ -7219,8 +7219,8 @@ mrb_UV_uv_tcp_bind(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooi", &handle, &addr, &native_flags);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvTcpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvTcpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, TCP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "TCP expected");
     return mrb_nil_value();
   }
   TODO_type_check_sockaddr_PTR(addr);
@@ -7243,7 +7243,7 @@ mrb_UV_uv_tcp_bind(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tcp_connect */
-/* sha: c67a03ee6a9d9c3e7a4a548ea89a8010e5e649621c0bef64356c8b8fd4f5e81b */
+/* sha: 6e11e4139c32ee3442bc54e8c87ecced94ce04e44939fc6865b35d54c07d3856 */
 #if BIND_uv_tcp_connect_FUNCTION
 #define uv_tcp_connect_REQUIRED_ARGC 4
 #define uv_tcp_connect_OPTIONAL_ARGC 0
@@ -7267,12 +7267,12 @@ mrb_UV_uv_tcp_connect(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oooo", &req, &handle, &addr, &cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, req, UvConnectT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvConnectT expected");
+  if (!mrb_obj_is_kind_of(mrb, req, Connect_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Connect expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, handle, UvTcpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvTcpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, TCP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "TCP expected");
     return mrb_nil_value();
   }
   TODO_type_check_sockaddr_PTR(addr);
@@ -7302,7 +7302,7 @@ mrb_UV_uv_tcp_connect(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tcp_getpeername */
-/* sha: f90ec93ef6f26ade0dbd74c355425f59081f681363660ba7b19d3f8d398dcaaf */
+/* sha: b5201cfa22c2b416143b14330f33f6b2d8bc64bfbe18d94d3e66e633356a0321 */
 #if BIND_uv_tcp_getpeername_FUNCTION
 #define uv_tcp_getpeername_REQUIRED_ARGC 3
 #define uv_tcp_getpeername_OPTIONAL_ARGC 0
@@ -7324,8 +7324,8 @@ mrb_UV_uv_tcp_getpeername(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooo", &handle, &name, &namelen);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvTcpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvTcpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, TCP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "TCP expected");
     return mrb_nil_value();
   }
   TODO_type_check_sockaddr_PTR(name);
@@ -7352,7 +7352,7 @@ mrb_UV_uv_tcp_getpeername(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tcp_getsockname */
-/* sha: daf3bab670f5d033cc6680888d572c959a807c2bb9696267c9b0d8ba4d04052a */
+/* sha: 615162f2c8564caaa6a9433717bb8be5659dd95bbb9340ec4fabc8b6c7f5f3d3 */
 #if BIND_uv_tcp_getsockname_FUNCTION
 #define uv_tcp_getsockname_REQUIRED_ARGC 3
 #define uv_tcp_getsockname_OPTIONAL_ARGC 0
@@ -7374,8 +7374,8 @@ mrb_UV_uv_tcp_getsockname(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooo", &handle, &name, &namelen);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvTcpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvTcpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, TCP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "TCP expected");
     return mrb_nil_value();
   }
   TODO_type_check_sockaddr_PTR(name);
@@ -7402,7 +7402,7 @@ mrb_UV_uv_tcp_getsockname(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tcp_init */
-/* sha: 6002d03a0ac0251a69b6f64a13ff5b66c7d89aeee1169a0d5ba2ccaf047f09f2 */
+/* sha: 6ee825f12bf7587ce3189b1c5d762400614b488265c66b4413fa7a7983db170f */
 #if BIND_uv_tcp_init_FUNCTION
 #define uv_tcp_init_REQUIRED_ARGC 2
 #define uv_tcp_init_OPTIONAL_ARGC 0
@@ -7422,12 +7422,12 @@ mrb_UV_uv_tcp_init(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &arg1, &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, handle, UvTcpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvTcpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, TCP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "TCP expected");
     return mrb_nil_value();
   }
 
@@ -7449,7 +7449,7 @@ mrb_UV_uv_tcp_init(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tcp_init_ex */
-/* sha: 9caec999cc427b7b73f7157833fcfa314ac992fc88cc5cdeb5129050e50b6f53 */
+/* sha: de0f76dc0eb8275e437014af33bfc0d5715c6d405fe3c317917025d0a80a8b9c */
 #if BIND_uv_tcp_init_ex_FUNCTION
 #define uv_tcp_init_ex_REQUIRED_ARGC 3
 #define uv_tcp_init_ex_OPTIONAL_ARGC 0
@@ -7471,12 +7471,12 @@ mrb_UV_uv_tcp_init_ex(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooi", &arg1, &handle, &native_flags);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, handle, UvTcpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvTcpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, TCP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "TCP expected");
     return mrb_nil_value();
   }
 
@@ -7498,7 +7498,7 @@ mrb_UV_uv_tcp_init_ex(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tcp_keepalive */
-/* sha: 528db1708fcb0f8998a1bc3246b6ed028cef6bf1d99932174bc34b37bc5d0668 */
+/* sha: ae595937cd7b8a58410b629cfce0627aa624ab7952f87a45607caacc2fce25ce */
 #if BIND_uv_tcp_keepalive_FUNCTION
 #define uv_tcp_keepalive_REQUIRED_ARGC 3
 #define uv_tcp_keepalive_OPTIONAL_ARGC 0
@@ -7520,8 +7520,8 @@ mrb_UV_uv_tcp_keepalive(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oii", &handle, &native_enable, &native_delay);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvTcpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvTcpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, TCP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "TCP expected");
     return mrb_nil_value();
   }
 
@@ -7540,7 +7540,7 @@ mrb_UV_uv_tcp_keepalive(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tcp_nodelay */
-/* sha: d217e11b21bdfbc9386652869b703de354c5c9f6df49c9f001b8fd9c3bc2d79c */
+/* sha: 169d09d0e0e66412451e37f8a1057ce09d7f0a39dae67f297012e2216b63a1b6 */
 #if BIND_uv_tcp_nodelay_FUNCTION
 #define uv_tcp_nodelay_REQUIRED_ARGC 2
 #define uv_tcp_nodelay_OPTIONAL_ARGC 0
@@ -7560,8 +7560,8 @@ mrb_UV_uv_tcp_nodelay(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oi", &handle, &native_enable);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvTcpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvTcpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, TCP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "TCP expected");
     return mrb_nil_value();
   }
 
@@ -7580,7 +7580,7 @@ mrb_UV_uv_tcp_nodelay(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tcp_open */
-/* sha: f86084896a4f760496c8544d1256f4e6bac82014d589e64d50986685978a8387 */
+/* sha: b3b77d1e2ce65962e8b403c4f81975b7669d2b95fe424f010f9a0c50d2f8b7bb */
 #if BIND_uv_tcp_open_FUNCTION
 #define uv_tcp_open_REQUIRED_ARGC 2
 #define uv_tcp_open_OPTIONAL_ARGC 0
@@ -7600,8 +7600,8 @@ mrb_UV_uv_tcp_open(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &handle, &sock);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvTcpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvTcpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, TCP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "TCP expected");
     return mrb_nil_value();
   }
   TODO_type_check_uv_os_sock_t(sock);
@@ -7624,7 +7624,7 @@ mrb_UV_uv_tcp_open(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tcp_simultaneous_accepts */
-/* sha: 9e2916c45c5323fd7a4738acaca81a5751dbe944e720281e99f5c25fff94a119 */
+/* sha: b5441fc458af2b334b84d78955bf5b28e27597ebe248c40c8492fe9bb50d8097 */
 #if BIND_uv_tcp_simultaneous_accepts_FUNCTION
 #define uv_tcp_simultaneous_accepts_REQUIRED_ARGC 2
 #define uv_tcp_simultaneous_accepts_OPTIONAL_ARGC 0
@@ -7644,8 +7644,8 @@ mrb_UV_uv_tcp_simultaneous_accepts(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oi", &handle, &native_enable);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvTcpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvTcpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, TCP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "TCP expected");
     return mrb_nil_value();
   }
 
@@ -7810,7 +7810,7 @@ mrb_UV_uv_thread_self(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_timer_again */
-/* sha: 622974a88cc32e812c2a4f698e39bc6a7c2b80aff7032200cbb75333c7e5e19c */
+/* sha: 0cc018a1f24154b86706e076bb54c015f5fe9ad12e1f5fdfa31fcd33eb9af5e2 */
 #if BIND_uv_timer_again_FUNCTION
 #define uv_timer_again_REQUIRED_ARGC 1
 #define uv_timer_again_OPTIONAL_ARGC 0
@@ -7828,8 +7828,8 @@ mrb_UV_uv_timer_again(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvTimerT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvTimerT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Timer_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Timer expected");
     return mrb_nil_value();
   }
 
@@ -7848,7 +7848,7 @@ mrb_UV_uv_timer_again(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_timer_get_repeat */
-/* sha: 3af1854bee7ef4876aaeb1166fad31984fa1776a44c1f813c93140632126558e */
+/* sha: 606ee4d9e41a1853fdff48f15529cd178311e695c8ca0650839f77afae3ac5b3 */
 #if BIND_uv_timer_get_repeat_FUNCTION
 #define uv_timer_get_repeat_REQUIRED_ARGC 1
 #define uv_timer_get_repeat_OPTIONAL_ARGC 0
@@ -7866,8 +7866,8 @@ mrb_UV_uv_timer_get_repeat(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvTimerT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvTimerT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Timer_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Timer expected");
     return mrb_nil_value();
   }
 
@@ -7886,7 +7886,7 @@ mrb_UV_uv_timer_get_repeat(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_timer_init */
-/* sha: 031e6f471810d7fc50774c6c65d0c5d9e2dbc2c3a095e80cd83af7bd548d6fd4 */
+/* sha: d6c9b4b22861004c96613926b3597e9bf74fb5f98b7cb92c37b134f9781940ff */
 #if BIND_uv_timer_init_FUNCTION
 #define uv_timer_init_REQUIRED_ARGC 2
 #define uv_timer_init_OPTIONAL_ARGC 0
@@ -7906,12 +7906,12 @@ mrb_UV_uv_timer_init(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &arg1, &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, handle, UvTimerT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvTimerT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Timer_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Timer expected");
     return mrb_nil_value();
   }
 
@@ -7933,7 +7933,7 @@ mrb_UV_uv_timer_init(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_timer_set_repeat */
-/* sha: 768a0750f681f0339b2e3b9c5a92fbb7dd1c5330a1e3abb42b29a2d88628070d */
+/* sha: c18e13020cd65a7a874dc325432668aa4f4fb57af2ad5428a332595f81fddd6e */
 #if BIND_uv_timer_set_repeat_FUNCTION
 #define uv_timer_set_repeat_REQUIRED_ARGC 2
 #define uv_timer_set_repeat_OPTIONAL_ARGC 0
@@ -7953,8 +7953,8 @@ mrb_UV_uv_timer_set_repeat(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &handle, &repeat);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvTimerT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvTimerT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Timer_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Timer expected");
     return mrb_nil_value();
   }
   TODO_type_check_uint64_t(repeat);
@@ -7998,7 +7998,7 @@ mrb_UV_uv_timer_start(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oii&", &handle, &native_timeout, &native_repeat, &cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvTimerT_class(mrb))) {
+  if (!mrb_obj_is_kind_of(mrb, handle, Timer_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UvTimerT expected");
     return mrb_nil_value();
   }
@@ -8023,7 +8023,7 @@ mrb_UV_uv_timer_start(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_timer_stop */
-/* sha: 2057868715e6a172466f118820ef882b65b3781196a2def0920853762f9c50be */
+/* sha: 2b1949b639302e7a6b017640a2d331ded0f2f5380245c1404827f96bee11e906 */
 #if BIND_uv_timer_stop_FUNCTION
 #define uv_timer_stop_REQUIRED_ARGC 1
 #define uv_timer_stop_OPTIONAL_ARGC 0
@@ -8041,8 +8041,8 @@ mrb_UV_uv_timer_stop(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvTimerT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvTimerT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Timer_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Timer expected");
     return mrb_nil_value();
   }
 
@@ -8061,7 +8061,7 @@ mrb_UV_uv_timer_stop(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_try_write */
-/* sha: eee0c829c1f9977349ea6e16f915346dd143ea840d08c24cba8792d4f995f080 */
+/* sha: 32be551c2c4a68002c571661dcc1281bc05ebfe4d43130f3efbfac7612e32933 */
 #if BIND_uv_try_write_FUNCTION
 #define uv_try_write_REQUIRED_ARGC 3
 #define uv_try_write_OPTIONAL_ARGC 0
@@ -8083,8 +8083,8 @@ mrb_UV_uv_try_write(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooi", &handle, &bufs, &native_nbufs);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvStreamT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Stream_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Stream expected");
     return mrb_nil_value();
   }
   TODO_type_check_uv_buf_t_[](bufs);
@@ -8107,7 +8107,7 @@ mrb_UV_uv_try_write(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tty_get_winsize */
-/* sha: 1aa1dc5212c2a26c25569889c13928eba10cdf430455befc15e51ba7fb76a234 */
+/* sha: 126efe3f3fed6f89631d1fadca2fd9fdb3342161a68497a3b67ba277f0b3239a */
 #if BIND_uv_tty_get_winsize_FUNCTION
 #define uv_tty_get_winsize_REQUIRED_ARGC 3
 #define uv_tty_get_winsize_OPTIONAL_ARGC 0
@@ -8129,8 +8129,8 @@ mrb_UV_uv_tty_get_winsize(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooo", &arg1, &width, &height);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvTtyT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvTtyT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Tty_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Tty expected");
     return mrb_nil_value();
   }
   TODO_type_check_int_PTR(width);
@@ -8157,7 +8157,7 @@ mrb_UV_uv_tty_get_winsize(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tty_init */
-/* sha: 77970ce92262a738ac68b7a1c5f3a699c092be210e940dec7eda6ef49e54ad32 */
+/* sha: 35383f2245daa17532bfe3a50b4e2a3859f7887204cbf180d4d5775382fdfacb */
 #if BIND_uv_tty_init_FUNCTION
 #define uv_tty_init_REQUIRED_ARGC 4
 #define uv_tty_init_OPTIONAL_ARGC 0
@@ -8181,12 +8181,12 @@ mrb_UV_uv_tty_init(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooii", &arg1, &arg2, &native_fd, &native_readable);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, arg2, UvTtyT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvTtyT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg2, Tty_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Tty expected");
     return mrb_nil_value();
   }
 
@@ -8231,7 +8231,7 @@ mrb_UV_uv_tty_reset_mode(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tty_set_mode */
-/* sha: 3629c4412c4c6a9a3147a27faaa3c43eb81e50f32d166bb5f69b53e8aa86ba3c */
+/* sha: 647d8bc0f48927966bac876e29bb388ea7fd3423a42a03af5c712c0692904f7e */
 #if BIND_uv_tty_set_mode_FUNCTION
 #define uv_tty_set_mode_REQUIRED_ARGC 2
 #define uv_tty_set_mode_OPTIONAL_ARGC 0
@@ -8251,8 +8251,8 @@ mrb_UV_uv_tty_set_mode(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oi", &arg1, &native_mode);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvTtyT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvTtyT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Tty_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Tty expected");
     return mrb_nil_value();
   }
 
@@ -8271,7 +8271,7 @@ mrb_UV_uv_tty_set_mode(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_udp_bind */
-/* sha: fb14945b1ab9b2a1a37a8823dad5f7b70a971d8b497aa9327ace2216ce36b25c */
+/* sha: e235a0f231e7639d089278fea9e38c3e5f955edaa7d5d29f7b27e226cadde504 */
 #if BIND_uv_udp_bind_FUNCTION
 #define uv_udp_bind_REQUIRED_ARGC 3
 #define uv_udp_bind_OPTIONAL_ARGC 0
@@ -8293,8 +8293,8 @@ mrb_UV_uv_udp_bind(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooi", &handle, &addr, &native_flags);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvUdpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvUdpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, UDP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UDP expected");
     return mrb_nil_value();
   }
   TODO_type_check_sockaddr_PTR(addr);
@@ -8317,7 +8317,7 @@ mrb_UV_uv_udp_bind(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_udp_getsockname */
-/* sha: 2e5a4330917e167dc4cb6765a32c143da2851e9c228354529fe8c9c9d2685664 */
+/* sha: 49ed15cbbe31e2213589711a4dd04d450fa570abd573fd2b1210d23708a55e9c */
 #if BIND_uv_udp_getsockname_FUNCTION
 #define uv_udp_getsockname_REQUIRED_ARGC 3
 #define uv_udp_getsockname_OPTIONAL_ARGC 0
@@ -8339,8 +8339,8 @@ mrb_UV_uv_udp_getsockname(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooo", &handle, &name, &namelen);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvUdpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvUdpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, UDP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UDP expected");
     return mrb_nil_value();
   }
   TODO_type_check_sockaddr_PTR(name);
@@ -8367,7 +8367,7 @@ mrb_UV_uv_udp_getsockname(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_udp_init */
-/* sha: 080fa6e0ee6ac61956c2a3f7999433d5fe750340980b8c5f8f9f1590da3d695d */
+/* sha: 158f2ea608323de0db9c3ecb71b79feac02b42e8660c758c147be297fa23e93d */
 #if BIND_uv_udp_init_FUNCTION
 #define uv_udp_init_REQUIRED_ARGC 2
 #define uv_udp_init_OPTIONAL_ARGC 0
@@ -8387,12 +8387,12 @@ mrb_UV_uv_udp_init(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &arg1, &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, handle, UvUdpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvUdpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, UDP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UDP expected");
     return mrb_nil_value();
   }
 
@@ -8414,7 +8414,7 @@ mrb_UV_uv_udp_init(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_udp_init_ex */
-/* sha: 362108c1df1f1123d9d91ede79afc6bb114f2ecf6fba40d41f2cbde6bf2e9738 */
+/* sha: 52e1f67e3afe8da4145740d09fc097e91ad5cd312538dcb30601f29b2f606d64 */
 #if BIND_uv_udp_init_ex_FUNCTION
 #define uv_udp_init_ex_REQUIRED_ARGC 3
 #define uv_udp_init_ex_OPTIONAL_ARGC 0
@@ -8436,12 +8436,12 @@ mrb_UV_uv_udp_init_ex(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooi", &arg1, &handle, &native_flags);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, handle, UvUdpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvUdpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, UDP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UDP expected");
     return mrb_nil_value();
   }
 
@@ -8463,7 +8463,7 @@ mrb_UV_uv_udp_init_ex(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_udp_open */
-/* sha: 9f149248d3a887a2fafbfe430d32c95cf135109bb4026b15c08be58063c1b844 */
+/* sha: 1b7b99f53e383779933aa5ba9521115b8b92a3c25f5eb20c3816ad6c227635f2 */
 #if BIND_uv_udp_open_FUNCTION
 #define uv_udp_open_REQUIRED_ARGC 2
 #define uv_udp_open_OPTIONAL_ARGC 0
@@ -8483,8 +8483,8 @@ mrb_UV_uv_udp_open(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oo", &handle, &sock);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvUdpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvUdpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, UDP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UDP expected");
     return mrb_nil_value();
   }
   TODO_type_check_uv_os_sock_t(sock);
@@ -8507,7 +8507,7 @@ mrb_UV_uv_udp_open(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_udp_recv_start */
-/* sha: 62e0583a10e6ac61d887d0ef553363debfcb4068088bf20663ad0d3147e8f8b8 */
+/* sha: 20470a1f65b39c0b80a7be4856886e505a0771e91c651c9e46f1eb49ff0b5522 */
 #if BIND_uv_udp_recv_start_FUNCTION
 #define uv_udp_recv_start_REQUIRED_ARGC 3
 #define uv_udp_recv_start_OPTIONAL_ARGC 0
@@ -8529,8 +8529,8 @@ mrb_UV_uv_udp_recv_start(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooo", &handle, &alloc_cb, &recv_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvUdpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvUdpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, UDP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UDP expected");
     return mrb_nil_value();
   }
   TODO_type_check_uv_alloc_cb(alloc_cb);
@@ -8557,7 +8557,7 @@ mrb_UV_uv_udp_recv_start(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_udp_recv_stop */
-/* sha: b8325bd01e8ab7ec3aefd8bc3ba0424f6e5ab576478d0c834dfc21cc48a2d2bd */
+/* sha: 06985c6d1cd446359044e03ba43e4095978281f015c35616115b6f9f425f655a */
 #if BIND_uv_udp_recv_stop_FUNCTION
 #define uv_udp_recv_stop_REQUIRED_ARGC 1
 #define uv_udp_recv_stop_OPTIONAL_ARGC 0
@@ -8575,8 +8575,8 @@ mrb_UV_uv_udp_recv_stop(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvUdpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvUdpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, UDP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UDP expected");
     return mrb_nil_value();
   }
 
@@ -8595,7 +8595,7 @@ mrb_UV_uv_udp_recv_stop(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_udp_send */
-/* sha: 3013704afc01089cb0df0394076860ef2830107ea418e89f467610b68a13bf07 */
+/* sha: b84de8f0dc3158ffb71ec8880c6957632ad621b4e992e97f35159627ed3e4e3c */
 #if BIND_uv_udp_send_FUNCTION
 #define uv_udp_send_REQUIRED_ARGC 6
 #define uv_udp_send_OPTIONAL_ARGC 0
@@ -8623,12 +8623,12 @@ mrb_UV_uv_udp_send(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oooioo", &req, &handle, &bufs, &native_nbufs, &addr, &send_cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, req, UvUdpSendT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvUdpSendT expected");
+  if (!mrb_obj_is_kind_of(mrb, req, UDPSend_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UDPSend expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, handle, UvUdpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvUdpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, UDP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UDP expected");
     return mrb_nil_value();
   }
   TODO_type_check_uv_buf_t_[](bufs);
@@ -8662,7 +8662,7 @@ mrb_UV_uv_udp_send(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_udp_set_broadcast */
-/* sha: 100180e5688358fe8b7e5366f277420621a44e8ebd4eb9b2b23b102829546c8f */
+/* sha: 888a8bae55d7fa451b4cf069ddcb3dd84f05bd871815c7961478b07c262d3679 */
 #if BIND_uv_udp_set_broadcast_FUNCTION
 #define uv_udp_set_broadcast_REQUIRED_ARGC 2
 #define uv_udp_set_broadcast_OPTIONAL_ARGC 0
@@ -8682,8 +8682,8 @@ mrb_UV_uv_udp_set_broadcast(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oi", &handle, &native_on);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvUdpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvUdpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, UDP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UDP expected");
     return mrb_nil_value();
   }
 
@@ -8702,7 +8702,7 @@ mrb_UV_uv_udp_set_broadcast(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_udp_set_membership */
-/* sha: cd7b933cdb4bb429bb6d821c6d5ad8fc77038a9e6a65cda233e93014e72badd9 */
+/* sha: 0536d185fde28b57d87ecf467cdbdf921820a6058819e11c28ba0f2e16746e95 */
 #if BIND_uv_udp_set_membership_FUNCTION
 #define uv_udp_set_membership_REQUIRED_ARGC 4
 #define uv_udp_set_membership_OPTIONAL_ARGC 0
@@ -8726,8 +8726,8 @@ mrb_UV_uv_udp_set_membership(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ozzi", &handle, &native_multicast_addr, &native_interface_addr, &native_membership);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvUdpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvUdpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, UDP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UDP expected");
     return mrb_nil_value();
   }
 
@@ -8746,7 +8746,7 @@ mrb_UV_uv_udp_set_membership(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_udp_set_multicast_interface */
-/* sha: 44dfd9b3c8a1f43a7ed4fe007a361179f9afcbba0f5cf6a4cbec307352c58a70 */
+/* sha: 8b7efea8d32d377983b0646312754da107c2d3912ede12e86be09f37f29a35b0 */
 #if BIND_uv_udp_set_multicast_interface_FUNCTION
 #define uv_udp_set_multicast_interface_REQUIRED_ARGC 2
 #define uv_udp_set_multicast_interface_OPTIONAL_ARGC 0
@@ -8766,8 +8766,8 @@ mrb_UV_uv_udp_set_multicast_interface(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oz", &handle, &native_interface_addr);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvUdpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvUdpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, UDP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UDP expected");
     return mrb_nil_value();
   }
 
@@ -8786,7 +8786,7 @@ mrb_UV_uv_udp_set_multicast_interface(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_udp_set_multicast_loop */
-/* sha: d43c631c0c9ed00157ba63ad2e02b32c611b1ce872c2c59a98ce52f170b61720 */
+/* sha: ed62d5826be1c315aa5ad724f23c1a2bff7861e9c7a5b94309c5c369da4de825 */
 #if BIND_uv_udp_set_multicast_loop_FUNCTION
 #define uv_udp_set_multicast_loop_REQUIRED_ARGC 2
 #define uv_udp_set_multicast_loop_OPTIONAL_ARGC 0
@@ -8806,8 +8806,8 @@ mrb_UV_uv_udp_set_multicast_loop(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oi", &handle, &native_on);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvUdpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvUdpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, UDP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UDP expected");
     return mrb_nil_value();
   }
 
@@ -8826,7 +8826,7 @@ mrb_UV_uv_udp_set_multicast_loop(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_udp_set_multicast_ttl */
-/* sha: ebfaf37f347b9492981f85e08086603e4eed176ac559f6fa1036ccb50e4828d8 */
+/* sha: f9cd97e72e62a8fa21d513d20ef7b66d4706bd1ce89f351537a6c0bdc04a0928 */
 #if BIND_uv_udp_set_multicast_ttl_FUNCTION
 #define uv_udp_set_multicast_ttl_REQUIRED_ARGC 2
 #define uv_udp_set_multicast_ttl_OPTIONAL_ARGC 0
@@ -8846,8 +8846,8 @@ mrb_UV_uv_udp_set_multicast_ttl(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oi", &handle, &native_ttl);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvUdpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvUdpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, UDP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UDP expected");
     return mrb_nil_value();
   }
 
@@ -8866,7 +8866,7 @@ mrb_UV_uv_udp_set_multicast_ttl(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_udp_set_ttl */
-/* sha: 80d0538b29b944279f53d3d7d8aac2be88894c43a94d163e56bd2bbd03408a36 */
+/* sha: 807c6693a569c65f1a70ff4b1f68c624f17f8149ff48becdd469751dab41414c */
 #if BIND_uv_udp_set_ttl_FUNCTION
 #define uv_udp_set_ttl_REQUIRED_ARGC 2
 #define uv_udp_set_ttl_OPTIONAL_ARGC 0
@@ -8886,8 +8886,8 @@ mrb_UV_uv_udp_set_ttl(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oi", &handle, &native_ttl);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvUdpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvUdpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, UDP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UDP expected");
     return mrb_nil_value();
   }
 
@@ -8906,7 +8906,7 @@ mrb_UV_uv_udp_set_ttl(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_udp_try_send */
-/* sha: d98448e28458c276f4ea4d14519b0ccce2dd1b5d81d676a5d8fe3b9f73459528 */
+/* sha: 77a3f7b1ce1cc72ea36d4c74c928055929eb4695a5e7f905b0ee87fd46722293 */
 #if BIND_uv_udp_try_send_FUNCTION
 #define uv_udp_try_send_REQUIRED_ARGC 4
 #define uv_udp_try_send_OPTIONAL_ARGC 0
@@ -8930,8 +8930,8 @@ mrb_UV_uv_udp_try_send(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooio", &handle, &bufs, &native_nbufs, &addr);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvUdpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvUdpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, UDP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UDP expected");
     return mrb_nil_value();
   }
   TODO_type_check_uv_buf_t_[](bufs);
@@ -8958,7 +8958,7 @@ mrb_UV_uv_udp_try_send(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_unref */
-/* sha: 5c1f8c93056635f4c500d3cb8cdac0eb8319e1d115b417668807df164685b353 */
+/* sha: ff976d43240f176c697f2bd3565a3e5b67c86c25913c7709465930153a0a0977 */
 #if BIND_uv_unref_FUNCTION
 #define uv_unref_REQUIRED_ARGC 1
 #define uv_unref_OPTIONAL_ARGC 0
@@ -8976,8 +8976,8 @@ mrb_UV_uv_unref(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &arg1);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvHandleT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvHandleT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Handle_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Handle expected");
     return mrb_nil_value();
   }
 
@@ -8993,7 +8993,7 @@ mrb_UV_uv_unref(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_update_time */
-/* sha: 109195512e815a196a1babcd4c6edcefb369195bc50cdecb1fc1298aa242ab6f */
+/* sha: e3f0f5c7b033a468768b29a2716abfa900f160897cda00e2c1f7075224170dec */
 #if BIND_uv_update_time_FUNCTION
 #define uv_update_time_REQUIRED_ARGC 1
 #define uv_update_time_OPTIONAL_ARGC 0
@@ -9011,8 +9011,8 @@ mrb_UV_uv_update_time(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &arg1);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
 
@@ -9109,7 +9109,7 @@ mrb_UV_uv_version_string(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_walk */
-/* sha: 71dc31e2eba5c9203d4cc10837f9a251761e61393478983c061bed932e3c0dac */
+/* sha: 8e2b2b3e49fc539ec97c89fb4576849ed55e11fa2e74a43b427b5ca080442423 */
 #if BIND_uv_walk_FUNCTION
 #define uv_walk_REQUIRED_ARGC 3
 #define uv_walk_OPTIONAL_ARGC 0
@@ -9131,8 +9131,8 @@ mrb_UV_uv_walk(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooo", &loop, &walk_cb, &arg);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   TODO_type_check_uv_walk_cb(walk_cb);
@@ -9156,7 +9156,7 @@ mrb_UV_uv_walk(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_write */
-/* sha: 135a3ab587b4cfe79c7f092c8d959d8aaba8f0f0c460fb2d3b1d3203c798a8e5 */
+/* sha: 0f6f5ea899b10513fd603bb44a455621d422361359f4d6fa55be86238eba7e22 */
 #if BIND_uv_write_FUNCTION
 #define uv_write_REQUIRED_ARGC 5
 #define uv_write_OPTIONAL_ARGC 0
@@ -9182,12 +9182,12 @@ mrb_UV_uv_write(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oooio", &req, &handle, &bufs, &native_nbufs, &cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, req, UvWriteT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvWriteT expected");
+  if (!mrb_obj_is_kind_of(mrb, req, Write_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Write expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, handle, UvStreamT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Stream_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Stream expected");
     return mrb_nil_value();
   }
   TODO_type_check_uv_buf_t_[](bufs);
@@ -9217,7 +9217,7 @@ mrb_UV_uv_write(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_write2 */
-/* sha: 959bd14f524be1b923d602f11c08e59ee3a6fbf7c9bdf9e2f2200bd3a6bd9e78 */
+/* sha: 3601ef15dc6d2f1aa27b2f2a0962781388b27ee168d615a7c40302be63e5bc3a */
 #if BIND_uv_write2_FUNCTION
 #define uv_write2_REQUIRED_ARGC 6
 #define uv_write2_OPTIONAL_ARGC 0
@@ -9245,17 +9245,17 @@ mrb_UV_uv_write2(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oooioo", &req, &handle, &bufs, &native_nbufs, &send_handle, &cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, req, UvWriteT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvWriteT expected");
+  if (!mrb_obj_is_kind_of(mrb, req, Write_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Write expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, handle, UvStreamT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Stream_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Stream expected");
     return mrb_nil_value();
   }
   TODO_type_check_uv_buf_t_[](bufs);
-  if (!mrb_obj_is_kind_of(mrb, send_handle, UvStreamT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
+  if (!mrb_obj_is_kind_of(mrb, send_handle, Stream_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Stream expected");
     return mrb_nil_value();
   }
   TODO_type_check_uv_write_cb(cb);
@@ -9295,129 +9295,130 @@ void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
   
   struct RClass* UV_module = mrb_define_module(mrb, "UV");
   mruby_UV_define_macro_constants(mrb);
+  mruby_UV_define_enum_constants(mrb);
 
 /* MRUBY_BINDING: pre_class_initializations */
 /* sha: user_defined */
-#if BIND_UvHandleT_TYPE
-  mrb_UV_UvHandleT_init(mrb);
+#if BIND_HandleT_TYPE
+  mrb_UV_HandleT_init(mrb);
 #endif
-#if BIND_UvReqT_TYPE
-  mrb_UV_UvReqT_init(mrb);
+#if BIND_ReqT_TYPE
+  mrb_UV_ReqT_init(mrb);
 #endif
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: class_initializations */
-/* sha: c4f0535ff427323f9f005ea96bab21336ec1a4e0af0c226df53219c3659c806b */
+/* sha: e2fba6a66c8069c0fb738674e21ce4db3d4d282450c45d6894d123d2c23c3428 */
 #if BIND_Addrinfo_TYPE
   mrb_UV_Addrinfo_init(mrb);
 #endif
-#if BIND_UvAsyncT_TYPE
-  mrb_UV_UvAsyncT_init(mrb);
+#if BIND_Async_TYPE
+  mrb_UV_Async_init(mrb);
 #endif
-#if BIND_UvCheckT_TYPE
-  mrb_UV_UvCheckT_init(mrb);
+#if BIND_Check_TYPE
+  mrb_UV_Check_init(mrb);
 #endif
-#if BIND_UvConnectT_TYPE
-  mrb_UV_UvConnectT_init(mrb);
+#if BIND_Connect_TYPE
+  mrb_UV_Connect_init(mrb);
 #endif
-#if BIND_UvCpuInfoT_TYPE
-  mrb_UV_UvCpuInfoT_init(mrb);
+#if BIND_CpuInfo_TYPE
+  mrb_UV_CpuInfo_init(mrb);
 #endif
-#if BIND_UvCpuTimesS_TYPE
-  mrb_UV_UvCpuTimesS_init(mrb);
+#if BIND_CpuTimesS_TYPE
+  mrb_UV_CpuTimesS_init(mrb);
 #endif
-#if BIND_UvDirentT_TYPE
-  mrb_UV_UvDirentT_init(mrb);
+#if BIND_Dirent_TYPE
+  mrb_UV_Dirent_init(mrb);
 #endif
-#if BIND_UvFsEventT_TYPE
-  mrb_UV_UvFsEventT_init(mrb);
+#if BIND_FS_TYPE
+  mrb_UV_FS_init(mrb);
 #endif
-#if BIND_UvFsPollT_TYPE
-  mrb_UV_UvFsPollT_init(mrb);
+#if BIND_FSEvent_TYPE
+  mrb_UV_FSEvent_init(mrb);
 #endif
-#if BIND_UvFsT_TYPE
-  mrb_UV_UvFsT_init(mrb);
+#if BIND_FSPoll_TYPE
+  mrb_UV_FSPoll_init(mrb);
 #endif
-#if BIND_UvGetaddrinfoT_TYPE
-  mrb_UV_UvGetaddrinfoT_init(mrb);
+#if BIND_Getaddrinfo_TYPE
+  mrb_UV_Getaddrinfo_init(mrb);
 #endif
-#if BIND_UvGetnameinfoT_TYPE
-  mrb_UV_UvGetnameinfoT_init(mrb);
+#if BIND_Getnameinfo_TYPE
+  mrb_UV_Getnameinfo_init(mrb);
 #endif
-#if BIND_UvHandleT_TYPE
-  mrb_UV_UvHandleT_init(mrb);
+#if BIND_Handle_TYPE
+  mrb_UV_Handle_init(mrb);
 #endif
-#if BIND_UvIdleT_TYPE
-  mrb_UV_UvIdleT_init(mrb);
+#if BIND_Idle_TYPE
+  mrb_UV_Idle_init(mrb);
 #endif
-#if BIND_UvInterfaceAddressT_TYPE
-  mrb_UV_UvInterfaceAddressT_init(mrb);
+#if BIND_InterfaceAddress_TYPE
+  mrb_UV_InterfaceAddress_init(mrb);
 #endif
-#if BIND_UvLoopT_TYPE
-  mrb_UV_UvLoopT_init(mrb);
+#if BIND_Loop_TYPE
+  mrb_UV_Loop_init(mrb);
 #endif
-#if BIND_UvPipeT_TYPE
-  mrb_UV_UvPipeT_init(mrb);
+#if BIND_Pipe_TYPE
+  mrb_UV_Pipe_init(mrb);
 #endif
-#if BIND_UvPollT_TYPE
-  mrb_UV_UvPollT_init(mrb);
+#if BIND_Poll_TYPE
+  mrb_UV_Poll_init(mrb);
 #endif
-#if BIND_UvPrepareT_TYPE
-  mrb_UV_UvPrepareT_init(mrb);
+#if BIND_Prepare_TYPE
+  mrb_UV_Prepare_init(mrb);
 #endif
-#if BIND_UvProcessOptionsT_TYPE
-  mrb_UV_UvProcessOptionsT_init(mrb);
+#if BIND_Process_TYPE
+  mrb_UV_Process_init(mrb);
 #endif
-#if BIND_UvProcessT_TYPE
-  mrb_UV_UvProcessT_init(mrb);
+#if BIND_ProcessOptions_TYPE
+  mrb_UV_ProcessOptions_init(mrb);
 #endif
-#if BIND_UvReqT_TYPE
-  mrb_UV_UvReqT_init(mrb);
+#if BIND_Req_TYPE
+  mrb_UV_Req_init(mrb);
 #endif
-#if BIND_UvRusageT_TYPE
-  mrb_UV_UvRusageT_init(mrb);
+#if BIND_RUsage_TYPE
+  mrb_UV_RUsage_init(mrb);
 #endif
-#if BIND_UvShutdownT_TYPE
-  mrb_UV_UvShutdownT_init(mrb);
+#if BIND_Shutdown_TYPE
+  mrb_UV_Shutdown_init(mrb);
 #endif
-#if BIND_UvSignalT_TYPE
-  mrb_UV_UvSignalT_init(mrb);
+#if BIND_Signal_TYPE
+  mrb_UV_Signal_init(mrb);
 #endif
-#if BIND_UvStatT_TYPE
-  mrb_UV_UvStatT_init(mrb);
+#if BIND_Stat_TYPE
+  mrb_UV_Stat_init(mrb);
 #endif
-#if BIND_UvStdioContainerT_TYPE
-  mrb_UV_UvStdioContainerT_init(mrb);
+#if BIND_StdioContainer_TYPE
+  mrb_UV_StdioContainer_init(mrb);
 #endif
-#if BIND_UvStreamT_TYPE
-  mrb_UV_UvStreamT_init(mrb);
+#if BIND_Stream_TYPE
+  mrb_UV_Stream_init(mrb);
 #endif
-#if BIND_UvTcpT_TYPE
-  mrb_UV_UvTcpT_init(mrb);
+#if BIND_TCP_TYPE
+  mrb_UV_TCP_init(mrb);
 #endif
-#if BIND_UvTimerT_TYPE
-  mrb_UV_UvTimerT_init(mrb);
+#if BIND_Timer_TYPE
+  mrb_UV_Timer_init(mrb);
 #endif
-#if BIND_UvTimespecT_TYPE
-  mrb_UV_UvTimespecT_init(mrb);
+#if BIND_Timespec_TYPE
+  mrb_UV_Timespec_init(mrb);
 #endif
-#if BIND_UvTimevalT_TYPE
-  mrb_UV_UvTimevalT_init(mrb);
+#if BIND_Timeval_TYPE
+  mrb_UV_Timeval_init(mrb);
 #endif
-#if BIND_UvTtyT_TYPE
-  mrb_UV_UvTtyT_init(mrb);
+#if BIND_Tty_TYPE
+  mrb_UV_Tty_init(mrb);
 #endif
-#if BIND_UvUdpSendT_TYPE
-  mrb_UV_UvUdpSendT_init(mrb);
+#if BIND_UDP_TYPE
+  mrb_UV_UDP_init(mrb);
 #endif
-#if BIND_UvUdpT_TYPE
-  mrb_UV_UvUdpT_init(mrb);
+#if BIND_UDPSend_TYPE
+  mrb_UV_UDPSend_init(mrb);
 #endif
-#if BIND_UvWorkT_TYPE
-  mrb_UV_UvWorkT_init(mrb);
+#if BIND_Work_TYPE
+  mrb_UV_Work_init(mrb);
 #endif
-#if BIND_UvWriteT_TYPE
-  mrb_UV_UvWriteT_init(mrb);
+#if BIND_Write_TYPE
+  mrb_UV_Write_init(mrb);
 #endif
 /* MRUBY_BINDING_END */
 
@@ -9427,666 +9428,666 @@ void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: global_function_definitions */
-/* sha: 0c14d44e73dc3af48693c881b2cf0eeafc3c82abf4e4d53e26d628090f527538 */
+/* sha: 217b7bb83bdc7d73aaa38688a3a622d41500e2c0427124b9b6e58e0d4cbf71d6 */
   /*
    * Global Functions
    */
 #if BIND_uv_accept_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_accept", mrb_UV_uv_accept, MRB_ARGS_ARG(uv_accept_REQUIRED_ARGC, uv_accept_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "accept", mrb_UV_uv_accept, MRB_ARGS_ARG(uv_accept_REQUIRED_ARGC, uv_accept_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_async_init_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_async_init", mrb_UV_uv_async_init, MRB_ARGS_ARG(uv_async_init_REQUIRED_ARGC, uv_async_init_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "async_init", mrb_UV_uv_async_init, MRB_ARGS_ARG(uv_async_init_REQUIRED_ARGC, uv_async_init_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_async_send_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_async_send", mrb_UV_uv_async_send, MRB_ARGS_ARG(uv_async_send_REQUIRED_ARGC, uv_async_send_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "async_send", mrb_UV_uv_async_send, MRB_ARGS_ARG(uv_async_send_REQUIRED_ARGC, uv_async_send_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_backend_fd_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_backend_fd", mrb_UV_uv_backend_fd, MRB_ARGS_ARG(uv_backend_fd_REQUIRED_ARGC, uv_backend_fd_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "backend_fd", mrb_UV_uv_backend_fd, MRB_ARGS_ARG(uv_backend_fd_REQUIRED_ARGC, uv_backend_fd_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_backend_timeout_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_backend_timeout", mrb_UV_uv_backend_timeout, MRB_ARGS_ARG(uv_backend_timeout_REQUIRED_ARGC, uv_backend_timeout_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "backend_timeout", mrb_UV_uv_backend_timeout, MRB_ARGS_ARG(uv_backend_timeout_REQUIRED_ARGC, uv_backend_timeout_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_barrier_destroy_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_barrier_destroy", mrb_UV_uv_barrier_destroy, MRB_ARGS_ARG(uv_barrier_destroy_REQUIRED_ARGC, uv_barrier_destroy_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "barrier_destroy", mrb_UV_uv_barrier_destroy, MRB_ARGS_ARG(uv_barrier_destroy_REQUIRED_ARGC, uv_barrier_destroy_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_barrier_init_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_barrier_init", mrb_UV_uv_barrier_init, MRB_ARGS_ARG(uv_barrier_init_REQUIRED_ARGC, uv_barrier_init_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "barrier_init", mrb_UV_uv_barrier_init, MRB_ARGS_ARG(uv_barrier_init_REQUIRED_ARGC, uv_barrier_init_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_barrier_wait_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_barrier_wait", mrb_UV_uv_barrier_wait, MRB_ARGS_ARG(uv_barrier_wait_REQUIRED_ARGC, uv_barrier_wait_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "barrier_wait", mrb_UV_uv_barrier_wait, MRB_ARGS_ARG(uv_barrier_wait_REQUIRED_ARGC, uv_barrier_wait_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_buf_init_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_buf_init", mrb_UV_uv_buf_init, MRB_ARGS_ARG(uv_buf_init_REQUIRED_ARGC, uv_buf_init_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "buf_init", mrb_UV_uv_buf_init, MRB_ARGS_ARG(uv_buf_init_REQUIRED_ARGC, uv_buf_init_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_cancel_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_cancel", mrb_UV_uv_cancel, MRB_ARGS_ARG(uv_cancel_REQUIRED_ARGC, uv_cancel_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "cancel", mrb_UV_uv_cancel, MRB_ARGS_ARG(uv_cancel_REQUIRED_ARGC, uv_cancel_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_chdir_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_chdir", mrb_UV_uv_chdir, MRB_ARGS_ARG(uv_chdir_REQUIRED_ARGC, uv_chdir_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "chdir", mrb_UV_uv_chdir, MRB_ARGS_ARG(uv_chdir_REQUIRED_ARGC, uv_chdir_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_check_init_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_check_init", mrb_UV_uv_check_init, MRB_ARGS_ARG(uv_check_init_REQUIRED_ARGC, uv_check_init_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "check_init", mrb_UV_uv_check_init, MRB_ARGS_ARG(uv_check_init_REQUIRED_ARGC, uv_check_init_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_check_start_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_check_start", mrb_UV_uv_check_start, MRB_ARGS_ARG(uv_check_start_REQUIRED_ARGC, uv_check_start_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "check_start", mrb_UV_uv_check_start, MRB_ARGS_ARG(uv_check_start_REQUIRED_ARGC, uv_check_start_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_check_stop_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_check_stop", mrb_UV_uv_check_stop, MRB_ARGS_ARG(uv_check_stop_REQUIRED_ARGC, uv_check_stop_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "check_stop", mrb_UV_uv_check_stop, MRB_ARGS_ARG(uv_check_stop_REQUIRED_ARGC, uv_check_stop_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_close_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_close", mrb_UV_uv_close, MRB_ARGS_ARG(uv_close_REQUIRED_ARGC, uv_close_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "close", mrb_UV_uv_close, MRB_ARGS_ARG(uv_close_REQUIRED_ARGC, uv_close_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_cond_broadcast_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_cond_broadcast", mrb_UV_uv_cond_broadcast, MRB_ARGS_ARG(uv_cond_broadcast_REQUIRED_ARGC, uv_cond_broadcast_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "cond_broadcast", mrb_UV_uv_cond_broadcast, MRB_ARGS_ARG(uv_cond_broadcast_REQUIRED_ARGC, uv_cond_broadcast_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_cond_destroy_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_cond_destroy", mrb_UV_uv_cond_destroy, MRB_ARGS_ARG(uv_cond_destroy_REQUIRED_ARGC, uv_cond_destroy_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "cond_destroy", mrb_UV_uv_cond_destroy, MRB_ARGS_ARG(uv_cond_destroy_REQUIRED_ARGC, uv_cond_destroy_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_cond_init_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_cond_init", mrb_UV_uv_cond_init, MRB_ARGS_ARG(uv_cond_init_REQUIRED_ARGC, uv_cond_init_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "cond_init", mrb_UV_uv_cond_init, MRB_ARGS_ARG(uv_cond_init_REQUIRED_ARGC, uv_cond_init_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_cond_signal_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_cond_signal", mrb_UV_uv_cond_signal, MRB_ARGS_ARG(uv_cond_signal_REQUIRED_ARGC, uv_cond_signal_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "cond_signal", mrb_UV_uv_cond_signal, MRB_ARGS_ARG(uv_cond_signal_REQUIRED_ARGC, uv_cond_signal_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_cond_timedwait_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_cond_timedwait", mrb_UV_uv_cond_timedwait, MRB_ARGS_ARG(uv_cond_timedwait_REQUIRED_ARGC, uv_cond_timedwait_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "cond_timedwait", mrb_UV_uv_cond_timedwait, MRB_ARGS_ARG(uv_cond_timedwait_REQUIRED_ARGC, uv_cond_timedwait_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_cond_wait_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_cond_wait", mrb_UV_uv_cond_wait, MRB_ARGS_ARG(uv_cond_wait_REQUIRED_ARGC, uv_cond_wait_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "cond_wait", mrb_UV_uv_cond_wait, MRB_ARGS_ARG(uv_cond_wait_REQUIRED_ARGC, uv_cond_wait_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_cpu_info_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_cpu_info", mrb_UV_uv_cpu_info, MRB_ARGS_ARG(uv_cpu_info_REQUIRED_ARGC, uv_cpu_info_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "cpu_info", mrb_UV_uv_cpu_info, MRB_ARGS_ARG(uv_cpu_info_REQUIRED_ARGC, uv_cpu_info_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_cwd_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_cwd", mrb_UV_uv_cwd, MRB_ARGS_ARG(uv_cwd_REQUIRED_ARGC, uv_cwd_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "cwd", mrb_UV_uv_cwd, MRB_ARGS_ARG(uv_cwd_REQUIRED_ARGC, uv_cwd_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_default_loop_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_default_loop", mrb_UV_uv_default_loop, MRB_ARGS_ARG(uv_default_loop_REQUIRED_ARGC, uv_default_loop_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "default_loop", mrb_UV_uv_default_loop, MRB_ARGS_ARG(uv_default_loop_REQUIRED_ARGC, uv_default_loop_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_disable_stdio_inheritance_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_disable_stdio_inheritance", mrb_UV_uv_disable_stdio_inheritance, MRB_ARGS_ARG(uv_disable_stdio_inheritance_REQUIRED_ARGC, uv_disable_stdio_inheritance_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "disable_stdio_inheritance", mrb_UV_uv_disable_stdio_inheritance, MRB_ARGS_ARG(uv_disable_stdio_inheritance_REQUIRED_ARGC, uv_disable_stdio_inheritance_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_dlclose_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_dlclose", mrb_UV_uv_dlclose, MRB_ARGS_ARG(uv_dlclose_REQUIRED_ARGC, uv_dlclose_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "dlclose", mrb_UV_uv_dlclose, MRB_ARGS_ARG(uv_dlclose_REQUIRED_ARGC, uv_dlclose_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_dlerror_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_dlerror", mrb_UV_uv_dlerror, MRB_ARGS_ARG(uv_dlerror_REQUIRED_ARGC, uv_dlerror_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "dlerror", mrb_UV_uv_dlerror, MRB_ARGS_ARG(uv_dlerror_REQUIRED_ARGC, uv_dlerror_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_dlopen_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_dlopen", mrb_UV_uv_dlopen, MRB_ARGS_ARG(uv_dlopen_REQUIRED_ARGC, uv_dlopen_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "dlopen", mrb_UV_uv_dlopen, MRB_ARGS_ARG(uv_dlopen_REQUIRED_ARGC, uv_dlopen_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_dlsym_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_dlsym", mrb_UV_uv_dlsym, MRB_ARGS_ARG(uv_dlsym_REQUIRED_ARGC, uv_dlsym_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "dlsym", mrb_UV_uv_dlsym, MRB_ARGS_ARG(uv_dlsym_REQUIRED_ARGC, uv_dlsym_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_err_name_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_err_name", mrb_UV_uv_err_name, MRB_ARGS_ARG(uv_err_name_REQUIRED_ARGC, uv_err_name_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "err_name", mrb_UV_uv_err_name, MRB_ARGS_ARG(uv_err_name_REQUIRED_ARGC, uv_err_name_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_exepath_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_exepath", mrb_UV_uv_exepath, MRB_ARGS_ARG(uv_exepath_REQUIRED_ARGC, uv_exepath_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "exepath", mrb_UV_uv_exepath, MRB_ARGS_ARG(uv_exepath_REQUIRED_ARGC, uv_exepath_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fileno_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fileno", mrb_UV_uv_fileno, MRB_ARGS_ARG(uv_fileno_REQUIRED_ARGC, uv_fileno_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fileno", mrb_UV_uv_fileno, MRB_ARGS_ARG(uv_fileno_REQUIRED_ARGC, uv_fileno_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_free_cpu_info_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_free_cpu_info", mrb_UV_uv_free_cpu_info, MRB_ARGS_ARG(uv_free_cpu_info_REQUIRED_ARGC, uv_free_cpu_info_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "free_cpu_info", mrb_UV_uv_free_cpu_info, MRB_ARGS_ARG(uv_free_cpu_info_REQUIRED_ARGC, uv_free_cpu_info_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_free_interface_addresses_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_free_interface_addresses", mrb_UV_uv_free_interface_addresses, MRB_ARGS_ARG(uv_free_interface_addresses_REQUIRED_ARGC, uv_free_interface_addresses_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "free_interface_addresses", mrb_UV_uv_free_interface_addresses, MRB_ARGS_ARG(uv_free_interface_addresses_REQUIRED_ARGC, uv_free_interface_addresses_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_freeaddrinfo_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_freeaddrinfo", mrb_UV_uv_freeaddrinfo, MRB_ARGS_ARG(uv_freeaddrinfo_REQUIRED_ARGC, uv_freeaddrinfo_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "freeaddrinfo", mrb_UV_uv_freeaddrinfo, MRB_ARGS_ARG(uv_freeaddrinfo_REQUIRED_ARGC, uv_freeaddrinfo_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_access_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_access", mrb_UV_uv_fs_access, MRB_ARGS_ARG(uv_fs_access_REQUIRED_ARGC, uv_fs_access_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_access", mrb_UV_uv_fs_access, MRB_ARGS_ARG(uv_fs_access_REQUIRED_ARGC, uv_fs_access_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_chmod_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_chmod", mrb_UV_uv_fs_chmod, MRB_ARGS_ARG(uv_fs_chmod_REQUIRED_ARGC, uv_fs_chmod_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_chmod", mrb_UV_uv_fs_chmod, MRB_ARGS_ARG(uv_fs_chmod_REQUIRED_ARGC, uv_fs_chmod_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_chown_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_chown", mrb_UV_uv_fs_chown, MRB_ARGS_ARG(uv_fs_chown_REQUIRED_ARGC, uv_fs_chown_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_chown", mrb_UV_uv_fs_chown, MRB_ARGS_ARG(uv_fs_chown_REQUIRED_ARGC, uv_fs_chown_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_close_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_close", mrb_UV_uv_fs_close, MRB_ARGS_ARG(uv_fs_close_REQUIRED_ARGC, uv_fs_close_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_close", mrb_UV_uv_fs_close, MRB_ARGS_ARG(uv_fs_close_REQUIRED_ARGC, uv_fs_close_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_event_getpath_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_event_getpath", mrb_UV_uv_fs_event_getpath, MRB_ARGS_ARG(uv_fs_event_getpath_REQUIRED_ARGC, uv_fs_event_getpath_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_event_getpath", mrb_UV_uv_fs_event_getpath, MRB_ARGS_ARG(uv_fs_event_getpath_REQUIRED_ARGC, uv_fs_event_getpath_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_event_init_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_event_init", mrb_UV_uv_fs_event_init, MRB_ARGS_ARG(uv_fs_event_init_REQUIRED_ARGC, uv_fs_event_init_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_event_init", mrb_UV_uv_fs_event_init, MRB_ARGS_ARG(uv_fs_event_init_REQUIRED_ARGC, uv_fs_event_init_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_event_start_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_event_start", mrb_UV_uv_fs_event_start, MRB_ARGS_ARG(uv_fs_event_start_REQUIRED_ARGC, uv_fs_event_start_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_event_start", mrb_UV_uv_fs_event_start, MRB_ARGS_ARG(uv_fs_event_start_REQUIRED_ARGC, uv_fs_event_start_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_event_stop_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_event_stop", mrb_UV_uv_fs_event_stop, MRB_ARGS_ARG(uv_fs_event_stop_REQUIRED_ARGC, uv_fs_event_stop_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_event_stop", mrb_UV_uv_fs_event_stop, MRB_ARGS_ARG(uv_fs_event_stop_REQUIRED_ARGC, uv_fs_event_stop_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_fchmod_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_fchmod", mrb_UV_uv_fs_fchmod, MRB_ARGS_ARG(uv_fs_fchmod_REQUIRED_ARGC, uv_fs_fchmod_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_fchmod", mrb_UV_uv_fs_fchmod, MRB_ARGS_ARG(uv_fs_fchmod_REQUIRED_ARGC, uv_fs_fchmod_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_fchown_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_fchown", mrb_UV_uv_fs_fchown, MRB_ARGS_ARG(uv_fs_fchown_REQUIRED_ARGC, uv_fs_fchown_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_fchown", mrb_UV_uv_fs_fchown, MRB_ARGS_ARG(uv_fs_fchown_REQUIRED_ARGC, uv_fs_fchown_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_fdatasync_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_fdatasync", mrb_UV_uv_fs_fdatasync, MRB_ARGS_ARG(uv_fs_fdatasync_REQUIRED_ARGC, uv_fs_fdatasync_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_fdatasync", mrb_UV_uv_fs_fdatasync, MRB_ARGS_ARG(uv_fs_fdatasync_REQUIRED_ARGC, uv_fs_fdatasync_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_fstat_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_fstat", mrb_UV_uv_fs_fstat, MRB_ARGS_ARG(uv_fs_fstat_REQUIRED_ARGC, uv_fs_fstat_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_fstat", mrb_UV_uv_fs_fstat, MRB_ARGS_ARG(uv_fs_fstat_REQUIRED_ARGC, uv_fs_fstat_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_fsync_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_fsync", mrb_UV_uv_fs_fsync, MRB_ARGS_ARG(uv_fs_fsync_REQUIRED_ARGC, uv_fs_fsync_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_fsync", mrb_UV_uv_fs_fsync, MRB_ARGS_ARG(uv_fs_fsync_REQUIRED_ARGC, uv_fs_fsync_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_ftruncate_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_ftruncate", mrb_UV_uv_fs_ftruncate, MRB_ARGS_ARG(uv_fs_ftruncate_REQUIRED_ARGC, uv_fs_ftruncate_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_ftruncate", mrb_UV_uv_fs_ftruncate, MRB_ARGS_ARG(uv_fs_ftruncate_REQUIRED_ARGC, uv_fs_ftruncate_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_futime_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_futime", mrb_UV_uv_fs_futime, MRB_ARGS_ARG(uv_fs_futime_REQUIRED_ARGC, uv_fs_futime_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_futime", mrb_UV_uv_fs_futime, MRB_ARGS_ARG(uv_fs_futime_REQUIRED_ARGC, uv_fs_futime_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_link_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_link", mrb_UV_uv_fs_link, MRB_ARGS_ARG(uv_fs_link_REQUIRED_ARGC, uv_fs_link_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_link", mrb_UV_uv_fs_link, MRB_ARGS_ARG(uv_fs_link_REQUIRED_ARGC, uv_fs_link_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_lstat_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_lstat", mrb_UV_uv_fs_lstat, MRB_ARGS_ARG(uv_fs_lstat_REQUIRED_ARGC, uv_fs_lstat_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_lstat", mrb_UV_uv_fs_lstat, MRB_ARGS_ARG(uv_fs_lstat_REQUIRED_ARGC, uv_fs_lstat_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_mkdir_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_mkdir", mrb_UV_uv_fs_mkdir, MRB_ARGS_ARG(uv_fs_mkdir_REQUIRED_ARGC, uv_fs_mkdir_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_mkdir", mrb_UV_uv_fs_mkdir, MRB_ARGS_ARG(uv_fs_mkdir_REQUIRED_ARGC, uv_fs_mkdir_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_mkdtemp_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_mkdtemp", mrb_UV_uv_fs_mkdtemp, MRB_ARGS_ARG(uv_fs_mkdtemp_REQUIRED_ARGC, uv_fs_mkdtemp_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_mkdtemp", mrb_UV_uv_fs_mkdtemp, MRB_ARGS_ARG(uv_fs_mkdtemp_REQUIRED_ARGC, uv_fs_mkdtemp_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_open_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_open", mrb_UV_uv_fs_open, MRB_ARGS_ARG(uv_fs_open_REQUIRED_ARGC, uv_fs_open_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_open", mrb_UV_uv_fs_open, MRB_ARGS_ARG(uv_fs_open_REQUIRED_ARGC, uv_fs_open_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_poll_getpath_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_poll_getpath", mrb_UV_uv_fs_poll_getpath, MRB_ARGS_ARG(uv_fs_poll_getpath_REQUIRED_ARGC, uv_fs_poll_getpath_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_poll_getpath", mrb_UV_uv_fs_poll_getpath, MRB_ARGS_ARG(uv_fs_poll_getpath_REQUIRED_ARGC, uv_fs_poll_getpath_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_poll_init_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_poll_init", mrb_UV_uv_fs_poll_init, MRB_ARGS_ARG(uv_fs_poll_init_REQUIRED_ARGC, uv_fs_poll_init_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_poll_init", mrb_UV_uv_fs_poll_init, MRB_ARGS_ARG(uv_fs_poll_init_REQUIRED_ARGC, uv_fs_poll_init_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_poll_start_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_poll_start", mrb_UV_uv_fs_poll_start, MRB_ARGS_ARG(uv_fs_poll_start_REQUIRED_ARGC, uv_fs_poll_start_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_poll_start", mrb_UV_uv_fs_poll_start, MRB_ARGS_ARG(uv_fs_poll_start_REQUIRED_ARGC, uv_fs_poll_start_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_poll_stop_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_poll_stop", mrb_UV_uv_fs_poll_stop, MRB_ARGS_ARG(uv_fs_poll_stop_REQUIRED_ARGC, uv_fs_poll_stop_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_poll_stop", mrb_UV_uv_fs_poll_stop, MRB_ARGS_ARG(uv_fs_poll_stop_REQUIRED_ARGC, uv_fs_poll_stop_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_read_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_read", mrb_UV_uv_fs_read, MRB_ARGS_ARG(uv_fs_read_REQUIRED_ARGC, uv_fs_read_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_read", mrb_UV_uv_fs_read, MRB_ARGS_ARG(uv_fs_read_REQUIRED_ARGC, uv_fs_read_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_readlink_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_readlink", mrb_UV_uv_fs_readlink, MRB_ARGS_ARG(uv_fs_readlink_REQUIRED_ARGC, uv_fs_readlink_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_readlink", mrb_UV_uv_fs_readlink, MRB_ARGS_ARG(uv_fs_readlink_REQUIRED_ARGC, uv_fs_readlink_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_realpath_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_realpath", mrb_UV_uv_fs_realpath, MRB_ARGS_ARG(uv_fs_realpath_REQUIRED_ARGC, uv_fs_realpath_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_realpath", mrb_UV_uv_fs_realpath, MRB_ARGS_ARG(uv_fs_realpath_REQUIRED_ARGC, uv_fs_realpath_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_rename_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_rename", mrb_UV_uv_fs_rename, MRB_ARGS_ARG(uv_fs_rename_REQUIRED_ARGC, uv_fs_rename_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_rename", mrb_UV_uv_fs_rename, MRB_ARGS_ARG(uv_fs_rename_REQUIRED_ARGC, uv_fs_rename_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_req_cleanup_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_req_cleanup", mrb_UV_uv_fs_req_cleanup, MRB_ARGS_ARG(uv_fs_req_cleanup_REQUIRED_ARGC, uv_fs_req_cleanup_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_req_cleanup", mrb_UV_uv_fs_req_cleanup, MRB_ARGS_ARG(uv_fs_req_cleanup_REQUIRED_ARGC, uv_fs_req_cleanup_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_rmdir_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_rmdir", mrb_UV_uv_fs_rmdir, MRB_ARGS_ARG(uv_fs_rmdir_REQUIRED_ARGC, uv_fs_rmdir_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_rmdir", mrb_UV_uv_fs_rmdir, MRB_ARGS_ARG(uv_fs_rmdir_REQUIRED_ARGC, uv_fs_rmdir_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_scandir_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_scandir", mrb_UV_uv_fs_scandir, MRB_ARGS_ARG(uv_fs_scandir_REQUIRED_ARGC, uv_fs_scandir_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_scandir", mrb_UV_uv_fs_scandir, MRB_ARGS_ARG(uv_fs_scandir_REQUIRED_ARGC, uv_fs_scandir_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_scandir_next_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_scandir_next", mrb_UV_uv_fs_scandir_next, MRB_ARGS_ARG(uv_fs_scandir_next_REQUIRED_ARGC, uv_fs_scandir_next_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_scandir_next", mrb_UV_uv_fs_scandir_next, MRB_ARGS_ARG(uv_fs_scandir_next_REQUIRED_ARGC, uv_fs_scandir_next_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_sendfile_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_sendfile", mrb_UV_uv_fs_sendfile, MRB_ARGS_ARG(uv_fs_sendfile_REQUIRED_ARGC, uv_fs_sendfile_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_sendfile", mrb_UV_uv_fs_sendfile, MRB_ARGS_ARG(uv_fs_sendfile_REQUIRED_ARGC, uv_fs_sendfile_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_stat_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_stat", mrb_UV_uv_fs_stat, MRB_ARGS_ARG(uv_fs_stat_REQUIRED_ARGC, uv_fs_stat_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_stat", mrb_UV_uv_fs_stat, MRB_ARGS_ARG(uv_fs_stat_REQUIRED_ARGC, uv_fs_stat_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_symlink_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_symlink", mrb_UV_uv_fs_symlink, MRB_ARGS_ARG(uv_fs_symlink_REQUIRED_ARGC, uv_fs_symlink_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_symlink", mrb_UV_uv_fs_symlink, MRB_ARGS_ARG(uv_fs_symlink_REQUIRED_ARGC, uv_fs_symlink_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_unlink_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_unlink", mrb_UV_uv_fs_unlink, MRB_ARGS_ARG(uv_fs_unlink_REQUIRED_ARGC, uv_fs_unlink_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_unlink", mrb_UV_uv_fs_unlink, MRB_ARGS_ARG(uv_fs_unlink_REQUIRED_ARGC, uv_fs_unlink_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_utime_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_utime", mrb_UV_uv_fs_utime, MRB_ARGS_ARG(uv_fs_utime_REQUIRED_ARGC, uv_fs_utime_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_utime", mrb_UV_uv_fs_utime, MRB_ARGS_ARG(uv_fs_utime_REQUIRED_ARGC, uv_fs_utime_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_fs_write_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_fs_write", mrb_UV_uv_fs_write, MRB_ARGS_ARG(uv_fs_write_REQUIRED_ARGC, uv_fs_write_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "fs_write", mrb_UV_uv_fs_write, MRB_ARGS_ARG(uv_fs_write_REQUIRED_ARGC, uv_fs_write_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_get_free_memory_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_get_free_memory", mrb_UV_uv_get_free_memory, MRB_ARGS_ARG(uv_get_free_memory_REQUIRED_ARGC, uv_get_free_memory_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "get_free_memory", mrb_UV_uv_get_free_memory, MRB_ARGS_ARG(uv_get_free_memory_REQUIRED_ARGC, uv_get_free_memory_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_get_process_title_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_get_process_title", mrb_UV_uv_get_process_title, MRB_ARGS_ARG(uv_get_process_title_REQUIRED_ARGC, uv_get_process_title_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "get_process_title", mrb_UV_uv_get_process_title, MRB_ARGS_ARG(uv_get_process_title_REQUIRED_ARGC, uv_get_process_title_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_get_total_memory_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_get_total_memory", mrb_UV_uv_get_total_memory, MRB_ARGS_ARG(uv_get_total_memory_REQUIRED_ARGC, uv_get_total_memory_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "get_total_memory", mrb_UV_uv_get_total_memory, MRB_ARGS_ARG(uv_get_total_memory_REQUIRED_ARGC, uv_get_total_memory_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_getaddrinfo_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_getaddrinfo", mrb_UV_uv_getaddrinfo, MRB_ARGS_ARG(uv_getaddrinfo_REQUIRED_ARGC, uv_getaddrinfo_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "getaddrinfo", mrb_UV_uv_getaddrinfo, MRB_ARGS_ARG(uv_getaddrinfo_REQUIRED_ARGC, uv_getaddrinfo_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_getnameinfo_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_getnameinfo", mrb_UV_uv_getnameinfo, MRB_ARGS_ARG(uv_getnameinfo_REQUIRED_ARGC, uv_getnameinfo_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "getnameinfo", mrb_UV_uv_getnameinfo, MRB_ARGS_ARG(uv_getnameinfo_REQUIRED_ARGC, uv_getnameinfo_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_getrusage_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_getrusage", mrb_UV_uv_getrusage, MRB_ARGS_ARG(uv_getrusage_REQUIRED_ARGC, uv_getrusage_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "getrusage", mrb_UV_uv_getrusage, MRB_ARGS_ARG(uv_getrusage_REQUIRED_ARGC, uv_getrusage_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_guess_handle_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_guess_handle", mrb_UV_uv_guess_handle, MRB_ARGS_ARG(uv_guess_handle_REQUIRED_ARGC, uv_guess_handle_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "guess_handle", mrb_UV_uv_guess_handle, MRB_ARGS_ARG(uv_guess_handle_REQUIRED_ARGC, uv_guess_handle_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_handle_size_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_handle_size", mrb_UV_uv_handle_size, MRB_ARGS_ARG(uv_handle_size_REQUIRED_ARGC, uv_handle_size_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "handle_size", mrb_UV_uv_handle_size, MRB_ARGS_ARG(uv_handle_size_REQUIRED_ARGC, uv_handle_size_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_has_ref_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_has_ref", mrb_UV_uv_has_ref, MRB_ARGS_ARG(uv_has_ref_REQUIRED_ARGC, uv_has_ref_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "has_ref", mrb_UV_uv_has_ref, MRB_ARGS_ARG(uv_has_ref_REQUIRED_ARGC, uv_has_ref_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_hrtime_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_hrtime", mrb_UV_uv_hrtime, MRB_ARGS_ARG(uv_hrtime_REQUIRED_ARGC, uv_hrtime_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "hrtime", mrb_UV_uv_hrtime, MRB_ARGS_ARG(uv_hrtime_REQUIRED_ARGC, uv_hrtime_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_idle_init_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_idle_init", mrb_UV_uv_idle_init, MRB_ARGS_ARG(uv_idle_init_REQUIRED_ARGC, uv_idle_init_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "idle_init", mrb_UV_uv_idle_init, MRB_ARGS_ARG(uv_idle_init_REQUIRED_ARGC, uv_idle_init_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_idle_start_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_idle_start", mrb_UV_uv_idle_start, MRB_ARGS_ARG(uv_idle_start_REQUIRED_ARGC, uv_idle_start_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "idle_start", mrb_UV_uv_idle_start, MRB_ARGS_ARG(uv_idle_start_REQUIRED_ARGC, uv_idle_start_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_idle_stop_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_idle_stop", mrb_UV_uv_idle_stop, MRB_ARGS_ARG(uv_idle_stop_REQUIRED_ARGC, uv_idle_stop_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "idle_stop", mrb_UV_uv_idle_stop, MRB_ARGS_ARG(uv_idle_stop_REQUIRED_ARGC, uv_idle_stop_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_inet_ntop_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_inet_ntop", mrb_UV_uv_inet_ntop, MRB_ARGS_ARG(uv_inet_ntop_REQUIRED_ARGC, uv_inet_ntop_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "inet_ntop", mrb_UV_uv_inet_ntop, MRB_ARGS_ARG(uv_inet_ntop_REQUIRED_ARGC, uv_inet_ntop_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_inet_pton_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_inet_pton", mrb_UV_uv_inet_pton, MRB_ARGS_ARG(uv_inet_pton_REQUIRED_ARGC, uv_inet_pton_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "inet_pton", mrb_UV_uv_inet_pton, MRB_ARGS_ARG(uv_inet_pton_REQUIRED_ARGC, uv_inet_pton_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_interface_addresses_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_interface_addresses", mrb_UV_uv_interface_addresses, MRB_ARGS_ARG(uv_interface_addresses_REQUIRED_ARGC, uv_interface_addresses_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "interface_addresses", mrb_UV_uv_interface_addresses, MRB_ARGS_ARG(uv_interface_addresses_REQUIRED_ARGC, uv_interface_addresses_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_ip4_addr_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_ip4_addr", mrb_UV_uv_ip4_addr, MRB_ARGS_ARG(uv_ip4_addr_REQUIRED_ARGC, uv_ip4_addr_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "ip4_addr", mrb_UV_uv_ip4_addr, MRB_ARGS_ARG(uv_ip4_addr_REQUIRED_ARGC, uv_ip4_addr_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_ip4_name_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_ip4_name", mrb_UV_uv_ip4_name, MRB_ARGS_ARG(uv_ip4_name_REQUIRED_ARGC, uv_ip4_name_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "ip4_name", mrb_UV_uv_ip4_name, MRB_ARGS_ARG(uv_ip4_name_REQUIRED_ARGC, uv_ip4_name_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_ip6_addr_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_ip6_addr", mrb_UV_uv_ip6_addr, MRB_ARGS_ARG(uv_ip6_addr_REQUIRED_ARGC, uv_ip6_addr_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "ip6_addr", mrb_UV_uv_ip6_addr, MRB_ARGS_ARG(uv_ip6_addr_REQUIRED_ARGC, uv_ip6_addr_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_ip6_name_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_ip6_name", mrb_UV_uv_ip6_name, MRB_ARGS_ARG(uv_ip6_name_REQUIRED_ARGC, uv_ip6_name_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "ip6_name", mrb_UV_uv_ip6_name, MRB_ARGS_ARG(uv_ip6_name_REQUIRED_ARGC, uv_ip6_name_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_is_active_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_is_active", mrb_UV_uv_is_active, MRB_ARGS_ARG(uv_is_active_REQUIRED_ARGC, uv_is_active_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "is_active", mrb_UV_uv_is_active, MRB_ARGS_ARG(uv_is_active_REQUIRED_ARGC, uv_is_active_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_is_closing_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_is_closing", mrb_UV_uv_is_closing, MRB_ARGS_ARG(uv_is_closing_REQUIRED_ARGC, uv_is_closing_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "is_closing", mrb_UV_uv_is_closing, MRB_ARGS_ARG(uv_is_closing_REQUIRED_ARGC, uv_is_closing_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_is_readable_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_is_readable", mrb_UV_uv_is_readable, MRB_ARGS_ARG(uv_is_readable_REQUIRED_ARGC, uv_is_readable_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "is_readable", mrb_UV_uv_is_readable, MRB_ARGS_ARG(uv_is_readable_REQUIRED_ARGC, uv_is_readable_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_is_writable_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_is_writable", mrb_UV_uv_is_writable, MRB_ARGS_ARG(uv_is_writable_REQUIRED_ARGC, uv_is_writable_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "is_writable", mrb_UV_uv_is_writable, MRB_ARGS_ARG(uv_is_writable_REQUIRED_ARGC, uv_is_writable_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_key_create_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_key_create", mrb_UV_uv_key_create, MRB_ARGS_ARG(uv_key_create_REQUIRED_ARGC, uv_key_create_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "key_create", mrb_UV_uv_key_create, MRB_ARGS_ARG(uv_key_create_REQUIRED_ARGC, uv_key_create_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_key_delete_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_key_delete", mrb_UV_uv_key_delete, MRB_ARGS_ARG(uv_key_delete_REQUIRED_ARGC, uv_key_delete_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "key_delete", mrb_UV_uv_key_delete, MRB_ARGS_ARG(uv_key_delete_REQUIRED_ARGC, uv_key_delete_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_key_get_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_key_get", mrb_UV_uv_key_get, MRB_ARGS_ARG(uv_key_get_REQUIRED_ARGC, uv_key_get_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "key_get", mrb_UV_uv_key_get, MRB_ARGS_ARG(uv_key_get_REQUIRED_ARGC, uv_key_get_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_key_set_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_key_set", mrb_UV_uv_key_set, MRB_ARGS_ARG(uv_key_set_REQUIRED_ARGC, uv_key_set_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "key_set", mrb_UV_uv_key_set, MRB_ARGS_ARG(uv_key_set_REQUIRED_ARGC, uv_key_set_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_kill_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_kill", mrb_UV_uv_kill, MRB_ARGS_ARG(uv_kill_REQUIRED_ARGC, uv_kill_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "kill", mrb_UV_uv_kill, MRB_ARGS_ARG(uv_kill_REQUIRED_ARGC, uv_kill_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_listen_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_listen", mrb_UV_uv_listen, MRB_ARGS_ARG(uv_listen_REQUIRED_ARGC, uv_listen_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "listen", mrb_UV_uv_listen, MRB_ARGS_ARG(uv_listen_REQUIRED_ARGC, uv_listen_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_loadavg_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_loadavg", mrb_UV_uv_loadavg, MRB_ARGS_ARG(uv_loadavg_REQUIRED_ARGC, uv_loadavg_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "loadavg", mrb_UV_uv_loadavg, MRB_ARGS_ARG(uv_loadavg_REQUIRED_ARGC, uv_loadavg_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_loop_alive_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_loop_alive", mrb_UV_uv_loop_alive, MRB_ARGS_ARG(uv_loop_alive_REQUIRED_ARGC, uv_loop_alive_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "loop_alive", mrb_UV_uv_loop_alive, MRB_ARGS_ARG(uv_loop_alive_REQUIRED_ARGC, uv_loop_alive_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_loop_close_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_loop_close", mrb_UV_uv_loop_close, MRB_ARGS_ARG(uv_loop_close_REQUIRED_ARGC, uv_loop_close_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "loop_close", mrb_UV_uv_loop_close, MRB_ARGS_ARG(uv_loop_close_REQUIRED_ARGC, uv_loop_close_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_loop_configure_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_loop_configure", mrb_UV_uv_loop_configure, MRB_ARGS_ARG(uv_loop_configure_REQUIRED_ARGC, uv_loop_configure_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "loop_configure", mrb_UV_uv_loop_configure, MRB_ARGS_ARG(uv_loop_configure_REQUIRED_ARGC, uv_loop_configure_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_loop_delete_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_loop_delete", mrb_UV_uv_loop_delete, MRB_ARGS_ARG(uv_loop_delete_REQUIRED_ARGC, uv_loop_delete_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "loop_delete", mrb_UV_uv_loop_delete, MRB_ARGS_ARG(uv_loop_delete_REQUIRED_ARGC, uv_loop_delete_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_loop_init_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_loop_init", mrb_UV_uv_loop_init, MRB_ARGS_ARG(uv_loop_init_REQUIRED_ARGC, uv_loop_init_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "loop_init", mrb_UV_uv_loop_init, MRB_ARGS_ARG(uv_loop_init_REQUIRED_ARGC, uv_loop_init_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_loop_new_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_loop_new", mrb_UV_uv_loop_new, MRB_ARGS_ARG(uv_loop_new_REQUIRED_ARGC, uv_loop_new_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "loop_new", mrb_UV_uv_loop_new, MRB_ARGS_ARG(uv_loop_new_REQUIRED_ARGC, uv_loop_new_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_loop_size_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_loop_size", mrb_UV_uv_loop_size, MRB_ARGS_ARG(uv_loop_size_REQUIRED_ARGC, uv_loop_size_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "loop_size", mrb_UV_uv_loop_size, MRB_ARGS_ARG(uv_loop_size_REQUIRED_ARGC, uv_loop_size_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_mutex_destroy_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_mutex_destroy", mrb_UV_uv_mutex_destroy, MRB_ARGS_ARG(uv_mutex_destroy_REQUIRED_ARGC, uv_mutex_destroy_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "mutex_destroy", mrb_UV_uv_mutex_destroy, MRB_ARGS_ARG(uv_mutex_destroy_REQUIRED_ARGC, uv_mutex_destroy_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_mutex_init_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_mutex_init", mrb_UV_uv_mutex_init, MRB_ARGS_ARG(uv_mutex_init_REQUIRED_ARGC, uv_mutex_init_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "mutex_init", mrb_UV_uv_mutex_init, MRB_ARGS_ARG(uv_mutex_init_REQUIRED_ARGC, uv_mutex_init_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_mutex_lock_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_mutex_lock", mrb_UV_uv_mutex_lock, MRB_ARGS_ARG(uv_mutex_lock_REQUIRED_ARGC, uv_mutex_lock_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "mutex_lock", mrb_UV_uv_mutex_lock, MRB_ARGS_ARG(uv_mutex_lock_REQUIRED_ARGC, uv_mutex_lock_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_mutex_trylock_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_mutex_trylock", mrb_UV_uv_mutex_trylock, MRB_ARGS_ARG(uv_mutex_trylock_REQUIRED_ARGC, uv_mutex_trylock_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "mutex_trylock", mrb_UV_uv_mutex_trylock, MRB_ARGS_ARG(uv_mutex_trylock_REQUIRED_ARGC, uv_mutex_trylock_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_mutex_unlock_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_mutex_unlock", mrb_UV_uv_mutex_unlock, MRB_ARGS_ARG(uv_mutex_unlock_REQUIRED_ARGC, uv_mutex_unlock_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "mutex_unlock", mrb_UV_uv_mutex_unlock, MRB_ARGS_ARG(uv_mutex_unlock_REQUIRED_ARGC, uv_mutex_unlock_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_now_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_now", mrb_UV_uv_now, MRB_ARGS_ARG(uv_now_REQUIRED_ARGC, uv_now_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "now", mrb_UV_uv_now, MRB_ARGS_ARG(uv_now_REQUIRED_ARGC, uv_now_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_once_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_once", mrb_UV_uv_once, MRB_ARGS_ARG(uv_once_REQUIRED_ARGC, uv_once_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "once", mrb_UV_uv_once, MRB_ARGS_ARG(uv_once_REQUIRED_ARGC, uv_once_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_os_homedir_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_os_homedir", mrb_UV_uv_os_homedir, MRB_ARGS_ARG(uv_os_homedir_REQUIRED_ARGC, uv_os_homedir_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "os_homedir", mrb_UV_uv_os_homedir, MRB_ARGS_ARG(uv_os_homedir_REQUIRED_ARGC, uv_os_homedir_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_pipe_bind_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_pipe_bind", mrb_UV_uv_pipe_bind, MRB_ARGS_ARG(uv_pipe_bind_REQUIRED_ARGC, uv_pipe_bind_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "pipe_bind", mrb_UV_uv_pipe_bind, MRB_ARGS_ARG(uv_pipe_bind_REQUIRED_ARGC, uv_pipe_bind_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_pipe_connect_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_pipe_connect", mrb_UV_uv_pipe_connect, MRB_ARGS_ARG(uv_pipe_connect_REQUIRED_ARGC, uv_pipe_connect_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "pipe_connect", mrb_UV_uv_pipe_connect, MRB_ARGS_ARG(uv_pipe_connect_REQUIRED_ARGC, uv_pipe_connect_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_pipe_getpeername_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_pipe_getpeername", mrb_UV_uv_pipe_getpeername, MRB_ARGS_ARG(uv_pipe_getpeername_REQUIRED_ARGC, uv_pipe_getpeername_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "pipe_getpeername", mrb_UV_uv_pipe_getpeername, MRB_ARGS_ARG(uv_pipe_getpeername_REQUIRED_ARGC, uv_pipe_getpeername_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_pipe_getsockname_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_pipe_getsockname", mrb_UV_uv_pipe_getsockname, MRB_ARGS_ARG(uv_pipe_getsockname_REQUIRED_ARGC, uv_pipe_getsockname_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "pipe_getsockname", mrb_UV_uv_pipe_getsockname, MRB_ARGS_ARG(uv_pipe_getsockname_REQUIRED_ARGC, uv_pipe_getsockname_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_pipe_init_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_pipe_init", mrb_UV_uv_pipe_init, MRB_ARGS_ARG(uv_pipe_init_REQUIRED_ARGC, uv_pipe_init_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "pipe_init", mrb_UV_uv_pipe_init, MRB_ARGS_ARG(uv_pipe_init_REQUIRED_ARGC, uv_pipe_init_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_pipe_open_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_pipe_open", mrb_UV_uv_pipe_open, MRB_ARGS_ARG(uv_pipe_open_REQUIRED_ARGC, uv_pipe_open_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "pipe_open", mrb_UV_uv_pipe_open, MRB_ARGS_ARG(uv_pipe_open_REQUIRED_ARGC, uv_pipe_open_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_pipe_pending_count_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_pipe_pending_count", mrb_UV_uv_pipe_pending_count, MRB_ARGS_ARG(uv_pipe_pending_count_REQUIRED_ARGC, uv_pipe_pending_count_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "pipe_pending_count", mrb_UV_uv_pipe_pending_count, MRB_ARGS_ARG(uv_pipe_pending_count_REQUIRED_ARGC, uv_pipe_pending_count_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_pipe_pending_instances_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_pipe_pending_instances", mrb_UV_uv_pipe_pending_instances, MRB_ARGS_ARG(uv_pipe_pending_instances_REQUIRED_ARGC, uv_pipe_pending_instances_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "pipe_pending_instances", mrb_UV_uv_pipe_pending_instances, MRB_ARGS_ARG(uv_pipe_pending_instances_REQUIRED_ARGC, uv_pipe_pending_instances_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_pipe_pending_type_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_pipe_pending_type", mrb_UV_uv_pipe_pending_type, MRB_ARGS_ARG(uv_pipe_pending_type_REQUIRED_ARGC, uv_pipe_pending_type_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "pipe_pending_type", mrb_UV_uv_pipe_pending_type, MRB_ARGS_ARG(uv_pipe_pending_type_REQUIRED_ARGC, uv_pipe_pending_type_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_poll_init_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_poll_init", mrb_UV_uv_poll_init, MRB_ARGS_ARG(uv_poll_init_REQUIRED_ARGC, uv_poll_init_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "poll_init", mrb_UV_uv_poll_init, MRB_ARGS_ARG(uv_poll_init_REQUIRED_ARGC, uv_poll_init_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_poll_init_socket_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_poll_init_socket", mrb_UV_uv_poll_init_socket, MRB_ARGS_ARG(uv_poll_init_socket_REQUIRED_ARGC, uv_poll_init_socket_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "poll_init_socket", mrb_UV_uv_poll_init_socket, MRB_ARGS_ARG(uv_poll_init_socket_REQUIRED_ARGC, uv_poll_init_socket_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_poll_start_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_poll_start", mrb_UV_uv_poll_start, MRB_ARGS_ARG(uv_poll_start_REQUIRED_ARGC, uv_poll_start_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "poll_start", mrb_UV_uv_poll_start, MRB_ARGS_ARG(uv_poll_start_REQUIRED_ARGC, uv_poll_start_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_poll_stop_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_poll_stop", mrb_UV_uv_poll_stop, MRB_ARGS_ARG(uv_poll_stop_REQUIRED_ARGC, uv_poll_stop_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "poll_stop", mrb_UV_uv_poll_stop, MRB_ARGS_ARG(uv_poll_stop_REQUIRED_ARGC, uv_poll_stop_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_prepare_init_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_prepare_init", mrb_UV_uv_prepare_init, MRB_ARGS_ARG(uv_prepare_init_REQUIRED_ARGC, uv_prepare_init_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "prepare_init", mrb_UV_uv_prepare_init, MRB_ARGS_ARG(uv_prepare_init_REQUIRED_ARGC, uv_prepare_init_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_prepare_start_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_prepare_start", mrb_UV_uv_prepare_start, MRB_ARGS_ARG(uv_prepare_start_REQUIRED_ARGC, uv_prepare_start_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "prepare_start", mrb_UV_uv_prepare_start, MRB_ARGS_ARG(uv_prepare_start_REQUIRED_ARGC, uv_prepare_start_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_prepare_stop_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_prepare_stop", mrb_UV_uv_prepare_stop, MRB_ARGS_ARG(uv_prepare_stop_REQUIRED_ARGC, uv_prepare_stop_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "prepare_stop", mrb_UV_uv_prepare_stop, MRB_ARGS_ARG(uv_prepare_stop_REQUIRED_ARGC, uv_prepare_stop_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_print_active_handles_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_print_active_handles", mrb_UV_uv_print_active_handles, MRB_ARGS_ARG(uv_print_active_handles_REQUIRED_ARGC, uv_print_active_handles_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "print_active_handles", mrb_UV_uv_print_active_handles, MRB_ARGS_ARG(uv_print_active_handles_REQUIRED_ARGC, uv_print_active_handles_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_print_all_handles_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_print_all_handles", mrb_UV_uv_print_all_handles, MRB_ARGS_ARG(uv_print_all_handles_REQUIRED_ARGC, uv_print_all_handles_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "print_all_handles", mrb_UV_uv_print_all_handles, MRB_ARGS_ARG(uv_print_all_handles_REQUIRED_ARGC, uv_print_all_handles_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_process_kill_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_process_kill", mrb_UV_uv_process_kill, MRB_ARGS_ARG(uv_process_kill_REQUIRED_ARGC, uv_process_kill_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "process_kill", mrb_UV_uv_process_kill, MRB_ARGS_ARG(uv_process_kill_REQUIRED_ARGC, uv_process_kill_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_queue_work_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_queue_work", mrb_UV_uv_queue_work, MRB_ARGS_ARG(uv_queue_work_REQUIRED_ARGC, uv_queue_work_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "queue_work", mrb_UV_uv_queue_work, MRB_ARGS_ARG(uv_queue_work_REQUIRED_ARGC, uv_queue_work_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_read_start_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_read_start", mrb_UV_uv_read_start, MRB_ARGS_ARG(uv_read_start_REQUIRED_ARGC, uv_read_start_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "read_start", mrb_UV_uv_read_start, MRB_ARGS_ARG(uv_read_start_REQUIRED_ARGC, uv_read_start_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_read_stop_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_read_stop", mrb_UV_uv_read_stop, MRB_ARGS_ARG(uv_read_stop_REQUIRED_ARGC, uv_read_stop_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "read_stop", mrb_UV_uv_read_stop, MRB_ARGS_ARG(uv_read_stop_REQUIRED_ARGC, uv_read_stop_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_recv_buffer_size_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_recv_buffer_size", mrb_UV_uv_recv_buffer_size, MRB_ARGS_ARG(uv_recv_buffer_size_REQUIRED_ARGC, uv_recv_buffer_size_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "recv_buffer_size", mrb_UV_uv_recv_buffer_size, MRB_ARGS_ARG(uv_recv_buffer_size_REQUIRED_ARGC, uv_recv_buffer_size_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_ref_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_ref", mrb_UV_uv_ref, MRB_ARGS_ARG(uv_ref_REQUIRED_ARGC, uv_ref_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "ref", mrb_UV_uv_ref, MRB_ARGS_ARG(uv_ref_REQUIRED_ARGC, uv_ref_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_replace_allocator_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_replace_allocator", mrb_UV_uv_replace_allocator, MRB_ARGS_ARG(uv_replace_allocator_REQUIRED_ARGC, uv_replace_allocator_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "replace_allocator", mrb_UV_uv_replace_allocator, MRB_ARGS_ARG(uv_replace_allocator_REQUIRED_ARGC, uv_replace_allocator_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_req_size_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_req_size", mrb_UV_uv_req_size, MRB_ARGS_ARG(uv_req_size_REQUIRED_ARGC, uv_req_size_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "req_size", mrb_UV_uv_req_size, MRB_ARGS_ARG(uv_req_size_REQUIRED_ARGC, uv_req_size_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_resident_set_memory_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_resident_set_memory", mrb_UV_uv_resident_set_memory, MRB_ARGS_ARG(uv_resident_set_memory_REQUIRED_ARGC, uv_resident_set_memory_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "resident_set_memory", mrb_UV_uv_resident_set_memory, MRB_ARGS_ARG(uv_resident_set_memory_REQUIRED_ARGC, uv_resident_set_memory_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_run_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_run", mrb_UV_uv_run, MRB_ARGS_ARG(uv_run_REQUIRED_ARGC, uv_run_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "run", mrb_UV_uv_run, MRB_ARGS_ARG(uv_run_REQUIRED_ARGC, uv_run_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_rwlock_destroy_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_rwlock_destroy", mrb_UV_uv_rwlock_destroy, MRB_ARGS_ARG(uv_rwlock_destroy_REQUIRED_ARGC, uv_rwlock_destroy_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "rwlock_destroy", mrb_UV_uv_rwlock_destroy, MRB_ARGS_ARG(uv_rwlock_destroy_REQUIRED_ARGC, uv_rwlock_destroy_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_rwlock_init_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_rwlock_init", mrb_UV_uv_rwlock_init, MRB_ARGS_ARG(uv_rwlock_init_REQUIRED_ARGC, uv_rwlock_init_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "rwlock_init", mrb_UV_uv_rwlock_init, MRB_ARGS_ARG(uv_rwlock_init_REQUIRED_ARGC, uv_rwlock_init_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_rwlock_rdlock_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_rwlock_rdlock", mrb_UV_uv_rwlock_rdlock, MRB_ARGS_ARG(uv_rwlock_rdlock_REQUIRED_ARGC, uv_rwlock_rdlock_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "rwlock_rdlock", mrb_UV_uv_rwlock_rdlock, MRB_ARGS_ARG(uv_rwlock_rdlock_REQUIRED_ARGC, uv_rwlock_rdlock_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_rwlock_rdunlock_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_rwlock_rdunlock", mrb_UV_uv_rwlock_rdunlock, MRB_ARGS_ARG(uv_rwlock_rdunlock_REQUIRED_ARGC, uv_rwlock_rdunlock_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "rwlock_rdunlock", mrb_UV_uv_rwlock_rdunlock, MRB_ARGS_ARG(uv_rwlock_rdunlock_REQUIRED_ARGC, uv_rwlock_rdunlock_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_rwlock_tryrdlock_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_rwlock_tryrdlock", mrb_UV_uv_rwlock_tryrdlock, MRB_ARGS_ARG(uv_rwlock_tryrdlock_REQUIRED_ARGC, uv_rwlock_tryrdlock_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "rwlock_tryrdlock", mrb_UV_uv_rwlock_tryrdlock, MRB_ARGS_ARG(uv_rwlock_tryrdlock_REQUIRED_ARGC, uv_rwlock_tryrdlock_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_rwlock_trywrlock_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_rwlock_trywrlock", mrb_UV_uv_rwlock_trywrlock, MRB_ARGS_ARG(uv_rwlock_trywrlock_REQUIRED_ARGC, uv_rwlock_trywrlock_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "rwlock_trywrlock", mrb_UV_uv_rwlock_trywrlock, MRB_ARGS_ARG(uv_rwlock_trywrlock_REQUIRED_ARGC, uv_rwlock_trywrlock_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_rwlock_wrlock_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_rwlock_wrlock", mrb_UV_uv_rwlock_wrlock, MRB_ARGS_ARG(uv_rwlock_wrlock_REQUIRED_ARGC, uv_rwlock_wrlock_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "rwlock_wrlock", mrb_UV_uv_rwlock_wrlock, MRB_ARGS_ARG(uv_rwlock_wrlock_REQUIRED_ARGC, uv_rwlock_wrlock_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_rwlock_wrunlock_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_rwlock_wrunlock", mrb_UV_uv_rwlock_wrunlock, MRB_ARGS_ARG(uv_rwlock_wrunlock_REQUIRED_ARGC, uv_rwlock_wrunlock_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "rwlock_wrunlock", mrb_UV_uv_rwlock_wrunlock, MRB_ARGS_ARG(uv_rwlock_wrunlock_REQUIRED_ARGC, uv_rwlock_wrunlock_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_sem_destroy_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_sem_destroy", mrb_UV_uv_sem_destroy, MRB_ARGS_ARG(uv_sem_destroy_REQUIRED_ARGC, uv_sem_destroy_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "sem_destroy", mrb_UV_uv_sem_destroy, MRB_ARGS_ARG(uv_sem_destroy_REQUIRED_ARGC, uv_sem_destroy_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_sem_init_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_sem_init", mrb_UV_uv_sem_init, MRB_ARGS_ARG(uv_sem_init_REQUIRED_ARGC, uv_sem_init_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "sem_init", mrb_UV_uv_sem_init, MRB_ARGS_ARG(uv_sem_init_REQUIRED_ARGC, uv_sem_init_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_sem_post_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_sem_post", mrb_UV_uv_sem_post, MRB_ARGS_ARG(uv_sem_post_REQUIRED_ARGC, uv_sem_post_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "sem_post", mrb_UV_uv_sem_post, MRB_ARGS_ARG(uv_sem_post_REQUIRED_ARGC, uv_sem_post_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_sem_trywait_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_sem_trywait", mrb_UV_uv_sem_trywait, MRB_ARGS_ARG(uv_sem_trywait_REQUIRED_ARGC, uv_sem_trywait_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "sem_trywait", mrb_UV_uv_sem_trywait, MRB_ARGS_ARG(uv_sem_trywait_REQUIRED_ARGC, uv_sem_trywait_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_sem_wait_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_sem_wait", mrb_UV_uv_sem_wait, MRB_ARGS_ARG(uv_sem_wait_REQUIRED_ARGC, uv_sem_wait_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "sem_wait", mrb_UV_uv_sem_wait, MRB_ARGS_ARG(uv_sem_wait_REQUIRED_ARGC, uv_sem_wait_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_send_buffer_size_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_send_buffer_size", mrb_UV_uv_send_buffer_size, MRB_ARGS_ARG(uv_send_buffer_size_REQUIRED_ARGC, uv_send_buffer_size_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "send_buffer_size", mrb_UV_uv_send_buffer_size, MRB_ARGS_ARG(uv_send_buffer_size_REQUIRED_ARGC, uv_send_buffer_size_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_set_process_title_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_set_process_title", mrb_UV_uv_set_process_title, MRB_ARGS_ARG(uv_set_process_title_REQUIRED_ARGC, uv_set_process_title_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "set_process_title", mrb_UV_uv_set_process_title, MRB_ARGS_ARG(uv_set_process_title_REQUIRED_ARGC, uv_set_process_title_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_setup_args_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_setup_args", mrb_UV_uv_setup_args, MRB_ARGS_ARG(uv_setup_args_REQUIRED_ARGC, uv_setup_args_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "setup_args", mrb_UV_uv_setup_args, MRB_ARGS_ARG(uv_setup_args_REQUIRED_ARGC, uv_setup_args_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_shutdown_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_shutdown", mrb_UV_uv_shutdown, MRB_ARGS_ARG(uv_shutdown_REQUIRED_ARGC, uv_shutdown_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "shutdown", mrb_UV_uv_shutdown, MRB_ARGS_ARG(uv_shutdown_REQUIRED_ARGC, uv_shutdown_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_signal_init_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_signal_init", mrb_UV_uv_signal_init, MRB_ARGS_ARG(uv_signal_init_REQUIRED_ARGC, uv_signal_init_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "signal_init", mrb_UV_uv_signal_init, MRB_ARGS_ARG(uv_signal_init_REQUIRED_ARGC, uv_signal_init_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_signal_start_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_signal_start", mrb_UV_uv_signal_start, MRB_ARGS_ARG(uv_signal_start_REQUIRED_ARGC, uv_signal_start_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "signal_start", mrb_UV_uv_signal_start, MRB_ARGS_ARG(uv_signal_start_REQUIRED_ARGC, uv_signal_start_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_signal_stop_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_signal_stop", mrb_UV_uv_signal_stop, MRB_ARGS_ARG(uv_signal_stop_REQUIRED_ARGC, uv_signal_stop_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "signal_stop", mrb_UV_uv_signal_stop, MRB_ARGS_ARG(uv_signal_stop_REQUIRED_ARGC, uv_signal_stop_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_spawn_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_spawn", mrb_UV_uv_spawn, MRB_ARGS_ARG(uv_spawn_REQUIRED_ARGC, uv_spawn_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "spawn", mrb_UV_uv_spawn, MRB_ARGS_ARG(uv_spawn_REQUIRED_ARGC, uv_spawn_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_stop_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_stop", mrb_UV_uv_stop, MRB_ARGS_ARG(uv_stop_REQUIRED_ARGC, uv_stop_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "stop", mrb_UV_uv_stop, MRB_ARGS_ARG(uv_stop_REQUIRED_ARGC, uv_stop_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_stream_set_blocking_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_stream_set_blocking", mrb_UV_uv_stream_set_blocking, MRB_ARGS_ARG(uv_stream_set_blocking_REQUIRED_ARGC, uv_stream_set_blocking_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "stream_set_blocking", mrb_UV_uv_stream_set_blocking, MRB_ARGS_ARG(uv_stream_set_blocking_REQUIRED_ARGC, uv_stream_set_blocking_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_strerror_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_strerror", mrb_UV_uv_strerror, MRB_ARGS_ARG(uv_strerror_REQUIRED_ARGC, uv_strerror_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "strerror", mrb_UV_uv_strerror, MRB_ARGS_ARG(uv_strerror_REQUIRED_ARGC, uv_strerror_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_tcp_bind_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_tcp_bind", mrb_UV_uv_tcp_bind, MRB_ARGS_ARG(uv_tcp_bind_REQUIRED_ARGC, uv_tcp_bind_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "tcp_bind", mrb_UV_uv_tcp_bind, MRB_ARGS_ARG(uv_tcp_bind_REQUIRED_ARGC, uv_tcp_bind_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_tcp_connect_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_tcp_connect", mrb_UV_uv_tcp_connect, MRB_ARGS_ARG(uv_tcp_connect_REQUIRED_ARGC, uv_tcp_connect_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "tcp_connect", mrb_UV_uv_tcp_connect, MRB_ARGS_ARG(uv_tcp_connect_REQUIRED_ARGC, uv_tcp_connect_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_tcp_getpeername_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_tcp_getpeername", mrb_UV_uv_tcp_getpeername, MRB_ARGS_ARG(uv_tcp_getpeername_REQUIRED_ARGC, uv_tcp_getpeername_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "tcp_getpeername", mrb_UV_uv_tcp_getpeername, MRB_ARGS_ARG(uv_tcp_getpeername_REQUIRED_ARGC, uv_tcp_getpeername_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_tcp_getsockname_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_tcp_getsockname", mrb_UV_uv_tcp_getsockname, MRB_ARGS_ARG(uv_tcp_getsockname_REQUIRED_ARGC, uv_tcp_getsockname_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "tcp_getsockname", mrb_UV_uv_tcp_getsockname, MRB_ARGS_ARG(uv_tcp_getsockname_REQUIRED_ARGC, uv_tcp_getsockname_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_tcp_init_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_tcp_init", mrb_UV_uv_tcp_init, MRB_ARGS_ARG(uv_tcp_init_REQUIRED_ARGC, uv_tcp_init_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "tcp_init", mrb_UV_uv_tcp_init, MRB_ARGS_ARG(uv_tcp_init_REQUIRED_ARGC, uv_tcp_init_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_tcp_init_ex_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_tcp_init_ex", mrb_UV_uv_tcp_init_ex, MRB_ARGS_ARG(uv_tcp_init_ex_REQUIRED_ARGC, uv_tcp_init_ex_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "tcp_init_ex", mrb_UV_uv_tcp_init_ex, MRB_ARGS_ARG(uv_tcp_init_ex_REQUIRED_ARGC, uv_tcp_init_ex_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_tcp_keepalive_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_tcp_keepalive", mrb_UV_uv_tcp_keepalive, MRB_ARGS_ARG(uv_tcp_keepalive_REQUIRED_ARGC, uv_tcp_keepalive_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "tcp_keepalive", mrb_UV_uv_tcp_keepalive, MRB_ARGS_ARG(uv_tcp_keepalive_REQUIRED_ARGC, uv_tcp_keepalive_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_tcp_nodelay_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_tcp_nodelay", mrb_UV_uv_tcp_nodelay, MRB_ARGS_ARG(uv_tcp_nodelay_REQUIRED_ARGC, uv_tcp_nodelay_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "tcp_nodelay", mrb_UV_uv_tcp_nodelay, MRB_ARGS_ARG(uv_tcp_nodelay_REQUIRED_ARGC, uv_tcp_nodelay_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_tcp_open_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_tcp_open", mrb_UV_uv_tcp_open, MRB_ARGS_ARG(uv_tcp_open_REQUIRED_ARGC, uv_tcp_open_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "tcp_open", mrb_UV_uv_tcp_open, MRB_ARGS_ARG(uv_tcp_open_REQUIRED_ARGC, uv_tcp_open_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_tcp_simultaneous_accepts_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_tcp_simultaneous_accepts", mrb_UV_uv_tcp_simultaneous_accepts, MRB_ARGS_ARG(uv_tcp_simultaneous_accepts_REQUIRED_ARGC, uv_tcp_simultaneous_accepts_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "tcp_simultaneous_accepts", mrb_UV_uv_tcp_simultaneous_accepts, MRB_ARGS_ARG(uv_tcp_simultaneous_accepts_REQUIRED_ARGC, uv_tcp_simultaneous_accepts_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_thread_create_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_thread_create", mrb_UV_uv_thread_create, MRB_ARGS_ARG(uv_thread_create_REQUIRED_ARGC, uv_thread_create_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "thread_create", mrb_UV_uv_thread_create, MRB_ARGS_ARG(uv_thread_create_REQUIRED_ARGC, uv_thread_create_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_thread_equal_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_thread_equal", mrb_UV_uv_thread_equal, MRB_ARGS_ARG(uv_thread_equal_REQUIRED_ARGC, uv_thread_equal_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "thread_equal", mrb_UV_uv_thread_equal, MRB_ARGS_ARG(uv_thread_equal_REQUIRED_ARGC, uv_thread_equal_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_thread_join_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_thread_join", mrb_UV_uv_thread_join, MRB_ARGS_ARG(uv_thread_join_REQUIRED_ARGC, uv_thread_join_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "thread_join", mrb_UV_uv_thread_join, MRB_ARGS_ARG(uv_thread_join_REQUIRED_ARGC, uv_thread_join_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_thread_self_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_thread_self", mrb_UV_uv_thread_self, MRB_ARGS_ARG(uv_thread_self_REQUIRED_ARGC, uv_thread_self_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "thread_self", mrb_UV_uv_thread_self, MRB_ARGS_ARG(uv_thread_self_REQUIRED_ARGC, uv_thread_self_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_timer_again_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_timer_again", mrb_UV_uv_timer_again, MRB_ARGS_ARG(uv_timer_again_REQUIRED_ARGC, uv_timer_again_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "timer_again", mrb_UV_uv_timer_again, MRB_ARGS_ARG(uv_timer_again_REQUIRED_ARGC, uv_timer_again_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_timer_get_repeat_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_timer_get_repeat", mrb_UV_uv_timer_get_repeat, MRB_ARGS_ARG(uv_timer_get_repeat_REQUIRED_ARGC, uv_timer_get_repeat_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "timer_get_repeat", mrb_UV_uv_timer_get_repeat, MRB_ARGS_ARG(uv_timer_get_repeat_REQUIRED_ARGC, uv_timer_get_repeat_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_timer_init_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_timer_init", mrb_UV_uv_timer_init, MRB_ARGS_ARG(uv_timer_init_REQUIRED_ARGC, uv_timer_init_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "timer_init", mrb_UV_uv_timer_init, MRB_ARGS_ARG(uv_timer_init_REQUIRED_ARGC, uv_timer_init_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_timer_set_repeat_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_timer_set_repeat", mrb_UV_uv_timer_set_repeat, MRB_ARGS_ARG(uv_timer_set_repeat_REQUIRED_ARGC, uv_timer_set_repeat_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "timer_set_repeat", mrb_UV_uv_timer_set_repeat, MRB_ARGS_ARG(uv_timer_set_repeat_REQUIRED_ARGC, uv_timer_set_repeat_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_timer_start_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_timer_start", mrb_UV_uv_timer_start, MRB_ARGS_ARG(uv_timer_start_REQUIRED_ARGC, uv_timer_start_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "timer_start", mrb_UV_uv_timer_start, MRB_ARGS_ARG(uv_timer_start_REQUIRED_ARGC, uv_timer_start_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_timer_stop_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_timer_stop", mrb_UV_uv_timer_stop, MRB_ARGS_ARG(uv_timer_stop_REQUIRED_ARGC, uv_timer_stop_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "timer_stop", mrb_UV_uv_timer_stop, MRB_ARGS_ARG(uv_timer_stop_REQUIRED_ARGC, uv_timer_stop_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_try_write_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_try_write", mrb_UV_uv_try_write, MRB_ARGS_ARG(uv_try_write_REQUIRED_ARGC, uv_try_write_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "try_write", mrb_UV_uv_try_write, MRB_ARGS_ARG(uv_try_write_REQUIRED_ARGC, uv_try_write_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_tty_get_winsize_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_tty_get_winsize", mrb_UV_uv_tty_get_winsize, MRB_ARGS_ARG(uv_tty_get_winsize_REQUIRED_ARGC, uv_tty_get_winsize_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "tty_get_winsize", mrb_UV_uv_tty_get_winsize, MRB_ARGS_ARG(uv_tty_get_winsize_REQUIRED_ARGC, uv_tty_get_winsize_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_tty_init_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_tty_init", mrb_UV_uv_tty_init, MRB_ARGS_ARG(uv_tty_init_REQUIRED_ARGC, uv_tty_init_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "tty_init", mrb_UV_uv_tty_init, MRB_ARGS_ARG(uv_tty_init_REQUIRED_ARGC, uv_tty_init_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_tty_reset_mode_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_tty_reset_mode", mrb_UV_uv_tty_reset_mode, MRB_ARGS_ARG(uv_tty_reset_mode_REQUIRED_ARGC, uv_tty_reset_mode_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "tty_reset_mode", mrb_UV_uv_tty_reset_mode, MRB_ARGS_ARG(uv_tty_reset_mode_REQUIRED_ARGC, uv_tty_reset_mode_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_tty_set_mode_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_tty_set_mode", mrb_UV_uv_tty_set_mode, MRB_ARGS_ARG(uv_tty_set_mode_REQUIRED_ARGC, uv_tty_set_mode_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "tty_set_mode", mrb_UV_uv_tty_set_mode, MRB_ARGS_ARG(uv_tty_set_mode_REQUIRED_ARGC, uv_tty_set_mode_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_udp_bind_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_udp_bind", mrb_UV_uv_udp_bind, MRB_ARGS_ARG(uv_udp_bind_REQUIRED_ARGC, uv_udp_bind_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "udp_bind", mrb_UV_uv_udp_bind, MRB_ARGS_ARG(uv_udp_bind_REQUIRED_ARGC, uv_udp_bind_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_udp_getsockname_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_udp_getsockname", mrb_UV_uv_udp_getsockname, MRB_ARGS_ARG(uv_udp_getsockname_REQUIRED_ARGC, uv_udp_getsockname_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "udp_getsockname", mrb_UV_uv_udp_getsockname, MRB_ARGS_ARG(uv_udp_getsockname_REQUIRED_ARGC, uv_udp_getsockname_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_udp_init_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_udp_init", mrb_UV_uv_udp_init, MRB_ARGS_ARG(uv_udp_init_REQUIRED_ARGC, uv_udp_init_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "udp_init", mrb_UV_uv_udp_init, MRB_ARGS_ARG(uv_udp_init_REQUIRED_ARGC, uv_udp_init_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_udp_init_ex_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_udp_init_ex", mrb_UV_uv_udp_init_ex, MRB_ARGS_ARG(uv_udp_init_ex_REQUIRED_ARGC, uv_udp_init_ex_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "udp_init_ex", mrb_UV_uv_udp_init_ex, MRB_ARGS_ARG(uv_udp_init_ex_REQUIRED_ARGC, uv_udp_init_ex_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_udp_open_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_udp_open", mrb_UV_uv_udp_open, MRB_ARGS_ARG(uv_udp_open_REQUIRED_ARGC, uv_udp_open_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "udp_open", mrb_UV_uv_udp_open, MRB_ARGS_ARG(uv_udp_open_REQUIRED_ARGC, uv_udp_open_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_udp_recv_start_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_udp_recv_start", mrb_UV_uv_udp_recv_start, MRB_ARGS_ARG(uv_udp_recv_start_REQUIRED_ARGC, uv_udp_recv_start_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "udp_recv_start", mrb_UV_uv_udp_recv_start, MRB_ARGS_ARG(uv_udp_recv_start_REQUIRED_ARGC, uv_udp_recv_start_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_udp_recv_stop_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_udp_recv_stop", mrb_UV_uv_udp_recv_stop, MRB_ARGS_ARG(uv_udp_recv_stop_REQUIRED_ARGC, uv_udp_recv_stop_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "udp_recv_stop", mrb_UV_uv_udp_recv_stop, MRB_ARGS_ARG(uv_udp_recv_stop_REQUIRED_ARGC, uv_udp_recv_stop_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_udp_send_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_udp_send", mrb_UV_uv_udp_send, MRB_ARGS_ARG(uv_udp_send_REQUIRED_ARGC, uv_udp_send_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "udp_send", mrb_UV_uv_udp_send, MRB_ARGS_ARG(uv_udp_send_REQUIRED_ARGC, uv_udp_send_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_udp_set_broadcast_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_udp_set_broadcast", mrb_UV_uv_udp_set_broadcast, MRB_ARGS_ARG(uv_udp_set_broadcast_REQUIRED_ARGC, uv_udp_set_broadcast_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "udp_set_broadcast", mrb_UV_uv_udp_set_broadcast, MRB_ARGS_ARG(uv_udp_set_broadcast_REQUIRED_ARGC, uv_udp_set_broadcast_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_udp_set_membership_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_udp_set_membership", mrb_UV_uv_udp_set_membership, MRB_ARGS_ARG(uv_udp_set_membership_REQUIRED_ARGC, uv_udp_set_membership_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "udp_set_membership", mrb_UV_uv_udp_set_membership, MRB_ARGS_ARG(uv_udp_set_membership_REQUIRED_ARGC, uv_udp_set_membership_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_udp_set_multicast_interface_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_udp_set_multicast_interface", mrb_UV_uv_udp_set_multicast_interface, MRB_ARGS_ARG(uv_udp_set_multicast_interface_REQUIRED_ARGC, uv_udp_set_multicast_interface_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "udp_set_multicast_interface", mrb_UV_uv_udp_set_multicast_interface, MRB_ARGS_ARG(uv_udp_set_multicast_interface_REQUIRED_ARGC, uv_udp_set_multicast_interface_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_udp_set_multicast_loop_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_udp_set_multicast_loop", mrb_UV_uv_udp_set_multicast_loop, MRB_ARGS_ARG(uv_udp_set_multicast_loop_REQUIRED_ARGC, uv_udp_set_multicast_loop_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "udp_set_multicast_loop", mrb_UV_uv_udp_set_multicast_loop, MRB_ARGS_ARG(uv_udp_set_multicast_loop_REQUIRED_ARGC, uv_udp_set_multicast_loop_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_udp_set_multicast_ttl_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_udp_set_multicast_ttl", mrb_UV_uv_udp_set_multicast_ttl, MRB_ARGS_ARG(uv_udp_set_multicast_ttl_REQUIRED_ARGC, uv_udp_set_multicast_ttl_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "udp_set_multicast_ttl", mrb_UV_uv_udp_set_multicast_ttl, MRB_ARGS_ARG(uv_udp_set_multicast_ttl_REQUIRED_ARGC, uv_udp_set_multicast_ttl_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_udp_set_ttl_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_udp_set_ttl", mrb_UV_uv_udp_set_ttl, MRB_ARGS_ARG(uv_udp_set_ttl_REQUIRED_ARGC, uv_udp_set_ttl_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "udp_set_ttl", mrb_UV_uv_udp_set_ttl, MRB_ARGS_ARG(uv_udp_set_ttl_REQUIRED_ARGC, uv_udp_set_ttl_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_udp_try_send_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_udp_try_send", mrb_UV_uv_udp_try_send, MRB_ARGS_ARG(uv_udp_try_send_REQUIRED_ARGC, uv_udp_try_send_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "udp_try_send", mrb_UV_uv_udp_try_send, MRB_ARGS_ARG(uv_udp_try_send_REQUIRED_ARGC, uv_udp_try_send_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_unref_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_unref", mrb_UV_uv_unref, MRB_ARGS_ARG(uv_unref_REQUIRED_ARGC, uv_unref_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "unref", mrb_UV_uv_unref, MRB_ARGS_ARG(uv_unref_REQUIRED_ARGC, uv_unref_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_update_time_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_update_time", mrb_UV_uv_update_time, MRB_ARGS_ARG(uv_update_time_REQUIRED_ARGC, uv_update_time_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "update_time", mrb_UV_uv_update_time, MRB_ARGS_ARG(uv_update_time_REQUIRED_ARGC, uv_update_time_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_uptime_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_uptime", mrb_UV_uv_uptime, MRB_ARGS_ARG(uv_uptime_REQUIRED_ARGC, uv_uptime_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "uptime", mrb_UV_uv_uptime, MRB_ARGS_ARG(uv_uptime_REQUIRED_ARGC, uv_uptime_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_version_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_version", mrb_UV_uv_version, MRB_ARGS_ARG(uv_version_REQUIRED_ARGC, uv_version_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "version", mrb_UV_uv_version, MRB_ARGS_ARG(uv_version_REQUIRED_ARGC, uv_version_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_version_string_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_version_string", mrb_UV_uv_version_string, MRB_ARGS_ARG(uv_version_string_REQUIRED_ARGC, uv_version_string_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "version_string", mrb_UV_uv_version_string, MRB_ARGS_ARG(uv_version_string_REQUIRED_ARGC, uv_version_string_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_walk_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_walk", mrb_UV_uv_walk, MRB_ARGS_ARG(uv_walk_REQUIRED_ARGC, uv_walk_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "walk", mrb_UV_uv_walk, MRB_ARGS_ARG(uv_walk_REQUIRED_ARGC, uv_walk_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_write_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_write", mrb_UV_uv_write, MRB_ARGS_ARG(uv_write_REQUIRED_ARGC, uv_write_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "write", mrb_UV_uv_write, MRB_ARGS_ARG(uv_write_REQUIRED_ARGC, uv_write_OPTIONAL_ARGC));
 #endif
 #if BIND_uv_write2_FUNCTION
-  mrb_define_class_method(mrb, UV_module, "uv_write2", mrb_UV_uv_write2, MRB_ARGS_ARG(uv_write2_REQUIRED_ARGC, uv_write2_OPTIONAL_ARGC));
+  mrb_define_class_method(mrb, UV_module, "write2", mrb_UV_uv_write2, MRB_ARGS_ARG(uv_write2_REQUIRED_ARGC, uv_write2_OPTIONAL_ARGC));
 #endif
 /* MRUBY_BINDING_END */
 

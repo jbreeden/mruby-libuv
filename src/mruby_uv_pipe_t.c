@@ -5,80 +5,39 @@
 
 #include "mruby_UV.h"
 
-#if BIND_UvPipeT_TYPE
+#if BIND_Pipe_TYPE
 
 /* MRUBY_BINDING: header */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/*
- * Class Methods
- */
-
-/* MRUBY_BINDING: UvPipeT::initialize */
-/* sha: 4c0c322a7176de94158c65ec95874353412b3226dd6b279e17880dc251e432a3 */
-#if BIND_UvPipeT_INITIALIZE
+/* MRUBY_BINDING: Pipe::initialize */
+/* sha: 9acd9c0e1c9572baf95d1639fd5fc555172b2e303755c32a565247620fb74737 */
+#if BIND_Pipe_INITIALIZE
 mrb_value
-mrb_UV_UvPipeT_initialize(mrb_state* mrb, mrb_value self) {
-  uv_pipe_t* native_object = (uv_pipe_t*)new_mruby_uv_handle(mrb, self, sizeof(uv_pipe_t));
+mrb_UV_Pipe_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
+  uv_pipe_t* native_object = (uv_pipe_t*)calloc(1, sizeof(uv_pipe_t));
   mruby_gift_uv_pipe_t_data_ptr(self, native_object);
   return self;
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvPipeT::disown */
-/* sha: 3714f1ca7d1f1290363f24f6c8e5dad1d41886b348ccd1b5d8c1f98153d38381 */
-mrb_value
-mrb_UV_UvPipeT_disown(mrb_state* mrb, mrb_value self) {
-  mrb_value ruby_object;
-  mrb_get_args(mrb, "o", &ruby_object);
-
-  if (!mrb_obj_is_kind_of(mrb, ruby_object, mrb_class_ptr(self))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UV::UvPipeT.disown only accepts objects of type UV::UvPipeT");
-    return mrb_nil_value();
-  }
-
-  ((mruby_to_native_ref*)(DATA_PTR(ruby_object)))->belongs_to_ruby = FALSE;
-
-  return mrb_nil_value();
-}
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvPipeT::belongs_to_ruby */
-/* sha: 1d4ab93ce7ffc80b7189b076ca43219ab6615eddf9f0f60bcb99685820ed3fe6 */
-mrb_value
-mrb_UV_UvPipeT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
-  mrb_value ruby_object;
-  mrb_get_args(mrb, "o", &ruby_object);
-
-  if (!mrb_obj_is_kind_of(mrb, ruby_object, mrb_class_ptr(self))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UV::UvPipeT.belongs_to_ruby only accepts objects of type UV::UvPipeT");
-    return mrb_nil_value();
-  }
-
-  if ( ((mruby_to_native_ref*)(DATA_PTR(ruby_object)))->belongs_to_ruby ) {
-    return mrb_true_value();
-  } else {
-    return mrb_false_value();
-  }
-}
-/* MRUBY_BINDING_END */
-
 /*
  * Fields
  */
 
-/* MRUBY_BINDING: UvPipeT::ipc_reader */
-/* sha: f7c0997259b606573411d29f3ea701b2380035da0c16152973c812f795cbd929 */
-#if BIND_UvPipeT_ipc_FIELD_READER
+/* MRUBY_BINDING: Pipe::ipc_reader */
+/* sha: ce31cd8150e5e685c0f48d181c6092bc7c21d3010cdd88cac02e256bf4cf4035 */
+#if BIND_Pipe_ipc_FIELD_READER
 /* get_ipc
  *
  * Return Type: int
  */
 mrb_value
-mrb_UV_UvPipeT_get_ipc(mrb_state* mrb, mrb_value self) {
+mrb_UV_Pipe_get_ipc(mrb_state* mrb, mrb_value self) {
   uv_pipe_t * native_self = mruby_unbox_uv_pipe_t(self);
 
   int native_ipc = native_self->ipc;
@@ -90,16 +49,16 @@ mrb_UV_UvPipeT_get_ipc(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvPipeT::ipc_writer */
-/* sha: a2d8208b3df18d07528efb323d10803758b33d8edbc438a0d7fd2554a69cfc7a */
-#if BIND_UvPipeT_ipc_FIELD_WRITER
+/* MRUBY_BINDING: Pipe::ipc_writer */
+/* sha: 6c61b171fa5cdb658a8813a3cd68a7adc4b069cf992ff7a85569525979052e3b */
+#if BIND_Pipe_ipc_FIELD_WRITER
 /* set_ipc
  *
  * Parameters:
  * - value: int
  */
 mrb_value
-mrb_UV_UvPipeT_set_ipc(mrb_state* mrb, mrb_value self) {
+mrb_UV_Pipe_set_ipc(mrb_state* mrb, mrb_value self) {
   uv_pipe_t * native_self = mruby_unbox_uv_pipe_t(self);
   mrb_int native_ipc;
 
@@ -107,6 +66,7 @@ mrb_UV_UvPipeT_set_ipc(mrb_state* mrb, mrb_value self) {
 
   native_self->ipc = native_ipc;
   
+  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -115,8 +75,8 @@ mrb_UV_UvPipeT_set_ipc(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 
-void mrb_UV_UvPipeT_init(mrb_state* mrb) {
-/* MRUBY_BINDING: UvPipeT::class_init_header */
+void mrb_UV_Pipe_init(mrb_state* mrb) {
+/* MRUBY_BINDING: Pipe::class_init_header */
 /* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
   /* Don't double-init. */
   static int initialized = 0;
@@ -124,50 +84,48 @@ void mrb_UV_UvPipeT_init(mrb_state* mrb) {
   else initialized = 1;
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvPipeT::class_definition */
-/* sha: 92941b396cf368e150f241e3a379e15dd2ff5182496d769364e996154ecee380 */
-  struct RClass* UvPipeT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvPipeT", UvHandleT_class(mrb));
-  MRB_SET_INSTANCE_TT(UvPipeT_class, MRB_TT_DATA);
+/* MRUBY_BINDING: Pipe::class_definition */
+/* sha: d234ca2959fc3ce7bb7edaf36ce4d14103207e8211ffe42ce0bdb1dfeaa82cf7 */
+  struct RClass* Pipe_class = mrb_define_class_under(mrb, UV_module(mrb), "Pipe", mrb->object_class);
+  MRB_SET_INSTANCE_TT(Pipe_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvPipeT::pre_class_method_definitions */
+/* MRUBY_BINDING: Pipe::pre_class_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvPipeT::class_method_definitions */
-/* sha: d38601396ae480f12499f77dc1f483fae9d2d554f04309f30cbf05d557031157 */
-#if BIND_UvPipeT_INITIALIZE
-  mrb_define_method(mrb, UvPipeT_class, "initialize", mrb_UV_UvPipeT_initialize, MRB_ARGS_NONE());
+/* MRUBY_BINDING: Pipe::class_method_definitions */
+/* sha: 8abaf76f6359606225ab3b73f1f2447bc2bf7154740c1d52e391469271808160 */
+#if BIND_Pipe_INITIALIZE
+  mrb_define_method(mrb, Pipe_class, "initialize", mrb_UV_Pipe_initialize, MRB_ARGS_NONE());
 #endif
-  mrb_define_class_method(mrb, UvPipeT_class, "disown", mrb_UV_UvPipeT_disown, MRB_ARGS_ARG(1, 0));
-  mrb_define_class_method(mrb, UvPipeT_class, "belongs_to_ruby?", mrb_UV_UvPipeT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvPipeT::pre_attr_definitions */
+/* MRUBY_BINDING: Pipe::pre_attr_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvPipeT::attr_definitions */
-/* sha: b67c0c3b288ff918d6d239eb07ee41c9f8463adf7563e68ec2092510f3b23938 */
+/* MRUBY_BINDING: Pipe::attr_definitions */
+/* sha: 8ded097411add4a701c368637ffbd777e07a652f7286bd874a6e02954909ed80 */
   /*
    * Fields
    */
-#if BIND_UvPipeT_ipc_FIELD_READER
-  mrb_define_method(mrb, UvPipeT_class, "ipc", mrb_UV_UvPipeT_get_ipc, MRB_ARGS_ARG(0, 0));
+#if BIND_Pipe_ipc_FIELD_READER
+  mrb_define_method(mrb, Pipe_class, "ipc", mrb_UV_Pipe_get_ipc, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvPipeT_ipc_FIELD_WRITER
-  mrb_define_method(mrb, UvPipeT_class, "ipc=", mrb_UV_UvPipeT_set_ipc, MRB_ARGS_ARG(1, 0));
+#if BIND_Pipe_ipc_FIELD_WRITER
+  mrb_define_method(mrb, Pipe_class, "ipc=", mrb_UV_Pipe_set_ipc, MRB_ARGS_ARG(1, 0));
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvPipeT::pre_instance_method_definitions */
+/* MRUBY_BINDING: Pipe::pre_instance_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvPipeT::instance_method_definitions */
+/* MRUBY_BINDING: Pipe::instance_method_definitions */
 /* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
   /*
    * Member Functions
@@ -175,7 +133,7 @@ void mrb_UV_UvPipeT_init(mrb_state* mrb) {
   /* None */
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvPipeT::class_init_footer */
+/* MRUBY_BINDING: Pipe::class_init_footer */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

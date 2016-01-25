@@ -34,11 +34,11 @@ void mrb_UV_UvReqT_init(mrb_state* mrb) {
   if (initialized) return;
   else initialized = 1;
 
-  struct RClass* UvReqT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvReqT", mrb->object_class);
-  MRB_SET_INSTANCE_TT(UvReqT_class, MRB_TT_DATA);
+  struct RClass* Req_class = mrb_define_class_under(mrb, UV_module(mrb), "UvReqT", mrb->object_class);
+  MRB_SET_INSTANCE_TT(Req_class, MRB_TT_DATA);
 
-  mrb_define_method(mrb, UvReqT_class, "data", mrb_UV_UvReqT_get_data, MRB_ARGS_ARG(0, 0));
-  mrb_define_method(mrb, UvReqT_class, "data=", mrb_UV_UvReqT_set_data, MRB_ARGS_ARG(1, 0));
-  mrb_define_method(mrb, UvReqT_class, "type", mrb_UV_UvReqT_get_type, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Req_class, "data", mrb_UV_UvReqT_get_data, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Req_class, "data=", mrb_UV_UvReqT_set_data, MRB_ARGS_ARG(1, 0));
+  mrb_define_method(mrb, Req_class, "type", mrb_UV_UvReqT_get_type, MRB_ARGS_ARG(0, 0));
 }
 #endif

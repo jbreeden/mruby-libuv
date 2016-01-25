@@ -5,80 +5,39 @@
 
 #include "mruby_UV.h"
 
-#if BIND_UvFsT_TYPE
+#if BIND_FS_TYPE
 
 /* MRUBY_BINDING: header */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/*
- * Class Methods
- */
-
-/* MRUBY_BINDING: UvFsT::initialize */
-/* sha: daa7c1bd12b537c8a6f448ece083677776c289aa2c73c94bd2ab3da99feb95a5 */
-#if BIND_UvFsT_INITIALIZE
+/* MRUBY_BINDING: FS::initialize */
+/* sha: e1d37ab7960aa87bf21f2b8cdc2866ba4caf3e6d44b27ee882d80f019d03c6a5 */
+#if BIND_FS_INITIALIZE
 mrb_value
-mrb_UV_UvFsT_initialize(mrb_state* mrb, mrb_value self) {
-  uv_fs_t* native_object = (uv_fs_t*)new_mruby_uv_req(mrb, self, sizeof(uv_fs_and_buf_t));
+mrb_UV_FS_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
+  uv_fs_t* native_object = (uv_fs_t*)calloc(1, sizeof(uv_fs_t));
   mruby_gift_uv_fs_t_data_ptr(self, native_object);
   return self;
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::disown */
-/* sha: 9edcd64c3789b16ecfd94c0e3da188ebf61ff55cc4cb7ec6301074a06848e7cf */
-mrb_value
-mrb_UV_UvFsT_disown(mrb_state* mrb, mrb_value self) {
-  mrb_value ruby_object;
-  mrb_get_args(mrb, "o", &ruby_object);
-
-  if (!mrb_obj_is_kind_of(mrb, ruby_object, mrb_class_ptr(self))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UV::UvFsT.disown only accepts objects of type UV::UvFsT");
-    return mrb_nil_value();
-  }
-
-  ((mruby_to_native_ref*)(DATA_PTR(ruby_object)))->belongs_to_ruby = FALSE;
-
-  return mrb_nil_value();
-}
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvFsT::belongs_to_ruby */
-/* sha: 23862103c9fb7f32cf54893b0ba40668f784af2b4693642237113fbb86a657a8 */
-mrb_value
-mrb_UV_UvFsT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
-  mrb_value ruby_object;
-  mrb_get_args(mrb, "o", &ruby_object);
-
-  if (!mrb_obj_is_kind_of(mrb, ruby_object, mrb_class_ptr(self))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UV::UvFsT.belongs_to_ruby only accepts objects of type UV::UvFsT");
-    return mrb_nil_value();
-  }
-
-  if ( ((mruby_to_native_ref*)(DATA_PTR(ruby_object)))->belongs_to_ruby ) {
-    return mrb_true_value();
-  } else {
-    return mrb_false_value();
-  }
-}
-/* MRUBY_BINDING_END */
-
 /*
  * Fields
  */
 
-/* MRUBY_BINDING: UvFsT::fs_type_reader */
-/* sha: 09dfcb142f8573b8ff44050d9b0004e27e4ef65b1158fc0b983552c056c74bbc */
-#if BIND_UvFsT_fs_type_FIELD_READER
+/* MRUBY_BINDING: FS::fs_type_reader */
+/* sha: e792ea1bb64ad74c0827d5e4dbb13243c728ee9f784ac138afa2e23cc7cd4d8a */
+#if BIND_FS_fs_type_FIELD_READER
 /* get_fs_type
  *
  * Return Type: uv_fs_type
  */
 mrb_value
-mrb_UV_UvFsT_get_fs_type(mrb_state* mrb, mrb_value self) {
+mrb_UV_FS_get_fs_type(mrb_state* mrb, mrb_value self) {
   uv_fs_t * native_self = mruby_unbox_uv_fs_t(self);
 
   uv_fs_type native_fs_type = native_self->fs_type;
@@ -90,16 +49,16 @@ mrb_UV_UvFsT_get_fs_type(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::fs_type_writer */
-/* sha: 3f155e54636a28da8b1863ea082dbd514be8b165e8a532fe797339ea51d2ab58 */
-#if BIND_UvFsT_fs_type_FIELD_WRITER
+/* MRUBY_BINDING: FS::fs_type_writer */
+/* sha: e9ebf4c4b38145d263336a131eed2aada1082fbce8537272deb2fd3921ae773e */
+#if BIND_FS_fs_type_FIELD_WRITER
 /* set_fs_type
  *
  * Parameters:
  * - value: uv_fs_type
  */
 mrb_value
-mrb_UV_UvFsT_set_fs_type(mrb_state* mrb, mrb_value self) {
+mrb_UV_FS_set_fs_type(mrb_state* mrb, mrb_value self) {
   uv_fs_t * native_self = mruby_unbox_uv_fs_t(self);
   mrb_int native_fs_type;
 
@@ -107,6 +66,7 @@ mrb_UV_UvFsT_set_fs_type(mrb_state* mrb, mrb_value self) {
 
   native_self->fs_type = native_fs_type;
   
+  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -114,15 +74,15 @@ mrb_UV_UvFsT_set_fs_type(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::loop_reader */
-/* sha: 1977c7a9c4a5e4b7e409f3e9622014b191ad2567806eae838be03de985e7feed */
-#if BIND_UvFsT_loop_FIELD_READER
+/* MRUBY_BINDING: FS::loop_reader */
+/* sha: bf4b7a106e868b505abe15ce78644005d02a43e18e0496cc6607c0d90787efe9 */
+#if BIND_FS_loop_FIELD_READER
 /* get_loop
  *
  * Return Type: uv_loop_t *
  */
 mrb_value
-mrb_UV_UvFsT_get_loop(mrb_state* mrb, mrb_value self) {
+mrb_UV_FS_get_loop(mrb_state* mrb, mrb_value self) {
   uv_fs_t * native_self = mruby_unbox_uv_fs_t(self);
 
   uv_loop_t * native_loop = native_self->loop;
@@ -134,24 +94,24 @@ mrb_UV_UvFsT_get_loop(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::loop_writer */
-/* sha: e548d193f03cd6dadecfe884c680a2cf1d9c83a3352907f199fb20a975fd9e91 */
-#if BIND_UvFsT_loop_FIELD_WRITER
+/* MRUBY_BINDING: FS::loop_writer */
+/* sha: f8a1e904c44299d68ea8c626139eb3007a07fe8b946a5d773c4a53d95f9b7bc3 */
+#if BIND_FS_loop_FIELD_WRITER
 /* set_loop
  *
  * Parameters:
  * - value: uv_loop_t *
  */
 mrb_value
-mrb_UV_UvFsT_set_loop(mrb_state* mrb, mrb_value self) {
+mrb_UV_FS_set_loop(mrb_state* mrb, mrb_value self) {
   uv_fs_t * native_self = mruby_unbox_uv_fs_t(self);
   mrb_value loop;
 
   mrb_get_args(mrb, "o", &loop);
 
   /* type checking */
-  if (!mrb_obj_is_kind_of(mrb, loop, UvLoopT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+  if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
 
@@ -159,6 +119,7 @@ mrb_UV_UvFsT_set_loop(mrb_state* mrb, mrb_value self) {
 
   native_self->loop = native_loop;
   
+  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -166,15 +127,15 @@ mrb_UV_UvFsT_set_loop(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::cb_reader */
-/* sha: 6a0e8f716ff3373b5d4cf21a6a53ae812d9ba035c36b140860a324397b38f065 */
-#if BIND_UvFsT_cb_FIELD_READER
+/* MRUBY_BINDING: FS::cb_reader */
+/* sha: 9c2619b98b572ed39114f305606e1e3709201d825a05c40dc7b31ef73e7c959e */
+#if BIND_FS_cb_FIELD_READER
 /* get_cb
  *
  * Return Type: uv_fs_cb
  */
 mrb_value
-mrb_UV_UvFsT_get_cb(mrb_state* mrb, mrb_value self) {
+mrb_UV_FS_get_cb(mrb_state* mrb, mrb_value self) {
   uv_fs_t * native_self = mruby_unbox_uv_fs_t(self);
 
   uv_fs_cb native_cb = native_self->cb;
@@ -186,16 +147,16 @@ mrb_UV_UvFsT_get_cb(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::cb_writer */
-/* sha: 05a6f1e53a6213067b52d598ec06e4d48f2ce197e0fb5cfcb76c29369658f458 */
-#if BIND_UvFsT_cb_FIELD_WRITER
+/* MRUBY_BINDING: FS::cb_writer */
+/* sha: f5ba095145d1621289c6e7f695a8a3f7f03756c590eb95ffb2cddf0855672761 */
+#if BIND_FS_cb_FIELD_WRITER
 /* set_cb
  *
  * Parameters:
  * - value: uv_fs_cb
  */
 mrb_value
-mrb_UV_UvFsT_set_cb(mrb_state* mrb, mrb_value self) {
+mrb_UV_FS_set_cb(mrb_state* mrb, mrb_value self) {
   uv_fs_t * native_self = mruby_unbox_uv_fs_t(self);
   mrb_value native_cb;
 
@@ -210,6 +171,7 @@ mrb_UV_UvFsT_set_cb(mrb_state* mrb, mrb_value self) {
 
   native_self->cb = native_cb;
   
+  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -217,36 +179,36 @@ mrb_UV_UvFsT_set_cb(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::result_reader */
-/* sha: 272e67bc2722e6cec1532a99b5e99a79de17cd568811e8bc0c489d7e22ea3608 */
-#if BIND_UvFsT_result_FIELD_READER
+/* MRUBY_BINDING: FS::result_reader */
+/* sha: 9dbda94485d3b0cf044b6952a56b008ca481897e81df661dc189c0086da6fba2 */
+#if BIND_FS_result_FIELD_READER
 /* get_result
  *
  * Return Type: ssize_t
  */
 mrb_value
-mrb_UV_UvFsT_get_result(mrb_state* mrb, mrb_value self) {
+mrb_UV_FS_get_result(mrb_state* mrb, mrb_value self) {
   uv_fs_t * native_self = mruby_unbox_uv_fs_t(self);
 
   ssize_t native_result = native_self->result;
 
-  mrb_value result = mrb_fixnum_value(native_result);
+  mrb_value result = TODO_mruby_box_ssize_t(mrb, native_result);
 
   return result;
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::result_writer */
-/* sha: 02a13153eded144e8432959071ce4741ea922125f02d38ac2ac69d4cb21e2f46 */
-#if BIND_UvFsT_result_FIELD_WRITER
+/* MRUBY_BINDING: FS::result_writer */
+/* sha: 945a68266ec960cc41658adfd617e16cfe99e546ecab2b8ab82ecda8d41d87c7 */
+#if BIND_FS_result_FIELD_WRITER
 /* set_result
  *
  * Parameters:
  * - value: ssize_t
  */
 mrb_value
-mrb_UV_UvFsT_set_result(mrb_state* mrb, mrb_value self) {
+mrb_UV_FS_set_result(mrb_state* mrb, mrb_value self) {
   uv_fs_t * native_self = mruby_unbox_uv_fs_t(self);
   mrb_value result;
 
@@ -259,6 +221,7 @@ mrb_UV_UvFsT_set_result(mrb_state* mrb, mrb_value self) {
 
   native_self->result = native_result;
   
+  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -266,15 +229,15 @@ mrb_UV_UvFsT_set_result(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::ptr_reader */
-/* sha: c970e783106b3fd3d937af8d5b48417338e12ac95a53da42a06544e626548b68 */
-#if BIND_UvFsT_ptr_FIELD_READER
+/* MRUBY_BINDING: FS::ptr_reader */
+/* sha: 6f70bd9df70a1e4a00f079218f57dc4dd2e1a564f17ff030c34bf19b2322c202 */
+#if BIND_FS_ptr_FIELD_READER
 /* get_ptr
  *
  * Return Type: void *
  */
 mrb_value
-mrb_UV_UvFsT_get_ptr(mrb_state* mrb, mrb_value self) {
+mrb_UV_FS_get_ptr(mrb_state* mrb, mrb_value self) {
   uv_fs_t * native_self = mruby_unbox_uv_fs_t(self);
 
   void * native_ptr = native_self->ptr;
@@ -286,16 +249,16 @@ mrb_UV_UvFsT_get_ptr(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::ptr_writer */
-/* sha: daefca0fa4bad37b38ad4dc5ef75681015949301a445a5e06eab2606e8cdd5ae */
-#if BIND_UvFsT_ptr_FIELD_WRITER
+/* MRUBY_BINDING: FS::ptr_writer */
+/* sha: 3a58920e47970c03c655f2414dce9ddfac94f7c22ca281b1a16e4a12cfbd7cb1 */
+#if BIND_FS_ptr_FIELD_WRITER
 /* set_ptr
  *
  * Parameters:
  * - value: void *
  */
 mrb_value
-mrb_UV_UvFsT_set_ptr(mrb_state* mrb, mrb_value self) {
+mrb_UV_FS_set_ptr(mrb_state* mrb, mrb_value self) {
   uv_fs_t * native_self = mruby_unbox_uv_fs_t(self);
   mrb_value ptr;
 
@@ -308,6 +271,7 @@ mrb_UV_UvFsT_set_ptr(mrb_state* mrb, mrb_value self) {
 
   native_self->ptr = native_ptr;
   
+  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -315,15 +279,15 @@ mrb_UV_UvFsT_set_ptr(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::path_reader */
-/* sha: 56e68622f57526ff6f019913031fa50c16c6d60e8daaa2b42c83e97833443f95 */
-#if BIND_UvFsT_path_FIELD_READER
+/* MRUBY_BINDING: FS::path_reader */
+/* sha: 3b94cd9045275d0c3ee02af5b3df359b281a7de65d59d4dafe50f1f65b630288 */
+#if BIND_FS_path_FIELD_READER
 /* get_path
  *
  * Return Type: const char *
  */
 mrb_value
-mrb_UV_UvFsT_get_path(mrb_state* mrb, mrb_value self) {
+mrb_UV_FS_get_path(mrb_state* mrb, mrb_value self) {
   uv_fs_t * native_self = mruby_unbox_uv_fs_t(self);
 
   const char * native_path = native_self->path;
@@ -335,16 +299,16 @@ mrb_UV_UvFsT_get_path(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::path_writer */
-/* sha: b8292faa3e286bc6665a22fe98a645fae24c52620f0ac026001e90a7a4b7b9ef */
-#if BIND_UvFsT_path_FIELD_WRITER
+/* MRUBY_BINDING: FS::path_writer */
+/* sha: 220c1c34419fada8d692a4e62997f9ba012cb4bdd00c4521a22de313308ae682 */
+#if BIND_FS_path_FIELD_WRITER
 /* set_path
  *
  * Parameters:
  * - value: const char *
  */
 mrb_value
-mrb_UV_UvFsT_set_path(mrb_state* mrb, mrb_value self) {
+mrb_UV_FS_set_path(mrb_state* mrb, mrb_value self) {
   uv_fs_t * native_self = mruby_unbox_uv_fs_t(self);
   char * native_path = NULL;
 
@@ -352,6 +316,7 @@ mrb_UV_UvFsT_set_path(mrb_state* mrb, mrb_value self) {
 
   native_self->path = native_path;
   
+  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -359,15 +324,15 @@ mrb_UV_UvFsT_set_path(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::statbuf_reader */
-/* sha: 26a0782ff52fa498eeda07c5f3dac70266c2aa96a79d3fefe406ce200fc62214 */
-#if BIND_UvFsT_statbuf_FIELD_READER
+/* MRUBY_BINDING: FS::statbuf_reader */
+/* sha: 39df7019f3fb9b8ba4121eb0a9379d16417367db772d3d11437f8252a36920dc */
+#if BIND_FS_statbuf_FIELD_READER
 /* get_statbuf
  *
  * Return Type: uv_stat_t
  */
 mrb_value
-mrb_UV_UvFsT_get_statbuf(mrb_state* mrb, mrb_value self) {
+mrb_UV_FS_get_statbuf(mrb_state* mrb, mrb_value self) {
   uv_fs_t * native_self = mruby_unbox_uv_fs_t(self);
 
   uv_stat_t native_statbuf = native_self->statbuf;
@@ -380,24 +345,24 @@ mrb_UV_UvFsT_get_statbuf(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::statbuf_writer */
-/* sha: 59ebeda8b4491306b2ca45e698e0b49cdef9817359f348064ba43e5212e22681 */
-#if BIND_UvFsT_statbuf_FIELD_WRITER
+/* MRUBY_BINDING: FS::statbuf_writer */
+/* sha: d32dcbcf546a3d65a05a1b95a5a88ab2f89615938299e7eb83d94ac44ede87cc */
+#if BIND_FS_statbuf_FIELD_WRITER
 /* set_statbuf
  *
  * Parameters:
  * - value: uv_stat_t
  */
 mrb_value
-mrb_UV_UvFsT_set_statbuf(mrb_state* mrb, mrb_value self) {
+mrb_UV_FS_set_statbuf(mrb_state* mrb, mrb_value self) {
   uv_fs_t * native_self = mruby_unbox_uv_fs_t(self);
   mrb_value statbuf;
 
   mrb_get_args(mrb, "o", &statbuf);
 
   /* type checking */
-  if (!mrb_obj_is_kind_of(mrb, statbuf, UvStatT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvStatT expected");
+  if (!mrb_obj_is_kind_of(mrb, statbuf, Stat_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Stat expected");
     return mrb_nil_value();
   }
 
@@ -405,6 +370,7 @@ mrb_UV_UvFsT_set_statbuf(mrb_state* mrb, mrb_value self) {
 
   native_self->statbuf = native_statbuf;
   
+  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -413,8 +379,8 @@ mrb_UV_UvFsT_set_statbuf(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 
-void mrb_UV_UvFsT_init(mrb_state* mrb) {
-/* MRUBY_BINDING: UvFsT::class_init_header */
+void mrb_UV_FS_init(mrb_state* mrb) {
+/* MRUBY_BINDING: FS::class_init_header */
 /* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
   /* Don't double-init. */
   static int initialized = 0;
@@ -422,86 +388,84 @@ void mrb_UV_UvFsT_init(mrb_state* mrb) {
   else initialized = 1;
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::class_definition */
-/* sha: 02aa9cbbdb10f9cfe5a609202ed36e8ac5afa549658c66513736b8a9bc4318fa */
-  struct RClass* UvFsT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvFsT", UvReqT_class(mrb));
-  MRB_SET_INSTANCE_TT(UvFsT_class, MRB_TT_DATA);
+/* MRUBY_BINDING: FS::class_definition */
+/* sha: 8c835f5a2a789b302d4c957f56eee1cdaf901f795ae3b66fd6e5a2f7256f6ee1 */
+  struct RClass* FS_class = mrb_define_class_under(mrb, UV_module(mrb), "FS", mrb->object_class);
+  MRB_SET_INSTANCE_TT(FS_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::pre_class_method_definitions */
+/* MRUBY_BINDING: FS::pre_class_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::class_method_definitions */
-/* sha: 863de9975437e826deb687d25d30ce176b3a54e0ea3529ccc9fcee7b880adf70 */
-#if BIND_UvFsT_INITIALIZE
-  mrb_define_method(mrb, UvFsT_class, "initialize", mrb_UV_UvFsT_initialize, MRB_ARGS_NONE());
+/* MRUBY_BINDING: FS::class_method_definitions */
+/* sha: 845423c06efc7a2789c5026a7cde53c0219fbb04a98375fdc52969360e64f132 */
+#if BIND_FS_INITIALIZE
+  mrb_define_method(mrb, FS_class, "initialize", mrb_UV_FS_initialize, MRB_ARGS_NONE());
 #endif
-  mrb_define_class_method(mrb, UvFsT_class, "disown", mrb_UV_UvFsT_disown, MRB_ARGS_ARG(1, 0));
-  mrb_define_class_method(mrb, UvFsT_class, "belongs_to_ruby?", mrb_UV_UvFsT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::pre_attr_definitions */
+/* MRUBY_BINDING: FS::pre_attr_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::attr_definitions */
-/* sha: 6a9e59e3fbddc5ae36182a67970e52871a940bb5a4ce7b00b920908743b35a9a */
+/* MRUBY_BINDING: FS::attr_definitions */
+/* sha: f8714802de64130c7d93d31386e5bf95d89db46a90b1f38ddbd40e8e59c102ab */
   /*
    * Fields
    */
-#if BIND_UvFsT_fs_type_FIELD_READER
-  mrb_define_method(mrb, UvFsT_class, "fs_type", mrb_UV_UvFsT_get_fs_type, MRB_ARGS_ARG(0, 0));
+#if BIND_FS_fs_type_FIELD_READER
+  mrb_define_method(mrb, FS_class, "fs_type", mrb_UV_FS_get_fs_type, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvFsT_fs_type_FIELD_WRITER
-  mrb_define_method(mrb, UvFsT_class, "fs_type=", mrb_UV_UvFsT_set_fs_type, MRB_ARGS_ARG(1, 0));
+#if BIND_FS_fs_type_FIELD_WRITER
+  mrb_define_method(mrb, FS_class, "fs_type=", mrb_UV_FS_set_fs_type, MRB_ARGS_ARG(1, 0));
 #endif
-#if BIND_UvFsT_loop_FIELD_READER
-  mrb_define_method(mrb, UvFsT_class, "loop", mrb_UV_UvFsT_get_loop, MRB_ARGS_ARG(0, 0));
+#if BIND_FS_loop_FIELD_READER
+  mrb_define_method(mrb, FS_class, "loop", mrb_UV_FS_get_loop, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvFsT_loop_FIELD_WRITER
-  mrb_define_method(mrb, UvFsT_class, "loop=", mrb_UV_UvFsT_set_loop, MRB_ARGS_ARG(1, 0));
+#if BIND_FS_loop_FIELD_WRITER
+  mrb_define_method(mrb, FS_class, "loop=", mrb_UV_FS_set_loop, MRB_ARGS_ARG(1, 0));
 #endif
-#if BIND_UvFsT_cb_FIELD_READER
-  mrb_define_method(mrb, UvFsT_class, "cb", mrb_UV_UvFsT_get_cb, MRB_ARGS_ARG(0, 0));
+#if BIND_FS_cb_FIELD_READER
+  mrb_define_method(mrb, FS_class, "cb", mrb_UV_FS_get_cb, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvFsT_cb_FIELD_WRITER
-  mrb_define_method(mrb, UvFsT_class, "cb=", mrb_UV_UvFsT_set_cb, MRB_ARGS_ARG(1, 0));
+#if BIND_FS_cb_FIELD_WRITER
+  mrb_define_method(mrb, FS_class, "cb=", mrb_UV_FS_set_cb, MRB_ARGS_ARG(1, 0));
 #endif
-#if BIND_UvFsT_result_FIELD_READER
-  mrb_define_method(mrb, UvFsT_class, "result", mrb_UV_UvFsT_get_result, MRB_ARGS_ARG(0, 0));
+#if BIND_FS_result_FIELD_READER
+  mrb_define_method(mrb, FS_class, "result", mrb_UV_FS_get_result, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvFsT_result_FIELD_WRITER
-  mrb_define_method(mrb, UvFsT_class, "result=", mrb_UV_UvFsT_set_result, MRB_ARGS_ARG(1, 0));
+#if BIND_FS_result_FIELD_WRITER
+  mrb_define_method(mrb, FS_class, "result=", mrb_UV_FS_set_result, MRB_ARGS_ARG(1, 0));
 #endif
-#if BIND_UvFsT_ptr_FIELD_READER
-  mrb_define_method(mrb, UvFsT_class, "ptr", mrb_UV_UvFsT_get_ptr, MRB_ARGS_ARG(0, 0));
+#if BIND_FS_ptr_FIELD_READER
+  mrb_define_method(mrb, FS_class, "ptr", mrb_UV_FS_get_ptr, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvFsT_ptr_FIELD_WRITER
-  mrb_define_method(mrb, UvFsT_class, "ptr=", mrb_UV_UvFsT_set_ptr, MRB_ARGS_ARG(1, 0));
+#if BIND_FS_ptr_FIELD_WRITER
+  mrb_define_method(mrb, FS_class, "ptr=", mrb_UV_FS_set_ptr, MRB_ARGS_ARG(1, 0));
 #endif
-#if BIND_UvFsT_path_FIELD_READER
-  mrb_define_method(mrb, UvFsT_class, "path", mrb_UV_UvFsT_get_path, MRB_ARGS_ARG(0, 0));
+#if BIND_FS_path_FIELD_READER
+  mrb_define_method(mrb, FS_class, "path", mrb_UV_FS_get_path, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvFsT_path_FIELD_WRITER
-  mrb_define_method(mrb, UvFsT_class, "path=", mrb_UV_UvFsT_set_path, MRB_ARGS_ARG(1, 0));
+#if BIND_FS_path_FIELD_WRITER
+  mrb_define_method(mrb, FS_class, "path=", mrb_UV_FS_set_path, MRB_ARGS_ARG(1, 0));
 #endif
-#if BIND_UvFsT_statbuf_FIELD_READER
-  mrb_define_method(mrb, UvFsT_class, "statbuf", mrb_UV_UvFsT_get_statbuf, MRB_ARGS_ARG(0, 0));
+#if BIND_FS_statbuf_FIELD_READER
+  mrb_define_method(mrb, FS_class, "statbuf", mrb_UV_FS_get_statbuf, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvFsT_statbuf_FIELD_WRITER
-  mrb_define_method(mrb, UvFsT_class, "statbuf=", mrb_UV_UvFsT_set_statbuf, MRB_ARGS_ARG(1, 0));
+#if BIND_FS_statbuf_FIELD_WRITER
+  mrb_define_method(mrb, FS_class, "statbuf=", mrb_UV_FS_set_statbuf, MRB_ARGS_ARG(1, 0));
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::pre_instance_method_definitions */
+/* MRUBY_BINDING: FS::pre_instance_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::instance_method_definitions */
+/* MRUBY_BINDING: FS::instance_method_definitions */
 /* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
   /*
    * Member Functions
@@ -509,7 +473,7 @@ void mrb_UV_UvFsT_init(mrb_state* mrb) {
   /* None */
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT::class_init_footer */
+/* MRUBY_BINDING: FS::class_init_footer */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

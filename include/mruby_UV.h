@@ -103,45 +103,45 @@ void unset_loop_reference(mrb_state*, mrb_value);
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: class_macros */
-/* sha: 6f6bcf4e9dfc815838a1f759090655a4c6a0413fd110d724f46866dab2aa122c */
+/* sha: c95558e26ca7c2332bca718748c50fca004ad9c72bca10808c9fe885da13864f */
 #define UV_module(mrb) mrb_module_get(mrb, "UV")
 #define Addrinfo_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Addrinfo")
-#define UvAsyncT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvAsyncT")
-#define UvCheckT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvCheckT")
-#define UvConnectT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvConnectT")
-#define UvCpuInfoT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvCpuInfoT")
-#define UvCpuTimesS_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvCpuTimesS")
-#define UvDirentT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvDirentT")
-#define UvFsEventT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvFsEventT")
-#define UvFsPollT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvFsPollT")
-#define UvFsT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvFsT")
-#define UvGetaddrinfoT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvGetaddrinfoT")
-#define UvGetnameinfoT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvGetnameinfoT")
-#define UvHandleT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvHandleT")
-#define UvIdleT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvIdleT")
-#define UvInterfaceAddressT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvInterfaceAddressT")
-#define UvLoopT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvLoopT")
-#define UvPipeT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvPipeT")
-#define UvPollT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvPollT")
-#define UvPrepareT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvPrepareT")
-#define UvProcessOptionsT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvProcessOptionsT")
-#define UvProcessT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvProcessT")
-#define UvReqT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvReqT")
-#define UvRusageT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvRusageT")
-#define UvShutdownT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvShutdownT")
-#define UvSignalT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvSignalT")
-#define UvStatT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvStatT")
-#define UvStdioContainerT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvStdioContainerT")
-#define UvStreamT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvStreamT")
-#define UvTcpT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvTcpT")
-#define UvTimerT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvTimerT")
-#define UvTimespecT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvTimespecT")
-#define UvTimevalT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvTimevalT")
-#define UvTtyT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvTtyT")
-#define UvUdpSendT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvUdpSendT")
-#define UvUdpT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvUdpT")
-#define UvWorkT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvWorkT")
-#define UvWriteT_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UvWriteT")
+#define Async_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Async")
+#define Check_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Check")
+#define Connect_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Connect")
+#define CpuInfo_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "CpuInfo")
+#define CpuTimesS_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "CpuTimesS")
+#define Dirent_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Dirent")
+#define FS_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "FS")
+#define FSEvent_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "FSEvent")
+#define FSPoll_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "FSPoll")
+#define Getaddrinfo_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Getaddrinfo")
+#define Getnameinfo_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Getnameinfo")
+#define Handle_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Handle")
+#define Idle_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Idle")
+#define InterfaceAddress_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "InterfaceAddress")
+#define Loop_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Loop")
+#define Pipe_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Pipe")
+#define Poll_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Poll")
+#define Prepare_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Prepare")
+#define Process_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Process")
+#define ProcessOptions_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "ProcessOptions")
+#define Req_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Req")
+#define RUsage_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "RUsage")
+#define Shutdown_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Shutdown")
+#define Signal_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Signal")
+#define Stat_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Stat")
+#define StdioContainer_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "StdioContainer")
+#define Stream_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Stream")
+#define TCP_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "TCP")
+#define Timer_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Timer")
+#define Timespec_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Timespec")
+#define Timeval_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Timeval")
+#define Tty_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Tty")
+#define UDP_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UDP")
+#define UDPSend_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UDPSend")
+#define Work_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Work")
+#define Write_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Write")
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: post_class_macros */
@@ -160,117 +160,117 @@ void unset_loop_reference(mrb_state*, mrb_value);
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: pre_class_init_decls */
-/* sha: a4f72c70c78eef559d801120c598bb2776096f73b23296d959010f5492e0e331 */
+/* sha: 3931ba266ccd2fdd7ec411a192f725eb54c51a15cbebe6e9a1a30524c32857e3 */
 #if BIND_Addrinfo_TYPE
 void mrb_UV_Addrinfo_init(mrb_state* mrb);
 #endif
-#if BIND_UvAsyncT_TYPE
-void mrb_UV_UvAsyncT_init(mrb_state* mrb);
+#if BIND_Async_TYPE
+void mrb_UV_Async_init(mrb_state* mrb);
 #endif
-#if BIND_UvCheckT_TYPE
-void mrb_UV_UvCheckT_init(mrb_state* mrb);
+#if BIND_Check_TYPE
+void mrb_UV_Check_init(mrb_state* mrb);
 #endif
-#if BIND_UvConnectT_TYPE
-void mrb_UV_UvConnectT_init(mrb_state* mrb);
+#if BIND_Connect_TYPE
+void mrb_UV_Connect_init(mrb_state* mrb);
 #endif
-#if BIND_UvCpuInfoT_TYPE
-void mrb_UV_UvCpuInfoT_init(mrb_state* mrb);
+#if BIND_CpuInfo_TYPE
+void mrb_UV_CpuInfo_init(mrb_state* mrb);
 #endif
-#if BIND_UvCpuTimesS_TYPE
-void mrb_UV_UvCpuTimesS_init(mrb_state* mrb);
+#if BIND_CpuTimesS_TYPE
+void mrb_UV_CpuTimesS_init(mrb_state* mrb);
 #endif
-#if BIND_UvDirentT_TYPE
-void mrb_UV_UvDirentT_init(mrb_state* mrb);
+#if BIND_Dirent_TYPE
+void mrb_UV_Dirent_init(mrb_state* mrb);
 #endif
-#if BIND_UvFsEventT_TYPE
-void mrb_UV_UvFsEventT_init(mrb_state* mrb);
+#if BIND_FS_TYPE
+void mrb_UV_FS_init(mrb_state* mrb);
 #endif
-#if BIND_UvFsPollT_TYPE
-void mrb_UV_UvFsPollT_init(mrb_state* mrb);
+#if BIND_FSEvent_TYPE
+void mrb_UV_FSEvent_init(mrb_state* mrb);
 #endif
-#if BIND_UvFsT_TYPE
-void mrb_UV_UvFsT_init(mrb_state* mrb);
+#if BIND_FSPoll_TYPE
+void mrb_UV_FSPoll_init(mrb_state* mrb);
 #endif
-#if BIND_UvGetaddrinfoT_TYPE
-void mrb_UV_UvGetaddrinfoT_init(mrb_state* mrb);
+#if BIND_Getaddrinfo_TYPE
+void mrb_UV_Getaddrinfo_init(mrb_state* mrb);
 #endif
-#if BIND_UvGetnameinfoT_TYPE
-void mrb_UV_UvGetnameinfoT_init(mrb_state* mrb);
+#if BIND_Getnameinfo_TYPE
+void mrb_UV_Getnameinfo_init(mrb_state* mrb);
 #endif
-#if BIND_UvHandleT_TYPE
-void mrb_UV_UvHandleT_init(mrb_state* mrb);
+#if BIND_Handle_TYPE
+void mrb_UV_Handle_init(mrb_state* mrb);
 #endif
-#if BIND_UvIdleT_TYPE
-void mrb_UV_UvIdleT_init(mrb_state* mrb);
+#if BIND_Idle_TYPE
+void mrb_UV_Idle_init(mrb_state* mrb);
 #endif
-#if BIND_UvInterfaceAddressT_TYPE
-void mrb_UV_UvInterfaceAddressT_init(mrb_state* mrb);
+#if BIND_InterfaceAddress_TYPE
+void mrb_UV_InterfaceAddress_init(mrb_state* mrb);
 #endif
-#if BIND_UvLoopT_TYPE
-void mrb_UV_UvLoopT_init(mrb_state* mrb);
+#if BIND_Loop_TYPE
+void mrb_UV_Loop_init(mrb_state* mrb);
 #endif
-#if BIND_UvPipeT_TYPE
-void mrb_UV_UvPipeT_init(mrb_state* mrb);
+#if BIND_Pipe_TYPE
+void mrb_UV_Pipe_init(mrb_state* mrb);
 #endif
-#if BIND_UvPollT_TYPE
-void mrb_UV_UvPollT_init(mrb_state* mrb);
+#if BIND_Poll_TYPE
+void mrb_UV_Poll_init(mrb_state* mrb);
 #endif
-#if BIND_UvPrepareT_TYPE
-void mrb_UV_UvPrepareT_init(mrb_state* mrb);
+#if BIND_Prepare_TYPE
+void mrb_UV_Prepare_init(mrb_state* mrb);
 #endif
-#if BIND_UvProcessOptionsT_TYPE
-void mrb_UV_UvProcessOptionsT_init(mrb_state* mrb);
+#if BIND_Process_TYPE
+void mrb_UV_Process_init(mrb_state* mrb);
 #endif
-#if BIND_UvProcessT_TYPE
-void mrb_UV_UvProcessT_init(mrb_state* mrb);
+#if BIND_ProcessOptions_TYPE
+void mrb_UV_ProcessOptions_init(mrb_state* mrb);
 #endif
-#if BIND_UvReqT_TYPE
-void mrb_UV_UvReqT_init(mrb_state* mrb);
+#if BIND_Req_TYPE
+void mrb_UV_Req_init(mrb_state* mrb);
 #endif
-#if BIND_UvRusageT_TYPE
-void mrb_UV_UvRusageT_init(mrb_state* mrb);
+#if BIND_RUsage_TYPE
+void mrb_UV_RUsage_init(mrb_state* mrb);
 #endif
-#if BIND_UvShutdownT_TYPE
-void mrb_UV_UvShutdownT_init(mrb_state* mrb);
+#if BIND_Shutdown_TYPE
+void mrb_UV_Shutdown_init(mrb_state* mrb);
 #endif
-#if BIND_UvSignalT_TYPE
-void mrb_UV_UvSignalT_init(mrb_state* mrb);
+#if BIND_Signal_TYPE
+void mrb_UV_Signal_init(mrb_state* mrb);
 #endif
-#if BIND_UvStatT_TYPE
-void mrb_UV_UvStatT_init(mrb_state* mrb);
+#if BIND_Stat_TYPE
+void mrb_UV_Stat_init(mrb_state* mrb);
 #endif
-#if BIND_UvStdioContainerT_TYPE
-void mrb_UV_UvStdioContainerT_init(mrb_state* mrb);
+#if BIND_StdioContainer_TYPE
+void mrb_UV_StdioContainer_init(mrb_state* mrb);
 #endif
-#if BIND_UvStreamT_TYPE
-void mrb_UV_UvStreamT_init(mrb_state* mrb);
+#if BIND_Stream_TYPE
+void mrb_UV_Stream_init(mrb_state* mrb);
 #endif
-#if BIND_UvTcpT_TYPE
-void mrb_UV_UvTcpT_init(mrb_state* mrb);
+#if BIND_TCP_TYPE
+void mrb_UV_TCP_init(mrb_state* mrb);
 #endif
-#if BIND_UvTimerT_TYPE
-void mrb_UV_UvTimerT_init(mrb_state* mrb);
+#if BIND_Timer_TYPE
+void mrb_UV_Timer_init(mrb_state* mrb);
 #endif
-#if BIND_UvTimespecT_TYPE
-void mrb_UV_UvTimespecT_init(mrb_state* mrb);
+#if BIND_Timespec_TYPE
+void mrb_UV_Timespec_init(mrb_state* mrb);
 #endif
-#if BIND_UvTimevalT_TYPE
-void mrb_UV_UvTimevalT_init(mrb_state* mrb);
+#if BIND_Timeval_TYPE
+void mrb_UV_Timeval_init(mrb_state* mrb);
 #endif
-#if BIND_UvTtyT_TYPE
-void mrb_UV_UvTtyT_init(mrb_state* mrb);
+#if BIND_Tty_TYPE
+void mrb_UV_Tty_init(mrb_state* mrb);
 #endif
-#if BIND_UvUdpSendT_TYPE
-void mrb_UV_UvUdpSendT_init(mrb_state* mrb);
+#if BIND_UDP_TYPE
+void mrb_UV_UDP_init(mrb_state* mrb);
 #endif
-#if BIND_UvUdpT_TYPE
-void mrb_UV_UvUdpT_init(mrb_state* mrb);
+#if BIND_UDPSend_TYPE
+void mrb_UV_UDPSend_init(mrb_state* mrb);
 #endif
-#if BIND_UvWorkT_TYPE
-void mrb_UV_UvWorkT_init(mrb_state* mrb);
+#if BIND_Work_TYPE
+void mrb_UV_Work_init(mrb_state* mrb);
 #endif
-#if BIND_UvWriteT_TYPE
-void mrb_UV_UvWriteT_init(mrb_state* mrb);
+#if BIND_Write_TYPE
+void mrb_UV_Write_init(mrb_state* mrb);
 #endif
 /* MRUBY_BINDING_END */
 
@@ -280,9 +280,10 @@ void mrb_UV_UvWriteT_init(mrb_state* mrb);
 /* MRUBY_BINDING_END */
 
 /*
- * Macro definition function declaration
- * -------------------------------------
+ * Macro & Enum definition function declarations
+ * ---------------------------------------------
  */
 void mruby_UV_define_macro_constants(mrb_state* mrb);
+void mruby_UV_define_enum_constants(mrb_state* mrb);
 
 #endif

@@ -325,59 +325,59 @@ void mrb_UV_UvStatT_init(mrb_state* mrb) {
   if (initialized) return;
   else initialized = 1;
 
-  struct RClass* UvStatT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvStatT", mrb->object_class);
-  MRB_SET_INSTANCE_TT(UvStatT_class, MRB_TT_DATA);
+  struct RClass* Stat_class = mrb_define_class_under(mrb, UV_module(mrb), "UvStatT", mrb->object_class);
+  MRB_SET_INSTANCE_TT(Stat_class, MRB_TT_DATA);
 
   /*
    * Fields
    */
 #if BIND_UvStatT_st_dev_FIELD_READER
-  mrb_define_method(mrb, UvStatT_class, "st_dev", mrb_UV_UvStatT_get_st_dev, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Stat_class, "st_dev", mrb_UV_UvStatT_get_st_dev, MRB_ARGS_ARG(0, 0));
 #endif
 #if BIND_UvStatT_st_mode_FIELD_READER
-  mrb_define_method(mrb, UvStatT_class, "st_mode", mrb_UV_UvStatT_get_st_mode, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Stat_class, "st_mode", mrb_UV_UvStatT_get_st_mode, MRB_ARGS_ARG(0, 0));
 #endif
 #if BIND_UvStatT_st_nlink_FIELD_READER
-  mrb_define_method(mrb, UvStatT_class, "st_nlink", mrb_UV_UvStatT_get_st_nlink, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Stat_class, "st_nlink", mrb_UV_UvStatT_get_st_nlink, MRB_ARGS_ARG(0, 0));
 #endif
 #if BIND_UvStatT_st_uid_FIELD_READER
-  mrb_define_method(mrb, UvStatT_class, "st_uid", mrb_UV_UvStatT_get_st_uid, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Stat_class, "st_uid", mrb_UV_UvStatT_get_st_uid, MRB_ARGS_ARG(0, 0));
 #endif
 #if BIND_UvStatT_st_gid_FIELD_READER
-  mrb_define_method(mrb, UvStatT_class, "st_gid", mrb_UV_UvStatT_get_st_gid, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Stat_class, "st_gid", mrb_UV_UvStatT_get_st_gid, MRB_ARGS_ARG(0, 0));
 #endif
 #if BIND_UvStatT_st_rdev_FIELD_READER
-  mrb_define_method(mrb, UvStatT_class, "st_rdev", mrb_UV_UvStatT_get_st_rdev, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Stat_class, "st_rdev", mrb_UV_UvStatT_get_st_rdev, MRB_ARGS_ARG(0, 0));
 #endif
 #if BIND_UvStatT_st_ino_FIELD_READER
-  mrb_define_method(mrb, UvStatT_class, "st_ino", mrb_UV_UvStatT_get_st_ino, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Stat_class, "st_ino", mrb_UV_UvStatT_get_st_ino, MRB_ARGS_ARG(0, 0));
 #endif
 #if BIND_UvStatT_st_size_FIELD_READER
-  mrb_define_method(mrb, UvStatT_class, "st_size", mrb_UV_UvStatT_get_st_size, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Stat_class, "st_size", mrb_UV_UvStatT_get_st_size, MRB_ARGS_ARG(0, 0));
 #endif
 #if BIND_UvStatT_st_blksize_FIELD_READER
-  mrb_define_method(mrb, UvStatT_class, "st_blksize", mrb_UV_UvStatT_get_st_blksize, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Stat_class, "st_blksize", mrb_UV_UvStatT_get_st_blksize, MRB_ARGS_ARG(0, 0));
 #endif
 #if BIND_UvStatT_st_blocks_FIELD_READER
-  mrb_define_method(mrb, UvStatT_class, "st_blocks", mrb_UV_UvStatT_get_st_blocks, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Stat_class, "st_blocks", mrb_UV_UvStatT_get_st_blocks, MRB_ARGS_ARG(0, 0));
 #endif
 #if BIND_UvStatT_st_flags_FIELD_READER
-  mrb_define_method(mrb, UvStatT_class, "st_flags", mrb_UV_UvStatT_get_st_flags, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Stat_class, "st_flags", mrb_UV_UvStatT_get_st_flags, MRB_ARGS_ARG(0, 0));
 #endif
 #if BIND_UvStatT_st_gen_FIELD_READER
-  mrb_define_method(mrb, UvStatT_class, "st_gen", mrb_UV_UvStatT_get_st_gen, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Stat_class, "st_gen", mrb_UV_UvStatT_get_st_gen, MRB_ARGS_ARG(0, 0));
 #endif
 #if BIND_UvStatT_st_atim_FIELD_READER
-  mrb_define_method(mrb, UvStatT_class, "st_atim", mrb_UV_UvStatT_get_st_atim, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Stat_class, "st_atim", mrb_UV_UvStatT_get_st_atim, MRB_ARGS_ARG(0, 0));
 #endif
 #if BIND_UvStatT_st_mtim_FIELD_READER
-  mrb_define_method(mrb, UvStatT_class, "st_mtim", mrb_UV_UvStatT_get_st_mtim, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Stat_class, "st_mtim", mrb_UV_UvStatT_get_st_mtim, MRB_ARGS_ARG(0, 0));
 #endif
 #if BIND_UvStatT_st_ctim_FIELD_READER
-  mrb_define_method(mrb, UvStatT_class, "st_ctim", mrb_UV_UvStatT_get_st_ctim, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Stat_class, "st_ctim", mrb_UV_UvStatT_get_st_ctim, MRB_ARGS_ARG(0, 0));
 #endif
 #if BIND_UvStatT_st_birthtim_FIELD_READER
-  mrb_define_method(mrb, UvStatT_class, "st_birthtim", mrb_UV_UvStatT_get_st_birthtim, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Stat_class, "st_birthtim", mrb_UV_UvStatT_get_st_birthtim, MRB_ARGS_ARG(0, 0));
 #endif
 }
 #endif

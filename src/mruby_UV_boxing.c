@@ -174,9 +174,9 @@ mruby_unbox_addrinfo(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvCpuTimesS_boxing */
-/* sha: 4502be6862da2bce112a6ba415dbb1b1ed2f6134eb74b0358a75384603024bab */
-#if BIND_UvCpuTimesS_TYPE
+/* MRUBY_BINDING: CpuTimesS_boxing */
+/* sha: 0380401964e35bc72a90ab14a43f3f405277ec9e3651edcf63129fbc592afd18 */
+#if BIND_CpuTimesS_TYPE
 /*
  * Boxing implementation for struct uv_cpu_times_s
  */
@@ -201,7 +201,7 @@ mruby_box_uv_cpu_times_s(mrb_state* mrb, struct uv_cpu_times_s *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvCpuTimesS_class(mrb), &uv_cpu_times_s_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, CpuTimesS_class(mrb), &uv_cpu_times_s_data_type, box));
 }
 
 mrb_value
@@ -209,7 +209,7 @@ mruby_giftwrap_uv_cpu_times_s(mrb_state* mrb, struct uv_cpu_times_s *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvCpuTimesS_class(mrb), &uv_cpu_times_s_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, CpuTimesS_class(mrb), &uv_cpu_times_s_data_type, box));
 }
 
 void
@@ -235,9 +235,9 @@ mruby_unbox_uv_cpu_times_s(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvAsyncT_boxing */
-/* sha: 408174a0fdad1c3a07d8d87e16786e799d2c4066764602ad724dc2e4372f6cd1 */
-#if BIND_UvAsyncT_TYPE
+/* MRUBY_BINDING: Async_boxing */
+/* sha: 4c1877cd504b782bacb17982754c9b0643ac66b254a8f84be568bd2aef3d529e */
+#if BIND_Async_TYPE
 /*
  * Boxing implementation for uv_async_t
  */
@@ -246,7 +246,7 @@ static void free_uv_async_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free_mruby_uv_handle((uv_handle_t*)box->obj);
+      free(box->obj);
       box->obj = NULL;
     }
   }
@@ -262,7 +262,7 @@ mruby_box_uv_async_t(mrb_state* mrb, uv_async_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvAsyncT_class(mrb), &uv_async_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Async_class(mrb), &uv_async_t_data_type, box));
 }
 
 mrb_value
@@ -270,7 +270,7 @@ mruby_giftwrap_uv_async_t(mrb_state* mrb, uv_async_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvAsyncT_class(mrb), &uv_async_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Async_class(mrb), &uv_async_t_data_type, box));
 }
 
 void
@@ -296,9 +296,9 @@ mruby_unbox_uv_async_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvCheckT_boxing */
-/* sha: b4ce2606262cbeb43a0d65faa58eea460c0fe4974f961c2805021f1ff73b12b5 */
-#if BIND_UvCheckT_TYPE
+/* MRUBY_BINDING: Check_boxing */
+/* sha: 4e802c33f4e7fd50cb9c871952491fac7f5cec5e2c4b87b864ec681696fd0336 */
+#if BIND_Check_TYPE
 /*
  * Boxing implementation for uv_check_t
  */
@@ -307,7 +307,7 @@ static void free_uv_check_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free_mruby_uv_handle((uv_handle_t*)box->obj);
+      free(box->obj);
       box->obj = NULL;
     }
   }
@@ -323,7 +323,7 @@ mruby_box_uv_check_t(mrb_state* mrb, uv_check_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvCheckT_class(mrb), &uv_check_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Check_class(mrb), &uv_check_t_data_type, box));
 }
 
 mrb_value
@@ -331,7 +331,7 @@ mruby_giftwrap_uv_check_t(mrb_state* mrb, uv_check_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvCheckT_class(mrb), &uv_check_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Check_class(mrb), &uv_check_t_data_type, box));
 }
 
 void
@@ -357,9 +357,9 @@ mruby_unbox_uv_check_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvConnectT_boxing */
-/* sha: 465556bc4bae261b8670e8d12d1f02885bc7133ed32bd05590dc1f25f039c8d0 */
-#if BIND_UvConnectT_TYPE
+/* MRUBY_BINDING: Connect_boxing */
+/* sha: bd2dfbe83d56275a31478ddeac9e5019164696add66fff03016da6a1e2bc2d4c */
+#if BIND_Connect_TYPE
 /*
  * Boxing implementation for uv_connect_t
  */
@@ -368,7 +368,7 @@ static void free_uv_connect_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free_mruby_uv_req((uv_req_t*)box->obj);
+      free(box->obj);
       box->obj = NULL;
     }
   }
@@ -384,7 +384,7 @@ mruby_box_uv_connect_t(mrb_state* mrb, uv_connect_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvConnectT_class(mrb), &uv_connect_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Connect_class(mrb), &uv_connect_t_data_type, box));
 }
 
 mrb_value
@@ -392,7 +392,7 @@ mruby_giftwrap_uv_connect_t(mrb_state* mrb, uv_connect_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvConnectT_class(mrb), &uv_connect_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Connect_class(mrb), &uv_connect_t_data_type, box));
 }
 
 void
@@ -418,9 +418,9 @@ mruby_unbox_uv_connect_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvCpuInfoT_boxing */
-/* sha: f5ae240147a3ef065396acc9c5b573ce9a572d2729fe2f2a6581d248caa8575b */
-#if BIND_UvCpuInfoT_TYPE
+/* MRUBY_BINDING: CpuInfo_boxing */
+/* sha: e287d04f3948fcbc51810839174498660dfb78f24a42b7dc6c8201118e18b24f */
+#if BIND_CpuInfo_TYPE
 /*
  * Boxing implementation for uv_cpu_info_t
  */
@@ -445,7 +445,7 @@ mruby_box_uv_cpu_info_t(mrb_state* mrb, uv_cpu_info_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvCpuInfoT_class(mrb), &uv_cpu_info_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, CpuInfo_class(mrb), &uv_cpu_info_t_data_type, box));
 }
 
 mrb_value
@@ -453,7 +453,7 @@ mruby_giftwrap_uv_cpu_info_t(mrb_state* mrb, uv_cpu_info_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvCpuInfoT_class(mrb), &uv_cpu_info_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, CpuInfo_class(mrb), &uv_cpu_info_t_data_type, box));
 }
 
 void
@@ -479,9 +479,9 @@ mruby_unbox_uv_cpu_info_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvDirentT_boxing */
-/* sha: b608897617e1163ca705c2ee2419e80a37b9ea308b3474b704a24537711920bc */
-#if BIND_UvDirentT_TYPE
+/* MRUBY_BINDING: Dirent_boxing */
+/* sha: 992ec86150e2f777032a9e0a5adc4c970fc568bb0cf1a3ada1ecfb08b3b37cf0 */
+#if BIND_Dirent_TYPE
 /*
  * Boxing implementation for uv_dirent_t
  */
@@ -506,7 +506,7 @@ mruby_box_uv_dirent_t(mrb_state* mrb, uv_dirent_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvDirentT_class(mrb), &uv_dirent_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Dirent_class(mrb), &uv_dirent_t_data_type, box));
 }
 
 mrb_value
@@ -514,7 +514,7 @@ mruby_giftwrap_uv_dirent_t(mrb_state* mrb, uv_dirent_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvDirentT_class(mrb), &uv_dirent_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Dirent_class(mrb), &uv_dirent_t_data_type, box));
 }
 
 void
@@ -540,9 +540,9 @@ mruby_unbox_uv_dirent_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsEventT_boxing */
-/* sha: d25226895bfc5497af9fda43b8bf412d8f8132e1c99e13132616af51cdc66aca */
-#if BIND_UvFsEventT_TYPE
+/* MRUBY_BINDING: FSEvent_boxing */
+/* sha: 1a677459dc192ef2621676aeac2f177a9fb77756dd4551be9bf94ae506cd2e4c */
+#if BIND_FSEvent_TYPE
 /*
  * Boxing implementation for uv_fs_event_t
  */
@@ -551,7 +551,7 @@ static void free_uv_fs_event_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free_mruby_uv_handle((uv_handle_t*)box->obj);
+      free(box->obj);
       box->obj = NULL;
     }
   }
@@ -567,7 +567,7 @@ mruby_box_uv_fs_event_t(mrb_state* mrb, uv_fs_event_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvFsEventT_class(mrb), &uv_fs_event_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, FSEvent_class(mrb), &uv_fs_event_t_data_type, box));
 }
 
 mrb_value
@@ -575,7 +575,7 @@ mruby_giftwrap_uv_fs_event_t(mrb_state* mrb, uv_fs_event_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvFsEventT_class(mrb), &uv_fs_event_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, FSEvent_class(mrb), &uv_fs_event_t_data_type, box));
 }
 
 void
@@ -601,9 +601,9 @@ mruby_unbox_uv_fs_event_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsPollT_boxing */
-/* sha: edc96e7bbe81a95d422e75a68bfa85fe39ec8f9e63f39f65941e10b760b34157 */
-#if BIND_UvFsPollT_TYPE
+/* MRUBY_BINDING: FSPoll_boxing */
+/* sha: de18906b4ffd6cb52067589ad4c8afd35acc8df8a8936a3d3f69046114399825 */
+#if BIND_FSPoll_TYPE
 /*
  * Boxing implementation for uv_fs_poll_t
  */
@@ -612,7 +612,7 @@ static void free_uv_fs_poll_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free_mruby_uv_handle((uv_handle_t*)box->obj);
+      free(box->obj);
       box->obj = NULL;
     }
   }
@@ -628,7 +628,7 @@ mruby_box_uv_fs_poll_t(mrb_state* mrb, uv_fs_poll_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvFsPollT_class(mrb), &uv_fs_poll_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, FSPoll_class(mrb), &uv_fs_poll_t_data_type, box));
 }
 
 mrb_value
@@ -636,7 +636,7 @@ mruby_giftwrap_uv_fs_poll_t(mrb_state* mrb, uv_fs_poll_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvFsPollT_class(mrb), &uv_fs_poll_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, FSPoll_class(mrb), &uv_fs_poll_t_data_type, box));
 }
 
 void
@@ -662,9 +662,9 @@ mruby_unbox_uv_fs_poll_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvFsT_boxing */
-/* sha: b503c2cfd8944c970ccd10907603be7d7a99614c7718e1c8465c8962f2b4ab6c */
-#if BIND_UvFsT_TYPE
+/* MRUBY_BINDING: FS_boxing */
+/* sha: d9aa4da0de3f05cf6b2b628892e38b344efca850f209d55830cdc54246de7c69 */
+#if BIND_FS_TYPE
 /*
  * Boxing implementation for uv_fs_t
  */
@@ -673,13 +673,7 @@ static void free_uv_fs_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      uv_fs_req_cleanup((uv_fs_t*)box->obj);
-      uv_buf_t buf = ((uv_fs_and_buf_t*)box->obj)->buf;
-      if (buf.base != NULL) {
-        free(buf.base);
-        buf.base = NULL;
-      }
-      free_mruby_uv_req((uv_req_t*)box->obj);
+      free(box->obj);
       box->obj = NULL;
     }
   }
@@ -695,7 +689,7 @@ mruby_box_uv_fs_t(mrb_state* mrb, uv_fs_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvFsT_class(mrb), &uv_fs_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, FS_class(mrb), &uv_fs_t_data_type, box));
 }
 
 mrb_value
@@ -703,7 +697,7 @@ mruby_giftwrap_uv_fs_t(mrb_state* mrb, uv_fs_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvFsT_class(mrb), &uv_fs_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, FS_class(mrb), &uv_fs_t_data_type, box));
 }
 
 void
@@ -729,9 +723,9 @@ mruby_unbox_uv_fs_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvGetaddrinfoT_boxing */
-/* sha: b530eb5c02f6e30af93b61642c399d5868f6806bfbb68a9b5c6c2b3aa23524f4 */
-#if BIND_UvGetaddrinfoT_TYPE
+/* MRUBY_BINDING: Getaddrinfo_boxing */
+/* sha: 96781cd41c8848ce0c0638b74a20c5633016adcb50dc85d1afdcf2ac6d5560e3 */
+#if BIND_Getaddrinfo_TYPE
 /*
  * Boxing implementation for uv_getaddrinfo_t
  */
@@ -740,7 +734,7 @@ static void free_uv_getaddrinfo_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free_mruby_uv_req((uv_req_t*)box->obj);
+      free(box->obj);
       box->obj = NULL;
     }
   }
@@ -756,7 +750,7 @@ mruby_box_uv_getaddrinfo_t(mrb_state* mrb, uv_getaddrinfo_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvGetaddrinfoT_class(mrb), &uv_getaddrinfo_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Getaddrinfo_class(mrb), &uv_getaddrinfo_t_data_type, box));
 }
 
 mrb_value
@@ -764,7 +758,7 @@ mruby_giftwrap_uv_getaddrinfo_t(mrb_state* mrb, uv_getaddrinfo_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvGetaddrinfoT_class(mrb), &uv_getaddrinfo_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Getaddrinfo_class(mrb), &uv_getaddrinfo_t_data_type, box));
 }
 
 void
@@ -790,9 +784,9 @@ mruby_unbox_uv_getaddrinfo_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvGetnameinfoT_boxing */
-/* sha: 402e994ee2ec277fe95c44c8110a93ca1db0d60fe8018e814817ae17af1a6a00 */
-#if BIND_UvGetnameinfoT_TYPE
+/* MRUBY_BINDING: Getnameinfo_boxing */
+/* sha: 9d05358300a13d73b06dfd084afc043022855f7178581d100ff32c7df2b4728e */
+#if BIND_Getnameinfo_TYPE
 /*
  * Boxing implementation for uv_getnameinfo_t
  */
@@ -801,7 +795,7 @@ static void free_uv_getnameinfo_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free_mruby_uv_req((uv_req_t*)box->obj);
+      free(box->obj);
       box->obj = NULL;
     }
   }
@@ -817,7 +811,7 @@ mruby_box_uv_getnameinfo_t(mrb_state* mrb, uv_getnameinfo_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvGetnameinfoT_class(mrb), &uv_getnameinfo_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Getnameinfo_class(mrb), &uv_getnameinfo_t_data_type, box));
 }
 
 mrb_value
@@ -825,7 +819,7 @@ mruby_giftwrap_uv_getnameinfo_t(mrb_state* mrb, uv_getnameinfo_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvGetnameinfoT_class(mrb), &uv_getnameinfo_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Getnameinfo_class(mrb), &uv_getnameinfo_t_data_type, box));
 }
 
 void
@@ -851,9 +845,9 @@ mruby_unbox_uv_getnameinfo_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvHandleT_boxing */
-/* sha: e3f5c994e76de7382a6fd14329e4686573cbe9d2c4c24c270d647f9b0144e64c */
-#if BIND_UvHandleT_TYPE
+/* MRUBY_BINDING: Handle_boxing */
+/* sha: 6d7d856291e590304ca4691131514e9e402bd00eee7d4b404c98f1c4607d126e */
+#if BIND_Handle_TYPE
 /*
  * Boxing implementation for uv_handle_t
  */
@@ -878,7 +872,7 @@ mruby_box_uv_handle_t(mrb_state* mrb, uv_handle_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvHandleT_class(mrb), &uv_handle_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Handle_class(mrb), &uv_handle_t_data_type, box));
 }
 
 mrb_value
@@ -886,7 +880,7 @@ mruby_giftwrap_uv_handle_t(mrb_state* mrb, uv_handle_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvHandleT_class(mrb), &uv_handle_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Handle_class(mrb), &uv_handle_t_data_type, box));
 }
 
 void
@@ -912,9 +906,9 @@ mruby_unbox_uv_handle_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvIdleT_boxing */
-/* sha: 3773a8035ab710ba1dc70b6e4b7543df606e8375c466b5e18b744aacbbf55615 */
-#if BIND_UvIdleT_TYPE
+/* MRUBY_BINDING: Idle_boxing */
+/* sha: 83a35e5fca8d2a4ffa5da8f1e677ff63326c73d02ffb8a45d1a64095bcfcc721 */
+#if BIND_Idle_TYPE
 /*
  * Boxing implementation for uv_idle_t
  */
@@ -923,7 +917,7 @@ static void free_uv_idle_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free_mruby_uv_handle((uv_handle_t*)box->obj);
+      free(box->obj);
       box->obj = NULL;
     }
   }
@@ -939,7 +933,7 @@ mruby_box_uv_idle_t(mrb_state* mrb, uv_idle_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvIdleT_class(mrb), &uv_idle_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Idle_class(mrb), &uv_idle_t_data_type, box));
 }
 
 mrb_value
@@ -947,7 +941,7 @@ mruby_giftwrap_uv_idle_t(mrb_state* mrb, uv_idle_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvIdleT_class(mrb), &uv_idle_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Idle_class(mrb), &uv_idle_t_data_type, box));
 }
 
 void
@@ -973,9 +967,9 @@ mruby_unbox_uv_idle_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvInterfaceAddressT_boxing */
-/* sha: 18f3fb64bd762a0ada77845ad94dad80cb4a505f29db28a83888a9f4732cac8b */
-#if BIND_UvInterfaceAddressT_TYPE
+/* MRUBY_BINDING: InterfaceAddress_boxing */
+/* sha: 47e0daa3940651ec4057de2afdbb7758cbe1cbe02a479aa56dd2da40fd8f4f65 */
+#if BIND_InterfaceAddress_TYPE
 /*
  * Boxing implementation for uv_interface_address_t
  */
@@ -1000,7 +994,7 @@ mruby_box_uv_interface_address_t(mrb_state* mrb, uv_interface_address_t *unboxed
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvInterfaceAddressT_class(mrb), &uv_interface_address_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, InterfaceAddress_class(mrb), &uv_interface_address_t_data_type, box));
 }
 
 mrb_value
@@ -1008,7 +1002,7 @@ mruby_giftwrap_uv_interface_address_t(mrb_state* mrb, uv_interface_address_t *un
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvInterfaceAddressT_class(mrb), &uv_interface_address_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, InterfaceAddress_class(mrb), &uv_interface_address_t_data_type, box));
 }
 
 void
@@ -1034,9 +1028,9 @@ mruby_unbox_uv_interface_address_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvLoopT_boxing */
-/* sha: eaaaf42c0467582c7f23708ce47089173ae26cfbb265c79cc46ff93ef50d1cca */
-#if BIND_UvLoopT_TYPE
+/* MRUBY_BINDING: Loop_boxing */
+/* sha: 1a63a8ff5532cc04c820e724ab2f27d1486ea18920c431dbccd2a96c6bd0a7b8 */
+#if BIND_Loop_TYPE
 /*
  * Boxing implementation for uv_loop_t
  */
@@ -1045,7 +1039,6 @@ static void free_uv_loop_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      uv_loop_close(box->obj);
       free(box->obj);
       box->obj = NULL;
     }
@@ -1062,7 +1055,7 @@ mruby_box_uv_loop_t(mrb_state* mrb, uv_loop_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvLoopT_class(mrb), &uv_loop_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Loop_class(mrb), &uv_loop_t_data_type, box));
 }
 
 mrb_value
@@ -1070,7 +1063,7 @@ mruby_giftwrap_uv_loop_t(mrb_state* mrb, uv_loop_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvLoopT_class(mrb), &uv_loop_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Loop_class(mrb), &uv_loop_t_data_type, box));
 }
 
 void
@@ -1096,9 +1089,9 @@ mruby_unbox_uv_loop_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvPipeT_boxing */
-/* sha: 6ea8533d7e9204e292e4d961e8f87d9db97309fd1964f4182376ca68517f8548 */
-#if BIND_UvPipeT_TYPE
+/* MRUBY_BINDING: Pipe_boxing */
+/* sha: e434e3c63475d61a3c1e160ffc80922be2367d36a22e1472533edf13829fd579 */
+#if BIND_Pipe_TYPE
 /*
  * Boxing implementation for uv_pipe_t
  */
@@ -1107,7 +1100,7 @@ static void free_uv_pipe_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free_mruby_uv_handle((uv_handle_t*)box->obj);
+      free(box->obj);
       box->obj = NULL;
     }
   }
@@ -1123,7 +1116,7 @@ mruby_box_uv_pipe_t(mrb_state* mrb, uv_pipe_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvPipeT_class(mrb), &uv_pipe_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Pipe_class(mrb), &uv_pipe_t_data_type, box));
 }
 
 mrb_value
@@ -1131,7 +1124,7 @@ mruby_giftwrap_uv_pipe_t(mrb_state* mrb, uv_pipe_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvPipeT_class(mrb), &uv_pipe_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Pipe_class(mrb), &uv_pipe_t_data_type, box));
 }
 
 void
@@ -1157,9 +1150,9 @@ mruby_unbox_uv_pipe_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvPollT_boxing */
-/* sha: f0bd2fecd94a31da5b4dfb423d5fe0ca8edca7e0a0e0e2ce421395df9465258d */
-#if BIND_UvPollT_TYPE
+/* MRUBY_BINDING: Poll_boxing */
+/* sha: 6536c895ed3ab7f2e47554ca1201c2f02a4121588aa6ae5d295514bb04c2fb88 */
+#if BIND_Poll_TYPE
 /*
  * Boxing implementation for uv_poll_t
  */
@@ -1168,7 +1161,7 @@ static void free_uv_poll_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free_mruby_uv_handle((uv_handle_t*)box->obj);
+      free(box->obj);
       box->obj = NULL;
     }
   }
@@ -1184,7 +1177,7 @@ mruby_box_uv_poll_t(mrb_state* mrb, uv_poll_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvPollT_class(mrb), &uv_poll_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Poll_class(mrb), &uv_poll_t_data_type, box));
 }
 
 mrb_value
@@ -1192,7 +1185,7 @@ mruby_giftwrap_uv_poll_t(mrb_state* mrb, uv_poll_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvPollT_class(mrb), &uv_poll_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Poll_class(mrb), &uv_poll_t_data_type, box));
 }
 
 void
@@ -1218,9 +1211,9 @@ mruby_unbox_uv_poll_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvPrepareT_boxing */
-/* sha: e008686f21445e20f193241825950a0ed1c278c291112dec84a13fab0ca20f37 */
-#if BIND_UvPrepareT_TYPE
+/* MRUBY_BINDING: Prepare_boxing */
+/* sha: d6e48e8277c96d9fd8222a9108b502338f9dc9c6973730e20a69833e9aee842a */
+#if BIND_Prepare_TYPE
 /*
  * Boxing implementation for uv_prepare_t
  */
@@ -1229,7 +1222,7 @@ static void free_uv_prepare_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free_mruby_uv_handle((uv_handle_t*)box->obj);
+      free(box->obj);
       box->obj = NULL;
     }
   }
@@ -1245,7 +1238,7 @@ mruby_box_uv_prepare_t(mrb_state* mrb, uv_prepare_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvPrepareT_class(mrb), &uv_prepare_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Prepare_class(mrb), &uv_prepare_t_data_type, box));
 }
 
 mrb_value
@@ -1253,7 +1246,7 @@ mruby_giftwrap_uv_prepare_t(mrb_state* mrb, uv_prepare_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvPrepareT_class(mrb), &uv_prepare_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Prepare_class(mrb), &uv_prepare_t_data_type, box));
 }
 
 void
@@ -1279,9 +1272,9 @@ mruby_unbox_uv_prepare_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvProcessOptionsT_boxing */
-/* sha: c900919a1ce81f8cd1239740a208ea6351b8de63164ad51888d906f7f4b572f4 */
-#if BIND_UvProcessOptionsT_TYPE
+/* MRUBY_BINDING: ProcessOptions_boxing */
+/* sha: 0b763cf8ecd1d5836d3ebddc74e7eaf6dacbe5eee980827cacc4eba1ce7dab84 */
+#if BIND_ProcessOptions_TYPE
 /*
  * Boxing implementation for uv_process_options_t
  */
@@ -1306,7 +1299,7 @@ mruby_box_uv_process_options_t(mrb_state* mrb, uv_process_options_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvProcessOptionsT_class(mrb), &uv_process_options_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, ProcessOptions_class(mrb), &uv_process_options_t_data_type, box));
 }
 
 mrb_value
@@ -1314,7 +1307,7 @@ mruby_giftwrap_uv_process_options_t(mrb_state* mrb, uv_process_options_t *unboxe
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvProcessOptionsT_class(mrb), &uv_process_options_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, ProcessOptions_class(mrb), &uv_process_options_t_data_type, box));
 }
 
 void
@@ -1340,9 +1333,9 @@ mruby_unbox_uv_process_options_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvProcessT_boxing */
-/* sha: 90d197bc16d329c4d1bda2638ad6f8ba3ee79c39caecfb52e01f26d68ee96b9f */
-#if BIND_UvProcessT_TYPE
+/* MRUBY_BINDING: Process_boxing */
+/* sha: 117518fbc36ae2bda51f7f35a6f2075d96400041e50b9e1ddf42d9f36adafa86 */
+#if BIND_Process_TYPE
 /*
  * Boxing implementation for uv_process_t
  */
@@ -1351,7 +1344,7 @@ static void free_uv_process_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free_mruby_uv_handle((uv_handle_t*)box->obj);
+      free(box->obj);
       box->obj = NULL;
     }
   }
@@ -1367,7 +1360,7 @@ mruby_box_uv_process_t(mrb_state* mrb, uv_process_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvProcessT_class(mrb), &uv_process_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Process_class(mrb), &uv_process_t_data_type, box));
 }
 
 mrb_value
@@ -1375,7 +1368,7 @@ mruby_giftwrap_uv_process_t(mrb_state* mrb, uv_process_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvProcessT_class(mrb), &uv_process_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Process_class(mrb), &uv_process_t_data_type, box));
 }
 
 void
@@ -1401,9 +1394,9 @@ mruby_unbox_uv_process_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvReqT_boxing */
-/* sha: e423f9a1bd560cb83eb8623eb5dab2098a1e9d5ad03ae34b076ab6f3e79c0d69 */
-#if BIND_UvReqT_TYPE
+/* MRUBY_BINDING: Req_boxing */
+/* sha: bf722c9a0264c1e7c87ab494170ba395659e25b561e413093642deec7414d1e2 */
+#if BIND_Req_TYPE
 /*
  * Boxing implementation for uv_req_t
  */
@@ -1428,7 +1421,7 @@ mruby_box_uv_req_t(mrb_state* mrb, uv_req_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvReqT_class(mrb), &uv_req_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Req_class(mrb), &uv_req_t_data_type, box));
 }
 
 mrb_value
@@ -1436,7 +1429,7 @@ mruby_giftwrap_uv_req_t(mrb_state* mrb, uv_req_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvReqT_class(mrb), &uv_req_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Req_class(mrb), &uv_req_t_data_type, box));
 }
 
 void
@@ -1462,9 +1455,9 @@ mruby_unbox_uv_req_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvRusageT_boxing */
-/* sha: 92287780049f9f38003e5265c21af20e3457d7852bae0564a6afbe1d459bc57d */
-#if BIND_UvRusageT_TYPE
+/* MRUBY_BINDING: RUsage_boxing */
+/* sha: 3da5869607cb1910ec2c40c2376aef3d76b5885f0b1b89eec66692d240d75ab3 */
+#if BIND_RUsage_TYPE
 /*
  * Boxing implementation for uv_rusage_t
  */
@@ -1489,7 +1482,7 @@ mruby_box_uv_rusage_t(mrb_state* mrb, uv_rusage_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvRusageT_class(mrb), &uv_rusage_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, RUsage_class(mrb), &uv_rusage_t_data_type, box));
 }
 
 mrb_value
@@ -1497,7 +1490,7 @@ mruby_giftwrap_uv_rusage_t(mrb_state* mrb, uv_rusage_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvRusageT_class(mrb), &uv_rusage_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, RUsage_class(mrb), &uv_rusage_t_data_type, box));
 }
 
 void
@@ -1523,9 +1516,9 @@ mruby_unbox_uv_rusage_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvShutdownT_boxing */
-/* sha: d960caea9e1606675a66e09479c54cb74ef78dba2b8f8b3d80121ea6d4a5f8db */
-#if BIND_UvShutdownT_TYPE
+/* MRUBY_BINDING: Shutdown_boxing */
+/* sha: daa364edf682c1d7e4b7bb8e38060736a971e54ee139bf18911ac3b826a3945e */
+#if BIND_Shutdown_TYPE
 /*
  * Boxing implementation for uv_shutdown_t
  */
@@ -1534,7 +1527,7 @@ static void free_uv_shutdown_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free_mruby_uv_req((uv_req_t*)box->obj);
+      free(box->obj);
       box->obj = NULL;
     }
   }
@@ -1550,7 +1543,7 @@ mruby_box_uv_shutdown_t(mrb_state* mrb, uv_shutdown_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvShutdownT_class(mrb), &uv_shutdown_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Shutdown_class(mrb), &uv_shutdown_t_data_type, box));
 }
 
 mrb_value
@@ -1558,7 +1551,7 @@ mruby_giftwrap_uv_shutdown_t(mrb_state* mrb, uv_shutdown_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvShutdownT_class(mrb), &uv_shutdown_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Shutdown_class(mrb), &uv_shutdown_t_data_type, box));
 }
 
 void
@@ -1584,9 +1577,9 @@ mruby_unbox_uv_shutdown_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvSignalT_boxing */
-/* sha: 2412b43918bbbb1dde19e76285a08c02076e84ea613285bb5dfd601939441215 */
-#if BIND_UvSignalT_TYPE
+/* MRUBY_BINDING: Signal_boxing */
+/* sha: 7931afeced14ac0614a48dfa9fd94aad21649bc076ff12e8c8f6e5cf8640d821 */
+#if BIND_Signal_TYPE
 /*
  * Boxing implementation for uv_signal_t
  */
@@ -1595,7 +1588,7 @@ static void free_uv_signal_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free_mruby_uv_handle((uv_handle_t*)box->obj);
+      free(box->obj);
       box->obj = NULL;
     }
   }
@@ -1611,7 +1604,7 @@ mruby_box_uv_signal_t(mrb_state* mrb, uv_signal_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvSignalT_class(mrb), &uv_signal_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Signal_class(mrb), &uv_signal_t_data_type, box));
 }
 
 mrb_value
@@ -1619,7 +1612,7 @@ mruby_giftwrap_uv_signal_t(mrb_state* mrb, uv_signal_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvSignalT_class(mrb), &uv_signal_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Signal_class(mrb), &uv_signal_t_data_type, box));
 }
 
 void
@@ -1645,9 +1638,9 @@ mruby_unbox_uv_signal_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvStatT_boxing */
-/* sha: 60daa61160f7a17df6ee06faefb6872d4a25335b2d1121a10c2f2bfbb8523d6f */
-#if BIND_UvStatT_TYPE
+/* MRUBY_BINDING: Stat_boxing */
+/* sha: 0f160f0d58b6899e338ba2f7c76606cb77fcdacb3634e0fdb60fef2b352a3174 */
+#if BIND_Stat_TYPE
 /*
  * Boxing implementation for uv_stat_t
  */
@@ -1672,7 +1665,7 @@ mruby_box_uv_stat_t(mrb_state* mrb, uv_stat_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvStatT_class(mrb), &uv_stat_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Stat_class(mrb), &uv_stat_t_data_type, box));
 }
 
 mrb_value
@@ -1680,7 +1673,7 @@ mruby_giftwrap_uv_stat_t(mrb_state* mrb, uv_stat_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvStatT_class(mrb), &uv_stat_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Stat_class(mrb), &uv_stat_t_data_type, box));
 }
 
 void
@@ -1706,9 +1699,9 @@ mruby_unbox_uv_stat_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvStdioContainerT_boxing */
-/* sha: 6d2face3e9fc29f3c084ea63980d08bf8a8e22c4024538d5119f9d2014050246 */
-#if BIND_UvStdioContainerT_TYPE
+/* MRUBY_BINDING: StdioContainer_boxing */
+/* sha: 561bb669c560a4da7c16a3b72e4de0e1b3757ced13d86e27ec9476371e755093 */
+#if BIND_StdioContainer_TYPE
 /*
  * Boxing implementation for uv_stdio_container_t
  */
@@ -1733,7 +1726,7 @@ mruby_box_uv_stdio_container_t(mrb_state* mrb, uv_stdio_container_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvStdioContainerT_class(mrb), &uv_stdio_container_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, StdioContainer_class(mrb), &uv_stdio_container_t_data_type, box));
 }
 
 mrb_value
@@ -1741,7 +1734,7 @@ mruby_giftwrap_uv_stdio_container_t(mrb_state* mrb, uv_stdio_container_t *unboxe
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvStdioContainerT_class(mrb), &uv_stdio_container_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, StdioContainer_class(mrb), &uv_stdio_container_t_data_type, box));
 }
 
 void
@@ -1767,9 +1760,9 @@ mruby_unbox_uv_stdio_container_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvStreamT_boxing */
-/* sha: 297538538676f14ef050513c2570e30cf993125a55af63005458573b37eef3b9 */
-#if BIND_UvStreamT_TYPE
+/* MRUBY_BINDING: Stream_boxing */
+/* sha: c19f106674916b89d6255f4992c09e54ca0e181f6ce395d4ab892947af727ba3 */
+#if BIND_Stream_TYPE
 /*
  * Boxing implementation for uv_stream_t
  */
@@ -1794,7 +1787,7 @@ mruby_box_uv_stream_t(mrb_state* mrb, uv_stream_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvStreamT_class(mrb), &uv_stream_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Stream_class(mrb), &uv_stream_t_data_type, box));
 }
 
 mrb_value
@@ -1802,7 +1795,7 @@ mruby_giftwrap_uv_stream_t(mrb_state* mrb, uv_stream_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvStreamT_class(mrb), &uv_stream_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Stream_class(mrb), &uv_stream_t_data_type, box));
 }
 
 void
@@ -1828,9 +1821,9 @@ mruby_unbox_uv_stream_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvTcpT_boxing */
-/* sha: a8dc31e93cac43bde0a80f04d10b2d52e75c67c9d2575914760cc9170c1b27c3 */
-#if BIND_UvTcpT_TYPE
+/* MRUBY_BINDING: TCP_boxing */
+/* sha: 1cdc65423ecaf9ff6bc0f17514f1f3e9566f40ff0b8ad49c3a7984b516787469 */
+#if BIND_TCP_TYPE
 /*
  * Boxing implementation for uv_tcp_t
  */
@@ -1839,7 +1832,7 @@ static void free_uv_tcp_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free_mruby_uv_handle((uv_handle_t*)box->obj);
+      free(box->obj);
       box->obj = NULL;
     }
   }
@@ -1855,7 +1848,7 @@ mruby_box_uv_tcp_t(mrb_state* mrb, uv_tcp_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvTcpT_class(mrb), &uv_tcp_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, TCP_class(mrb), &uv_tcp_t_data_type, box));
 }
 
 mrb_value
@@ -1863,7 +1856,7 @@ mruby_giftwrap_uv_tcp_t(mrb_state* mrb, uv_tcp_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvTcpT_class(mrb), &uv_tcp_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, TCP_class(mrb), &uv_tcp_t_data_type, box));
 }
 
 void
@@ -1889,9 +1882,9 @@ mruby_unbox_uv_tcp_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvTimerT_boxing */
-/* sha: 4fbaaf286ba9ef5a6358c4710e290b1ed4d7395579c6b0705fc29ffb51ed250b */
-#if BIND_UvTimerT_TYPE
+/* MRUBY_BINDING: Timer_boxing */
+/* sha: 3a9681f8b99b0bb248045a30adf742d9c3af970b60a656dbd06db72d59aa5b98 */
+#if BIND_Timer_TYPE
 /*
  * Boxing implementation for uv_timer_t
  */
@@ -1900,7 +1893,7 @@ static void free_uv_timer_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free_mruby_uv_handle((uv_handle_t*)box->obj);
+      free(box->obj);
       box->obj = NULL;
     }
   }
@@ -1916,7 +1909,7 @@ mruby_box_uv_timer_t(mrb_state* mrb, uv_timer_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvTimerT_class(mrb), &uv_timer_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Timer_class(mrb), &uv_timer_t_data_type, box));
 }
 
 mrb_value
@@ -1924,7 +1917,7 @@ mruby_giftwrap_uv_timer_t(mrb_state* mrb, uv_timer_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvTimerT_class(mrb), &uv_timer_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Timer_class(mrb), &uv_timer_t_data_type, box));
 }
 
 void
@@ -1950,9 +1943,9 @@ mruby_unbox_uv_timer_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvTimespecT_boxing */
-/* sha: a442ebcaf0b1dc2b951b02e6685e8cb42e1c0e1f449dbc6af95cb6a431e034a2 */
-#if BIND_UvTimespecT_TYPE
+/* MRUBY_BINDING: Timespec_boxing */
+/* sha: 2f1607bb72410f9730df0c871bbfdbe110d648d798f6feedc33a799119d1fa65 */
+#if BIND_Timespec_TYPE
 /*
  * Boxing implementation for uv_timespec_t
  */
@@ -1977,7 +1970,7 @@ mruby_box_uv_timespec_t(mrb_state* mrb, uv_timespec_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvTimespecT_class(mrb), &uv_timespec_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Timespec_class(mrb), &uv_timespec_t_data_type, box));
 }
 
 mrb_value
@@ -1985,7 +1978,7 @@ mruby_giftwrap_uv_timespec_t(mrb_state* mrb, uv_timespec_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvTimespecT_class(mrb), &uv_timespec_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Timespec_class(mrb), &uv_timespec_t_data_type, box));
 }
 
 void
@@ -2011,9 +2004,9 @@ mruby_unbox_uv_timespec_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvTimevalT_boxing */
-/* sha: 5077e1f8213605d96d96727b975eab320eb298ebe77819d8c2d7d9afa7813c61 */
-#if BIND_UvTimevalT_TYPE
+/* MRUBY_BINDING: Timeval_boxing */
+/* sha: e41c64a8959f821a6614c2f6256b851e1c1aa80e8e76d25fccacedadeb689c98 */
+#if BIND_Timeval_TYPE
 /*
  * Boxing implementation for uv_timeval_t
  */
@@ -2038,7 +2031,7 @@ mruby_box_uv_timeval_t(mrb_state* mrb, uv_timeval_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvTimevalT_class(mrb), &uv_timeval_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Timeval_class(mrb), &uv_timeval_t_data_type, box));
 }
 
 mrb_value
@@ -2046,7 +2039,7 @@ mruby_giftwrap_uv_timeval_t(mrb_state* mrb, uv_timeval_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvTimevalT_class(mrb), &uv_timeval_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Timeval_class(mrb), &uv_timeval_t_data_type, box));
 }
 
 void
@@ -2072,9 +2065,9 @@ mruby_unbox_uv_timeval_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvTtyT_boxing */
-/* sha: a29a2b5e005ba46e924ddb5622477a78b5f9448e0014df254538c0fb9d1774ad */
-#if BIND_UvTtyT_TYPE
+/* MRUBY_BINDING: Tty_boxing */
+/* sha: 88859a96111abe9145e410b723dbff203ff6fcbb2282c2681a6b6a27b2b2f50d */
+#if BIND_Tty_TYPE
 /*
  * Boxing implementation for uv_tty_t
  */
@@ -2083,7 +2076,7 @@ static void free_uv_tty_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free_mruby_uv_handle((uv_handle_t*)box->obj);
+      free(box->obj);
       box->obj = NULL;
     }
   }
@@ -2099,7 +2092,7 @@ mruby_box_uv_tty_t(mrb_state* mrb, uv_tty_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvTtyT_class(mrb), &uv_tty_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Tty_class(mrb), &uv_tty_t_data_type, box));
 }
 
 mrb_value
@@ -2107,7 +2100,7 @@ mruby_giftwrap_uv_tty_t(mrb_state* mrb, uv_tty_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvTtyT_class(mrb), &uv_tty_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Tty_class(mrb), &uv_tty_t_data_type, box));
 }
 
 void
@@ -2133,9 +2126,9 @@ mruby_unbox_uv_tty_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpSendT_boxing */
-/* sha: 665de35504de78a2b8c42c0b1ff48c41e3a8302ba74e2668ce4eeac45e316f88 */
-#if BIND_UvUdpSendT_TYPE
+/* MRUBY_BINDING: UDPSend_boxing */
+/* sha: f259221b96fc4f96ec1645c9fa136e45776d13d97d73abf7ca6cb68ebd1741b0 */
+#if BIND_UDPSend_TYPE
 /*
  * Boxing implementation for uv_udp_send_t
  */
@@ -2144,7 +2137,7 @@ static void free_uv_udp_send_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free_mruby_uv_req((uv_req_t*)box->obj);
+      free(box->obj);
       box->obj = NULL;
     }
   }
@@ -2160,7 +2153,7 @@ mruby_box_uv_udp_send_t(mrb_state* mrb, uv_udp_send_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvUdpSendT_class(mrb), &uv_udp_send_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, UDPSend_class(mrb), &uv_udp_send_t_data_type, box));
 }
 
 mrb_value
@@ -2168,7 +2161,7 @@ mruby_giftwrap_uv_udp_send_t(mrb_state* mrb, uv_udp_send_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvUdpSendT_class(mrb), &uv_udp_send_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, UDPSend_class(mrb), &uv_udp_send_t_data_type, box));
 }
 
 void
@@ -2194,9 +2187,9 @@ mruby_unbox_uv_udp_send_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpT_boxing */
-/* sha: c9f94a30e21f9a8b016cc944631e5396855742405122880663dcec8fbcb6197b */
-#if BIND_UvUdpT_TYPE
+/* MRUBY_BINDING: UDP_boxing */
+/* sha: 1ad973e6a69b7d9b3d20a01a4393618639d486c4bb44b1bed1922ef76f9b75b1 */
+#if BIND_UDP_TYPE
 /*
  * Boxing implementation for uv_udp_t
  */
@@ -2221,7 +2214,7 @@ mruby_box_uv_udp_t(mrb_state* mrb, uv_udp_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvUdpT_class(mrb), &uv_udp_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, UDP_class(mrb), &uv_udp_t_data_type, box));
 }
 
 mrb_value
@@ -2229,7 +2222,7 @@ mruby_giftwrap_uv_udp_t(mrb_state* mrb, uv_udp_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvUdpT_class(mrb), &uv_udp_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, UDP_class(mrb), &uv_udp_t_data_type, box));
 }
 
 void
@@ -2255,9 +2248,9 @@ mruby_unbox_uv_udp_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvWorkT_boxing */
-/* sha: 6b7c7fed0ed23c016af4d4fdd2dc05ee46e7217acf4a15a6bcae8420b0bd3568 */
-#if BIND_UvWorkT_TYPE
+/* MRUBY_BINDING: Work_boxing */
+/* sha: a3e18ecb4184b126a5cbdd2b263540d0077f1827f8e9de5c73a02f8b65d10231 */
+#if BIND_Work_TYPE
 /*
  * Boxing implementation for uv_work_t
  */
@@ -2266,7 +2259,7 @@ static void free_uv_work_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free_mruby_uv_req((uv_req_t*)box->obj);
+      free(box->obj);
       box->obj = NULL;
     }
   }
@@ -2282,7 +2275,7 @@ mruby_box_uv_work_t(mrb_state* mrb, uv_work_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvWorkT_class(mrb), &uv_work_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Work_class(mrb), &uv_work_t_data_type, box));
 }
 
 mrb_value
@@ -2290,7 +2283,7 @@ mruby_giftwrap_uv_work_t(mrb_state* mrb, uv_work_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvWorkT_class(mrb), &uv_work_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Work_class(mrb), &uv_work_t_data_type, box));
 }
 
 void
@@ -2316,9 +2309,9 @@ mruby_unbox_uv_work_t(mrb_value boxed) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvWriteT_boxing */
-/* sha: f2dd3939ef382465e20bd4978a7b91bd6f0e972596dd1bec62f361e77bc5352e */
-#if BIND_UvWriteT_TYPE
+/* MRUBY_BINDING: Write_boxing */
+/* sha: 9ce1f472817b68a8fcfbdb9b1f0fb5a779d19461f9905cf92e42daf301f35cfb */
+#if BIND_Write_TYPE
 /*
  * Boxing implementation for uv_write_t
  */
@@ -2327,7 +2320,7 @@ static void free_uv_write_t(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
-      free_mruby_uv_req((uv_req_t*)box->obj);
+      free(box->obj);
       box->obj = NULL;
     }
   }
@@ -2343,7 +2336,7 @@ mruby_box_uv_write_t(mrb_state* mrb, uv_write_t *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, UvWriteT_class(mrb), &uv_write_t_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, Write_class(mrb), &uv_write_t_data_type, box));
 }
 
 mrb_value
@@ -2351,7 +2344,7 @@ mruby_giftwrap_uv_write_t(mrb_state* mrb, uv_write_t *unboxed) {
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, UvWriteT_class(mrb), &uv_write_t_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, Write_class(mrb), &uv_write_t_data_type, box));
 }
 
 void

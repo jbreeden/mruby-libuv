@@ -48,13 +48,13 @@ void mrb_UV_UvHandleT_init(mrb_state* mrb) {
   if (initialized) return;
   else initialized = 1;
 
-  struct RClass* UvHandleT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvHandleT", mrb->object_class);
-  MRB_SET_INSTANCE_TT(UvHandleT_class, MRB_TT_DATA);
+  struct RClass* Handle_class = mrb_define_class_under(mrb, UV_module(mrb), "UvHandleT", mrb->object_class);
+  MRB_SET_INSTANCE_TT(Handle_class, MRB_TT_DATA);
 
-  mrb_define_method(mrb, UvHandleT_class, "data", mrb_UV_UvHandleT_get_data, MRB_ARGS_ARG(0, 0));
-  mrb_define_method(mrb, UvHandleT_class, "data=", mrb_UV_UvHandleT_set_data, MRB_ARGS_ARG(1, 0));
-  mrb_define_method(mrb, UvHandleT_class, "loop", mrb_UV_UvHandleT_get_loop, MRB_ARGS_ARG(0, 0));
-  mrb_define_method(mrb, UvHandleT_class, "ref", mrb_UV_UvHandleT_ref, MRB_ARGS_ARG(0, 0));
-  mrb_define_method(mrb, UvHandleT_class, "unref", mrb_UV_UvHandleT_unref, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Handle_class, "data", mrb_UV_UvHandleT_get_data, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Handle_class, "data=", mrb_UV_UvHandleT_set_data, MRB_ARGS_ARG(1, 0));
+  mrb_define_method(mrb, Handle_class, "loop", mrb_UV_UvHandleT_get_loop, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Handle_class, "ref", mrb_UV_UvHandleT_ref, MRB_ARGS_ARG(0, 0));
+  mrb_define_method(mrb, Handle_class, "unref", mrb_UV_UvHandleT_unref, MRB_ARGS_ARG(0, 0));
 }
 #endif

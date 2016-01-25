@@ -5,80 +5,39 @@
 
 #include "mruby_UV.h"
 
-#if BIND_UvUdpSendT_TYPE
+#if BIND_UDPSend_TYPE
 
 /* MRUBY_BINDING: header */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/*
- * Class Methods
- */
-
-/* MRUBY_BINDING: UvUdpSendT::initialize */
-/* sha: 500058743531135746efd3c86490483ca6f8c82967c2190abda54e118ca63d5f */
-#if BIND_UvUdpSendT_INITIALIZE
+/* MRUBY_BINDING: UDPSend::initialize */
+/* sha: 3ebf4e2717e2f8228eeb43079df5781db119ddeb171589dcde339aa78d9e66c2 */
+#if BIND_UDPSend_INITIALIZE
 mrb_value
-mrb_UV_UvUdpSendT_initialize(mrb_state* mrb, mrb_value self) {
-  uv_udp_send_t* native_object = (uv_udp_send_t*)new_mruby_uv_req(mrb, self, sizeof(uv_udp_send_t));
+mrb_UV_UDPSend_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
+  uv_udp_send_t* native_object = (uv_udp_send_t*)calloc(1, sizeof(uv_udp_send_t));
   mruby_gift_uv_udp_send_t_data_ptr(self, native_object);
   return self;
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpSendT::disown */
-/* sha: f5a42ef86c74c65e503ca18ccbfd898e0a037c3b3c18922ba4f422d981aef8c0 */
-mrb_value
-mrb_UV_UvUdpSendT_disown(mrb_state* mrb, mrb_value self) {
-  mrb_value ruby_object;
-  mrb_get_args(mrb, "o", &ruby_object);
-
-  if (!mrb_obj_is_kind_of(mrb, ruby_object, mrb_class_ptr(self))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UV::UvUdpSendT.disown only accepts objects of type UV::UvUdpSendT");
-    return mrb_nil_value();
-  }
-
-  ((mruby_to_native_ref*)(DATA_PTR(ruby_object)))->belongs_to_ruby = FALSE;
-
-  return mrb_nil_value();
-}
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvUdpSendT::belongs_to_ruby */
-/* sha: a61e720a6f170e9ff323d95b1710a277b51dc8906364594d0201f1b8c78c41bb */
-mrb_value
-mrb_UV_UvUdpSendT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
-  mrb_value ruby_object;
-  mrb_get_args(mrb, "o", &ruby_object);
-
-  if (!mrb_obj_is_kind_of(mrb, ruby_object, mrb_class_ptr(self))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UV::UvUdpSendT.belongs_to_ruby only accepts objects of type UV::UvUdpSendT");
-    return mrb_nil_value();
-  }
-
-  if ( ((mruby_to_native_ref*)(DATA_PTR(ruby_object)))->belongs_to_ruby ) {
-    return mrb_true_value();
-  } else {
-    return mrb_false_value();
-  }
-}
-/* MRUBY_BINDING_END */
-
 /*
  * Fields
  */
 
-/* MRUBY_BINDING: UvUdpSendT::handle_reader */
-/* sha: e73192b0aa9e9d9eaa8bff5b3cdb609b82533914bb4731eba96494a385422d1f */
-#if BIND_UvUdpSendT_handle_FIELD_READER
+/* MRUBY_BINDING: UDPSend::handle_reader */
+/* sha: 998d4ad511dae17c771120999f1b90f9c6cc207bc675608e3e9bd06f7b1ae316 */
+#if BIND_UDPSend_handle_FIELD_READER
 /* get_handle
  *
  * Return Type: uv_udp_t *
  */
 mrb_value
-mrb_UV_UvUdpSendT_get_handle(mrb_state* mrb, mrb_value self) {
+mrb_UV_UDPSend_get_handle(mrb_state* mrb, mrb_value self) {
   uv_udp_send_t * native_self = mruby_unbox_uv_udp_send_t(self);
 
   uv_udp_t * native_handle = native_self->handle;
@@ -90,24 +49,24 @@ mrb_UV_UvUdpSendT_get_handle(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpSendT::handle_writer */
-/* sha: e4007c643e0450f2130c7c33bca26602bd034b2b7235b8f2be3baf2334ab2b94 */
-#if BIND_UvUdpSendT_handle_FIELD_WRITER
+/* MRUBY_BINDING: UDPSend::handle_writer */
+/* sha: 41f6c18a2f317f7e5b28cace81156f8fcc0b235e2385b24f838ad783ca7f9fb1 */
+#if BIND_UDPSend_handle_FIELD_WRITER
 /* set_handle
  *
  * Parameters:
  * - value: uv_udp_t *
  */
 mrb_value
-mrb_UV_UvUdpSendT_set_handle(mrb_state* mrb, mrb_value self) {
+mrb_UV_UDPSend_set_handle(mrb_state* mrb, mrb_value self) {
   uv_udp_send_t * native_self = mruby_unbox_uv_udp_send_t(self);
   mrb_value handle;
 
   mrb_get_args(mrb, "o", &handle);
 
   /* type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvUdpT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvUdpT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, UDP_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "UDP expected");
     return mrb_nil_value();
   }
 
@@ -115,6 +74,7 @@ mrb_UV_UvUdpSendT_set_handle(mrb_state* mrb, mrb_value self) {
 
   native_self->handle = native_handle;
   
+  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -122,15 +82,15 @@ mrb_UV_UvUdpSendT_set_handle(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpSendT::cb_reader */
-/* sha: 9490c4590d759960b9bb24329c48123398f87128681d3802b917a4a84cafff44 */
-#if BIND_UvUdpSendT_cb_FIELD_READER
+/* MRUBY_BINDING: UDPSend::cb_reader */
+/* sha: 52a68a401c188abea16bc4d7b25d69b4aa6858d348679f164b4f69190dcb3b67 */
+#if BIND_UDPSend_cb_FIELD_READER
 /* get_cb
  *
  * Return Type: uv_udp_send_cb
  */
 mrb_value
-mrb_UV_UvUdpSendT_get_cb(mrb_state* mrb, mrb_value self) {
+mrb_UV_UDPSend_get_cb(mrb_state* mrb, mrb_value self) {
   uv_udp_send_t * native_self = mruby_unbox_uv_udp_send_t(self);
 
   uv_udp_send_cb native_cb = native_self->cb;
@@ -142,16 +102,16 @@ mrb_UV_UvUdpSendT_get_cb(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpSendT::cb_writer */
-/* sha: d82ed5d4f3e11385fbd9a5caf756d37da333a6975c6ea369d827698961c92491 */
-#if BIND_UvUdpSendT_cb_FIELD_WRITER
+/* MRUBY_BINDING: UDPSend::cb_writer */
+/* sha: ae85a6bad8a5004616fd780d002def2b6c7e02abb687465c597440ee56e594a9 */
+#if BIND_UDPSend_cb_FIELD_WRITER
 /* set_cb
  *
  * Parameters:
  * - value: uv_udp_send_cb
  */
 mrb_value
-mrb_UV_UvUdpSendT_set_cb(mrb_state* mrb, mrb_value self) {
+mrb_UV_UDPSend_set_cb(mrb_state* mrb, mrb_value self) {
   uv_udp_send_t * native_self = mruby_unbox_uv_udp_send_t(self);
   mrb_value cb;
 
@@ -164,6 +124,7 @@ mrb_UV_UvUdpSendT_set_cb(mrb_state* mrb, mrb_value self) {
 
   native_self->cb = native_cb;
   
+  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -172,8 +133,8 @@ mrb_UV_UvUdpSendT_set_cb(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 
-void mrb_UV_UvUdpSendT_init(mrb_state* mrb) {
-/* MRUBY_BINDING: UvUdpSendT::class_init_header */
+void mrb_UV_UDPSend_init(mrb_state* mrb) {
+/* MRUBY_BINDING: UDPSend::class_init_header */
 /* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
   /* Don't double-init. */
   static int initialized = 0;
@@ -181,56 +142,54 @@ void mrb_UV_UvUdpSendT_init(mrb_state* mrb) {
   else initialized = 1;
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpSendT::class_definition */
-/* sha: 15b568f9533a108f62f74114958f87124e69d4c922402081616df9fda1361074 */
-  struct RClass* UvUdpSendT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvUdpSendT", UvReqT_class(mrb));
-  MRB_SET_INSTANCE_TT(UvUdpSendT_class, MRB_TT_DATA);
+/* MRUBY_BINDING: UDPSend::class_definition */
+/* sha: ed73534e5079d22778c37602535848b5986b1f0e37068345db2b4a8ca4228d95 */
+  struct RClass* UDPSend_class = mrb_define_class_under(mrb, UV_module(mrb), "UDPSend", mrb->object_class);
+  MRB_SET_INSTANCE_TT(UDPSend_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpSendT::pre_class_method_definitions */
+/* MRUBY_BINDING: UDPSend::pre_class_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpSendT::class_method_definitions */
-/* sha: bb2c51e1643d5d7776894c1076857fecfedac3dfc8b9b595e543bf8ed50fb6db */
-#if BIND_UvUdpSendT_INITIALIZE
-  mrb_define_method(mrb, UvUdpSendT_class, "initialize", mrb_UV_UvUdpSendT_initialize, MRB_ARGS_NONE());
+/* MRUBY_BINDING: UDPSend::class_method_definitions */
+/* sha: bb6b8ee05f1e2de7415403155b2dd1b8c9f128d0a9dacfc01b51a7dbe62f6975 */
+#if BIND_UDPSend_INITIALIZE
+  mrb_define_method(mrb, UDPSend_class, "initialize", mrb_UV_UDPSend_initialize, MRB_ARGS_NONE());
 #endif
-  mrb_define_class_method(mrb, UvUdpSendT_class, "disown", mrb_UV_UvUdpSendT_disown, MRB_ARGS_ARG(1, 0));
-  mrb_define_class_method(mrb, UvUdpSendT_class, "belongs_to_ruby?", mrb_UV_UvUdpSendT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpSendT::pre_attr_definitions */
+/* MRUBY_BINDING: UDPSend::pre_attr_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpSendT::attr_definitions */
-/* sha: 542ced0e16cd219858b9fa73da369216d8fcade70074cd7db67290147d19bebe */
+/* MRUBY_BINDING: UDPSend::attr_definitions */
+/* sha: b3810c71aa62c9a72602927f8db750c6c4f38f5937a7b9ecf61ff260e88288e6 */
   /*
    * Fields
    */
-#if BIND_UvUdpSendT_handle_FIELD_READER
-  mrb_define_method(mrb, UvUdpSendT_class, "handle", mrb_UV_UvUdpSendT_get_handle, MRB_ARGS_ARG(0, 0));
+#if BIND_UDPSend_handle_FIELD_READER
+  mrb_define_method(mrb, UDPSend_class, "handle", mrb_UV_UDPSend_get_handle, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvUdpSendT_handle_FIELD_WRITER
-  mrb_define_method(mrb, UvUdpSendT_class, "handle=", mrb_UV_UvUdpSendT_set_handle, MRB_ARGS_ARG(1, 0));
+#if BIND_UDPSend_handle_FIELD_WRITER
+  mrb_define_method(mrb, UDPSend_class, "handle=", mrb_UV_UDPSend_set_handle, MRB_ARGS_ARG(1, 0));
 #endif
-#if BIND_UvUdpSendT_cb_FIELD_READER
-  mrb_define_method(mrb, UvUdpSendT_class, "cb", mrb_UV_UvUdpSendT_get_cb, MRB_ARGS_ARG(0, 0));
+#if BIND_UDPSend_cb_FIELD_READER
+  mrb_define_method(mrb, UDPSend_class, "cb", mrb_UV_UDPSend_get_cb, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvUdpSendT_cb_FIELD_WRITER
-  mrb_define_method(mrb, UvUdpSendT_class, "cb=", mrb_UV_UvUdpSendT_set_cb, MRB_ARGS_ARG(1, 0));
+#if BIND_UDPSend_cb_FIELD_WRITER
+  mrb_define_method(mrb, UDPSend_class, "cb=", mrb_UV_UDPSend_set_cb, MRB_ARGS_ARG(1, 0));
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpSendT::pre_instance_method_definitions */
+/* MRUBY_BINDING: UDPSend::pre_instance_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpSendT::instance_method_definitions */
+/* MRUBY_BINDING: UDPSend::instance_method_definitions */
 /* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
   /*
    * Member Functions
@@ -238,7 +197,7 @@ void mrb_UV_UvUdpSendT_init(mrb_state* mrb) {
   /* None */
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpSendT::class_init_footer */
+/* MRUBY_BINDING: UDPSend::class_init_footer */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

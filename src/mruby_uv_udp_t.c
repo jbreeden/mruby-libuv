@@ -5,80 +5,39 @@
 
 #include "mruby_UV.h"
 
-#if BIND_UvUdpT_TYPE
+#if BIND_UDP_TYPE
 
 /* MRUBY_BINDING: header */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/*
- * Class Methods
- */
-
-/* MRUBY_BINDING: UvUdpT::initialize */
-/* sha: e90fbe055593fa0f7492bf85e3e19d1453c34586d5108aaaa94706e1ef3b7f99 */
-#if BIND_UvUdpT_INITIALIZE
+/* MRUBY_BINDING: UDP::initialize */
+/* sha: 7dd3aefb25d9338329494f6573b99622a907cbc38887955c4c78ba0d3d451898 */
+#if BIND_UDP_INITIALIZE
 mrb_value
-mrb_UV_UvUdpT_initialize(mrb_state* mrb, mrb_value self) {
-  uv_udp_t* native_object = (uv_udp_t*)new_mruby_uv_handle(mrb, self, sizeof(uv_udp_t));
+mrb_UV_UDP_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
+  uv_udp_t* native_object = (uv_udp_t*)calloc(1, sizeof(uv_udp_t));
   mruby_gift_uv_udp_t_data_ptr(self, native_object);
   return self;
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpT::disown */
-/* sha: 1af835705be69cdc973b9284dac64a7859413d12b7728490c732720909c93c4d */
-mrb_value
-mrb_UV_UvUdpT_disown(mrb_state* mrb, mrb_value self) {
-  mrb_value ruby_object;
-  mrb_get_args(mrb, "o", &ruby_object);
-
-  if (!mrb_obj_is_kind_of(mrb, ruby_object, mrb_class_ptr(self))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UV::UvUdpT.disown only accepts objects of type UV::UvUdpT");
-    return mrb_nil_value();
-  }
-
-  ((mruby_to_native_ref*)(DATA_PTR(ruby_object)))->belongs_to_ruby = FALSE;
-
-  return mrb_nil_value();
-}
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvUdpT::belongs_to_ruby */
-/* sha: a97384284400a75401f4f82c76bc6f57548455c5d5b9f8bf6b57c13ccd41d214 */
-mrb_value
-mrb_UV_UvUdpT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
-  mrb_value ruby_object;
-  mrb_get_args(mrb, "o", &ruby_object);
-
-  if (!mrb_obj_is_kind_of(mrb, ruby_object, mrb_class_ptr(self))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UV::UvUdpT.belongs_to_ruby only accepts objects of type UV::UvUdpT");
-    return mrb_nil_value();
-  }
-
-  if ( ((mruby_to_native_ref*)(DATA_PTR(ruby_object)))->belongs_to_ruby ) {
-    return mrb_true_value();
-  } else {
-    return mrb_false_value();
-  }
-}
-/* MRUBY_BINDING_END */
-
 /*
  * Fields
  */
 
-/* MRUBY_BINDING: UvUdpT::send_queue_size_reader */
-/* sha: b84857080d4ee3007c39483aecaaca4bec6da25db78caa8a77bb8e942bad3e72 */
-#if BIND_UvUdpT_send_queue_size_FIELD_READER
+/* MRUBY_BINDING: UDP::send_queue_size_reader */
+/* sha: 6d2f5030dff941ee5023369ba4177ad0598f0361483dbd852785d8ba4a9efbae */
+#if BIND_UDP_send_queue_size_FIELD_READER
 /* get_send_queue_size
  *
  * Return Type: size_t
  */
 mrb_value
-mrb_UV_UvUdpT_get_send_queue_size(mrb_state* mrb, mrb_value self) {
+mrb_UV_UDP_get_send_queue_size(mrb_state* mrb, mrb_value self) {
   uv_udp_t * native_self = mruby_unbox_uv_udp_t(self);
 
   size_t native_send_queue_size = native_self->send_queue_size;
@@ -90,16 +49,16 @@ mrb_UV_UvUdpT_get_send_queue_size(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpT::send_queue_size_writer */
-/* sha: dff3209700ea4ea7a36ad8f9fa3e71e5d105e3c2cc7edb447ec0651fe5f44994 */
-#if BIND_UvUdpT_send_queue_size_FIELD_WRITER
+/* MRUBY_BINDING: UDP::send_queue_size_writer */
+/* sha: e13b3e307fbbcb5c921749a6ce3c09931f3f8b8247dba43797c3030c46153c2b */
+#if BIND_UDP_send_queue_size_FIELD_WRITER
 /* set_send_queue_size
  *
  * Parameters:
  * - value: size_t
  */
 mrb_value
-mrb_UV_UvUdpT_set_send_queue_size(mrb_state* mrb, mrb_value self) {
+mrb_UV_UDP_set_send_queue_size(mrb_state* mrb, mrb_value self) {
   uv_udp_t * native_self = mruby_unbox_uv_udp_t(self);
   mrb_int native_send_queue_size;
 
@@ -107,6 +66,7 @@ mrb_UV_UvUdpT_set_send_queue_size(mrb_state* mrb, mrb_value self) {
 
   native_self->send_queue_size = native_send_queue_size;
   
+  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -114,15 +74,15 @@ mrb_UV_UvUdpT_set_send_queue_size(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpT::send_queue_count_reader */
-/* sha: d6d0def9a3b3d2de0d0fa443957fc7bcfa5400608eee51ab5aa6334f514c9664 */
-#if BIND_UvUdpT_send_queue_count_FIELD_READER
+/* MRUBY_BINDING: UDP::send_queue_count_reader */
+/* sha: b143b9d08f377455b6a050ef137c81303e11d47746141efa8582894253800c09 */
+#if BIND_UDP_send_queue_count_FIELD_READER
 /* get_send_queue_count
  *
  * Return Type: size_t
  */
 mrb_value
-mrb_UV_UvUdpT_get_send_queue_count(mrb_state* mrb, mrb_value self) {
+mrb_UV_UDP_get_send_queue_count(mrb_state* mrb, mrb_value self) {
   uv_udp_t * native_self = mruby_unbox_uv_udp_t(self);
 
   size_t native_send_queue_count = native_self->send_queue_count;
@@ -134,16 +94,16 @@ mrb_UV_UvUdpT_get_send_queue_count(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpT::send_queue_count_writer */
-/* sha: 998d7f4d5f2a97d6f6648138d4aba9a8a5e1d4b9888bf2e6b173ff0e283d019f */
-#if BIND_UvUdpT_send_queue_count_FIELD_WRITER
+/* MRUBY_BINDING: UDP::send_queue_count_writer */
+/* sha: 022c93e0be20c0301e50070704dfdda9a5be4978954c27fe9f3590115ed8119c */
+#if BIND_UDP_send_queue_count_FIELD_WRITER
 /* set_send_queue_count
  *
  * Parameters:
  * - value: size_t
  */
 mrb_value
-mrb_UV_UvUdpT_set_send_queue_count(mrb_state* mrb, mrb_value self) {
+mrb_UV_UDP_set_send_queue_count(mrb_state* mrb, mrb_value self) {
   uv_udp_t * native_self = mruby_unbox_uv_udp_t(self);
   mrb_int native_send_queue_count;
 
@@ -151,6 +111,7 @@ mrb_UV_UvUdpT_set_send_queue_count(mrb_state* mrb, mrb_value self) {
 
   native_self->send_queue_count = native_send_queue_count;
   
+  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -159,8 +120,8 @@ mrb_UV_UvUdpT_set_send_queue_count(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 
-void mrb_UV_UvUdpT_init(mrb_state* mrb) {
-/* MRUBY_BINDING: UvUdpT::class_init_header */
+void mrb_UV_UDP_init(mrb_state* mrb) {
+/* MRUBY_BINDING: UDP::class_init_header */
 /* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
   /* Don't double-init. */
   static int initialized = 0;
@@ -168,56 +129,54 @@ void mrb_UV_UvUdpT_init(mrb_state* mrb) {
   else initialized = 1;
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpT::class_definition */
-/* sha: 3052eebb97c64bb74879975e23c287ea79687733146c0b21d14f5a6f29348c30 */
-  struct RClass* UvUdpT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvUdpT", UvHandleT_class(mrb));
-  MRB_SET_INSTANCE_TT(UvUdpT_class, MRB_TT_DATA);
+/* MRUBY_BINDING: UDP::class_definition */
+/* sha: 586bf7a4aa7c02b8ff593ad8cd91c4ae9f04ed6c05fa678097b520e8218342bb */
+  struct RClass* UDP_class = mrb_define_class_under(mrb, UV_module(mrb), "UDP", mrb->object_class);
+  MRB_SET_INSTANCE_TT(UDP_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpT::pre_class_method_definitions */
+/* MRUBY_BINDING: UDP::pre_class_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpT::class_method_definitions */
-/* sha: 8dadd37938981b8a214c5da95841315a1b602a54031048765d7080c1500fd0a6 */
-#if BIND_UvUdpT_INITIALIZE
-  mrb_define_method(mrb, UvUdpT_class, "initialize", mrb_UV_UvUdpT_initialize, MRB_ARGS_NONE());
+/* MRUBY_BINDING: UDP::class_method_definitions */
+/* sha: 13490f481f9b6c6834cea88f5de63e2e1e118abb43524e21ff44720bee5e819c */
+#if BIND_UDP_INITIALIZE
+  mrb_define_method(mrb, UDP_class, "initialize", mrb_UV_UDP_initialize, MRB_ARGS_NONE());
 #endif
-  mrb_define_class_method(mrb, UvUdpT_class, "disown", mrb_UV_UvUdpT_disown, MRB_ARGS_ARG(1, 0));
-  mrb_define_class_method(mrb, UvUdpT_class, "belongs_to_ruby?", mrb_UV_UvUdpT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpT::pre_attr_definitions */
+/* MRUBY_BINDING: UDP::pre_attr_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpT::attr_definitions */
-/* sha: 01fb762be80284bdf2a0c3475ce0958aacff1ee91f03fe34bc24f534c49c59ae */
+/* MRUBY_BINDING: UDP::attr_definitions */
+/* sha: d3f5a08104ed7102ed50a527849681918a3b7dc93e21e6c6e74e957120497a43 */
   /*
    * Fields
    */
-#if BIND_UvUdpT_send_queue_size_FIELD_READER
-  mrb_define_method(mrb, UvUdpT_class, "send_queue_size", mrb_UV_UvUdpT_get_send_queue_size, MRB_ARGS_ARG(0, 0));
+#if BIND_UDP_send_queue_size_FIELD_READER
+  mrb_define_method(mrb, UDP_class, "send_queue_size", mrb_UV_UDP_get_send_queue_size, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvUdpT_send_queue_size_FIELD_WRITER
-  mrb_define_method(mrb, UvUdpT_class, "send_queue_size=", mrb_UV_UvUdpT_set_send_queue_size, MRB_ARGS_ARG(1, 0));
+#if BIND_UDP_send_queue_size_FIELD_WRITER
+  mrb_define_method(mrb, UDP_class, "send_queue_size=", mrb_UV_UDP_set_send_queue_size, MRB_ARGS_ARG(1, 0));
 #endif
-#if BIND_UvUdpT_send_queue_count_FIELD_READER
-  mrb_define_method(mrb, UvUdpT_class, "send_queue_count", mrb_UV_UvUdpT_get_send_queue_count, MRB_ARGS_ARG(0, 0));
+#if BIND_UDP_send_queue_count_FIELD_READER
+  mrb_define_method(mrb, UDP_class, "send_queue_count", mrb_UV_UDP_get_send_queue_count, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvUdpT_send_queue_count_FIELD_WRITER
-  mrb_define_method(mrb, UvUdpT_class, "send_queue_count=", mrb_UV_UvUdpT_set_send_queue_count, MRB_ARGS_ARG(1, 0));
+#if BIND_UDP_send_queue_count_FIELD_WRITER
+  mrb_define_method(mrb, UDP_class, "send_queue_count=", mrb_UV_UDP_set_send_queue_count, MRB_ARGS_ARG(1, 0));
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpT::pre_instance_method_definitions */
+/* MRUBY_BINDING: UDP::pre_instance_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpT::instance_method_definitions */
+/* MRUBY_BINDING: UDP::instance_method_definitions */
 /* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
   /*
    * Member Functions
@@ -225,7 +184,7 @@ void mrb_UV_UvUdpT_init(mrb_state* mrb) {
   /* None */
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvUdpT::class_init_footer */
+/* MRUBY_BINDING: UDP::class_init_footer */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

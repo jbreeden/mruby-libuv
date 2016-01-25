@@ -18,6 +18,30 @@
 #   self.boxing_fn.cleanup_template = 'free(%{value});'
 # end
 
+CTypes.translate_fn_names do |fn|
+  if fn.start_with?("uv_")
+    fn[/uv_(.*)/, 1]
+  else
+    fn
+  end
+end
+
+CTypes.translate_enum_names do |enum|
+  enum.sub(/^UV_/, '')
+end
+
+CTypes.translate_type_names do |type|
+  type = MRubyBindings.type_name_to_rb_class(type)
+  type = type.sub(/^uv(_?)/i, '').sub(/([a-z])T$/, "\\1")
+  if type == "Rusage"
+    type = "RUsage"
+  end
+  type.sub!(/^Fs/, 'FS')
+  type.sub!(/^Tcp/, 'TCP')
+  type.sub!(/^Udp/, 'UDP')
+  type
+end
+
 CTypes.define('uv_fs_cb') do
   self.needs_unboxing = false
   self.needs_boxing_cleanup = false

@@ -5,84 +5,39 @@
 
 #include "mruby_UV.h"
 
-#if BIND_UvLoopT_TYPE
+#if BIND_Loop_TYPE
 
 /* MRUBY_BINDING: header */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/*
- * Class Methods
- */
-
-/* MRUBY_BINDING: UvLoopT::initialize */
-/* sha: 64b65e80421acf3f4f3a93a7294fd3491bf1c32cb266ffa68e4b8d988ca69dd3 */
-#if BIND_UvLoopT_INITIALIZE
+/* MRUBY_BINDING: Loop::initialize */
+/* sha: 90ca5e02212e9eaa4f53f3358ca8df68df444bb3db14eba6f2047a0ea47408aa */
+#if BIND_Loop_INITIALIZE
 mrb_value
-mrb_UV_UvLoopT_initialize(mrb_state* mrb, mrb_value self) {
+mrb_UV_Loop_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
   uv_loop_t* native_object = (uv_loop_t*)calloc(1, sizeof(uv_loop_t));
-  uv_loop_init(native_object);
-  
-  INIT_LOOP_DATA(native_object, mrb, self);
-  
   mruby_gift_uv_loop_t_data_ptr(self, native_object);
   return self;
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvLoopT::disown */
-/* sha: 23fb48ac9be5b279cac5296f3be1102f72d7c6875042fa84071670a89fd6179b */
-mrb_value
-mrb_UV_UvLoopT_disown(mrb_state* mrb, mrb_value self) {
-  mrb_value ruby_object;
-  mrb_get_args(mrb, "o", &ruby_object);
-
-  if (!mrb_obj_is_kind_of(mrb, ruby_object, mrb_class_ptr(self))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UV::UvLoopT.disown only accepts objects of type UV::UvLoopT");
-    return mrb_nil_value();
-  }
-
-  ((mruby_to_native_ref*)(DATA_PTR(ruby_object)))->belongs_to_ruby = FALSE;
-
-  return mrb_nil_value();
-}
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvLoopT::belongs_to_ruby */
-/* sha: 55170b4697b06c5f938e6b378f493c3e264be48e192aae7aefdc8f3bf6264f48 */
-mrb_value
-mrb_UV_UvLoopT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
-  mrb_value ruby_object;
-  mrb_get_args(mrb, "o", &ruby_object);
-
-  if (!mrb_obj_is_kind_of(mrb, ruby_object, mrb_class_ptr(self))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UV::UvLoopT.belongs_to_ruby only accepts objects of type UV::UvLoopT");
-    return mrb_nil_value();
-  }
-
-  if ( ((mruby_to_native_ref*)(DATA_PTR(ruby_object)))->belongs_to_ruby ) {
-    return mrb_true_value();
-  } else {
-    return mrb_false_value();
-  }
-}
-/* MRUBY_BINDING_END */
-
 /*
  * Fields
  */
 
-/* MRUBY_BINDING: UvLoopT::data_reader */
-/* sha: 954617ecb4e3850e8bb1662a46fb896dc38179246d8477cfa2e4acb6efbfd37b */
-#if BIND_UvLoopT_data_FIELD_READER
+/* MRUBY_BINDING: Loop::data_reader */
+/* sha: 0fd2e9bb306e8ef628063a43342c934a55092d4798db408751f27ebc326be8a7 */
+#if BIND_Loop_data_FIELD_READER
 /* get_data
  *
  * Return Type: void *
  */
 mrb_value
-mrb_UV_UvLoopT_get_data(mrb_state* mrb, mrb_value self) {
+mrb_UV_Loop_get_data(mrb_state* mrb, mrb_value self) {
   uv_loop_t * native_self = mruby_unbox_uv_loop_t(self);
 
   void * native_data = native_self->data;
@@ -94,16 +49,16 @@ mrb_UV_UvLoopT_get_data(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvLoopT::data_writer */
-/* sha: ccdd47eeb28aa0d350eebdc2d5f436ccf1a6e8eb89edd34f6d6fb679f6ea3545 */
-#if BIND_UvLoopT_data_FIELD_WRITER
+/* MRUBY_BINDING: Loop::data_writer */
+/* sha: 2616ffd83ef1f9ddd056b98aa993fb2ee7a33994a0ed191cf54030ecff06c344 */
+#if BIND_Loop_data_FIELD_WRITER
 /* set_data
  *
  * Parameters:
  * - value: void *
  */
 mrb_value
-mrb_UV_UvLoopT_set_data(mrb_state* mrb, mrb_value self) {
+mrb_UV_Loop_set_data(mrb_state* mrb, mrb_value self) {
   uv_loop_t * native_self = mruby_unbox_uv_loop_t(self);
   mrb_value data;
 
@@ -116,6 +71,7 @@ mrb_UV_UvLoopT_set_data(mrb_state* mrb, mrb_value self) {
 
   native_self->data = native_data;
   
+  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -123,15 +79,15 @@ mrb_UV_UvLoopT_set_data(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvLoopT::active_handles_reader */
-/* sha: 18e8285d592263197ef54c82811a07eb267674a8cab5f07a7b270a0da1701e47 */
-#if BIND_UvLoopT_active_handles_FIELD_READER
+/* MRUBY_BINDING: Loop::active_handles_reader */
+/* sha: 2c8ce49a9f7bfca199c2efa64b0a2aa2b77e609f6116974428aea62ddf1d96c0 */
+#if BIND_Loop_active_handles_FIELD_READER
 /* get_active_handles
  *
  * Return Type: unsigned int
  */
 mrb_value
-mrb_UV_UvLoopT_get_active_handles(mrb_state* mrb, mrb_value self) {
+mrb_UV_Loop_get_active_handles(mrb_state* mrb, mrb_value self) {
   uv_loop_t * native_self = mruby_unbox_uv_loop_t(self);
 
   unsigned int native_active_handles = native_self->active_handles;
@@ -143,16 +99,16 @@ mrb_UV_UvLoopT_get_active_handles(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvLoopT::active_handles_writer */
-/* sha: a79c56b87c4d68692bb35b0f00f935b1c59fd553ab6ed7aeab78c74111f3b2c9 */
-#if BIND_UvLoopT_active_handles_FIELD_WRITER
+/* MRUBY_BINDING: Loop::active_handles_writer */
+/* sha: 5e82c0fa7c29f8609714c4e4887cc26bcb0cf6b1daa7dcd8af4322b613807115 */
+#if BIND_Loop_active_handles_FIELD_WRITER
 /* set_active_handles
  *
  * Parameters:
  * - value: unsigned int
  */
 mrb_value
-mrb_UV_UvLoopT_set_active_handles(mrb_state* mrb, mrb_value self) {
+mrb_UV_Loop_set_active_handles(mrb_state* mrb, mrb_value self) {
   uv_loop_t * native_self = mruby_unbox_uv_loop_t(self);
   mrb_int native_active_handles;
 
@@ -160,6 +116,7 @@ mrb_UV_UvLoopT_set_active_handles(mrb_state* mrb, mrb_value self) {
 
   native_self->active_handles = native_active_handles;
   
+  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -167,15 +124,15 @@ mrb_UV_UvLoopT_set_active_handles(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvLoopT::handle_queue_reader */
-/* sha: 119a15dd93b0ca456c04a8e4f6fa12728cf8897569c255a84ba9e4740e64a627 */
-#if BIND_UvLoopT_handle_queue_FIELD_READER
+/* MRUBY_BINDING: Loop::handle_queue_reader */
+/* sha: a211c63b4b01ad582672dfa7e87248beaf4cb6ef43054aa6e39462d87941f929 */
+#if BIND_Loop_handle_queue_FIELD_READER
 /* get_handle_queue
  *
  * Return Type: void *[2]
  */
 mrb_value
-mrb_UV_UvLoopT_get_handle_queue(mrb_state* mrb, mrb_value self) {
+mrb_UV_Loop_get_handle_queue(mrb_state* mrb, mrb_value self) {
   uv_loop_t * native_self = mruby_unbox_uv_loop_t(self);
 
   void *[2] native_handle_queue = native_self->handle_queue;
@@ -187,16 +144,16 @@ mrb_UV_UvLoopT_get_handle_queue(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvLoopT::handle_queue_writer */
-/* sha: ee7c54e5b1ad3d7348ff63f6dafbff71611aad90d17ea35542619b819a73d08b */
-#if BIND_UvLoopT_handle_queue_FIELD_WRITER
+/* MRUBY_BINDING: Loop::handle_queue_writer */
+/* sha: 33c03a8d61523c6c9ad7cfe37289fe548c80b61528211b213b5540ef322e9b4c */
+#if BIND_Loop_handle_queue_FIELD_WRITER
 /* set_handle_queue
  *
  * Parameters:
  * - value: void *[2]
  */
 mrb_value
-mrb_UV_UvLoopT_set_handle_queue(mrb_state* mrb, mrb_value self) {
+mrb_UV_Loop_set_handle_queue(mrb_state* mrb, mrb_value self) {
   uv_loop_t * native_self = mruby_unbox_uv_loop_t(self);
   mrb_value handle_queue;
 
@@ -209,6 +166,7 @@ mrb_UV_UvLoopT_set_handle_queue(mrb_state* mrb, mrb_value self) {
 
   native_self->handle_queue = native_handle_queue;
   
+  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -216,15 +174,15 @@ mrb_UV_UvLoopT_set_handle_queue(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvLoopT::active_reqs_reader */
-/* sha: d478b2ce7cebb9624d7910576244877afd31a6a89f840924a5cc6e45e908348c */
-#if BIND_UvLoopT_active_reqs_FIELD_READER
+/* MRUBY_BINDING: Loop::active_reqs_reader */
+/* sha: 4171fdd323e7a10f8c41efa21b1b61d2dc730831ed4ad374907be70982fc92a8 */
+#if BIND_Loop_active_reqs_FIELD_READER
 /* get_active_reqs
  *
  * Return Type: void *[2]
  */
 mrb_value
-mrb_UV_UvLoopT_get_active_reqs(mrb_state* mrb, mrb_value self) {
+mrb_UV_Loop_get_active_reqs(mrb_state* mrb, mrb_value self) {
   uv_loop_t * native_self = mruby_unbox_uv_loop_t(self);
 
   void *[2] native_active_reqs = native_self->active_reqs;
@@ -236,16 +194,16 @@ mrb_UV_UvLoopT_get_active_reqs(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvLoopT::active_reqs_writer */
-/* sha: 2a199a0e8b9f327fb71a6fa769baf60efb2793cfcc31118360314333cf5e4a0a */
-#if BIND_UvLoopT_active_reqs_FIELD_WRITER
+/* MRUBY_BINDING: Loop::active_reqs_writer */
+/* sha: afa08ee2b50e67c1414d7e00fbc5702ca034019d5ca99640466392b959a6ddcd */
+#if BIND_Loop_active_reqs_FIELD_WRITER
 /* set_active_reqs
  *
  * Parameters:
  * - value: void *[2]
  */
 mrb_value
-mrb_UV_UvLoopT_set_active_reqs(mrb_state* mrb, mrb_value self) {
+mrb_UV_Loop_set_active_reqs(mrb_state* mrb, mrb_value self) {
   uv_loop_t * native_self = mruby_unbox_uv_loop_t(self);
   mrb_value active_reqs;
 
@@ -258,6 +216,7 @@ mrb_UV_UvLoopT_set_active_reqs(mrb_state* mrb, mrb_value self) {
 
   native_self->active_reqs = native_active_reqs;
   
+  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -265,15 +224,15 @@ mrb_UV_UvLoopT_set_active_reqs(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvLoopT::stop_flag_reader */
-/* sha: 9728e0d35d671243415672eaf1156683c0eae6540ab8f49b3d88bd159e39afc4 */
-#if BIND_UvLoopT_stop_flag_FIELD_READER
+/* MRUBY_BINDING: Loop::stop_flag_reader */
+/* sha: dd6afc6b4abae3ee67bfa11040b66e9bb54615e3ce365f12bfcd0d7eed7bb8eb */
+#if BIND_Loop_stop_flag_FIELD_READER
 /* get_stop_flag
  *
  * Return Type: unsigned int
  */
 mrb_value
-mrb_UV_UvLoopT_get_stop_flag(mrb_state* mrb, mrb_value self) {
+mrb_UV_Loop_get_stop_flag(mrb_state* mrb, mrb_value self) {
   uv_loop_t * native_self = mruby_unbox_uv_loop_t(self);
 
   unsigned int native_stop_flag = native_self->stop_flag;
@@ -285,16 +244,16 @@ mrb_UV_UvLoopT_get_stop_flag(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvLoopT::stop_flag_writer */
-/* sha: 7be100a3eb13a7f7617815a3e3f4c27be4caf4db44948c32f143ca8dfaa912da */
-#if BIND_UvLoopT_stop_flag_FIELD_WRITER
+/* MRUBY_BINDING: Loop::stop_flag_writer */
+/* sha: 8bb6499389dc3928c15cbbe92a396436420aaaded78f649e2d06284a3bac838a */
+#if BIND_Loop_stop_flag_FIELD_WRITER
 /* set_stop_flag
  *
  * Parameters:
  * - value: unsigned int
  */
 mrb_value
-mrb_UV_UvLoopT_set_stop_flag(mrb_state* mrb, mrb_value self) {
+mrb_UV_Loop_set_stop_flag(mrb_state* mrb, mrb_value self) {
   uv_loop_t * native_self = mruby_unbox_uv_loop_t(self);
   mrb_int native_stop_flag;
 
@@ -302,6 +261,7 @@ mrb_UV_UvLoopT_set_stop_flag(mrb_state* mrb, mrb_value self) {
 
   native_self->stop_flag = native_stop_flag;
   
+  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -310,8 +270,8 @@ mrb_UV_UvLoopT_set_stop_flag(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 
-void mrb_UV_UvLoopT_init(mrb_state* mrb) {
-/* MRUBY_BINDING: UvLoopT::class_init_header */
+void mrb_UV_Loop_init(mrb_state* mrb) {
+/* MRUBY_BINDING: Loop::class_init_header */
 /* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
   /* Don't double-init. */
   static int initialized = 0;
@@ -319,74 +279,72 @@ void mrb_UV_UvLoopT_init(mrb_state* mrb) {
   else initialized = 1;
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvLoopT::class_definition */
-/* sha: bf947861bb78e27a8bf73e6167350ea073b4b61361940871cc177ea3b29fee73 */
-  struct RClass* UvLoopT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvLoopT", mrb->object_class);
-  MRB_SET_INSTANCE_TT(UvLoopT_class, MRB_TT_DATA);
+/* MRUBY_BINDING: Loop::class_definition */
+/* sha: ae672e12d76f8403e99992fce64c82f57b15f7ae46c8761b8cda6ba715efdc4a */
+  struct RClass* Loop_class = mrb_define_class_under(mrb, UV_module(mrb), "Loop", mrb->object_class);
+  MRB_SET_INSTANCE_TT(Loop_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvLoopT::pre_class_method_definitions */
+/* MRUBY_BINDING: Loop::pre_class_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvLoopT::class_method_definitions */
-/* sha: 15559d63c55cd20808545edcaf44c238b0d12b22da058187baa95de54b72314d */
-#if BIND_UvLoopT_INITIALIZE
-  mrb_define_method(mrb, UvLoopT_class, "initialize", mrb_UV_UvLoopT_initialize, MRB_ARGS_NONE());
+/* MRUBY_BINDING: Loop::class_method_definitions */
+/* sha: b594926200680a3a209d3ad00e7fd3b32744a36fa7b522fc07a2ab2ed8347ef5 */
+#if BIND_Loop_INITIALIZE
+  mrb_define_method(mrb, Loop_class, "initialize", mrb_UV_Loop_initialize, MRB_ARGS_NONE());
 #endif
-  mrb_define_class_method(mrb, UvLoopT_class, "disown", mrb_UV_UvLoopT_disown, MRB_ARGS_ARG(1, 0));
-  mrb_define_class_method(mrb, UvLoopT_class, "belongs_to_ruby?", mrb_UV_UvLoopT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvLoopT::pre_attr_definitions */
+/* MRUBY_BINDING: Loop::pre_attr_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvLoopT::attr_definitions */
-/* sha: 94c27a54f6120b625d8ae4179fd4b1fcabf1cf18c3b4e51f08998d4e89970eb4 */
+/* MRUBY_BINDING: Loop::attr_definitions */
+/* sha: 2a59af1e55f610115598fe01e6e02612848feb61784aeec01c94c1a84e7d5a62 */
   /*
    * Fields
    */
-#if BIND_UvLoopT_data_FIELD_READER
-  mrb_define_method(mrb, UvLoopT_class, "data", mrb_UV_UvLoopT_get_data, MRB_ARGS_ARG(0, 0));
+#if BIND_Loop_data_FIELD_READER
+  mrb_define_method(mrb, Loop_class, "data", mrb_UV_Loop_get_data, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvLoopT_data_FIELD_WRITER
-  mrb_define_method(mrb, UvLoopT_class, "data=", mrb_UV_UvLoopT_set_data, MRB_ARGS_ARG(1, 0));
+#if BIND_Loop_data_FIELD_WRITER
+  mrb_define_method(mrb, Loop_class, "data=", mrb_UV_Loop_set_data, MRB_ARGS_ARG(1, 0));
 #endif
-#if BIND_UvLoopT_active_handles_FIELD_READER
-  mrb_define_method(mrb, UvLoopT_class, "active_handles", mrb_UV_UvLoopT_get_active_handles, MRB_ARGS_ARG(0, 0));
+#if BIND_Loop_active_handles_FIELD_READER
+  mrb_define_method(mrb, Loop_class, "active_handles", mrb_UV_Loop_get_active_handles, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvLoopT_active_handles_FIELD_WRITER
-  mrb_define_method(mrb, UvLoopT_class, "active_handles=", mrb_UV_UvLoopT_set_active_handles, MRB_ARGS_ARG(1, 0));
+#if BIND_Loop_active_handles_FIELD_WRITER
+  mrb_define_method(mrb, Loop_class, "active_handles=", mrb_UV_Loop_set_active_handles, MRB_ARGS_ARG(1, 0));
 #endif
-#if BIND_UvLoopT_handle_queue_FIELD_READER
-  mrb_define_method(mrb, UvLoopT_class, "handle_queue", mrb_UV_UvLoopT_get_handle_queue, MRB_ARGS_ARG(0, 0));
+#if BIND_Loop_handle_queue_FIELD_READER
+  mrb_define_method(mrb, Loop_class, "handle_queue", mrb_UV_Loop_get_handle_queue, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvLoopT_handle_queue_FIELD_WRITER
-  mrb_define_method(mrb, UvLoopT_class, "handle_queue=", mrb_UV_UvLoopT_set_handle_queue, MRB_ARGS_ARG(1, 0));
+#if BIND_Loop_handle_queue_FIELD_WRITER
+  mrb_define_method(mrb, Loop_class, "handle_queue=", mrb_UV_Loop_set_handle_queue, MRB_ARGS_ARG(1, 0));
 #endif
-#if BIND_UvLoopT_active_reqs_FIELD_READER
-  mrb_define_method(mrb, UvLoopT_class, "active_reqs", mrb_UV_UvLoopT_get_active_reqs, MRB_ARGS_ARG(0, 0));
+#if BIND_Loop_active_reqs_FIELD_READER
+  mrb_define_method(mrb, Loop_class, "active_reqs", mrb_UV_Loop_get_active_reqs, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvLoopT_active_reqs_FIELD_WRITER
-  mrb_define_method(mrb, UvLoopT_class, "active_reqs=", mrb_UV_UvLoopT_set_active_reqs, MRB_ARGS_ARG(1, 0));
+#if BIND_Loop_active_reqs_FIELD_WRITER
+  mrb_define_method(mrb, Loop_class, "active_reqs=", mrb_UV_Loop_set_active_reqs, MRB_ARGS_ARG(1, 0));
 #endif
-#if BIND_UvLoopT_stop_flag_FIELD_READER
-  mrb_define_method(mrb, UvLoopT_class, "stop_flag", mrb_UV_UvLoopT_get_stop_flag, MRB_ARGS_ARG(0, 0));
+#if BIND_Loop_stop_flag_FIELD_READER
+  mrb_define_method(mrb, Loop_class, "stop_flag", mrb_UV_Loop_get_stop_flag, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvLoopT_stop_flag_FIELD_WRITER
-  mrb_define_method(mrb, UvLoopT_class, "stop_flag=", mrb_UV_UvLoopT_set_stop_flag, MRB_ARGS_ARG(1, 0));
+#if BIND_Loop_stop_flag_FIELD_WRITER
+  mrb_define_method(mrb, Loop_class, "stop_flag=", mrb_UV_Loop_set_stop_flag, MRB_ARGS_ARG(1, 0));
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvLoopT::pre_instance_method_definitions */
+/* MRUBY_BINDING: Loop::pre_instance_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvLoopT::instance_method_definitions */
+/* MRUBY_BINDING: Loop::instance_method_definitions */
 /* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
   /*
    * Member Functions
@@ -394,7 +352,7 @@ void mrb_UV_UvLoopT_init(mrb_state* mrb) {
   /* None */
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvLoopT::class_init_footer */
+/* MRUBY_BINDING: Loop::class_init_footer */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

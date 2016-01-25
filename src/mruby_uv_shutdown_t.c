@@ -5,80 +5,39 @@
 
 #include "mruby_UV.h"
 
-#if BIND_UvShutdownT_TYPE
+#if BIND_Shutdown_TYPE
 
 /* MRUBY_BINDING: header */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/*
- * Class Methods
- */
-
-/* MRUBY_BINDING: UvShutdownT::initialize */
-/* sha: 6d2300ee1e1fd45fa7e886105935120b9bcdc4a9fe4455401831771a8801dd4f */
-#if BIND_UvShutdownT_INITIALIZE
+/* MRUBY_BINDING: Shutdown::initialize */
+/* sha: e780282fb35f7ec2721f09adfafea80f1f15903e2df5aea73ab2f97e815b4479 */
+#if BIND_Shutdown_INITIALIZE
 mrb_value
-mrb_UV_UvShutdownT_initialize(mrb_state* mrb, mrb_value self) {
-  uv_shutdown_t* native_object = (uv_shutdown_t*)new_mruby_uv_req(mrb, self, sizeof(uv_shutdown_t));
+mrb_UV_Shutdown_initialize(mrb_state* mrb, mrb_value self) {
+/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
+  uv_shutdown_t* native_object = (uv_shutdown_t*)calloc(1, sizeof(uv_shutdown_t));
   mruby_gift_uv_shutdown_t_data_ptr(self, native_object);
   return self;
 }
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvShutdownT::disown */
-/* sha: 0e3e92f11747c26f86f71c45c5c794500c65717e375eb83e5d6921ec4e85a220 */
-mrb_value
-mrb_UV_UvShutdownT_disown(mrb_state* mrb, mrb_value self) {
-  mrb_value ruby_object;
-  mrb_get_args(mrb, "o", &ruby_object);
-
-  if (!mrb_obj_is_kind_of(mrb, ruby_object, mrb_class_ptr(self))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UV::UvShutdownT.disown only accepts objects of type UV::UvShutdownT");
-    return mrb_nil_value();
-  }
-
-  ((mruby_to_native_ref*)(DATA_PTR(ruby_object)))->belongs_to_ruby = FALSE;
-
-  return mrb_nil_value();
-}
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UvShutdownT::belongs_to_ruby */
-/* sha: e5f2a86445a8502c12ab300943416375804d8f4562ef7a5a97609f7fca3f29a9 */
-mrb_value
-mrb_UV_UvShutdownT_belongs_to_ruby(mrb_state* mrb, mrb_value self) {
-  mrb_value ruby_object;
-  mrb_get_args(mrb, "o", &ruby_object);
-
-  if (!mrb_obj_is_kind_of(mrb, ruby_object, mrb_class_ptr(self))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UV::UvShutdownT.belongs_to_ruby only accepts objects of type UV::UvShutdownT");
-    return mrb_nil_value();
-  }
-
-  if ( ((mruby_to_native_ref*)(DATA_PTR(ruby_object)))->belongs_to_ruby ) {
-    return mrb_true_value();
-  } else {
-    return mrb_false_value();
-  }
-}
-/* MRUBY_BINDING_END */
-
 /*
  * Fields
  */
 
-/* MRUBY_BINDING: UvShutdownT::handle_reader */
-/* sha: 47b344e2ff265eb999d0ee168c90fd20bd6d339c7ede9f5deb6a4cf8265485bd */
-#if BIND_UvShutdownT_handle_FIELD_READER
+/* MRUBY_BINDING: Shutdown::handle_reader */
+/* sha: 3fc0f04b8720413d0de30a8b852b3d59c5a4f18ab80c44a898ecfd4d7e77a1ff */
+#if BIND_Shutdown_handle_FIELD_READER
 /* get_handle
  *
  * Return Type: uv_stream_t *
  */
 mrb_value
-mrb_UV_UvShutdownT_get_handle(mrb_state* mrb, mrb_value self) {
+mrb_UV_Shutdown_get_handle(mrb_state* mrb, mrb_value self) {
   uv_shutdown_t * native_self = mruby_unbox_uv_shutdown_t(self);
 
   uv_stream_t * native_handle = native_self->handle;
@@ -90,24 +49,24 @@ mrb_UV_UvShutdownT_get_handle(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvShutdownT::handle_writer */
-/* sha: 9b93c25b93aa2203b1dd436422c95a1d99bde326f46d1162a9d4233d4b175a09 */
-#if BIND_UvShutdownT_handle_FIELD_WRITER
+/* MRUBY_BINDING: Shutdown::handle_writer */
+/* sha: 04fb1e92d48a848187a01b5f416d2a2b937a0e4f144983c8ebd44d9d5990e6cf */
+#if BIND_Shutdown_handle_FIELD_WRITER
 /* set_handle
  *
  * Parameters:
  * - value: uv_stream_t *
  */
 mrb_value
-mrb_UV_UvShutdownT_set_handle(mrb_state* mrb, mrb_value self) {
+mrb_UV_Shutdown_set_handle(mrb_state* mrb, mrb_value self) {
   uv_shutdown_t * native_self = mruby_unbox_uv_shutdown_t(self);
   mrb_value handle;
 
   mrb_get_args(mrb, "o", &handle);
 
   /* type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, UvStreamT_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, Stream_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Stream expected");
     return mrb_nil_value();
   }
 
@@ -115,6 +74,7 @@ mrb_UV_UvShutdownT_set_handle(mrb_state* mrb, mrb_value self) {
 
   native_self->handle = native_handle;
   
+  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -122,15 +82,15 @@ mrb_UV_UvShutdownT_set_handle(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvShutdownT::cb_reader */
-/* sha: 9052290d7ee369550939a6bba20e7d5f80c7109d99b2202066f1cd2f3fea5f0d */
-#if BIND_UvShutdownT_cb_FIELD_READER
+/* MRUBY_BINDING: Shutdown::cb_reader */
+/* sha: 2b913ff07d56fe2e54615cfbfb10a276b7da60f674bdad11e2f053cf5907776b */
+#if BIND_Shutdown_cb_FIELD_READER
 /* get_cb
  *
  * Return Type: uv_shutdown_cb
  */
 mrb_value
-mrb_UV_UvShutdownT_get_cb(mrb_state* mrb, mrb_value self) {
+mrb_UV_Shutdown_get_cb(mrb_state* mrb, mrb_value self) {
   uv_shutdown_t * native_self = mruby_unbox_uv_shutdown_t(self);
 
   uv_shutdown_cb native_cb = native_self->cb;
@@ -142,16 +102,16 @@ mrb_UV_UvShutdownT_get_cb(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvShutdownT::cb_writer */
-/* sha: d88e20e65bc48a19e994352102de6a731b303471f3f93a75841b1e3e2c22326f */
-#if BIND_UvShutdownT_cb_FIELD_WRITER
+/* MRUBY_BINDING: Shutdown::cb_writer */
+/* sha: 873f62c2b531cf29d11ebaa045d434023e420d5d64cb669534bafdab08bff643 */
+#if BIND_Shutdown_cb_FIELD_WRITER
 /* set_cb
  *
  * Parameters:
  * - value: uv_shutdown_cb
  */
 mrb_value
-mrb_UV_UvShutdownT_set_cb(mrb_state* mrb, mrb_value self) {
+mrb_UV_Shutdown_set_cb(mrb_state* mrb, mrb_value self) {
   uv_shutdown_t * native_self = mruby_unbox_uv_shutdown_t(self);
   mrb_value cb;
 
@@ -164,6 +124,7 @@ mrb_UV_UvShutdownT_set_cb(mrb_state* mrb, mrb_value self) {
 
   native_self->cb = native_cb;
   
+  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -172,8 +133,8 @@ mrb_UV_UvShutdownT_set_cb(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 
-void mrb_UV_UvShutdownT_init(mrb_state* mrb) {
-/* MRUBY_BINDING: UvShutdownT::class_init_header */
+void mrb_UV_Shutdown_init(mrb_state* mrb) {
+/* MRUBY_BINDING: Shutdown::class_init_header */
 /* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
   /* Don't double-init. */
   static int initialized = 0;
@@ -181,56 +142,54 @@ void mrb_UV_UvShutdownT_init(mrb_state* mrb) {
   else initialized = 1;
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvShutdownT::class_definition */
-/* sha: d24d1193711577e6c0c4b1457722cd55888620beb92eb0f24885b0e427cd35c3 */
-  struct RClass* UvShutdownT_class = mrb_define_class_under(mrb, UV_module(mrb), "UvShutdownT", UvReqT_class(mrb));
-  MRB_SET_INSTANCE_TT(UvShutdownT_class, MRB_TT_DATA);
+/* MRUBY_BINDING: Shutdown::class_definition */
+/* sha: 10bfc22684bcada95dd13ced581d208208934658d87cea06ef6c407f3401ae1c */
+  struct RClass* Shutdown_class = mrb_define_class_under(mrb, UV_module(mrb), "Shutdown", mrb->object_class);
+  MRB_SET_INSTANCE_TT(Shutdown_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvShutdownT::pre_class_method_definitions */
+/* MRUBY_BINDING: Shutdown::pre_class_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvShutdownT::class_method_definitions */
-/* sha: 0b04618897bfd00ff585719e33d86093befe333aedef409f94cd206b4722515e */
-#if BIND_UvShutdownT_INITIALIZE
-  mrb_define_method(mrb, UvShutdownT_class, "initialize", mrb_UV_UvShutdownT_initialize, MRB_ARGS_NONE());
+/* MRUBY_BINDING: Shutdown::class_method_definitions */
+/* sha: c901dd7703a940ce683cdea45bcd0f12b3d6573ce2aa8633452c3a3e851bed92 */
+#if BIND_Shutdown_INITIALIZE
+  mrb_define_method(mrb, Shutdown_class, "initialize", mrb_UV_Shutdown_initialize, MRB_ARGS_NONE());
 #endif
-  mrb_define_class_method(mrb, UvShutdownT_class, "disown", mrb_UV_UvShutdownT_disown, MRB_ARGS_ARG(1, 0));
-  mrb_define_class_method(mrb, UvShutdownT_class, "belongs_to_ruby?", mrb_UV_UvShutdownT_belongs_to_ruby, MRB_ARGS_ARG(1, 0));
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvShutdownT::pre_attr_definitions */
+/* MRUBY_BINDING: Shutdown::pre_attr_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvShutdownT::attr_definitions */
-/* sha: 57a0265a3dfd4a32f0618b33ac129c872153dd78609308b9c0acecfb956ef04f */
+/* MRUBY_BINDING: Shutdown::attr_definitions */
+/* sha: 2fcb46c24a6e17f117a6c23da37009b37c0d952739ec5c372205c821d480a8e1 */
   /*
    * Fields
    */
-#if BIND_UvShutdownT_handle_FIELD_READER
-  mrb_define_method(mrb, UvShutdownT_class, "handle", mrb_UV_UvShutdownT_get_handle, MRB_ARGS_ARG(0, 0));
+#if BIND_Shutdown_handle_FIELD_READER
+  mrb_define_method(mrb, Shutdown_class, "handle", mrb_UV_Shutdown_get_handle, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvShutdownT_handle_FIELD_WRITER
-  mrb_define_method(mrb, UvShutdownT_class, "handle=", mrb_UV_UvShutdownT_set_handle, MRB_ARGS_ARG(1, 0));
+#if BIND_Shutdown_handle_FIELD_WRITER
+  mrb_define_method(mrb, Shutdown_class, "handle=", mrb_UV_Shutdown_set_handle, MRB_ARGS_ARG(1, 0));
 #endif
-#if BIND_UvShutdownT_cb_FIELD_READER
-  mrb_define_method(mrb, UvShutdownT_class, "cb", mrb_UV_UvShutdownT_get_cb, MRB_ARGS_ARG(0, 0));
+#if BIND_Shutdown_cb_FIELD_READER
+  mrb_define_method(mrb, Shutdown_class, "cb", mrb_UV_Shutdown_get_cb, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_UvShutdownT_cb_FIELD_WRITER
-  mrb_define_method(mrb, UvShutdownT_class, "cb=", mrb_UV_UvShutdownT_set_cb, MRB_ARGS_ARG(1, 0));
+#if BIND_Shutdown_cb_FIELD_WRITER
+  mrb_define_method(mrb, Shutdown_class, "cb=", mrb_UV_Shutdown_set_cb, MRB_ARGS_ARG(1, 0));
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvShutdownT::pre_instance_method_definitions */
+/* MRUBY_BINDING: Shutdown::pre_instance_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvShutdownT::instance_method_definitions */
+/* MRUBY_BINDING: Shutdown::instance_method_definitions */
 /* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
   /*
    * Member Functions
@@ -238,7 +197,7 @@ void mrb_UV_UvShutdownT_init(mrb_state* mrb) {
   /* None */
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UvShutdownT::class_init_footer */
+/* MRUBY_BINDING: Shutdown::class_init_footer */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
