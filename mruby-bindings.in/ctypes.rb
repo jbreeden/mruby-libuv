@@ -31,7 +31,6 @@ CTypes.translate_enum_names do |enum|
 end
 
 CTypes.translate_type_names do |type|
-  puts "Translating #{type}"
   type = MRubyBindings.type_name_to_rb_class(type)
   
   # Order is important
@@ -44,7 +43,6 @@ CTypes.translate_type_names do |type|
   type.sub!(/^Fs/, 'FS')
   type.sub!(/^Tcp/, 'TCP')
   type.sub!(/^Udp/, 'UDP')
-  puts "Translated #{type}"
   type
 end
 
