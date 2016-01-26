@@ -143,7 +143,7 @@ void mrb_UV_UDPSend_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: UDPSend::class_definition */
 /* sha: ed73534e5079d22778c37602535848b5986b1f0e37068345db2b4a8ca4228d95 */
-  struct RClass* UDPSend_class = mrb_define_class_under(mrb, UV_module(mrb), "UDPSend", mrb->object_class);
+  struct RClass* UDPSend_class = mrb_define_class_under(mrb, UV_module(mrb), "UDPSend", Req_class(mrb));
   MRB_SET_INSTANCE_TT(UDPSend_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

@@ -36,7 +36,7 @@ void mrb_UV_Check_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: Check::class_definition */
 /* sha: c33c005cabde5faa7690cca35617cd5ee15c29473d31fc7f40ecf2bbd17a3bed */
-  struct RClass* Check_class = mrb_define_class_under(mrb, UV_module(mrb), "Check", mrb->object_class);
+  struct RClass* Check_class = mrb_define_class_under(mrb, UV_module(mrb), "Check", Handle_class(mrb));
   MRB_SET_INSTANCE_TT(Check_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

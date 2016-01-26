@@ -37,7 +37,7 @@ void mrb_UV_Stream_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: Stream::class_definition */
 /* sha: 67cfc37ffa86c11f27e9581c0938f2f54767319600b2637cea71fa9f590ed7b4 */
-  struct RClass* Stream_class = mrb_define_class_under(mrb, UV_module(mrb), "Stream", mrb->object_class);
+  struct RClass* Stream_class = mrb_define_class_under(mrb, UV_module(mrb), "Stream", Handle_class(mrb));
   MRB_SET_INSTANCE_TT(Stream_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

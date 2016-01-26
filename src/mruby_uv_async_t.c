@@ -36,7 +36,7 @@ void mrb_UV_Async_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: Async::class_definition */
 /* sha: 71c3dd9ea1a53c4e85c875d55975aebbca1a145c6d15945c55a5fac29f4796b6 */
-  struct RClass* Async_class = mrb_define_class_under(mrb, UV_module(mrb), "Async", mrb->object_class);
+  struct RClass* Async_class = mrb_define_class_under(mrb, UV_module(mrb), "Async", Handle_class(mrb));
   MRB_SET_INSTANCE_TT(Async_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

@@ -36,7 +36,7 @@ void mrb_UV_Prepare_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: Prepare::class_definition */
 /* sha: 1b7eedb86648e14b043dc3a2454e06ef6cf9f50261fc3d7e82ba45f7efc2e5ab */
-  struct RClass* Prepare_class = mrb_define_class_under(mrb, UV_module(mrb), "Prepare", mrb->object_class);
+  struct RClass* Prepare_class = mrb_define_class_under(mrb, UV_module(mrb), "Prepare", Handle_class(mrb));
   MRB_SET_INSTANCE_TT(Prepare_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

@@ -85,7 +85,7 @@ void mrb_UV_Pipe_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: Pipe::class_definition */
 /* sha: d234ca2959fc3ce7bb7edaf36ce4d14103207e8211ffe42ce0bdb1dfeaa82cf7 */
-  struct RClass* Pipe_class = mrb_define_class_under(mrb, UV_module(mrb), "Pipe", mrb->object_class);
+  struct RClass* Pipe_class = mrb_define_class_under(mrb, UV_module(mrb), "Pipe", Handle_class(mrb));
   MRB_SET_INSTANCE_TT(Pipe_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

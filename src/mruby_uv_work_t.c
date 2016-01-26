@@ -193,7 +193,7 @@ void mrb_UV_Work_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: Work::class_definition */
 /* sha: 347d8223289cc6b321fa66bab4dc54a3c30278d0098935769f139d3b19f2959c */
-  struct RClass* Work_class = mrb_define_class_under(mrb, UV_module(mrb), "Work", mrb->object_class);
+  struct RClass* Work_class = mrb_define_class_under(mrb, UV_module(mrb), "Work", Req_class(mrb));
   MRB_SET_INSTANCE_TT(Work_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

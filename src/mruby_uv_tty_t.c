@@ -36,7 +36,7 @@ void mrb_UV_TTY_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: TTY::class_definition */
 /* sha: e179da3abd4f03f12eb8b7d868d587bb3ddf2485c29e4e08a635241323afd6a0 */
-  struct RClass* TTY_class = mrb_define_class_under(mrb, UV_module(mrb), "TTY", mrb->object_class);
+  struct RClass* TTY_class = mrb_define_class_under(mrb, UV_module(mrb), "TTY", Handle_class(mrb));
   MRB_SET_INSTANCE_TT(TTY_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

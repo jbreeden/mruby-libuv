@@ -90,7 +90,7 @@ void mrb_UV_Poll_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: Poll::class_definition */
 /* sha: df73b39c818e70593f9ed0d4fe3b5b7c999ad65b09f8e1b84c925db418e45f57 */
-  struct RClass* Poll_class = mrb_define_class_under(mrb, UV_module(mrb), "Poll", mrb->object_class);
+  struct RClass* Poll_class = mrb_define_class_under(mrb, UV_module(mrb), "Poll", Handle_class(mrb));
   MRB_SET_INSTANCE_TT(Poll_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

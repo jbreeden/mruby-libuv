@@ -93,7 +93,7 @@ void mrb_UV_Getaddrinfo_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: Getaddrinfo::class_definition */
 /* sha: c5d46b4493545880926f3e30a75230232e34575ec563efb2f1537717b7592b0b */
-  struct RClass* Getaddrinfo_class = mrb_define_class_under(mrb, UV_module(mrb), "Getaddrinfo", mrb->object_class);
+  struct RClass* Getaddrinfo_class = mrb_define_class_under(mrb, UV_module(mrb), "Getaddrinfo", Req_class(mrb));
   MRB_SET_INSTANCE_TT(Getaddrinfo_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

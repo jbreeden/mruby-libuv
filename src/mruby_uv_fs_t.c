@@ -389,7 +389,7 @@ void mrb_UV_FS_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: FS::class_definition */
 /* sha: 8c835f5a2a789b302d4c957f56eee1cdaf901f795ae3b66fd6e5a2f7256f6ee1 */
-  struct RClass* FS_class = mrb_define_class_under(mrb, UV_module(mrb), "FS", mrb->object_class);
+  struct RClass* FS_class = mrb_define_class_under(mrb, UV_module(mrb), "FS", Req_class(mrb));
   MRB_SET_INSTANCE_TT(FS_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

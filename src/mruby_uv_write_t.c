@@ -196,7 +196,7 @@ void mrb_UV_Write_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: Write::class_definition */
 /* sha: 575e0b853b798f7d62c8012043d24871892baa81ec26ed7cf21df6a015a870f5 */
-  struct RClass* Write_class = mrb_define_class_under(mrb, UV_module(mrb), "Write", mrb->object_class);
+  struct RClass* Write_class = mrb_define_class_under(mrb, UV_module(mrb), "Write", Req_class(mrb));
   MRB_SET_INSTANCE_TT(Write_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

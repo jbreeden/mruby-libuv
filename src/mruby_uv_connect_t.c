@@ -143,7 +143,7 @@ void mrb_UV_Connect_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: Connect::class_definition */
 /* sha: 3b467caab311824b096c7e80e39b14558c0af1240d9360d84c002dce1a1e9bdf */
-  struct RClass* Connect_class = mrb_define_class_under(mrb, UV_module(mrb), "Connect", mrb->object_class);
+  struct RClass* Connect_class = mrb_define_class_under(mrb, UV_module(mrb), "Connect", Req_class(mrb));
   MRB_SET_INSTANCE_TT(Connect_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

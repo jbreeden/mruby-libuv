@@ -36,7 +36,7 @@ void mrb_UV_Idle_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: Idle::class_definition */
 /* sha: 44d57f67ee6fe20bc0eff5502340be181ad1294e47583a8344cd0030addfb309 */
-  struct RClass* Idle_class = mrb_define_class_under(mrb, UV_module(mrb), "Idle", mrb->object_class);
+  struct RClass* Idle_class = mrb_define_class_under(mrb, UV_module(mrb), "Idle", Handle_class(mrb));
   MRB_SET_INSTANCE_TT(Idle_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

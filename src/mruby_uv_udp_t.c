@@ -130,7 +130,7 @@ void mrb_UV_UDP_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: UDP::class_definition */
 /* sha: 586bf7a4aa7c02b8ff593ad8cd91c4ae9f04ed6c05fa678097b520e8218342bb */
-  struct RClass* UDP_class = mrb_define_class_under(mrb, UV_module(mrb), "UDP", mrb->object_class);
+  struct RClass* UDP_class = mrb_define_class_under(mrb, UV_module(mrb), "UDP", Handle_class(mrb));
   MRB_SET_INSTANCE_TT(UDP_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

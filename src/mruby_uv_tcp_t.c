@@ -36,7 +36,7 @@ void mrb_UV_TCP_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: TCP::class_definition */
 /* sha: 30c6bf88d0e98e7c3263260bc7903fbf170236d2c590f0878cd2d33e1678eea9 */
-  struct RClass* TCP_class = mrb_define_class_under(mrb, UV_module(mrb), "TCP", mrb->object_class);
+  struct RClass* TCP_class = mrb_define_class_under(mrb, UV_module(mrb), "TCP", Handle_class(mrb));
   MRB_SET_INSTANCE_TT(TCP_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

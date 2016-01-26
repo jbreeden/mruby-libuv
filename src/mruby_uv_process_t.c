@@ -135,7 +135,7 @@ void mrb_UV_Process_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: Process::class_definition */
 /* sha: 5325c686001713875181e51d9feb83e0dbc15d7ac0bd3799a208ae8279616403 */
-  struct RClass* Process_class = mrb_define_class_under(mrb, UV_module(mrb), "Process", mrb->object_class);
+  struct RClass* Process_class = mrb_define_class_under(mrb, UV_module(mrb), "Process", Handle_class(mrb));
   MRB_SET_INSTANCE_TT(Process_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

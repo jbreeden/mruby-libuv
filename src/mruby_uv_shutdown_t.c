@@ -143,7 +143,7 @@ void mrb_UV_Shutdown_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: Shutdown::class_definition */
 /* sha: 10bfc22684bcada95dd13ced581d208208934658d87cea06ef6c407f3401ae1c */
-  struct RClass* Shutdown_class = mrb_define_class_under(mrb, UV_module(mrb), "Shutdown", mrb->object_class);
+  struct RClass* Shutdown_class = mrb_define_class_under(mrb, UV_module(mrb), "Shutdown", Req_class(mrb));
   MRB_SET_INSTANCE_TT(Shutdown_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

@@ -90,7 +90,7 @@ void mrb_UV_FSEvent_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: FSEvent::class_definition */
 /* sha: 85c2e74bb919f593f88df02f4a68164e3c40649ac2d14d1811c97d66751224a8 */
-  struct RClass* FSEvent_class = mrb_define_class_under(mrb, UV_module(mrb), "FSEvent", mrb->object_class);
+  struct RClass* FSEvent_class = mrb_define_class_under(mrb, UV_module(mrb), "FSEvent", Handle_class(mrb));
   MRB_SET_INSTANCE_TT(FSEvent_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

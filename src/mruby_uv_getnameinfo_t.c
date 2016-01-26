@@ -93,7 +93,7 @@ void mrb_UV_Getnameinfo_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: Getnameinfo::class_definition */
 /* sha: 54a5a0391d03c40e3e2b681c339aae2d1210d110d9157481c4255f6cfe9be548 */
-  struct RClass* Getnameinfo_class = mrb_define_class_under(mrb, UV_module(mrb), "Getnameinfo", mrb->object_class);
+  struct RClass* Getnameinfo_class = mrb_define_class_under(mrb, UV_module(mrb), "Getnameinfo", Req_class(mrb));
   MRB_SET_INSTANCE_TT(Getnameinfo_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

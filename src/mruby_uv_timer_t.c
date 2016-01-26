@@ -36,7 +36,7 @@ void mrb_UV_Timer_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: Timer::class_definition */
 /* sha: c5cf11cfae62a5d9cb9353c801fcc90447152c46275c8924c128ddf5b7f87956 */
-  struct RClass* Timer_class = mrb_define_class_under(mrb, UV_module(mrb), "Timer", mrb->object_class);
+  struct RClass* Timer_class = mrb_define_class_under(mrb, UV_module(mrb), "Timer", Handle_class(mrb));
   MRB_SET_INSTANCE_TT(Timer_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

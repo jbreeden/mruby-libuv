@@ -90,7 +90,7 @@ void mrb_UV_FSPoll_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: FSPoll::class_definition */
 /* sha: 62af106d7e5993cdb5aa0e4d09b00faa224110ba22f64f9a783df38c793297c2 */
-  struct RClass* FSPoll_class = mrb_define_class_under(mrb, UV_module(mrb), "FSPoll", mrb->object_class);
+  struct RClass* FSPoll_class = mrb_define_class_under(mrb, UV_module(mrb), "FSPoll", Handle_class(mrb));
   MRB_SET_INSTANCE_TT(FSPoll_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 

@@ -135,7 +135,7 @@ void mrb_UV_Signal_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: Signal::class_definition */
 /* sha: 67fff801cff48f6159ed759e397248757143b9fedd5216ae6a527fcd2ec02c1c */
-  struct RClass* Signal_class = mrb_define_class_under(mrb, UV_module(mrb), "Signal", mrb->object_class);
+  struct RClass* Signal_class = mrb_define_class_under(mrb, UV_module(mrb), "Signal", Handle_class(mrb));
   MRB_SET_INSTANCE_TT(Signal_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 
