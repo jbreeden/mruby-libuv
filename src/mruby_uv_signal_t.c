@@ -17,8 +17,7 @@
 #if BIND_Signal_INITIALIZE
 mrb_value
 mrb_UV_Signal_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
-  uv_signal_t* native_object = (uv_signal_t*)calloc(1, sizeof(uv_signal_t));
+  uv_signal_t* native_object = (uv_signal_t*)new_mruby_uv_handle(mrb, self, sizeof(uv_signal_t));
   mruby_gift_uv_signal_t_data_ptr(self, native_object);
   return self;
 }

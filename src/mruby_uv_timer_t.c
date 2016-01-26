@@ -17,8 +17,7 @@
 #if BIND_Timer_INITIALIZE
 mrb_value
 mrb_UV_Timer_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
-  uv_timer_t* native_object = (uv_timer_t*)calloc(1, sizeof(uv_timer_t));
+  uv_timer_t* native_object = (uv_timer_t*)new_mruby_uv_handle(mrb, self, sizeof(uv_timer_t));
   mruby_gift_uv_timer_t_data_ptr(self, native_object);
   return self;
 }

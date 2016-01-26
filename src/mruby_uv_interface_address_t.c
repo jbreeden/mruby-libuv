@@ -17,7 +17,7 @@
 #if BIND_InterfaceAddress_INITIALIZE
 mrb_value
 mrb_UV_InterfaceAddress_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
+
   uv_interface_address_t* native_object = (uv_interface_address_t*)calloc(1, sizeof(uv_interface_address_t));
   mruby_gift_uv_interface_address_t_data_ptr(self, native_object);
   return self;

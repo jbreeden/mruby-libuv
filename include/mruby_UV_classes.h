@@ -2,7 +2,7 @@
 #define MRUBY_UV_CLASSES_HEADER
 
 #define BIND_Addrinfo_TYPE TRUE
-#define BIND_Addrinfo_INITIALIZE FALSE
+#define BIND_Addrinfo_INITIALIZE TRUE
 #define BIND_Addrinfo_ai_flags_FIELD_READER TRUE
 #define BIND_Addrinfo_ai_flags_FIELD_WRITER TRUE
 #define BIND_Addrinfo_ai_family_FIELD_READER TRUE
@@ -17,59 +17,59 @@
 #define BIND_Addrinfo_ai_canonname_FIELD_WRITER FALSE
 
 #define BIND_Async_TYPE TRUE
-#define BIND_Async_INITIALIZE FALSE
+#define BIND_Async_INITIALIZE TRUE
 
 #define BIND_Check_TYPE TRUE
-#define BIND_Check_INITIALIZE FALSE
+#define BIND_Check_INITIALIZE TRUE
 
 #define BIND_Connect_TYPE TRUE
-#define BIND_Connect_INITIALIZE FALSE
+#define BIND_Connect_INITIALIZE TRUE
 #define BIND_Connect_cb_FIELD_READER FALSE
 #define BIND_Connect_cb_FIELD_WRITER FALSE
 #define BIND_Connect_handle_FIELD_READER TRUE
 #define BIND_Connect_handle_FIELD_WRITER TRUE
 
-#define BIND_CpuInfo_TYPE TRUE
-#define BIND_CpuInfo_INITIALIZE FALSE
-#define BIND_CpuInfo_model_FIELD_READER FALSE
-#define BIND_CpuInfo_model_FIELD_WRITER FALSE
-#define BIND_CpuInfo_speed_FIELD_READER TRUE
-#define BIND_CpuInfo_speed_FIELD_WRITER TRUE
-#define BIND_CpuInfo_cpu_times_FIELD_READER FALSE
-#define BIND_CpuInfo_cpu_times_FIELD_WRITER TRUE
+#define BIND_CPUInfo_TYPE TRUE
+#define BIND_CPUInfo_INITIALIZE TRUE
+#define BIND_CPUInfo_model_FIELD_READER FALSE
+#define BIND_CPUInfo_model_FIELD_WRITER FALSE
+#define BIND_CPUInfo_speed_FIELD_READER TRUE
+#define BIND_CPUInfo_speed_FIELD_WRITER TRUE
+#define BIND_CPUInfo_cpu_times_FIELD_READER FALSE
+#define BIND_CPUInfo_cpu_times_FIELD_WRITER TRUE
 
-#define BIND_CpuTimesS_TYPE TRUE
-#define BIND_CpuTimesS_INITIALIZE FALSE
-#define BIND_CpuTimesS_user_FIELD_READER FALSE
-#define BIND_CpuTimesS_user_FIELD_WRITER FALSE
-#define BIND_CpuTimesS_nice_FIELD_READER FALSE
-#define BIND_CpuTimesS_nice_FIELD_WRITER FALSE
-#define BIND_CpuTimesS_sys_FIELD_READER FALSE
-#define BIND_CpuTimesS_sys_FIELD_WRITER FALSE
-#define BIND_CpuTimesS_idle_FIELD_READER FALSE
-#define BIND_CpuTimesS_idle_FIELD_WRITER FALSE
-#define BIND_CpuTimesS_irq_FIELD_READER FALSE
-#define BIND_CpuTimesS_irq_FIELD_WRITER FALSE
+#define BIND_CPUTimes_TYPE TRUE
+#define BIND_CPUTimes_INITIALIZE TRUE
+#define BIND_CPUTimes_user_FIELD_READER FALSE
+#define BIND_CPUTimes_user_FIELD_WRITER FALSE
+#define BIND_CPUTimes_nice_FIELD_READER FALSE
+#define BIND_CPUTimes_nice_FIELD_WRITER FALSE
+#define BIND_CPUTimes_sys_FIELD_READER FALSE
+#define BIND_CPUTimes_sys_FIELD_WRITER FALSE
+#define BIND_CPUTimes_idle_FIELD_READER FALSE
+#define BIND_CPUTimes_idle_FIELD_WRITER FALSE
+#define BIND_CPUTimes_irq_FIELD_READER FALSE
+#define BIND_CPUTimes_irq_FIELD_WRITER FALSE
 
 #define BIND_Dirent_TYPE TRUE
-#define BIND_Dirent_INITIALIZE FALSE
+#define BIND_Dirent_INITIALIZE TRUE
 #define BIND_Dirent_name_FIELD_READER TRUE
 #define BIND_Dirent_name_FIELD_WRITER TRUE
 #define BIND_Dirent_type_FIELD_READER TRUE
 #define BIND_Dirent_type_FIELD_WRITER TRUE
 
 #define BIND_FSEvent_TYPE TRUE
-#define BIND_FSEvent_INITIALIZE FALSE
+#define BIND_FSEvent_INITIALIZE TRUE
 #define BIND_FSEvent_path_FIELD_READER FALSE
 #define BIND_FSEvent_path_FIELD_WRITER FALSE
 
 #define BIND_FSPoll_TYPE TRUE
-#define BIND_FSPoll_INITIALIZE FALSE
+#define BIND_FSPoll_INITIALIZE TRUE
 #define BIND_FSPoll_poll_ctx_FIELD_READER FALSE
 #define BIND_FSPoll_poll_ctx_FIELD_WRITER FALSE
 
 #define BIND_FS_TYPE TRUE
-#define BIND_FS_INITIALIZE FALSE
+#define BIND_FS_INITIALIZE TRUE
 #define BIND_FS_fs_type_FIELD_READER TRUE
 #define BIND_FS_fs_type_FIELD_WRITER TRUE
 #define BIND_FS_loop_FIELD_READER TRUE
@@ -86,22 +86,22 @@
 #define BIND_FS_statbuf_FIELD_WRITER TRUE
 
 #define BIND_Getaddrinfo_TYPE TRUE
-#define BIND_Getaddrinfo_INITIALIZE FALSE
+#define BIND_Getaddrinfo_INITIALIZE TRUE
 #define BIND_Getaddrinfo_loop_FIELD_READER TRUE
 #define BIND_Getaddrinfo_loop_FIELD_WRITER TRUE
 
 #define BIND_Getnameinfo_TYPE TRUE
-#define BIND_Getnameinfo_INITIALIZE FALSE
+#define BIND_Getnameinfo_INITIALIZE TRUE
 #define BIND_Getnameinfo_loop_FIELD_READER TRUE
 #define BIND_Getnameinfo_loop_FIELD_WRITER TRUE
 
-#define BIND_UvHandleT_TYPE TRUE
+#define BIND_Handle_TYPE TRUE
 
 #define BIND_Idle_TYPE TRUE
-#define BIND_Idle_INITIALIZE FALSE
+#define BIND_Idle_INITIALIZE TRUE
 
 #define BIND_InterfaceAddress_TYPE TRUE
-#define BIND_InterfaceAddress_INITIALIZE FALSE
+#define BIND_InterfaceAddress_INITIALIZE TRUE
 #define BIND_InterfaceAddress_name_FIELD_READER FALSE
 #define BIND_InterfaceAddress_name_FIELD_WRITER FALSE
 #define BIND_InterfaceAddress_phys_addr_FIELD_READER FALSE
@@ -114,7 +114,7 @@
 #define BIND_InterfaceAddress_netmask_FIELD_WRITER FALSE
 
 #define BIND_Loop_TYPE TRUE
-#define BIND_Loop_INITIALIZE FALSE
+#define BIND_Loop_INITIALIZE TRUE
 #define BIND_Loop_data_FIELD_READER FALSE
 #define BIND_Loop_data_FIELD_WRITER FALSE
 #define BIND_Loop_active_handles_FIELD_READER TRUE
@@ -127,20 +127,20 @@
 #define BIND_Loop_stop_flag_FIELD_WRITER TRUE
 
 #define BIND_Pipe_TYPE TRUE
-#define BIND_Pipe_INITIALIZE FALSE
+#define BIND_Pipe_INITIALIZE TRUE
 #define BIND_Pipe_ipc_FIELD_READER TRUE
 #define BIND_Pipe_ipc_FIELD_WRITER TRUE
 
 #define BIND_Poll_TYPE TRUE
-#define BIND_Poll_INITIALIZE FALSE
+#define BIND_Poll_INITIALIZE TRUE
 #define BIND_Poll_poll_cb_FIELD_READER FALSE
 #define BIND_Poll_poll_cb_FIELD_WRITER FALSE
 
 #define BIND_Prepare_TYPE TRUE
-#define BIND_Prepare_INITIALIZE FALSE
+#define BIND_Prepare_INITIALIZE TRUE
 
 #define BIND_ProcessOptions_TYPE TRUE
-#define BIND_ProcessOptions_INITIALIZE FALSE
+#define BIND_ProcessOptions_INITIALIZE TRUE
 #define BIND_ProcessOptions_exit_cb_FIELD_READER FALSE
 #define BIND_ProcessOptions_exit_cb_FIELD_WRITER FALSE
 #define BIND_ProcessOptions_file_FIELD_READER TRUE
@@ -163,16 +163,16 @@
 #define BIND_ProcessOptions_gid_FIELD_WRITER FALSE
 
 #define BIND_Process_TYPE TRUE
-#define BIND_Process_INITIALIZE FALSE
+#define BIND_Process_INITIALIZE TRUE
 #define BIND_Process_exit_cb_FIELD_READER FALSE
 #define BIND_Process_exit_cb_FIELD_WRITER FALSE
 #define BIND_Process_pid_FIELD_READER TRUE
 #define BIND_Process_pid_FIELD_WRITER TRUE
 
-#define BIND_UvReqT_TYPE TRUE
+#define BIND_Req_TYPE TRUE
 
 #define BIND_RUsage_TYPE TRUE
-#define BIND_RUsage_INITIALIZE FALSE
+#define BIND_RUsage_INITIALIZE TRUE
 #define BIND_RUsage_ru_utime_FIELD_READER FALSE
 #define BIND_RUsage_ru_utime_FIELD_WRITER TRUE
 #define BIND_RUsage_ru_stime_FIELD_READER FALSE
@@ -207,86 +207,86 @@
 #define BIND_RUsage_ru_nivcsw_FIELD_WRITER FALSE
 
 #define BIND_Shutdown_TYPE TRUE
-#define BIND_Shutdown_INITIALIZE FALSE
+#define BIND_Shutdown_INITIALIZE TRUE
 #define BIND_Shutdown_handle_FIELD_READER TRUE
 #define BIND_Shutdown_handle_FIELD_WRITER TRUE
 #define BIND_Shutdown_cb_FIELD_READER FALSE
 #define BIND_Shutdown_cb_FIELD_WRITER FALSE
 
 #define BIND_Signal_TYPE TRUE
-#define BIND_Signal_INITIALIZE FALSE
+#define BIND_Signal_INITIALIZE TRUE
 #define BIND_Signal_signal_cb_FIELD_READER FALSE
 #define BIND_Signal_signal_cb_FIELD_WRITER FALSE
 #define BIND_Signal_signum_FIELD_READER TRUE
 #define BIND_Signal_signum_FIELD_WRITER TRUE
 
-#define BIND_UvStatT_TYPE TRUE
-#define BIND_UvStatT_st_dev_FIELD_READER TRUE
-#define BIND_UvStatT_st_mode_FIELD_READER TRUE
-#define BIND_UvStatT_st_nlink_FIELD_READER TRUE
-#define BIND_UvStatT_st_uid_FIELD_READER TRUE
-#define BIND_UvStatT_st_gid_FIELD_READER TRUE
-#define BIND_UvStatT_st_rdev_FIELD_READER TRUE
-#define BIND_UvStatT_st_ino_FIELD_READER TRUE
-#define BIND_UvStatT_st_size_FIELD_READER TRUE
-#define BIND_UvStatT_st_blksize_FIELD_READER TRUE
-#define BIND_UvStatT_st_blocks_FIELD_READER TRUE
-#define BIND_UvStatT_st_flags_FIELD_READER TRUE
-#define BIND_UvStatT_st_gen_FIELD_READER TRUE
-#define BIND_UvStatT_st_atim_FIELD_READER TRUE
-#define BIND_UvStatT_st_mtim_FIELD_READER TRUE
-#define BIND_UvStatT_st_ctim_FIELD_READER TRUE
-#define BIND_UvStatT_st_birthtim_FIELD_READER TRUE
+#define BIND_Stat_TYPE TRUE
+#define BIND_Stat_st_dev_FIELD_READER TRUE
+#define BIND_Stat_st_mode_FIELD_READER TRUE
+#define BIND_Stat_st_nlink_FIELD_READER TRUE
+#define BIND_Stat_st_uid_FIELD_READER TRUE
+#define BIND_Stat_st_gid_FIELD_READER TRUE
+#define BIND_Stat_st_rdev_FIELD_READER TRUE
+#define BIND_Stat_st_ino_FIELD_READER TRUE
+#define BIND_Stat_st_size_FIELD_READER TRUE
+#define BIND_Stat_st_blksize_FIELD_READER TRUE
+#define BIND_Stat_st_blocks_FIELD_READER TRUE
+#define BIND_Stat_st_flags_FIELD_READER TRUE
+#define BIND_Stat_st_gen_FIELD_READER TRUE
+#define BIND_Stat_st_atim_FIELD_READER TRUE
+#define BIND_Stat_st_mtim_FIELD_READER TRUE
+#define BIND_Stat_st_ctim_FIELD_READER TRUE
+#define BIND_Stat_st_birthtim_FIELD_READER TRUE
 
-#define BIND_StdioContainer_TYPE TRUE
-#define BIND_StdioContainer_INITIALIZE FALSE
-#define BIND_StdioContainer_flags_FIELD_READER TRUE
-#define BIND_StdioContainer_flags_FIELD_WRITER TRUE
-#define BIND_StdioContainer_data_FIELD_READER FALSE
-#define BIND_StdioContainer_data_FIELD_WRITER FALSE
+#define BIND_STDIOContainer_TYPE TRUE
+#define BIND_STDIOContainer_INITIALIZE TRUE
+#define BIND_STDIOContainer_flags_FIELD_READER TRUE
+#define BIND_STDIOContainer_flags_FIELD_WRITER TRUE
+#define BIND_STDIOContainer_data_FIELD_READER FALSE
+#define BIND_STDIOContainer_data_FIELD_WRITER FALSE
 
 #define BIND_Stream_TYPE TRUE
-#define BIND_Stream_INITIALIZE FALSE
+#define BIND_Stream_INITIALIZE TRUE
 
 #define BIND_TCP_TYPE TRUE
-#define BIND_TCP_INITIALIZE FALSE
+#define BIND_TCP_INITIALIZE TRUE
 
 #define BIND_Timer_TYPE TRUE
-#define BIND_Timer_INITIALIZE FALSE
+#define BIND_Timer_INITIALIZE TRUE
 
 #define BIND_Timespec_TYPE TRUE
-#define BIND_Timespec_INITIALIZE FALSE
+#define BIND_Timespec_INITIALIZE TRUE
 #define BIND_Timespec_tv_sec_FIELD_READER TRUE
 #define BIND_Timespec_tv_sec_FIELD_WRITER TRUE
 #define BIND_Timespec_tv_nsec_FIELD_READER TRUE
 #define BIND_Timespec_tv_nsec_FIELD_WRITER TRUE
 
 #define BIND_Timeval_TYPE TRUE
-#define BIND_Timeval_INITIALIZE FALSE
+#define BIND_Timeval_INITIALIZE TRUE
 #define BIND_Timeval_tv_sec_FIELD_READER TRUE
 #define BIND_Timeval_tv_sec_FIELD_WRITER TRUE
 #define BIND_Timeval_tv_usec_FIELD_READER TRUE
 #define BIND_Timeval_tv_usec_FIELD_WRITER TRUE
 
-#define BIND_Tty_TYPE TRUE
-#define BIND_Tty_INITIALIZE FALSE
+#define BIND_TTY_TYPE TRUE
+#define BIND_TTY_INITIALIZE TRUE
 
 #define BIND_UDPSend_TYPE TRUE
-#define BIND_UDPSend_INITIALIZE FALSE
+#define BIND_UDPSend_INITIALIZE TRUE
 #define BIND_UDPSend_handle_FIELD_READER TRUE
 #define BIND_UDPSend_handle_FIELD_WRITER TRUE
 #define BIND_UDPSend_cb_FIELD_READER FALSE
 #define BIND_UDPSend_cb_FIELD_WRITER FALSE
 
 #define BIND_UDP_TYPE TRUE
-#define BIND_UDP_INITIALIZE FALSE
+#define BIND_UDP_INITIALIZE TRUE
 #define BIND_UDP_send_queue_size_FIELD_READER TRUE
 #define BIND_UDP_send_queue_size_FIELD_WRITER TRUE
 #define BIND_UDP_send_queue_count_FIELD_READER TRUE
 #define BIND_UDP_send_queue_count_FIELD_WRITER TRUE
 
 #define BIND_Work_TYPE TRUE
-#define BIND_Work_INITIALIZE FALSE
+#define BIND_Work_INITIALIZE TRUE
 #define BIND_Work_loop_FIELD_READER TRUE
 #define BIND_Work_loop_FIELD_WRITER TRUE
 #define BIND_Work_work_cb_FIELD_READER FALSE
@@ -295,7 +295,7 @@
 #define BIND_Work_after_work_cb_FIELD_WRITER FALSE
 
 #define BIND_Write_TYPE TRUE
-#define BIND_Write_INITIALIZE FALSE
+#define BIND_Write_INITIALIZE TRUE
 #define BIND_Write_cb_FIELD_READER FALSE
 #define BIND_Write_cb_FIELD_WRITER FALSE
 #define BIND_Write_send_handle_FIELD_READER TRUE

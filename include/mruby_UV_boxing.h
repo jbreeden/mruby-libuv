@@ -121,9 +121,9 @@ mruby_unbox_uv_connect_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: CpuInfo::boxing_decls */
-/* sha: a4b38ff055ed56651e3937e1de0cc8d9b84cc86e5dd318cfa2d9b0572bd380c7 */
-#if BIND_CpuInfo_TYPE
+/* MRUBY_BINDING: CPUInfo::boxing_decls */
+/* sha: ab4ebf2b2358ecacc88db0b7804b193a407c77f0c7a4a94ae6e049c8f34ed75b */
+#if BIND_CPUInfo_TYPE
 mrb_value
 mruby_box_uv_cpu_info_t(mrb_state* mrb, uv_cpu_info_t *unboxed);
 
@@ -141,9 +141,9 @@ mruby_unbox_uv_cpu_info_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: CpuTimesS::boxing_decls */
-/* sha: b3f9dafe0383da3bafaeca010903b4d5502f8ac6dae5a8d4bcadd41fc7832a4e */
-#if BIND_CpuTimesS_TYPE
+/* MRUBY_BINDING: CPUTimes::boxing_decls */
+/* sha: 7273a1e642bc5a0ce94226ff2e44cdcc309d0d9ebe2f2e7355b6ded0cc95de72 */
+#if BIND_CPUTimes_TYPE
 mrb_value
 mruby_box_uv_cpu_times_s(mrb_state* mrb, struct uv_cpu_times_s *unboxed);
 
@@ -561,9 +561,9 @@ mruby_unbox_uv_stat_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: StdioContainer::boxing_decls */
-/* sha: f0bed249a5d19e4e9aac8e82635bd447b1a8c9290aaf516af47a48d62a40386d */
-#if BIND_StdioContainer_TYPE
+/* MRUBY_BINDING: STDIOContainer::boxing_decls */
+/* sha: c6d6882f0782c8f825dbfe924360814c688d1cc2dbf519ade65f8f665ee97da8 */
+#if BIND_STDIOContainer_TYPE
 mrb_value
 mruby_box_uv_stdio_container_t(mrb_state* mrb, uv_stdio_container_t *unboxed);
 
@@ -681,9 +681,9 @@ mruby_unbox_uv_timeval_t(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: Tty::boxing_decls */
-/* sha: 0197f3becd7a52c1e7677ecf1e1ffcb8b24436812b6e26b08f5cf90ed7abfba3 */
-#if BIND_Tty_TYPE
+/* MRUBY_BINDING: TTY::boxing_decls */
+/* sha: e2e8252cef353f35900e30910236d08e9060b9b6a3a63a00276eba50b90d316e */
+#if BIND_TTY_TYPE
 mrb_value
 mruby_box_uv_tty_t(mrb_state* mrb, uv_tty_t *unboxed);
 

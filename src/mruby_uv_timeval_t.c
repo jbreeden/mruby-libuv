@@ -17,7 +17,7 @@
 #if BIND_Timeval_INITIALIZE
 mrb_value
 mrb_UV_Timeval_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
+
   uv_timeval_t* native_object = (uv_timeval_t*)calloc(1, sizeof(uv_timeval_t));
   mruby_gift_uv_timeval_t_data_ptr(self, native_object);
   return self;

@@ -17,7 +17,7 @@
 #if BIND_Dirent_INITIALIZE
 mrb_value
 mrb_UV_Dirent_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
+
   uv_dirent_t* native_object = (uv_dirent_t*)calloc(1, sizeof(uv_dirent_t));
   mruby_gift_uv_dirent_t_data_ptr(self, native_object);
   return self;

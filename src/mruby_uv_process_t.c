@@ -17,8 +17,7 @@
 #if BIND_Process_INITIALIZE
 mrb_value
 mrb_UV_Process_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
-  uv_process_t* native_object = (uv_process_t*)calloc(1, sizeof(uv_process_t));
+  uv_process_t* native_object = (uv_process_t*)new_mruby_uv_handle(mrb, self, sizeof(uv_process_t));
   mruby_gift_uv_process_t_data_ptr(self, native_object);
   return self;
 }

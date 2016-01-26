@@ -17,8 +17,8 @@
 #if BIND_Loop_INITIALIZE
 mrb_value
 mrb_UV_Loop_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
   uv_loop_t* native_object = (uv_loop_t*)calloc(1, sizeof(uv_loop_t));
+  uv_loop_init(native_object);
   mruby_gift_uv_loop_t_data_ptr(self, native_object);
   return self;
 }

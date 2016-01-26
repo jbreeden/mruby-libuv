@@ -17,7 +17,7 @@
 #if BIND_ProcessOptions_INITIALIZE
 mrb_value
 mrb_UV_ProcessOptions_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
+
   uv_process_options_t* native_object = (uv_process_options_t*)calloc(1, sizeof(uv_process_options_t));
   mruby_gift_uv_process_options_t_data_ptr(self, native_object);
   return self;
@@ -380,7 +380,7 @@ mrb_UV_ProcessOptions_get_stdio(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: ProcessOptions::stdio_writer */
-/* sha: 2a4ffe3174b8995c2f356bd7b6ba6d42ccd4bfee6002336c7944f6785468a0d5 */
+/* sha: a51abf078898d29f9d70dde7c3c282bd42092d1a4676286579423c99a180172b */
 #if BIND_ProcessOptions_stdio_FIELD_WRITER
 /* set_stdio
  *
@@ -395,8 +395,8 @@ mrb_UV_ProcessOptions_set_stdio(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &stdio);
 
   /* type checking */
-  if (!mrb_obj_is_kind_of(mrb, stdio, StdioContainer_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "StdioContainer expected");
+  if (!mrb_obj_is_kind_of(mrb, stdio, STDIOContainer_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "STDIOContainer expected");
     return mrb_nil_value();
   }
 

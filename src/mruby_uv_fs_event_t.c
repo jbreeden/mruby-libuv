@@ -17,8 +17,7 @@
 #if BIND_FSEvent_INITIALIZE
 mrb_value
 mrb_UV_FSEvent_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
-  uv_fs_event_t* native_object = (uv_fs_event_t*)calloc(1, sizeof(uv_fs_event_t));
+  uv_fs_event_t* native_object = (uv_fs_event_t*)new_mruby_uv_handle(mrb, self, sizeof(uv_fs_event_t));
   mruby_gift_uv_fs_event_t_data_ptr(self, native_object);
   return self;
 }
@@ -97,7 +96,10 @@ void mrb_UV_FSEvent_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: FSEvent::pre_class_method_definitions */
 /* sha: user_defined */
-
+mrb_const_set(mrb, mrb_obj_value(FSEvent_class), mrb_intern_lit(mrb, "RENAME"), mrb_fixnum_value(UV_RENAME));
+mrb_const_set(mrb, mrb_obj_value(UV_module(mrb)), mrb_intern_lit(mrb, "RENAME"), mrb_fixnum_value(UV_RENAME));
+mrb_const_set(mrb, mrb_obj_value(FSEvent_class), mrb_intern_lit(mrb, "CHANGE"), mrb_fixnum_value(UV_CHANGE));
+mrb_const_set(mrb, mrb_obj_value(UV_module(mrb)), mrb_intern_lit(mrb, "CHANGE"), mrb_fixnum_value(UV_CHANGE));
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: FSEvent::class_method_definitions */

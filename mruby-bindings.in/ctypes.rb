@@ -31,14 +31,20 @@ CTypes.translate_enum_names do |enum|
 end
 
 CTypes.translate_type_names do |type|
+  puts "Translating #{type}"
   type = MRubyBindings.type_name_to_rb_class(type)
+  
+  # Order is important
   type = type.sub(/^uv(_?)/i, '').sub(/([a-z])T$/, "\\1")
-  if type == "Rusage"
-    type = "RUsage"
-  end
+  type.sub!(/^Rusage/, 'RUsage')
+  type.sub!(/^Stdio/, 'STDIO')
+  type.sub!(/^Tty/, 'TTY')
+  type.sub!(/^CpuTimesS/, 'CPUTimes')
+  type.sub!(/^Cpu/, 'CPU')
   type.sub!(/^Fs/, 'FS')
   type.sub!(/^Tcp/, 'TCP')
   type.sub!(/^Udp/, 'UDP')
+  puts "Translated #{type}"
   type
 end
 

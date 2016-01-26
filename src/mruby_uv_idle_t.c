@@ -17,8 +17,7 @@
 #if BIND_Idle_INITIALIZE
 mrb_value
 mrb_UV_Idle_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
-  uv_idle_t* native_object = (uv_idle_t*)calloc(1, sizeof(uv_idle_t));
+  uv_idle_t* native_object = (uv_idle_t*)new_mruby_uv_handle(mrb, self, sizeof(uv_idle_t));
   mruby_gift_uv_idle_t_data_ptr(self, native_object);
   return self;
 }

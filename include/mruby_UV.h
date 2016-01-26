@@ -103,14 +103,14 @@ void unset_loop_reference(mrb_state*, mrb_value);
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: class_macros */
-/* sha: c95558e26ca7c2332bca718748c50fca004ad9c72bca10808c9fe885da13864f */
+/* sha: 2075a9c00b4b672c36c7d59b3ab4f082dccefadc809cfeb90341a057e6fc96be */
 #define UV_module(mrb) mrb_module_get(mrb, "UV")
 #define Addrinfo_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Addrinfo")
 #define Async_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Async")
 #define Check_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Check")
 #define Connect_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Connect")
-#define CpuInfo_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "CpuInfo")
-#define CpuTimesS_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "CpuTimesS")
+#define CPUInfo_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "CPUInfo")
+#define CPUTimes_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "CPUTimes")
 #define Dirent_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Dirent")
 #define FS_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "FS")
 #define FSEvent_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "FSEvent")
@@ -131,13 +131,13 @@ void unset_loop_reference(mrb_state*, mrb_value);
 #define Shutdown_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Shutdown")
 #define Signal_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Signal")
 #define Stat_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Stat")
-#define StdioContainer_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "StdioContainer")
+#define STDIOContainer_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "STDIOContainer")
 #define Stream_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Stream")
 #define TCP_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "TCP")
 #define Timer_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Timer")
 #define Timespec_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Timespec")
 #define Timeval_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Timeval")
-#define Tty_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Tty")
+#define TTY_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "TTY")
 #define UDP_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UDP")
 #define UDPSend_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "UDPSend")
 #define Work_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Work")
@@ -160,7 +160,7 @@ void unset_loop_reference(mrb_state*, mrb_value);
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: pre_class_init_decls */
-/* sha: 3931ba266ccd2fdd7ec411a192f725eb54c51a15cbebe6e9a1a30524c32857e3 */
+/* sha: efe6c9fca9d1ec938b40cf8f3824370572f7a076110864a642b7e7602b0ebf1d */
 #if BIND_Addrinfo_TYPE
 void mrb_UV_Addrinfo_init(mrb_state* mrb);
 #endif
@@ -173,11 +173,11 @@ void mrb_UV_Check_init(mrb_state* mrb);
 #if BIND_Connect_TYPE
 void mrb_UV_Connect_init(mrb_state* mrb);
 #endif
-#if BIND_CpuInfo_TYPE
-void mrb_UV_CpuInfo_init(mrb_state* mrb);
+#if BIND_CPUInfo_TYPE
+void mrb_UV_CPUInfo_init(mrb_state* mrb);
 #endif
-#if BIND_CpuTimesS_TYPE
-void mrb_UV_CpuTimesS_init(mrb_state* mrb);
+#if BIND_CPUTimes_TYPE
+void mrb_UV_CPUTimes_init(mrb_state* mrb);
 #endif
 #if BIND_Dirent_TYPE
 void mrb_UV_Dirent_init(mrb_state* mrb);
@@ -239,8 +239,8 @@ void mrb_UV_Signal_init(mrb_state* mrb);
 #if BIND_Stat_TYPE
 void mrb_UV_Stat_init(mrb_state* mrb);
 #endif
-#if BIND_StdioContainer_TYPE
-void mrb_UV_StdioContainer_init(mrb_state* mrb);
+#if BIND_STDIOContainer_TYPE
+void mrb_UV_STDIOContainer_init(mrb_state* mrb);
 #endif
 #if BIND_Stream_TYPE
 void mrb_UV_Stream_init(mrb_state* mrb);
@@ -257,8 +257,8 @@ void mrb_UV_Timespec_init(mrb_state* mrb);
 #if BIND_Timeval_TYPE
 void mrb_UV_Timeval_init(mrb_state* mrb);
 #endif
-#if BIND_Tty_TYPE
-void mrb_UV_Tty_init(mrb_state* mrb);
+#if BIND_TTY_TYPE
+void mrb_UV_TTY_init(mrb_state* mrb);
 #endif
 #if BIND_UDP_TYPE
 void mrb_UV_UDP_init(mrb_state* mrb);

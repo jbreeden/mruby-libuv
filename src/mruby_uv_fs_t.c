@@ -17,8 +17,7 @@
 #if BIND_FS_INITIALIZE
 mrb_value
 mrb_UV_FS_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
-  uv_fs_t* native_object = (uv_fs_t*)calloc(1, sizeof(uv_fs_t));
+  uv_fs_t* native_object = (uv_fs_t*)new_mruby_uv_req(mrb, self, sizeof(uv_fs_and_buf_t));
   mruby_gift_uv_fs_t_data_ptr(self, native_object);
   return self;
 }

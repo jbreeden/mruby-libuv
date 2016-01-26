@@ -17,8 +17,7 @@
 #if BIND_Pipe_INITIALIZE
 mrb_value
 mrb_UV_Pipe_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
-  uv_pipe_t* native_object = (uv_pipe_t*)calloc(1, sizeof(uv_pipe_t));
+  uv_pipe_t* native_object = (uv_pipe_t*)new_mruby_uv_handle(mrb, self, sizeof(uv_pipe_t));
   mruby_gift_uv_pipe_t_data_ptr(self, native_object);
   return self;
 }

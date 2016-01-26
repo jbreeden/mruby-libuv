@@ -17,7 +17,7 @@
 #if BIND_Addrinfo_INITIALIZE
 mrb_value
 mrb_UV_Addrinfo_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
+
   struct addrinfo* native_object = (struct addrinfo*)calloc(1, sizeof(struct addrinfo));
   mruby_gift_addrinfo_data_ptr(self, native_object);
   return self;

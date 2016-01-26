@@ -17,8 +17,7 @@
 #if BIND_TCP_INITIALIZE
 mrb_value
 mrb_UV_TCP_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
-  uv_tcp_t* native_object = (uv_tcp_t*)calloc(1, sizeof(uv_tcp_t));
+  uv_tcp_t* native_object = (uv_tcp_t*)new_mruby_uv_handle(mrb, self, sizeof(uv_tcp_t));
   mruby_gift_uv_tcp_t_data_ptr(self, native_object);
   return self;
 }

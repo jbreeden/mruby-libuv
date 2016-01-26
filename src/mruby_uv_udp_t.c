@@ -17,8 +17,7 @@
 #if BIND_UDP_INITIALIZE
 mrb_value
 mrb_UV_UDP_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
-  uv_udp_t* native_object = (uv_udp_t*)calloc(1, sizeof(uv_udp_t));
+  uv_udp_t* native_object = (uv_udp_t*)new_mruby_uv_handle(mrb, self, sizeof(uv_udp_t));
   mruby_gift_uv_udp_t_data_ptr(self, native_object);
   return self;
 }

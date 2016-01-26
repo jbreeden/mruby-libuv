@@ -17,7 +17,7 @@
 #if BIND_RUsage_INITIALIZE
 mrb_value
 mrb_UV_RUsage_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
+
   uv_rusage_t* native_object = (uv_rusage_t*)calloc(1, sizeof(uv_rusage_t));
   mruby_gift_uv_rusage_t_data_ptr(self, native_object);
   return self;

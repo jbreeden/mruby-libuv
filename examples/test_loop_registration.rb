@@ -1,24 +1,24 @@
-main_loop = UV.uv_default_loop
+main_loop = UV.default_loop
 
 def make_idle_and_lose_reference(main_loop)
-  idle = UV::UvIdleT.new
-  UV.uv_idle_init(main_loop, idle)
+  idle = UV::Idle.new
+  UV.idle_init(main_loop, idle)
   count = 0
-  UV.uv_idle_start(idle) do
+  UV.idle_start(idle) do
     count += 1
     
     # Make sure GC is working with initialized/uninitialized handles
     # ie: Shouldn't be any segfaults or failed assertions from UV.
     if count < 1000
-      trash = UV::UvIdleT.new
-      UV.uv_idle_init(main_loop, trash) if count % 2 == 0
+      trash = UV::Idle.new
+      UV.idle_init(main_loop, trash) if count % 2 == 0
     end
     
     if count % 10000 == 0
       puts "Idle handler hit: ##{count}"
     end
     if count == 50001
-      UV.uv_stop(main_loop)
+      UV.stop(main_loop)
     end
   end
 end
@@ -33,16 +33,16 @@ puts "from the main event loop, you should keep seeing it's hit count update"
 puts "until it finally stops the loop at ~50000 iterations."
 puts
 
-idle = UV::UvIdleT.new
-UV.uv_idle_init(main_loop, idle)
+idle = UV::Idle.new
+UV.idle_init(main_loop, idle)
 count = 0
-UV.uv_idle_start(idle) do
+UV.idle_start(idle) do
   puts "Hit GC. (Won't mention this again)" if count == 0
   GC.start
   count += 1
 end
 
-UV.uv_run(main_loop)
-UV.uv_loop_close(main_loop)
+UV.run(main_loop)
+UV.loop_close(main_loop)
 
 puts 'Done!'

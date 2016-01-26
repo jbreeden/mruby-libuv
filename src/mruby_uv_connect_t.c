@@ -17,8 +17,7 @@
 #if BIND_Connect_INITIALIZE
 mrb_value
 mrb_UV_Connect_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
-  uv_connect_t* native_object = (uv_connect_t*)calloc(1, sizeof(uv_connect_t));
+  uv_connect_t* native_object = (uv_connect_t*)new_mruby_uv_req(mrb, self, sizeof(uv_connect_t));
   mruby_gift_uv_connect_t_data_ptr(self, native_object);
   return self;
 }

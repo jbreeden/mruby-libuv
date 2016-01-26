@@ -5,20 +5,19 @@
 
 #include "mruby_UV.h"
 
-#if BIND_Tty_TYPE
+#if BIND_TTY_TYPE
 
 /* MRUBY_BINDING: header */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: Tty::initialize */
-/* sha: e273a0ea2d160f5b479b6133effc99f14f6a319b5403e543d32fe1e2bee5ba72 */
-#if BIND_Tty_INITIALIZE
+/* MRUBY_BINDING: TTY::initialize */
+/* sha: 62a6ee1ef0fdcd6b217a283b169a33ae0a729ce568ce47406394549763b61ece */
+#if BIND_TTY_INITIALIZE
 mrb_value
-mrb_UV_Tty_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
-  uv_tty_t* native_object = (uv_tty_t*)calloc(1, sizeof(uv_tty_t));
+mrb_UV_TTY_initialize(mrb_state* mrb, mrb_value self) {
+  uv_tty_t* native_object = (uv_tty_t*)new_mruby_uv_handle(mrb, self, sizeof(uv_tty_t));
   mruby_gift_uv_tty_t_data_ptr(self, native_object);
   return self;
 }
@@ -26,8 +25,8 @@ mrb_UV_Tty_initialize(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 
-void mrb_UV_Tty_init(mrb_state* mrb) {
-/* MRUBY_BINDING: Tty::class_init_header */
+void mrb_UV_TTY_init(mrb_state* mrb) {
+/* MRUBY_BINDING: TTY::class_init_header */
 /* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
   /* Don't double-init. */
   static int initialized = 0;
@@ -35,30 +34,30 @@ void mrb_UV_Tty_init(mrb_state* mrb) {
   else initialized = 1;
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: Tty::class_definition */
-/* sha: 38c967bb3dc41b20a40eca245e48f07d19afbf898e96d5ef4e73612594229da3 */
-  struct RClass* Tty_class = mrb_define_class_under(mrb, UV_module(mrb), "Tty", mrb->object_class);
-  MRB_SET_INSTANCE_TT(Tty_class, MRB_TT_DATA);
+/* MRUBY_BINDING: TTY::class_definition */
+/* sha: e179da3abd4f03f12eb8b7d868d587bb3ddf2485c29e4e08a635241323afd6a0 */
+  struct RClass* TTY_class = mrb_define_class_under(mrb, UV_module(mrb), "TTY", mrb->object_class);
+  MRB_SET_INSTANCE_TT(TTY_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: Tty::pre_class_method_definitions */
+/* MRUBY_BINDING: TTY::pre_class_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: Tty::class_method_definitions */
-/* sha: d5e201d69cf59bf2a87451f1279cce92f3ee3a3f2cb3176766d4399d8cb49723 */
-#if BIND_Tty_INITIALIZE
-  mrb_define_method(mrb, Tty_class, "initialize", mrb_UV_Tty_initialize, MRB_ARGS_NONE());
+/* MRUBY_BINDING: TTY::class_method_definitions */
+/* sha: ff1583ca3b265e832da93ae99d874530b632bfbe02f4ebdf5a02113ad3e689b7 */
+#if BIND_TTY_INITIALIZE
+  mrb_define_method(mrb, TTY_class, "initialize", mrb_UV_TTY_initialize, MRB_ARGS_NONE());
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: Tty::pre_attr_definitions */
+/* MRUBY_BINDING: TTY::pre_attr_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: Tty::attr_definitions */
+/* MRUBY_BINDING: TTY::attr_definitions */
 /* sha: 50c2844963333e47202eca17b7b61f03790fb1b7cbacbaff3f287c0ac8fd59a3 */
   /*
    * Fields
@@ -66,12 +65,12 @@ void mrb_UV_Tty_init(mrb_state* mrb) {
   /* None */
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: Tty::pre_instance_method_definitions */
+/* MRUBY_BINDING: TTY::pre_instance_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: Tty::instance_method_definitions */
+/* MRUBY_BINDING: TTY::instance_method_definitions */
 /* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
   /*
    * Member Functions
@@ -79,7 +78,7 @@ void mrb_UV_Tty_init(mrb_state* mrb) {
   /* None */
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: Tty::class_init_footer */
+/* MRUBY_BINDING: TTY::class_init_footer */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

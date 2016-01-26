@@ -5,19 +5,19 @@
 
 #include "mruby_UV.h"
 
-#if BIND_CpuTimesS_TYPE
+#if BIND_CPUTimes_TYPE
 
 /* MRUBY_BINDING: header */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: CpuTimesS::initialize */
-/* sha: 9213fb9d0d6521a397138efd9effa05d55ce3b0e222d6326578245fd61ef4a0f */
-#if BIND_CpuTimesS_INITIALIZE
+/* MRUBY_BINDING: CPUTimes::initialize */
+/* sha: 742ec332866610919ea81da5e04f419fb533a2e91008ab081ca291db8fde6db4 */
+#if BIND_CPUTimes_INITIALIZE
 mrb_value
-mrb_UV_CpuTimesS_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
+mrb_UV_CPUTimes_initialize(mrb_state* mrb, mrb_value self) {
+
   struct uv_cpu_times_s* native_object = (struct uv_cpu_times_s*)calloc(1, sizeof(struct uv_cpu_times_s));
   mruby_gift_uv_cpu_times_s_data_ptr(self, native_object);
   return self;
@@ -29,15 +29,15 @@ mrb_UV_CpuTimesS_initialize(mrb_state* mrb, mrb_value self) {
  * Fields
  */
 
-/* MRUBY_BINDING: CpuTimesS::user_reader */
-/* sha: 686da2fdc239c97b0a95bcd1c5eda7f2a2417347a461ae85383f8c199ed34bb0 */
-#if BIND_CpuTimesS_user_FIELD_READER
+/* MRUBY_BINDING: CPUTimes::user_reader */
+/* sha: 96d14c062646232c88f127e0b50abc84390fac17d7a1e3b7054082c880f7915c */
+#if BIND_CPUTimes_user_FIELD_READER
 /* get_user
  *
  * Return Type: uint64_t
  */
 mrb_value
-mrb_UV_CpuTimesS_get_user(mrb_state* mrb, mrb_value self) {
+mrb_UV_CPUTimes_get_user(mrb_state* mrb, mrb_value self) {
   struct uv_cpu_times_s * native_self = mruby_unbox_uv_cpu_times_s(self);
 
   uint64_t native_user = native_self->user;
@@ -49,16 +49,16 @@ mrb_UV_CpuTimesS_get_user(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: CpuTimesS::user_writer */
-/* sha: dc367a20859599489a264a45f47570ff15a216f40a886e491411f47e8a5f5066 */
-#if BIND_CpuTimesS_user_FIELD_WRITER
+/* MRUBY_BINDING: CPUTimes::user_writer */
+/* sha: 3e2359bbba1646cce3a97f10710b494741a42c8a7b7bcdfc15279b33b5a9e2a5 */
+#if BIND_CPUTimes_user_FIELD_WRITER
 /* set_user
  *
  * Parameters:
  * - value: uint64_t
  */
 mrb_value
-mrb_UV_CpuTimesS_set_user(mrb_state* mrb, mrb_value self) {
+mrb_UV_CPUTimes_set_user(mrb_state* mrb, mrb_value self) {
   struct uv_cpu_times_s * native_self = mruby_unbox_uv_cpu_times_s(self);
   mrb_value user;
 
@@ -79,15 +79,15 @@ mrb_UV_CpuTimesS_set_user(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: CpuTimesS::nice_reader */
-/* sha: 257636818fc54227a465b7e8a6f13d08c6cf550c7986c631785aaa6588bad280 */
-#if BIND_CpuTimesS_nice_FIELD_READER
+/* MRUBY_BINDING: CPUTimes::nice_reader */
+/* sha: cb61f94902f08daeb065ed7a29a5c63b6bda32e844468f0d9253053d6b2bc6c5 */
+#if BIND_CPUTimes_nice_FIELD_READER
 /* get_nice
  *
  * Return Type: uint64_t
  */
 mrb_value
-mrb_UV_CpuTimesS_get_nice(mrb_state* mrb, mrb_value self) {
+mrb_UV_CPUTimes_get_nice(mrb_state* mrb, mrb_value self) {
   struct uv_cpu_times_s * native_self = mruby_unbox_uv_cpu_times_s(self);
 
   uint64_t native_nice = native_self->nice;
@@ -99,16 +99,16 @@ mrb_UV_CpuTimesS_get_nice(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: CpuTimesS::nice_writer */
-/* sha: 5b25bfd7eb1fbf07dd27a438f17aa10fe46f8faef7e667b544ce066330dfa3da */
-#if BIND_CpuTimesS_nice_FIELD_WRITER
+/* MRUBY_BINDING: CPUTimes::nice_writer */
+/* sha: 7493879ab81d7460ddaac13c9eea7ef11b861953e19d81f2c10f9405f381e83b */
+#if BIND_CPUTimes_nice_FIELD_WRITER
 /* set_nice
  *
  * Parameters:
  * - value: uint64_t
  */
 mrb_value
-mrb_UV_CpuTimesS_set_nice(mrb_state* mrb, mrb_value self) {
+mrb_UV_CPUTimes_set_nice(mrb_state* mrb, mrb_value self) {
   struct uv_cpu_times_s * native_self = mruby_unbox_uv_cpu_times_s(self);
   mrb_value nice;
 
@@ -129,15 +129,15 @@ mrb_UV_CpuTimesS_set_nice(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: CpuTimesS::sys_reader */
-/* sha: 081d9d897f24f72e68c67f93d1b9c8488aa1b367ff170f46397b042a4c4a46af */
-#if BIND_CpuTimesS_sys_FIELD_READER
+/* MRUBY_BINDING: CPUTimes::sys_reader */
+/* sha: 3409ae7c3aa2e7378e02d4406821399de1ba49142ed4a8752ceb073aaa639356 */
+#if BIND_CPUTimes_sys_FIELD_READER
 /* get_sys
  *
  * Return Type: uint64_t
  */
 mrb_value
-mrb_UV_CpuTimesS_get_sys(mrb_state* mrb, mrb_value self) {
+mrb_UV_CPUTimes_get_sys(mrb_state* mrb, mrb_value self) {
   struct uv_cpu_times_s * native_self = mruby_unbox_uv_cpu_times_s(self);
 
   uint64_t native_sys = native_self->sys;
@@ -149,16 +149,16 @@ mrb_UV_CpuTimesS_get_sys(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: CpuTimesS::sys_writer */
-/* sha: 1623d64078abffa49858281a1887a91300c4d86471a81a43e6537ec8c000ef02 */
-#if BIND_CpuTimesS_sys_FIELD_WRITER
+/* MRUBY_BINDING: CPUTimes::sys_writer */
+/* sha: aeb1fdd3d596687805f0eeea08c9a27eb17b6c90ccf630a73beddabc68aae57d */
+#if BIND_CPUTimes_sys_FIELD_WRITER
 /* set_sys
  *
  * Parameters:
  * - value: uint64_t
  */
 mrb_value
-mrb_UV_CpuTimesS_set_sys(mrb_state* mrb, mrb_value self) {
+mrb_UV_CPUTimes_set_sys(mrb_state* mrb, mrb_value self) {
   struct uv_cpu_times_s * native_self = mruby_unbox_uv_cpu_times_s(self);
   mrb_value sys;
 
@@ -179,15 +179,15 @@ mrb_UV_CpuTimesS_set_sys(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: CpuTimesS::idle_reader */
-/* sha: 5361dd1f986becba7a5bdcf496f63c6bd763ca31ea1bc6174c728b425f215a53 */
-#if BIND_CpuTimesS_idle_FIELD_READER
+/* MRUBY_BINDING: CPUTimes::idle_reader */
+/* sha: 7474e7ca47c587ac3c525fe51bd4df6e6834f853150eeaec111ffd959a6ec6d1 */
+#if BIND_CPUTimes_idle_FIELD_READER
 /* get_idle
  *
  * Return Type: uint64_t
  */
 mrb_value
-mrb_UV_CpuTimesS_get_idle(mrb_state* mrb, mrb_value self) {
+mrb_UV_CPUTimes_get_idle(mrb_state* mrb, mrb_value self) {
   struct uv_cpu_times_s * native_self = mruby_unbox_uv_cpu_times_s(self);
 
   uint64_t native_idle = native_self->idle;
@@ -199,16 +199,16 @@ mrb_UV_CpuTimesS_get_idle(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: CpuTimesS::idle_writer */
-/* sha: 428932a75d6a12671512755c16964c18f3458a2e53ab06e32364a6e782897d7c */
-#if BIND_CpuTimesS_idle_FIELD_WRITER
+/* MRUBY_BINDING: CPUTimes::idle_writer */
+/* sha: 2b9bb37dc74737428a7f41df4f583dab8621cb7431021f754f2f7e565a9b09e2 */
+#if BIND_CPUTimes_idle_FIELD_WRITER
 /* set_idle
  *
  * Parameters:
  * - value: uint64_t
  */
 mrb_value
-mrb_UV_CpuTimesS_set_idle(mrb_state* mrb, mrb_value self) {
+mrb_UV_CPUTimes_set_idle(mrb_state* mrb, mrb_value self) {
   struct uv_cpu_times_s * native_self = mruby_unbox_uv_cpu_times_s(self);
   mrb_value idle;
 
@@ -229,15 +229,15 @@ mrb_UV_CpuTimesS_set_idle(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: CpuTimesS::irq_reader */
-/* sha: 18e3fa37a1acddd84cebf18cf654b6d92bf455c045fdf2ab1d6685337fae74d3 */
-#if BIND_CpuTimesS_irq_FIELD_READER
+/* MRUBY_BINDING: CPUTimes::irq_reader */
+/* sha: 75438799d69d7ee13192bd9c2d0a0213db584026125cb1c7a5497da268ba02b9 */
+#if BIND_CPUTimes_irq_FIELD_READER
 /* get_irq
  *
  * Return Type: uint64_t
  */
 mrb_value
-mrb_UV_CpuTimesS_get_irq(mrb_state* mrb, mrb_value self) {
+mrb_UV_CPUTimes_get_irq(mrb_state* mrb, mrb_value self) {
   struct uv_cpu_times_s * native_self = mruby_unbox_uv_cpu_times_s(self);
 
   uint64_t native_irq = native_self->irq;
@@ -249,16 +249,16 @@ mrb_UV_CpuTimesS_get_irq(mrb_state* mrb, mrb_value self) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: CpuTimesS::irq_writer */
-/* sha: 8504826042d806e60a8accb4b46a2289205506740a2f323d4e78a05f8a6d5887 */
-#if BIND_CpuTimesS_irq_FIELD_WRITER
+/* MRUBY_BINDING: CPUTimes::irq_writer */
+/* sha: d2ee8c1c662ba8abf6d45759d5975b7ab8022ba6c0538ea91fbdd4150c6857b5 */
+#if BIND_CPUTimes_irq_FIELD_WRITER
 /* set_irq
  *
  * Parameters:
  * - value: uint64_t
  */
 mrb_value
-mrb_UV_CpuTimesS_set_irq(mrb_state* mrb, mrb_value self) {
+mrb_UV_CPUTimes_set_irq(mrb_state* mrb, mrb_value self) {
   struct uv_cpu_times_s * native_self = mruby_unbox_uv_cpu_times_s(self);
   mrb_value irq;
 
@@ -280,8 +280,8 @@ mrb_UV_CpuTimesS_set_irq(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 
-void mrb_UV_CpuTimesS_init(mrb_state* mrb) {
-/* MRUBY_BINDING: CpuTimesS::class_init_header */
+void mrb_UV_CPUTimes_init(mrb_state* mrb) {
+/* MRUBY_BINDING: CPUTimes::class_init_header */
 /* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
   /* Don't double-init. */
   static int initialized = 0;
@@ -289,72 +289,72 @@ void mrb_UV_CpuTimesS_init(mrb_state* mrb) {
   else initialized = 1;
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: CpuTimesS::class_definition */
-/* sha: 151062b2abc78aec5a0617ad32ce3a9bc9c8de453a288b334531240f0be88cd2 */
-  struct RClass* CpuTimesS_class = mrb_define_class_under(mrb, UV_module(mrb), "CpuTimesS", mrb->object_class);
-  MRB_SET_INSTANCE_TT(CpuTimesS_class, MRB_TT_DATA);
+/* MRUBY_BINDING: CPUTimes::class_definition */
+/* sha: 90dcdc8fe0840af471352b92927ab3266de4e591f0ac76c02b968c19ca99f94c */
+  struct RClass* CPUTimes_class = mrb_define_class_under(mrb, UV_module(mrb), "CPUTimes", mrb->object_class);
+  MRB_SET_INSTANCE_TT(CPUTimes_class, MRB_TT_DATA);
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: CpuTimesS::pre_class_method_definitions */
+/* MRUBY_BINDING: CPUTimes::pre_class_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: CpuTimesS::class_method_definitions */
-/* sha: a8a4db5f6c4727d4ac2b5baf91b831819c5898b049344765ae7e9f3415d6c98a */
-#if BIND_CpuTimesS_INITIALIZE
-  mrb_define_method(mrb, CpuTimesS_class, "initialize", mrb_UV_CpuTimesS_initialize, MRB_ARGS_NONE());
+/* MRUBY_BINDING: CPUTimes::class_method_definitions */
+/* sha: 12fd3fc150a17f8be66f9e207c146f4af86852d0a68f4ba21ad17ee09e530302 */
+#if BIND_CPUTimes_INITIALIZE
+  mrb_define_method(mrb, CPUTimes_class, "initialize", mrb_UV_CPUTimes_initialize, MRB_ARGS_NONE());
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: CpuTimesS::pre_attr_definitions */
+/* MRUBY_BINDING: CPUTimes::pre_attr_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: CpuTimesS::attr_definitions */
-/* sha: b7079969140ff414f34201edf9c800517f51aad1bd7709ea0ac10491291d1113 */
+/* MRUBY_BINDING: CPUTimes::attr_definitions */
+/* sha: 67ab5d1c413812b8c69035d450e5020b83bcc2b84c165cd50b199c25e15ec4b2 */
   /*
    * Fields
    */
-#if BIND_CpuTimesS_user_FIELD_READER
-  mrb_define_method(mrb, CpuTimesS_class, "user", mrb_UV_CpuTimesS_get_user, MRB_ARGS_ARG(0, 0));
+#if BIND_CPUTimes_user_FIELD_READER
+  mrb_define_method(mrb, CPUTimes_class, "user", mrb_UV_CPUTimes_get_user, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_CpuTimesS_user_FIELD_WRITER
-  mrb_define_method(mrb, CpuTimesS_class, "user=", mrb_UV_CpuTimesS_set_user, MRB_ARGS_ARG(1, 0));
+#if BIND_CPUTimes_user_FIELD_WRITER
+  mrb_define_method(mrb, CPUTimes_class, "user=", mrb_UV_CPUTimes_set_user, MRB_ARGS_ARG(1, 0));
 #endif
-#if BIND_CpuTimesS_nice_FIELD_READER
-  mrb_define_method(mrb, CpuTimesS_class, "nice", mrb_UV_CpuTimesS_get_nice, MRB_ARGS_ARG(0, 0));
+#if BIND_CPUTimes_nice_FIELD_READER
+  mrb_define_method(mrb, CPUTimes_class, "nice", mrb_UV_CPUTimes_get_nice, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_CpuTimesS_nice_FIELD_WRITER
-  mrb_define_method(mrb, CpuTimesS_class, "nice=", mrb_UV_CpuTimesS_set_nice, MRB_ARGS_ARG(1, 0));
+#if BIND_CPUTimes_nice_FIELD_WRITER
+  mrb_define_method(mrb, CPUTimes_class, "nice=", mrb_UV_CPUTimes_set_nice, MRB_ARGS_ARG(1, 0));
 #endif
-#if BIND_CpuTimesS_sys_FIELD_READER
-  mrb_define_method(mrb, CpuTimesS_class, "sys", mrb_UV_CpuTimesS_get_sys, MRB_ARGS_ARG(0, 0));
+#if BIND_CPUTimes_sys_FIELD_READER
+  mrb_define_method(mrb, CPUTimes_class, "sys", mrb_UV_CPUTimes_get_sys, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_CpuTimesS_sys_FIELD_WRITER
-  mrb_define_method(mrb, CpuTimesS_class, "sys=", mrb_UV_CpuTimesS_set_sys, MRB_ARGS_ARG(1, 0));
+#if BIND_CPUTimes_sys_FIELD_WRITER
+  mrb_define_method(mrb, CPUTimes_class, "sys=", mrb_UV_CPUTimes_set_sys, MRB_ARGS_ARG(1, 0));
 #endif
-#if BIND_CpuTimesS_idle_FIELD_READER
-  mrb_define_method(mrb, CpuTimesS_class, "idle", mrb_UV_CpuTimesS_get_idle, MRB_ARGS_ARG(0, 0));
+#if BIND_CPUTimes_idle_FIELD_READER
+  mrb_define_method(mrb, CPUTimes_class, "idle", mrb_UV_CPUTimes_get_idle, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_CpuTimesS_idle_FIELD_WRITER
-  mrb_define_method(mrb, CpuTimesS_class, "idle=", mrb_UV_CpuTimesS_set_idle, MRB_ARGS_ARG(1, 0));
+#if BIND_CPUTimes_idle_FIELD_WRITER
+  mrb_define_method(mrb, CPUTimes_class, "idle=", mrb_UV_CPUTimes_set_idle, MRB_ARGS_ARG(1, 0));
 #endif
-#if BIND_CpuTimesS_irq_FIELD_READER
-  mrb_define_method(mrb, CpuTimesS_class, "irq", mrb_UV_CpuTimesS_get_irq, MRB_ARGS_ARG(0, 0));
+#if BIND_CPUTimes_irq_FIELD_READER
+  mrb_define_method(mrb, CPUTimes_class, "irq", mrb_UV_CPUTimes_get_irq, MRB_ARGS_ARG(0, 0));
 #endif
-#if BIND_CpuTimesS_irq_FIELD_WRITER
-  mrb_define_method(mrb, CpuTimesS_class, "irq=", mrb_UV_CpuTimesS_set_irq, MRB_ARGS_ARG(1, 0));
+#if BIND_CPUTimes_irq_FIELD_WRITER
+  mrb_define_method(mrb, CPUTimes_class, "irq=", mrb_UV_CPUTimes_set_irq, MRB_ARGS_ARG(1, 0));
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: CpuTimesS::pre_instance_method_definitions */
+/* MRUBY_BINDING: CPUTimes::pre_instance_method_definitions */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: CpuTimesS::instance_method_definitions */
+/* MRUBY_BINDING: CPUTimes::instance_method_definitions */
 /* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
   /*
    * Member Functions
@@ -362,7 +362,7 @@ void mrb_UV_CpuTimesS_init(mrb_state* mrb) {
   /* None */
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: CpuTimesS::class_init_footer */
+/* MRUBY_BINDING: CPUTimes::class_init_footer */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

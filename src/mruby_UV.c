@@ -83,11 +83,11 @@ mrb_UV_uv_accept(mrb_state* mrb, mrb_value self) {
 // 
 //   /* Type checking */
 //   if (!mrb_obj_is_kind_of(mrb, arg1, Loop_class(mrb))) {
-//     mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+//     mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
 //     return mrb_nil_value();
 //   }
 //   if (!mrb_obj_is_kind_of(mrb, async, Async_class(mrb))) {
-//     mrb_raise(mrb, E_TYPE_ERROR, "UvAsyncT expected");
+//     mrb_raise(mrb, E_TYPE_ERROR, "Async expected");
 //     return mrb_nil_value();
 //   }
 //   if (mrb_nil_p(async_cb)) {
@@ -504,7 +504,7 @@ mrb_UV_uv_check_start(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, check, Check_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvCheckT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Check expected");
     return mrb_nil_value();
   }
   if (mrb_nil_p(cb)) {
@@ -587,7 +587,7 @@ mrb_UV_uv_close(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, handle, Handle_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvHandleT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Handle expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(cb)) {
@@ -1184,7 +1184,7 @@ mrb_UV_uv_fileno(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_free_cpu_info */
-/* sha: d1de07e90c5e86a7d33e2ec286bb5bbddf0fbe368e23c2030abc1dd2fc1dea98 */
+/* sha: e006daf887b2204f55c3973e3f71f95324c7289012b07e6dd214e4d42323e8c2 */
 #if BIND_uv_free_cpu_info_FUNCTION
 #define uv_free_cpu_info_REQUIRED_ARGC 2
 #define uv_free_cpu_info_OPTIONAL_ARGC 0
@@ -1204,8 +1204,8 @@ mrb_UV_uv_free_cpu_info(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oi", &cpu_infos, &native_count);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, cpu_infos, CpuInfo_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "CpuInfo expected");
+  if (!mrb_obj_is_kind_of(mrb, cpu_infos, CPUInfo_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "CPUInfo expected");
     return mrb_nil_value();
   }
 
@@ -1321,11 +1321,11 @@ mrb_UV_uv_fs_access(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -1379,11 +1379,11 @@ mrb_UV_uv_fs_chmod(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -1439,11 +1439,11 @@ mrb_UV_uv_fs_chown(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   TODO_type_check_uv_uid_t(uid);
@@ -1503,11 +1503,11 @@ mrb_UV_uv_fs_close(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -1553,8 +1553,8 @@ mrb_UV_uv_fs_event_getpath(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, FsEvent_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsEventT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, FSEvent_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "FSEvent expected");
     return mrb_nil_value();
   }
 
@@ -1649,8 +1649,8 @@ mrb_UV_uv_fs_event_start(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ozi&", &handle, &native_path, &native_flags, &cb);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, handle, FsEvent_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsEventT expected");
+  if (!mrb_obj_is_kind_of(mrb, handle, FSEvent_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "FSEvent expected");
     return mrb_nil_value();
   }
   if (mrb_nil_p(cb)) {
@@ -1740,11 +1740,11 @@ mrb_UV_uv_fs_fchmod(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -1800,11 +1800,11 @@ mrb_UV_uv_fs_fchown(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   TODO_type_check_uv_uid_t(uid);
@@ -1864,11 +1864,11 @@ mrb_UV_uv_fs_fdatasync(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -1920,11 +1920,11 @@ mrb_UV_uv_fs_fstat(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -1976,11 +1976,11 @@ mrb_UV_uv_fs_fsync(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -2034,11 +2034,11 @@ mrb_UV_uv_fs_ftruncate(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -2097,11 +2097,11 @@ mrb_UV_uv_fs_futime(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -2155,11 +2155,11 @@ mrb_UV_uv_fs_link(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -2211,11 +2211,11 @@ mrb_UV_uv_fs_lstat(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -2269,11 +2269,11 @@ mrb_UV_uv_fs_mkdir(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -2325,11 +2325,11 @@ mrb_UV_uv_fs_mkdtemp(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -2385,11 +2385,11 @@ mrb_UV_uv_fs_open(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -2436,7 +2436,7 @@ mrb_UV_uv_fs_poll_getpath(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, handle, FSPoll_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "FSPollT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FSPoll expected");
     return mrb_nil_value();
   }
 
@@ -2532,7 +2532,7 @@ mrb_UV_uv_fs_poll_start(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, handle, FSPoll_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "FSPollT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FSPoll expected");
     return mrb_nil_value();
   }
   if (mrb_nil_p(poll_cb)) {
@@ -2625,11 +2625,11 @@ mrb_UV_uv_fs_read(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -2646,7 +2646,7 @@ mrb_UV_uv_fs_read(mrb_state* mrb, mrb_value self) {
   /* Initialize the read buf */
   uv_buf_t * buf = &((uv_fs_and_buf_t*)native_req)->buf;
   if (buf->base != NULL) {
-    mrb_raise(mrb, E_RUNTIME_ERROR, "[Bug in mruby-libuv] UvFsT should have had buffer freed in callback thunk.");
+    mrb_raise(mrb, E_RUNTIME_ERROR, "[Bug in mruby-libuv] FS should have had buffer freed in callback thunk.");
     return mrb_nil_value();
   }
   buf->len = native_size;
@@ -2690,11 +2690,11 @@ mrb_UV_uv_fs_readlink(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -2749,11 +2749,11 @@ mrb_UV_uv_fs_realpath(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -2807,11 +2807,11 @@ mrb_UV_uv_fs_rename(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -2898,11 +2898,11 @@ mrb_UV_uv_fs_rmdir(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -2956,11 +2956,11 @@ mrb_UV_uv_fs_scandir(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -3065,11 +3065,11 @@ mrb_UV_uv_fs_sendfile(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -3121,11 +3121,11 @@ mrb_UV_uv_fs_stat(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -3181,11 +3181,11 @@ mrb_UV_uv_fs_symlink(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -3237,11 +3237,11 @@ mrb_UV_uv_fs_unlink(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -3297,11 +3297,11 @@ mrb_UV_uv_fs_utime(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -3359,11 +3359,11 @@ mrb_UV_uv_fs_write(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, FS_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvFsT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "FS expected");
     return mrb_nil_value();
   }
   if (!mrb_nil_p(native_cb)) {
@@ -3509,15 +3509,15 @@ mrb_UV_uv_getaddrinfo(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, Getaddrinfo_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvGetaddrinfoT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Getaddrinfo expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, req, Getaddrinfo_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvGetaddrinfoT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Getaddrinfo expected");
     return mrb_nil_value();
   }
   if (!mrb_obj_is_kind_of(mrb, hints, Addrinfo_class(mrb)) || mrb_nil_p(hints)) {
@@ -3837,7 +3837,7 @@ mrb_UV_uv_idle_start(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, idle, Idle_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvIdleT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Idle expected");
     return mrb_nil_value();
   }
   if (mrb_nil_p(cb)) {
@@ -4534,7 +4534,7 @@ mrb_UV_uv_listen(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, stream, Stream_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Stream expected");
     return mrb_nil_value();
   }
   if (mrb_nil_p(cb)) {
@@ -5616,7 +5616,7 @@ mrb_UV_uv_poll_start(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, handle, Poll_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvPollT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Poll expected");
     return mrb_nil_value();
   }
   if (mrb_nil_p(cb)) {
@@ -5746,7 +5746,7 @@ mrb_UV_uv_prepare_start(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, prepare, Prepare_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvPrepareT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Prepare expected");
     return mrb_nil_value();
   }
   if (mrb_nil_p(cb)) {
@@ -6011,7 +6011,7 @@ mrb_UV_uv_read_start(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, stream, Stream_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvStreamT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Stream expected");
     return mrb_nil_value();
   }
   if (mrb_nil_p(read_cb)) {
@@ -6290,7 +6290,7 @@ mrb_UV_uv_run(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, arg1, Loop_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvLoopT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
 
@@ -6975,7 +6975,7 @@ mrb_UV_uv_signal_start(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, handle, Signal_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvSignalT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Signal expected");
     return mrb_nil_value();
   }
   if (mrb_nil_p(signal_cb)) {
@@ -7999,7 +7999,7 @@ mrb_UV_uv_timer_start(mrb_state* mrb, mrb_value self) {
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, handle, Timer_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "UvTimerT expected");
+    mrb_raise(mrb, E_TYPE_ERROR, "Timer expected");
     return mrb_nil_value();
   }
   if (mrb_nil_p(cb)) {
@@ -8107,7 +8107,7 @@ mrb_UV_uv_try_write(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tty_get_winsize */
-/* sha: 126efe3f3fed6f89631d1fadca2fd9fdb3342161a68497a3b67ba277f0b3239a */
+/* sha: 8fb68040a4993ad083494ccad535dc5b21785ab1a96d1045066b059039af980c */
 #if BIND_uv_tty_get_winsize_FUNCTION
 #define uv_tty_get_winsize_REQUIRED_ARGC 3
 #define uv_tty_get_winsize_OPTIONAL_ARGC 0
@@ -8129,8 +8129,8 @@ mrb_UV_uv_tty_get_winsize(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "ooo", &arg1, &width, &height);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, Tty_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Tty expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, TTY_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "TTY expected");
     return mrb_nil_value();
   }
   TODO_type_check_int_PTR(width);
@@ -8157,7 +8157,7 @@ mrb_UV_uv_tty_get_winsize(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tty_init */
-/* sha: 35383f2245daa17532bfe3a50b4e2a3859f7887204cbf180d4d5775382fdfacb */
+/* sha: 0c5d5ca5d64d798ffd75492e495a9730edbf8e0f67aef4e5f8ab35dcba9c28b6 */
 #if BIND_uv_tty_init_FUNCTION
 #define uv_tty_init_REQUIRED_ARGC 4
 #define uv_tty_init_OPTIONAL_ARGC 0
@@ -8185,8 +8185,8 @@ mrb_UV_uv_tty_init(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, arg2, Tty_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Tty expected");
+  if (!mrb_obj_is_kind_of(mrb, arg2, TTY_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "TTY expected");
     return mrb_nil_value();
   }
 
@@ -8231,7 +8231,7 @@ mrb_UV_uv_tty_reset_mode(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tty_set_mode */
-/* sha: 647d8bc0f48927966bac876e29bb388ea7fd3423a42a03af5c712c0692904f7e */
+/* sha: 4dde683d8aba2c4dba5ce1ca3b292be6e3ff2a9d864ab9849f570c87259d6b90 */
 #if BIND_uv_tty_set_mode_FUNCTION
 #define uv_tty_set_mode_REQUIRED_ARGC 2
 #define uv_tty_set_mode_OPTIONAL_ARGC 0
@@ -8251,8 +8251,8 @@ mrb_UV_uv_tty_set_mode(mrb_state* mrb, mrb_value self) {
   mrb_get_args(mrb, "oi", &arg1, &native_mode);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, arg1, Tty_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Tty expected");
+  if (!mrb_obj_is_kind_of(mrb, arg1, TTY_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "TTY expected");
     return mrb_nil_value();
   }
 
@@ -9299,16 +9299,16 @@ void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
 
 /* MRUBY_BINDING: pre_class_initializations */
 /* sha: user_defined */
-#if BIND_HandleT_TYPE
-  mrb_UV_HandleT_init(mrb);
+#if BIND_Handle_TYPE
+  mrb_UV_Handle_init(mrb);
 #endif
-#if BIND_ReqT_TYPE
-  mrb_UV_ReqT_init(mrb);
+#if BIND_Req_TYPE
+  mrb_UV_Req_init(mrb);
 #endif
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: class_initializations */
-/* sha: e2fba6a66c8069c0fb738674e21ce4db3d4d282450c45d6894d123d2c23c3428 */
+/* sha: 406dfe30f03f9d7afb50617f0262bf705ee011b3fce4bc5fda0c501ba4dc0223 */
 #if BIND_Addrinfo_TYPE
   mrb_UV_Addrinfo_init(mrb);
 #endif
@@ -9321,11 +9321,11 @@ void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
 #if BIND_Connect_TYPE
   mrb_UV_Connect_init(mrb);
 #endif
-#if BIND_CpuInfo_TYPE
-  mrb_UV_CpuInfo_init(mrb);
+#if BIND_CPUInfo_TYPE
+  mrb_UV_CPUInfo_init(mrb);
 #endif
-#if BIND_CpuTimesS_TYPE
-  mrb_UV_CpuTimesS_init(mrb);
+#if BIND_CPUTimes_TYPE
+  mrb_UV_CPUTimes_init(mrb);
 #endif
 #if BIND_Dirent_TYPE
   mrb_UV_Dirent_init(mrb);
@@ -9387,8 +9387,8 @@ void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
 #if BIND_Stat_TYPE
   mrb_UV_Stat_init(mrb);
 #endif
-#if BIND_StdioContainer_TYPE
-  mrb_UV_StdioContainer_init(mrb);
+#if BIND_STDIOContainer_TYPE
+  mrb_UV_STDIOContainer_init(mrb);
 #endif
 #if BIND_Stream_TYPE
   mrb_UV_Stream_init(mrb);
@@ -9405,8 +9405,8 @@ void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
 #if BIND_Timeval_TYPE
   mrb_UV_Timeval_init(mrb);
 #endif
-#if BIND_Tty_TYPE
-  mrb_UV_Tty_init(mrb);
+#if BIND_TTY_TYPE
+  mrb_UV_TTY_init(mrb);
 #endif
 #if BIND_UDP_TYPE
   mrb_UV_UDP_init(mrb);

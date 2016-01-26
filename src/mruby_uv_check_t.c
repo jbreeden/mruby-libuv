@@ -17,8 +17,7 @@
 #if BIND_Check_INITIALIZE
 mrb_value
 mrb_UV_Check_initialize(mrb_state* mrb, mrb_value self) {
-/* TODO: Remove this comment & run `mrbind enable-functions` if an initializer is desired. */
-  uv_check_t* native_object = (uv_check_t*)calloc(1, sizeof(uv_check_t));
+  uv_check_t* native_object = (uv_check_t*)new_mruby_uv_handle(mrb, self, sizeof(uv_check_t));
   mruby_gift_uv_check_t_data_ptr(self, native_object);
   return self;
 }
