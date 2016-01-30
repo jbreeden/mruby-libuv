@@ -76,7 +76,7 @@
 #define BIND_FS_loop_FIELD_WRITER TRUE
 #define BIND_FS_cb_FIELD_READER FALSE
 #define BIND_FS_cb_FIELD_WRITER FALSE
-#define BIND_FS_result_FIELD_READER FALSE
+#define BIND_FS_result_FIELD_READER TRUE
 #define BIND_FS_result_FIELD_WRITER FALSE
 #define BIND_FS_ptr_FIELD_READER FALSE
 #define BIND_FS_ptr_FIELD_WRITER FALSE
@@ -140,27 +140,6 @@
 #define BIND_Prepare_INITIALIZE TRUE
 
 #define BIND_ProcessOptions_TYPE TRUE
-#define BIND_ProcessOptions_INITIALIZE TRUE
-#define BIND_ProcessOptions_exit_cb_FIELD_READER FALSE
-#define BIND_ProcessOptions_exit_cb_FIELD_WRITER FALSE
-#define BIND_ProcessOptions_file_FIELD_READER TRUE
-#define BIND_ProcessOptions_file_FIELD_WRITER TRUE
-#define BIND_ProcessOptions_args_FIELD_READER FALSE
-#define BIND_ProcessOptions_args_FIELD_WRITER FALSE
-#define BIND_ProcessOptions_env_FIELD_READER FALSE
-#define BIND_ProcessOptions_env_FIELD_WRITER FALSE
-#define BIND_ProcessOptions_cwd_FIELD_READER TRUE
-#define BIND_ProcessOptions_cwd_FIELD_WRITER TRUE
-#define BIND_ProcessOptions_flags_FIELD_READER TRUE
-#define BIND_ProcessOptions_flags_FIELD_WRITER TRUE
-#define BIND_ProcessOptions_stdio_count_FIELD_READER TRUE
-#define BIND_ProcessOptions_stdio_count_FIELD_WRITER TRUE
-#define BIND_ProcessOptions_stdio_FIELD_READER TRUE
-#define BIND_ProcessOptions_stdio_FIELD_WRITER TRUE
-#define BIND_ProcessOptions_uid_FIELD_READER FALSE
-#define BIND_ProcessOptions_uid_FIELD_WRITER FALSE
-#define BIND_ProcessOptions_gid_FIELD_READER FALSE
-#define BIND_ProcessOptions_gid_FIELD_WRITER FALSE
 
 #define BIND_Process_TYPE TRUE
 #define BIND_Process_INITIALIZE TRUE

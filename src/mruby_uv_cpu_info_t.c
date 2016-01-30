@@ -30,12 +30,8 @@ mrb_UV_CPUInfo_initialize(mrb_state* mrb, mrb_value self) {
  */
 
 /* MRUBY_BINDING: CPUInfo::model_reader */
-/* sha: eeff36dffea071b247b09e5d75831f17ce5c9eb36302fbc3c754838af6135c16 */
+/* sha: c1c25cef87842a26b79f932e1a8a045d481293b9615f5432160cbe115d492608 */
 #if BIND_CPUInfo_model_FIELD_READER
-/* get_model
- *
- * Return Type: char *
- */
 mrb_value
 mrb_UV_CPUInfo_get_model(mrb_state* mrb, mrb_value self) {
   uv_cpu_info_t * native_self = mruby_unbox_uv_cpu_info_t(self);
@@ -50,13 +46,8 @@ mrb_UV_CPUInfo_get_model(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: CPUInfo::model_writer */
-/* sha: 30692faebc91eb011abffc1ada197d1ce44856f014c71329a9e20e143bec169f */
+/* sha: 531316284961a61243ca2ab1dce977aaed59a18d45490bbdd2622e624d838621 */
 #if BIND_CPUInfo_model_FIELD_WRITER
-/* set_model
- *
- * Parameters:
- * - value: char *
- */
 mrb_value
 mrb_UV_CPUInfo_set_model(mrb_state* mrb, mrb_value self) {
   uv_cpu_info_t * native_self = mruby_unbox_uv_cpu_info_t(self);
@@ -71,7 +62,6 @@ mrb_UV_CPUInfo_set_model(mrb_state* mrb, mrb_value self) {
 
   native_self->model = native_model;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -80,12 +70,8 @@ mrb_UV_CPUInfo_set_model(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: CPUInfo::speed_reader */
-/* sha: 2db847deee9b9cb9f1e1f6cc4cbbed20f3f5388a62bd46dc9a67e2715c660eb9 */
+/* sha: 46115fb374417dcdb6342871a80a44d1b81c6a5710fefff6378caae697863464 */
 #if BIND_CPUInfo_speed_FIELD_READER
-/* get_speed
- *
- * Return Type: int
- */
 mrb_value
 mrb_UV_CPUInfo_get_speed(mrb_state* mrb, mrb_value self) {
   uv_cpu_info_t * native_self = mruby_unbox_uv_cpu_info_t(self);
@@ -100,13 +86,8 @@ mrb_UV_CPUInfo_get_speed(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: CPUInfo::speed_writer */
-/* sha: 93410043279e15dcbfd51cfdf9092cc11981959d2733caee33aea86a7c2bf338 */
+/* sha: b015bb757e07172f47f67e288a416a0f0211d37f685c5db6e14afc6dcbdbc237 */
 #if BIND_CPUInfo_speed_FIELD_WRITER
-/* set_speed
- *
- * Parameters:
- * - value: int
- */
 mrb_value
 mrb_UV_CPUInfo_set_speed(mrb_state* mrb, mrb_value self) {
   uv_cpu_info_t * native_self = mruby_unbox_uv_cpu_info_t(self);
@@ -116,7 +97,6 @@ mrb_UV_CPUInfo_set_speed(mrb_state* mrb, mrb_value self) {
 
   native_self->speed = native_speed;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -125,12 +105,8 @@ mrb_UV_CPUInfo_set_speed(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: CPUInfo::cpu_times_reader */
-/* sha: 089e3a0911ad9188607ec72b404dd0712eb48b85ef6cf513a43e8acc477ff056 */
+/* sha: eab02d56e7650982e31780342c0ca38cd1a7453789d7ad3f07cc0b1b6796ca97 */
 #if BIND_CPUInfo_cpu_times_FIELD_READER
-/* get_cpu_times
- *
- * Return Type: struct uv_cpu_times_s
- */
 mrb_value
 mrb_UV_CPUInfo_get_cpu_times(mrb_state* mrb, mrb_value self) {
   uv_cpu_info_t * native_self = mruby_unbox_uv_cpu_info_t(self);
@@ -146,13 +122,8 @@ mrb_UV_CPUInfo_get_cpu_times(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: CPUInfo::cpu_times_writer */
-/* sha: 84af3d7aee42c1a25a9899ea0ca06d57411bf4485baf287859039aca2df2ac19 */
+/* sha: bc7babed397e7e461133fe0f0a071f1fa21f1734e1c87f7d39d2fb4ee8c17572 */
 #if BIND_CPUInfo_cpu_times_FIELD_WRITER
-/* set_cpu_times
- *
- * Parameters:
- * - value: struct uv_cpu_times_s
- */
 mrb_value
 mrb_UV_CPUInfo_set_cpu_times(mrb_state* mrb, mrb_value self) {
   uv_cpu_info_t * native_self = mruby_unbox_uv_cpu_info_t(self);
@@ -170,7 +141,6 @@ mrb_UV_CPUInfo_set_cpu_times(mrb_state* mrb, mrb_value self) {
 
   native_self->cpu_times = native_cpu_times;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -180,12 +150,13 @@ mrb_UV_CPUInfo_set_cpu_times(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_CPUInfo_init(mrb_state* mrb) {
-/* MRUBY_BINDING: CPUInfo::class_init_header */
-/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
-  /* Don't double-init. */
   static int initialized = 0;
   if (initialized) return;
   else initialized = 1;
+
+/* MRUBY_BINDING: pre_class_definition */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: CPUInfo::class_definition */
@@ -236,20 +207,8 @@ void mrb_UV_CPUInfo_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: CPUInfo::pre_instance_method_definitions */
-/* sha: user_defined */
 
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: CPUInfo::instance_method_definitions */
-/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
-  /*
-   * Member Functions
-   */
-  /* None */
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: CPUInfo::class_init_footer */
+/* MRUBY_BINDING: CPUInfo::post_class_definition */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

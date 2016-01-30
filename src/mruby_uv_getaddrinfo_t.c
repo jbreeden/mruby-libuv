@@ -29,12 +29,8 @@ mrb_UV_Getaddrinfo_initialize(mrb_state* mrb, mrb_value self) {
  */
 
 /* MRUBY_BINDING: Getaddrinfo::loop_reader */
-/* sha: dd78f6884990d418c5865fb6531d2ed2ffed8d9bb1d4519303267201577ab239 */
+/* sha: 784bdf99f5fd377456e8e15e79c07a62484219d8443320a93ce72c712d22b4f4 */
 #if BIND_Getaddrinfo_loop_FIELD_READER
-/* get_loop
- *
- * Return Type: uv_loop_t *
- */
 mrb_value
 mrb_UV_Getaddrinfo_get_loop(mrb_state* mrb, mrb_value self) {
   uv_getaddrinfo_t * native_self = mruby_unbox_uv_getaddrinfo_t(self);
@@ -49,13 +45,8 @@ mrb_UV_Getaddrinfo_get_loop(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Getaddrinfo::loop_writer */
-/* sha: 04000b2b0bd4c996682ab19d326c366e4eaa657b84048191621d525b457f87e6 */
+/* sha: 464e320fe61cb6d0a59966959348a93bb5744afb3ace890173dfc6fc214f75b1 */
 #if BIND_Getaddrinfo_loop_FIELD_WRITER
-/* set_loop
- *
- * Parameters:
- * - value: uv_loop_t *
- */
 mrb_value
 mrb_UV_Getaddrinfo_set_loop(mrb_state* mrb, mrb_value self) {
   uv_getaddrinfo_t * native_self = mruby_unbox_uv_getaddrinfo_t(self);
@@ -73,7 +64,6 @@ mrb_UV_Getaddrinfo_set_loop(mrb_state* mrb, mrb_value self) {
 
   native_self->loop = native_loop;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -83,12 +73,13 @@ mrb_UV_Getaddrinfo_set_loop(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_Getaddrinfo_init(mrb_state* mrb) {
-/* MRUBY_BINDING: Getaddrinfo::class_init_header */
-/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
-  /* Don't double-init. */
   static int initialized = 0;
   if (initialized) return;
   else initialized = 1;
+
+/* MRUBY_BINDING: pre_class_definition */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Getaddrinfo::class_definition */
@@ -127,20 +118,8 @@ void mrb_UV_Getaddrinfo_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: Getaddrinfo::pre_instance_method_definitions */
-/* sha: user_defined */
 
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: Getaddrinfo::instance_method_definitions */
-/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
-  /*
-   * Member Functions
-   */
-  /* None */
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: Getaddrinfo::class_init_footer */
+/* MRUBY_BINDING: Getaddrinfo::post_class_definition */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

@@ -30,12 +30,8 @@ mrb_UV_RUsage_initialize(mrb_state* mrb, mrb_value self) {
  */
 
 /* MRUBY_BINDING: RUsage::ru_utime_reader */
-/* sha: acf286c2a0aa909a318bc9c14a33641a25188f6ee8d845b6366ef8266d8ced28 */
+/* sha: fc87c44fd15f5d75d07e29b2d0e1bd70b13a99e0a5bc4c16386bf177a957bbe0 */
 #if BIND_RUsage_ru_utime_FIELD_READER
-/* get_ru_utime
- *
- * Return Type: uv_timeval_t
- */
 mrb_value
 mrb_UV_RUsage_get_ru_utime(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -51,13 +47,8 @@ mrb_UV_RUsage_get_ru_utime(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_utime_writer */
-/* sha: 2d71bec89e6b1c881ecd085476f4d91d1eb49e46d0582e2ef33ab6426dde1522 */
+/* sha: 8b6ae26158f87340db0c35ba1d0d7f7d44e87f9a8aac88ef166d69615dd2b27c */
 #if BIND_RUsage_ru_utime_FIELD_WRITER
-/* set_ru_utime
- *
- * Parameters:
- * - value: uv_timeval_t
- */
 mrb_value
 mrb_UV_RUsage_set_ru_utime(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -75,7 +66,6 @@ mrb_UV_RUsage_set_ru_utime(mrb_state* mrb, mrb_value self) {
 
   native_self->ru_utime = native_ru_utime;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -84,12 +74,8 @@ mrb_UV_RUsage_set_ru_utime(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_stime_reader */
-/* sha: 867f45fa3dde3b186f962ac2c7498b759d27ab267689153bf78e84cdc214087e */
+/* sha: 2bf16774ff2e03a475b41f0f7ca4d29b3e6173dd341a5338def7aa8300a2398a */
 #if BIND_RUsage_ru_stime_FIELD_READER
-/* get_ru_stime
- *
- * Return Type: uv_timeval_t
- */
 mrb_value
 mrb_UV_RUsage_get_ru_stime(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -105,13 +91,8 @@ mrb_UV_RUsage_get_ru_stime(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_stime_writer */
-/* sha: aef958c919524b282d827bbbba93ef46abe5785c36cf94b41c1caa77ea5a7cf3 */
+/* sha: 730075bf1814c97fea0b105e59037b6d3de6067fad2768dbb5826018cc06bb2f */
 #if BIND_RUsage_ru_stime_FIELD_WRITER
-/* set_ru_stime
- *
- * Parameters:
- * - value: uv_timeval_t
- */
 mrb_value
 mrb_UV_RUsage_set_ru_stime(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -129,7 +110,6 @@ mrb_UV_RUsage_set_ru_stime(mrb_state* mrb, mrb_value self) {
 
   native_self->ru_stime = native_ru_stime;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -138,12 +118,8 @@ mrb_UV_RUsage_set_ru_stime(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_maxrss_reader */
-/* sha: a4db80a3121fb6742e3b4654413e3b64ae3541c333656611957390a562b278d4 */
+/* sha: 4d727295ad1ac03482af713fa0ff5fb3e8283e8fb91d0849ac6bbf5e3986276e */
 #if BIND_RUsage_ru_maxrss_FIELD_READER
-/* get_ru_maxrss
- *
- * Return Type: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_get_ru_maxrss(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -158,13 +134,8 @@ mrb_UV_RUsage_get_ru_maxrss(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_maxrss_writer */
-/* sha: 15bd7255f6b5db4a351e4fc985f068ea210e2c711e2cfd58bae7bd23244f4f02 */
+/* sha: 41be5216f286d5a06902da4b5a8ee92fd81432bbbb8d468e6af7a082e919febd */
 #if BIND_RUsage_ru_maxrss_FIELD_WRITER
-/* set_ru_maxrss
- *
- * Parameters:
- * - value: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_set_ru_maxrss(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -179,7 +150,6 @@ mrb_UV_RUsage_set_ru_maxrss(mrb_state* mrb, mrb_value self) {
 
   native_self->ru_maxrss = native_ru_maxrss;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -188,12 +158,8 @@ mrb_UV_RUsage_set_ru_maxrss(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_ixrss_reader */
-/* sha: 9904967ef666eeee1ea541124c5043e3d8a5f9dbb6b94479aa152d58e114fd8e */
+/* sha: d35f46659be07e76d3c7770f7581227347f99b9613c3b2af87b506df6e06cb35 */
 #if BIND_RUsage_ru_ixrss_FIELD_READER
-/* get_ru_ixrss
- *
- * Return Type: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_get_ru_ixrss(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -208,13 +174,8 @@ mrb_UV_RUsage_get_ru_ixrss(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_ixrss_writer */
-/* sha: 0e5d97d625c68b913cd0c07a4a021af7d45547160087c06a0610b7d6cce8459b */
+/* sha: 3d4f450d6b82e70cb4a4979a76af9a5255119690c689d4e0327ae49a5566e298 */
 #if BIND_RUsage_ru_ixrss_FIELD_WRITER
-/* set_ru_ixrss
- *
- * Parameters:
- * - value: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_set_ru_ixrss(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -229,7 +190,6 @@ mrb_UV_RUsage_set_ru_ixrss(mrb_state* mrb, mrb_value self) {
 
   native_self->ru_ixrss = native_ru_ixrss;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -238,12 +198,8 @@ mrb_UV_RUsage_set_ru_ixrss(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_idrss_reader */
-/* sha: dd673f515c2fe590e8bb56047e5fb9721ea2686b57c0da057d6085388be78946 */
+/* sha: 70b5f20b1779c11b573e6f85f38c0e75a02bf7273f486aae6e04d904c659dd1a */
 #if BIND_RUsage_ru_idrss_FIELD_READER
-/* get_ru_idrss
- *
- * Return Type: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_get_ru_idrss(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -258,13 +214,8 @@ mrb_UV_RUsage_get_ru_idrss(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_idrss_writer */
-/* sha: 12e79245241ca85c28352e07ba772f53a2867df2043cca4fe00fa3714a0fde51 */
+/* sha: e7302e491be34a8a841535dc70ac524eb5186a8585c7dc2daf8aa15034ef2365 */
 #if BIND_RUsage_ru_idrss_FIELD_WRITER
-/* set_ru_idrss
- *
- * Parameters:
- * - value: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_set_ru_idrss(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -279,7 +230,6 @@ mrb_UV_RUsage_set_ru_idrss(mrb_state* mrb, mrb_value self) {
 
   native_self->ru_idrss = native_ru_idrss;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -288,12 +238,8 @@ mrb_UV_RUsage_set_ru_idrss(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_isrss_reader */
-/* sha: 97d69e9070d1c22c482b77870da215d1fc5b339a294a101fb66a9653b49e90b9 */
+/* sha: bfb54826f40d8851a62c7bfaaf0a81ededfa18cf89e9a13340ded687ebcd0525 */
 #if BIND_RUsage_ru_isrss_FIELD_READER
-/* get_ru_isrss
- *
- * Return Type: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_get_ru_isrss(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -308,13 +254,8 @@ mrb_UV_RUsage_get_ru_isrss(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_isrss_writer */
-/* sha: 4a0826a754b0ab1d98895236ad7dc30617df3120734e0f8f679552b71456c595 */
+/* sha: 56e2757fc4c281911ca3fadc54238a9186e3fa7cf3096565da4b74c86735742f */
 #if BIND_RUsage_ru_isrss_FIELD_WRITER
-/* set_ru_isrss
- *
- * Parameters:
- * - value: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_set_ru_isrss(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -329,7 +270,6 @@ mrb_UV_RUsage_set_ru_isrss(mrb_state* mrb, mrb_value self) {
 
   native_self->ru_isrss = native_ru_isrss;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -338,12 +278,8 @@ mrb_UV_RUsage_set_ru_isrss(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_minflt_reader */
-/* sha: d31b5fee94e9a804da5e1ebf3dd8f99d74144de6535447957e63a3fd998617f4 */
+/* sha: a06ea416943c4a807cde0244d98ff5edb242cf20f2dee7df1d0998a4fc2c0e1f */
 #if BIND_RUsage_ru_minflt_FIELD_READER
-/* get_ru_minflt
- *
- * Return Type: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_get_ru_minflt(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -358,13 +294,8 @@ mrb_UV_RUsage_get_ru_minflt(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_minflt_writer */
-/* sha: f5dac9be8925497e947ea2e9dc9acbbe9373970de32e8b0f0e7c9d81b054c60e */
+/* sha: 8809078f55302bf87f24fd7167d354b143296ab4224d9bdd75392d5af1d0bb7a */
 #if BIND_RUsage_ru_minflt_FIELD_WRITER
-/* set_ru_minflt
- *
- * Parameters:
- * - value: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_set_ru_minflt(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -379,7 +310,6 @@ mrb_UV_RUsage_set_ru_minflt(mrb_state* mrb, mrb_value self) {
 
   native_self->ru_minflt = native_ru_minflt;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -388,12 +318,8 @@ mrb_UV_RUsage_set_ru_minflt(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_majflt_reader */
-/* sha: 614d610cb5b25571333a7828fd5e2ff92bf08d4c1293c7109baa2d9128b2dbfb */
+/* sha: 36f75766f870f7dc7f9edd507876b350892ccf67f8dec8e56c6976a830e9dc2b */
 #if BIND_RUsage_ru_majflt_FIELD_READER
-/* get_ru_majflt
- *
- * Return Type: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_get_ru_majflt(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -408,13 +334,8 @@ mrb_UV_RUsage_get_ru_majflt(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_majflt_writer */
-/* sha: 30ab2b4f04be3e92c4e3002660f1fd03467e2ea1638dce5cba440f092bef1698 */
+/* sha: 37a75fdd542b5f0e30833df019c09f5358077fc25b6a9c997785741506e55f5a */
 #if BIND_RUsage_ru_majflt_FIELD_WRITER
-/* set_ru_majflt
- *
- * Parameters:
- * - value: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_set_ru_majflt(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -429,7 +350,6 @@ mrb_UV_RUsage_set_ru_majflt(mrb_state* mrb, mrb_value self) {
 
   native_self->ru_majflt = native_ru_majflt;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -438,12 +358,8 @@ mrb_UV_RUsage_set_ru_majflt(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_nswap_reader */
-/* sha: c5a167e545b81b4698197f0fcd4997749c87be48d03dec83663226a09150a907 */
+/* sha: 941527de1d836fb3cd8027f220d3e8a47506cec3894e4bcfdbbf2e7fcd88bd04 */
 #if BIND_RUsage_ru_nswap_FIELD_READER
-/* get_ru_nswap
- *
- * Return Type: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_get_ru_nswap(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -458,13 +374,8 @@ mrb_UV_RUsage_get_ru_nswap(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_nswap_writer */
-/* sha: 8a3e4452bcc8653b831045adf42bacda3eee0d76dab30c60ea3f9891a5b5e0cc */
+/* sha: 9938db762e71006dd8f4ba9efafa44181f549e3d9bff9cff244a9ae963fb49c9 */
 #if BIND_RUsage_ru_nswap_FIELD_WRITER
-/* set_ru_nswap
- *
- * Parameters:
- * - value: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_set_ru_nswap(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -479,7 +390,6 @@ mrb_UV_RUsage_set_ru_nswap(mrb_state* mrb, mrb_value self) {
 
   native_self->ru_nswap = native_ru_nswap;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -488,12 +398,8 @@ mrb_UV_RUsage_set_ru_nswap(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_inblock_reader */
-/* sha: 58b87934d5693f9893e0e68a5d09f09b2440427a19336c6488d00fc1e4f4c1a9 */
+/* sha: a95f8d6e4c2ea2e53ac4d75590ddf51d1c0ec8e104af0a0283e275f2488b1b54 */
 #if BIND_RUsage_ru_inblock_FIELD_READER
-/* get_ru_inblock
- *
- * Return Type: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_get_ru_inblock(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -508,13 +414,8 @@ mrb_UV_RUsage_get_ru_inblock(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_inblock_writer */
-/* sha: be00ced2e211d10ee93319902fa1a318f89317681a2255e09ffbc4fa38dc37e9 */
+/* sha: a0d1ca9d04f447eee28a52b98d4cc2e364dfc2be2a4eb9611908869ac9beaa04 */
 #if BIND_RUsage_ru_inblock_FIELD_WRITER
-/* set_ru_inblock
- *
- * Parameters:
- * - value: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_set_ru_inblock(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -529,7 +430,6 @@ mrb_UV_RUsage_set_ru_inblock(mrb_state* mrb, mrb_value self) {
 
   native_self->ru_inblock = native_ru_inblock;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -538,12 +438,8 @@ mrb_UV_RUsage_set_ru_inblock(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_oublock_reader */
-/* sha: 4afab4711cdfcc695bbd4303c1fd9e44f9e481c91db945ec2c02a938cd73ea60 */
+/* sha: 5b7454909b5762981f2087e50cc731ee084886150843b858049f6faf56bb09b3 */
 #if BIND_RUsage_ru_oublock_FIELD_READER
-/* get_ru_oublock
- *
- * Return Type: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_get_ru_oublock(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -558,13 +454,8 @@ mrb_UV_RUsage_get_ru_oublock(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_oublock_writer */
-/* sha: 73791f4e3efae76081f7e77ba3f6d40f5372096db94e2b4952e76445ae9b45d1 */
+/* sha: 9d5e7d60e2f6072f17ff139b163ca1b5584999a3aa3d7a814d297ad3ed9f172e */
 #if BIND_RUsage_ru_oublock_FIELD_WRITER
-/* set_ru_oublock
- *
- * Parameters:
- * - value: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_set_ru_oublock(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -579,7 +470,6 @@ mrb_UV_RUsage_set_ru_oublock(mrb_state* mrb, mrb_value self) {
 
   native_self->ru_oublock = native_ru_oublock;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -588,12 +478,8 @@ mrb_UV_RUsage_set_ru_oublock(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_msgsnd_reader */
-/* sha: afc046ab4dce170a3a4f852fdbde1948a72c18ab56cf26275a81844f1917b94d */
+/* sha: 3d0e5ec136e53060001ba1a138af108b32e751df872c5d28dce35df4ef866c87 */
 #if BIND_RUsage_ru_msgsnd_FIELD_READER
-/* get_ru_msgsnd
- *
- * Return Type: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_get_ru_msgsnd(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -608,13 +494,8 @@ mrb_UV_RUsage_get_ru_msgsnd(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_msgsnd_writer */
-/* sha: a8d9dfefa025e4580317050273e66a9f86fd1eec831f8c530fb1e7718f2ae519 */
+/* sha: 95d23c105226edd7b9807d4911daaaf2c4423da16bc1d5e0d9e1ab549d2525bb */
 #if BIND_RUsage_ru_msgsnd_FIELD_WRITER
-/* set_ru_msgsnd
- *
- * Parameters:
- * - value: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_set_ru_msgsnd(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -629,7 +510,6 @@ mrb_UV_RUsage_set_ru_msgsnd(mrb_state* mrb, mrb_value self) {
 
   native_self->ru_msgsnd = native_ru_msgsnd;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -638,12 +518,8 @@ mrb_UV_RUsage_set_ru_msgsnd(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_msgrcv_reader */
-/* sha: 1a14c57d3c1a6bfaa73c52404d5d46b6374d3953498f620e56062928e4bd3ec7 */
+/* sha: bad6d13588a6a52f0073342dd181c35980ab471f7fa5625213b185bb7d1cda74 */
 #if BIND_RUsage_ru_msgrcv_FIELD_READER
-/* get_ru_msgrcv
- *
- * Return Type: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_get_ru_msgrcv(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -658,13 +534,8 @@ mrb_UV_RUsage_get_ru_msgrcv(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_msgrcv_writer */
-/* sha: 7c8fda584f4da9654b86e7572f90d7591db240f0ba79179d8e3333d6db7838ab */
+/* sha: 2a14f9f692af353ecc5b8d8cc994f809d84f13698183d7ee18201cd3c3f463d2 */
 #if BIND_RUsage_ru_msgrcv_FIELD_WRITER
-/* set_ru_msgrcv
- *
- * Parameters:
- * - value: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_set_ru_msgrcv(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -679,7 +550,6 @@ mrb_UV_RUsage_set_ru_msgrcv(mrb_state* mrb, mrb_value self) {
 
   native_self->ru_msgrcv = native_ru_msgrcv;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -688,12 +558,8 @@ mrb_UV_RUsage_set_ru_msgrcv(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_nsignals_reader */
-/* sha: 1fdf614c24e6f5e201c88617ec284734f31ddbd2c08a1ecfe943f3fe51d69f65 */
+/* sha: 8270c3f36fd9d04ce77ba2563e4f649ab09750554d592a728fb111e0efd44ed2 */
 #if BIND_RUsage_ru_nsignals_FIELD_READER
-/* get_ru_nsignals
- *
- * Return Type: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_get_ru_nsignals(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -708,13 +574,8 @@ mrb_UV_RUsage_get_ru_nsignals(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_nsignals_writer */
-/* sha: e542fc27341460d15744140e98f3cba16c4929c4833d4d6559658a36f9ca7d34 */
+/* sha: 89faff8a697e6c02a2748adde59bc43a0af40ae99c7bb43afcb5af2392cae8f3 */
 #if BIND_RUsage_ru_nsignals_FIELD_WRITER
-/* set_ru_nsignals
- *
- * Parameters:
- * - value: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_set_ru_nsignals(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -729,7 +590,6 @@ mrb_UV_RUsage_set_ru_nsignals(mrb_state* mrb, mrb_value self) {
 
   native_self->ru_nsignals = native_ru_nsignals;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -738,12 +598,8 @@ mrb_UV_RUsage_set_ru_nsignals(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_nvcsw_reader */
-/* sha: 4cacfb259ffc7ba4f0edf8cf0eb729bb1fe87109a2bbd42d22fa721860dacc50 */
+/* sha: ba982ee02d7c549e240ff18eedae8f1a63a9025d42602e7aff6966ee474ab946 */
 #if BIND_RUsage_ru_nvcsw_FIELD_READER
-/* get_ru_nvcsw
- *
- * Return Type: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_get_ru_nvcsw(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -758,13 +614,8 @@ mrb_UV_RUsage_get_ru_nvcsw(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_nvcsw_writer */
-/* sha: f880d0cb004e0a02bc1abeab6839237c9dd38944368bf904737fae6068e237d2 */
+/* sha: e1fb2637965b81759fb127e52010ac4966a1ab0915dc645a6a30e3deef62b2ad */
 #if BIND_RUsage_ru_nvcsw_FIELD_WRITER
-/* set_ru_nvcsw
- *
- * Parameters:
- * - value: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_set_ru_nvcsw(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -779,7 +630,6 @@ mrb_UV_RUsage_set_ru_nvcsw(mrb_state* mrb, mrb_value self) {
 
   native_self->ru_nvcsw = native_ru_nvcsw;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -788,12 +638,8 @@ mrb_UV_RUsage_set_ru_nvcsw(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_nivcsw_reader */
-/* sha: e0e462969a0affa014a989f88a69f66f9756f5c7e281cf20038fce5836194474 */
+/* sha: a97dfbc9a727d1bf8dc1f6b7c7a9d4c64a18a147e17c0d6f6a7e1f41df17bed6 */
 #if BIND_RUsage_ru_nivcsw_FIELD_READER
-/* get_ru_nivcsw
- *
- * Return Type: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_get_ru_nivcsw(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -808,13 +654,8 @@ mrb_UV_RUsage_get_ru_nivcsw(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::ru_nivcsw_writer */
-/* sha: 8dc8c21590a3799cf16a81fe696e63b5c911b57b0c5864218f885a182f8c59b8 */
+/* sha: dd1e4b7d60e6701e1c2c065f73033e8c1b781701c900a5e9c14deb6fb5fea20a */
 #if BIND_RUsage_ru_nivcsw_FIELD_WRITER
-/* set_ru_nivcsw
- *
- * Parameters:
- * - value: uint64_t
- */
 mrb_value
 mrb_UV_RUsage_set_ru_nivcsw(mrb_state* mrb, mrb_value self) {
   uv_rusage_t * native_self = mruby_unbox_uv_rusage_t(self);
@@ -829,7 +670,6 @@ mrb_UV_RUsage_set_ru_nivcsw(mrb_state* mrb, mrb_value self) {
 
   native_self->ru_nivcsw = native_ru_nivcsw;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -839,12 +679,13 @@ mrb_UV_RUsage_set_ru_nivcsw(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_RUsage_init(mrb_state* mrb) {
-/* MRUBY_BINDING: RUsage::class_init_header */
-/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
-  /* Don't double-init. */
   static int initialized = 0;
   if (initialized) return;
   else initialized = 1;
+
+/* MRUBY_BINDING: pre_class_definition */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: RUsage::class_definition */
@@ -973,20 +814,8 @@ void mrb_UV_RUsage_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: RUsage::pre_instance_method_definitions */
-/* sha: user_defined */
 
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: RUsage::instance_method_definitions */
-/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
-  /*
-   * Member Functions
-   */
-  /* None */
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: RUsage::class_init_footer */
+/* MRUBY_BINDING: RUsage::post_class_definition */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

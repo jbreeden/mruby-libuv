@@ -29,12 +29,8 @@ mrb_UV_UDPSend_initialize(mrb_state* mrb, mrb_value self) {
  */
 
 /* MRUBY_BINDING: UDPSend::handle_reader */
-/* sha: 998d4ad511dae17c771120999f1b90f9c6cc207bc675608e3e9bd06f7b1ae316 */
+/* sha: 9316b1c8f118d7808e701ecbf69abd8be48ddb219654d3db37669fd9aa400584 */
 #if BIND_UDPSend_handle_FIELD_READER
-/* get_handle
- *
- * Return Type: uv_udp_t *
- */
 mrb_value
 mrb_UV_UDPSend_get_handle(mrb_state* mrb, mrb_value self) {
   uv_udp_send_t * native_self = mruby_unbox_uv_udp_send_t(self);
@@ -49,13 +45,8 @@ mrb_UV_UDPSend_get_handle(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UDPSend::handle_writer */
-/* sha: 41f6c18a2f317f7e5b28cace81156f8fcc0b235e2385b24f838ad783ca7f9fb1 */
+/* sha: 94fd3c225e33c364779b14233a81156b1cbcbe918ffe4c0b6a9ea3a67836d5c4 */
 #if BIND_UDPSend_handle_FIELD_WRITER
-/* set_handle
- *
- * Parameters:
- * - value: uv_udp_t *
- */
 mrb_value
 mrb_UV_UDPSend_set_handle(mrb_state* mrb, mrb_value self) {
   uv_udp_send_t * native_self = mruby_unbox_uv_udp_send_t(self);
@@ -73,7 +64,6 @@ mrb_UV_UDPSend_set_handle(mrb_state* mrb, mrb_value self) {
 
   native_self->handle = native_handle;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -82,12 +72,8 @@ mrb_UV_UDPSend_set_handle(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UDPSend::cb_reader */
-/* sha: 52a68a401c188abea16bc4d7b25d69b4aa6858d348679f164b4f69190dcb3b67 */
+/* sha: 75a6b898b382ef77062cfe95d2b04b83e7059d485137ee4543ec2dae1b7bbe01 */
 #if BIND_UDPSend_cb_FIELD_READER
-/* get_cb
- *
- * Return Type: uv_udp_send_cb
- */
 mrb_value
 mrb_UV_UDPSend_get_cb(mrb_state* mrb, mrb_value self) {
   uv_udp_send_t * native_self = mruby_unbox_uv_udp_send_t(self);
@@ -102,13 +88,8 @@ mrb_UV_UDPSend_get_cb(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UDPSend::cb_writer */
-/* sha: ae85a6bad8a5004616fd780d002def2b6c7e02abb687465c597440ee56e594a9 */
+/* sha: 5a4b8492922fba06ca223ad18a44f3c41b1964cc2d3d7a5cd7ae349eaa95ad93 */
 #if BIND_UDPSend_cb_FIELD_WRITER
-/* set_cb
- *
- * Parameters:
- * - value: uv_udp_send_cb
- */
 mrb_value
 mrb_UV_UDPSend_set_cb(mrb_state* mrb, mrb_value self) {
   uv_udp_send_t * native_self = mruby_unbox_uv_udp_send_t(self);
@@ -123,7 +104,6 @@ mrb_UV_UDPSend_set_cb(mrb_state* mrb, mrb_value self) {
 
   native_self->cb = native_cb;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -133,12 +113,13 @@ mrb_UV_UDPSend_set_cb(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_UDPSend_init(mrb_state* mrb) {
-/* MRUBY_BINDING: UDPSend::class_init_header */
-/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
-  /* Don't double-init. */
   static int initialized = 0;
   if (initialized) return;
   else initialized = 1;
+
+/* MRUBY_BINDING: pre_class_definition */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: UDPSend::class_definition */
@@ -183,20 +164,8 @@ void mrb_UV_UDPSend_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: UDPSend::pre_instance_method_definitions */
-/* sha: user_defined */
 
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UDPSend::instance_method_definitions */
-/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
-  /*
-   * Member Functions
-   */
-  /* None */
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: UDPSend::class_init_footer */
+/* MRUBY_BINDING: UDPSend::post_class_definition */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

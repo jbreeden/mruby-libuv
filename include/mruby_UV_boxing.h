@@ -3,7 +3,8 @@
 
 /* MRUBY_BINDING: header */
 /* sha: user_defined */
-
+void *
+mruby_unbox_as_void_ptr(mrb_value boxed);
 /* MRUBY_BINDING_END */
 
 
@@ -444,20 +445,8 @@ mruby_unbox_uv_process_t(mrb_value boxed);
 /* MRUBY_BINDING: ProcessOptions::boxing_decls */
 /* sha: c91b2798b211ba819ce96bdac933b5f5e17b48e0f7415e50eaf0b0bcbf203393 */
 #if BIND_ProcessOptions_TYPE
-mrb_value
-mruby_box_uv_process_options_t(mrb_state* mrb, uv_process_options_t *unboxed);
-
-mrb_value
-mruby_giftwrap_uv_process_options_t(mrb_state* mrb, uv_process_options_t *unboxed);
-
-void
-mruby_set_uv_process_options_t_data_ptr(mrb_value obj, uv_process_options_t *unboxed);
-
-void
-mruby_gift_uv_process_options_t_data_ptr(mrb_value obj, uv_process_options_t *unboxed);
-
 uv_process_options_t *
-mruby_unbox_uv_process_options_t(mrb_value boxed);
+mruby_unbox_uv_process_options_t(mrb_state * mrb, mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 

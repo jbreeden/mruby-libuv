@@ -29,12 +29,8 @@ mrb_UV_Shutdown_initialize(mrb_state* mrb, mrb_value self) {
  */
 
 /* MRUBY_BINDING: Shutdown::handle_reader */
-/* sha: 3fc0f04b8720413d0de30a8b852b3d59c5a4f18ab80c44a898ecfd4d7e77a1ff */
+/* sha: b4e0bea202c9976c9109727b6a7ee90f6a3b76395e624b73381f27760350eec2 */
 #if BIND_Shutdown_handle_FIELD_READER
-/* get_handle
- *
- * Return Type: uv_stream_t *
- */
 mrb_value
 mrb_UV_Shutdown_get_handle(mrb_state* mrb, mrb_value self) {
   uv_shutdown_t * native_self = mruby_unbox_uv_shutdown_t(self);
@@ -49,13 +45,8 @@ mrb_UV_Shutdown_get_handle(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Shutdown::handle_writer */
-/* sha: 04fb1e92d48a848187a01b5f416d2a2b937a0e4f144983c8ebd44d9d5990e6cf */
+/* sha: 2e3a9a61c163b8f6b891dfff0876719ddb7d49031e0769b748ead87d4c3ea66a */
 #if BIND_Shutdown_handle_FIELD_WRITER
-/* set_handle
- *
- * Parameters:
- * - value: uv_stream_t *
- */
 mrb_value
 mrb_UV_Shutdown_set_handle(mrb_state* mrb, mrb_value self) {
   uv_shutdown_t * native_self = mruby_unbox_uv_shutdown_t(self);
@@ -73,7 +64,6 @@ mrb_UV_Shutdown_set_handle(mrb_state* mrb, mrb_value self) {
 
   native_self->handle = native_handle;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -82,12 +72,8 @@ mrb_UV_Shutdown_set_handle(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Shutdown::cb_reader */
-/* sha: 2b913ff07d56fe2e54615cfbfb10a276b7da60f674bdad11e2f053cf5907776b */
+/* sha: 9ae79b2774a2ff76892253975eec8223b50ec67e4fa37d395c159135c4ff3e3c */
 #if BIND_Shutdown_cb_FIELD_READER
-/* get_cb
- *
- * Return Type: uv_shutdown_cb
- */
 mrb_value
 mrb_UV_Shutdown_get_cb(mrb_state* mrb, mrb_value self) {
   uv_shutdown_t * native_self = mruby_unbox_uv_shutdown_t(self);
@@ -102,13 +88,8 @@ mrb_UV_Shutdown_get_cb(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Shutdown::cb_writer */
-/* sha: 873f62c2b531cf29d11ebaa045d434023e420d5d64cb669534bafdab08bff643 */
+/* sha: e8c57bd4a500814ddbc7e6c6a1f776260a6173952ce32baebb0f70e6b6d5e158 */
 #if BIND_Shutdown_cb_FIELD_WRITER
-/* set_cb
- *
- * Parameters:
- * - value: uv_shutdown_cb
- */
 mrb_value
 mrb_UV_Shutdown_set_cb(mrb_state* mrb, mrb_value self) {
   uv_shutdown_t * native_self = mruby_unbox_uv_shutdown_t(self);
@@ -123,7 +104,6 @@ mrb_UV_Shutdown_set_cb(mrb_state* mrb, mrb_value self) {
 
   native_self->cb = native_cb;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -133,12 +113,13 @@ mrb_UV_Shutdown_set_cb(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_Shutdown_init(mrb_state* mrb) {
-/* MRUBY_BINDING: Shutdown::class_init_header */
-/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
-  /* Don't double-init. */
   static int initialized = 0;
   if (initialized) return;
   else initialized = 1;
+
+/* MRUBY_BINDING: pre_class_definition */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Shutdown::class_definition */
@@ -183,20 +164,8 @@ void mrb_UV_Shutdown_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: Shutdown::pre_instance_method_definitions */
-/* sha: user_defined */
 
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: Shutdown::instance_method_definitions */
-/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
-  /*
-   * Member Functions
-   */
-  /* None */
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: Shutdown::class_init_footer */
+/* MRUBY_BINDING: Shutdown::post_class_definition */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

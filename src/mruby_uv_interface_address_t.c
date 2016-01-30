@@ -30,12 +30,8 @@ mrb_UV_InterfaceAddress_initialize(mrb_state* mrb, mrb_value self) {
  */
 
 /* MRUBY_BINDING: InterfaceAddress::name_reader */
-/* sha: 2131e51ccb5eddb8dd147d40e094108038164e1b2803559fbffdca43eb4f04ac */
+/* sha: dbe85ea8dac078a17d915a3db5a3e6b6e1370f6515388f28d029968a0126a18b */
 #if BIND_InterfaceAddress_name_FIELD_READER
-/* get_name
- *
- * Return Type: char *
- */
 mrb_value
 mrb_UV_InterfaceAddress_get_name(mrb_state* mrb, mrb_value self) {
   uv_interface_address_t * native_self = mruby_unbox_uv_interface_address_t(self);
@@ -50,13 +46,8 @@ mrb_UV_InterfaceAddress_get_name(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: InterfaceAddress::name_writer */
-/* sha: a4be15d38f5c174266899ed3116ac2e63b7ab1bf17a2cb3754a0a0db3bd3883e */
+/* sha: d9c2aaa8b37693ba0861657437d4391d42556a4f361d8a24004daffef2bc48db */
 #if BIND_InterfaceAddress_name_FIELD_WRITER
-/* set_name
- *
- * Parameters:
- * - value: char *
- */
 mrb_value
 mrb_UV_InterfaceAddress_set_name(mrb_state* mrb, mrb_value self) {
   uv_interface_address_t * native_self = mruby_unbox_uv_interface_address_t(self);
@@ -71,7 +62,6 @@ mrb_UV_InterfaceAddress_set_name(mrb_state* mrb, mrb_value self) {
 
   native_self->name = native_name;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -80,12 +70,8 @@ mrb_UV_InterfaceAddress_set_name(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: InterfaceAddress::phys_addr_reader */
-/* sha: 4033ff294ab26017498c94a681b1b92bd71c28489b0324430175d0d25687af7c */
+/* sha: 63ada483227beab7a6d1cb640a3b0dd04278dbd3fab971306a016d85f9a32cab */
 #if BIND_InterfaceAddress_phys_addr_FIELD_READER
-/* get_phys_addr
- *
- * Return Type: char [6]
- */
 mrb_value
 mrb_UV_InterfaceAddress_get_phys_addr(mrb_state* mrb, mrb_value self) {
   uv_interface_address_t * native_self = mruby_unbox_uv_interface_address_t(self);
@@ -100,13 +86,8 @@ mrb_UV_InterfaceAddress_get_phys_addr(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: InterfaceAddress::phys_addr_writer */
-/* sha: c7ca97c101f4e7ed094624c9ffbfd73a0f635b31770253a8917f833504287f26 */
+/* sha: e483872c9b7804e58f2654b58c7f5eb4e6e3e98a7cbafbc4689f34f2b48b8b97 */
 #if BIND_InterfaceAddress_phys_addr_FIELD_WRITER
-/* set_phys_addr
- *
- * Parameters:
- * - value: char [6]
- */
 mrb_value
 mrb_UV_InterfaceAddress_set_phys_addr(mrb_state* mrb, mrb_value self) {
   uv_interface_address_t * native_self = mruby_unbox_uv_interface_address_t(self);
@@ -121,7 +102,6 @@ mrb_UV_InterfaceAddress_set_phys_addr(mrb_state* mrb, mrb_value self) {
 
   native_self->phys_addr = native_phys_addr;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -130,12 +110,8 @@ mrb_UV_InterfaceAddress_set_phys_addr(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: InterfaceAddress::is_internal_reader */
-/* sha: fc56f6b73a4f9bcf7ae19d6c7e4f295ea76c410017737dd1ad7f2185a8c07ce2 */
+/* sha: 3f7f39e88703db42f66b63c7c7a950e32ec406b2456b2c6066e4526d0937b9bd */
 #if BIND_InterfaceAddress_is_internal_FIELD_READER
-/* get_is_internal
- *
- * Return Type: int
- */
 mrb_value
 mrb_UV_InterfaceAddress_get_is_internal(mrb_state* mrb, mrb_value self) {
   uv_interface_address_t * native_self = mruby_unbox_uv_interface_address_t(self);
@@ -150,13 +126,8 @@ mrb_UV_InterfaceAddress_get_is_internal(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: InterfaceAddress::is_internal_writer */
-/* sha: f2e0de5fbd9ee4dfbc0809d67b373f98b2f6056b0031e3e6d86fc99fb2fb679d */
+/* sha: 5259a27b3117cc457930ac90a86ca7d1ac6daf897b03028baff22108c1688018 */
 #if BIND_InterfaceAddress_is_internal_FIELD_WRITER
-/* set_is_internal
- *
- * Parameters:
- * - value: int
- */
 mrb_value
 mrb_UV_InterfaceAddress_set_is_internal(mrb_state* mrb, mrb_value self) {
   uv_interface_address_t * native_self = mruby_unbox_uv_interface_address_t(self);
@@ -166,7 +137,6 @@ mrb_UV_InterfaceAddress_set_is_internal(mrb_state* mrb, mrb_value self) {
 
   native_self->is_internal = native_is_internal;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -175,12 +145,8 @@ mrb_UV_InterfaceAddress_set_is_internal(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: InterfaceAddress::address_reader */
-/* sha: b3e9641042cf3c38a2c80a24b218959ab132c61dbc02bb834460e9e0c356d227 */
+/* sha: 94c557e5c7914d7c30e271ccd64947c80fa53d5bf30f68ad5faae556e98e6c4e */
 #if BIND_InterfaceAddress_address_FIELD_READER
-/* get_address
- *
- * Return Type: union (anonymous union at headers/uv.h:993:3)
- */
 mrb_value
 mrb_UV_InterfaceAddress_get_address(mrb_state* mrb, mrb_value self) {
   uv_interface_address_t * native_self = mruby_unbox_uv_interface_address_t(self);
@@ -195,13 +161,8 @@ mrb_UV_InterfaceAddress_get_address(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: InterfaceAddress::address_writer */
-/* sha: 7401b2a963328dee18221d3ab7f130b9ca8581b6195076ade7cec3e3b3b4ceae */
+/* sha: b9f5c9f69d65de0c26e50ff3c58e2d634181b506ae27f243a210f3c762865a46 */
 #if BIND_InterfaceAddress_address_FIELD_WRITER
-/* set_address
- *
- * Parameters:
- * - value: union (anonymous union at headers/uv.h:993:3)
- */
 mrb_value
 mrb_UV_InterfaceAddress_set_address(mrb_state* mrb, mrb_value self) {
   uv_interface_address_t * native_self = mruby_unbox_uv_interface_address_t(self);
@@ -216,7 +177,6 @@ mrb_UV_InterfaceAddress_set_address(mrb_state* mrb, mrb_value self) {
 
   native_self->address = native_address;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -225,12 +185,8 @@ mrb_UV_InterfaceAddress_set_address(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: InterfaceAddress::netmask_reader */
-/* sha: f2827b70e4668beb396b6fbb76d6157b68e88e88200ad5cc5f7fdefbdbbb9cb0 */
+/* sha: 0d541c2c81a842f053b1dc85db9db5ea7a943908ee4fbf07ce6cf6fe155ca904 */
 #if BIND_InterfaceAddress_netmask_FIELD_READER
-/* get_netmask
- *
- * Return Type: union (anonymous union at headers/uv.h:997:3)
- */
 mrb_value
 mrb_UV_InterfaceAddress_get_netmask(mrb_state* mrb, mrb_value self) {
   uv_interface_address_t * native_self = mruby_unbox_uv_interface_address_t(self);
@@ -245,13 +201,8 @@ mrb_UV_InterfaceAddress_get_netmask(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: InterfaceAddress::netmask_writer */
-/* sha: be03d4f63a7f740528f34209c9645de6e1b817c3ec088f36d245ed4bb812abe7 */
+/* sha: 4e208019d1216809c4efea3d3df5dcd18ecf3e2cc55c6457bfa436289535ce42 */
 #if BIND_InterfaceAddress_netmask_FIELD_WRITER
-/* set_netmask
- *
- * Parameters:
- * - value: union (anonymous union at headers/uv.h:997:3)
- */
 mrb_value
 mrb_UV_InterfaceAddress_set_netmask(mrb_state* mrb, mrb_value self) {
   uv_interface_address_t * native_self = mruby_unbox_uv_interface_address_t(self);
@@ -266,7 +217,6 @@ mrb_UV_InterfaceAddress_set_netmask(mrb_state* mrb, mrb_value self) {
 
   native_self->netmask = native_netmask;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -276,12 +226,13 @@ mrb_UV_InterfaceAddress_set_netmask(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_InterfaceAddress_init(mrb_state* mrb) {
-/* MRUBY_BINDING: InterfaceAddress::class_init_header */
-/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
-  /* Don't double-init. */
   static int initialized = 0;
   if (initialized) return;
   else initialized = 1;
+
+/* MRUBY_BINDING: pre_class_definition */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: InterfaceAddress::class_definition */
@@ -344,20 +295,8 @@ void mrb_UV_InterfaceAddress_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: InterfaceAddress::pre_instance_method_definitions */
-/* sha: user_defined */
 
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: InterfaceAddress::instance_method_definitions */
-/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
-  /*
-   * Member Functions
-   */
-  /* None */
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: InterfaceAddress::class_init_footer */
+/* MRUBY_BINDING: InterfaceAddress::post_class_definition */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

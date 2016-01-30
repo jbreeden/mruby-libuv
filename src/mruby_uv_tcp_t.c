@@ -26,12 +26,13 @@ mrb_UV_TCP_initialize(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_TCP_init(mrb_state* mrb) {
-/* MRUBY_BINDING: TCP::class_init_header */
-/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
-  /* Don't double-init. */
   static int initialized = 0;
   if (initialized) return;
   else initialized = 1;
+
+/* MRUBY_BINDING: pre_class_definition */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: TCP::class_definition */
@@ -52,33 +53,9 @@ void mrb_UV_TCP_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: TCP::pre_attr_definitions */
-/* sha: user_defined */
 
-/* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: TCP::attr_definitions */
-/* sha: 50c2844963333e47202eca17b7b61f03790fb1b7cbacbaff3f287c0ac8fd59a3 */
-  /*
-   * Fields
-   */
-  /* None */
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: TCP::pre_instance_method_definitions */
-/* sha: user_defined */
-
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: TCP::instance_method_definitions */
-/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
-  /*
-   * Member Functions
-   */
-  /* None */
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: TCP::class_init_footer */
+/* MRUBY_BINDING: TCP::post_class_definition */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

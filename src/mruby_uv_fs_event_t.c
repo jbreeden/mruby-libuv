@@ -29,12 +29,8 @@ mrb_UV_FSEvent_initialize(mrb_state* mrb, mrb_value self) {
  */
 
 /* MRUBY_BINDING: FSEvent::path_reader */
-/* sha: de2578ca4347c836d1f9123b70f1c638e99cdb03be757d0b77a4473cc6a595f0 */
+/* sha: 91cf898a33ea2b2c614a3e438f40c2891e790ad1afc133d40449ab23756a4a37 */
 #if BIND_FSEvent_path_FIELD_READER
-/* get_path
- *
- * Return Type: char *
- */
 mrb_value
 mrb_UV_FSEvent_get_path(mrb_state* mrb, mrb_value self) {
   uv_fs_event_t * native_self = mruby_unbox_uv_fs_event_t(self);
@@ -49,13 +45,8 @@ mrb_UV_FSEvent_get_path(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: FSEvent::path_writer */
-/* sha: 2c90fdc06fc744d009f89f87288d7f21f5cdd64dad29e7395ab6ebafc100b522 */
+/* sha: 9fa44c7f58b99ec04aeeabf9ed4619b466ce6f707918d9c1dae994a4317775db */
 #if BIND_FSEvent_path_FIELD_WRITER
-/* set_path
- *
- * Parameters:
- * - value: char *
- */
 mrb_value
 mrb_UV_FSEvent_set_path(mrb_state* mrb, mrb_value self) {
   uv_fs_event_t * native_self = mruby_unbox_uv_fs_event_t(self);
@@ -70,7 +61,6 @@ mrb_UV_FSEvent_set_path(mrb_state* mrb, mrb_value self) {
 
   native_self->path = native_path;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -80,12 +70,13 @@ mrb_UV_FSEvent_set_path(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_FSEvent_init(mrb_state* mrb) {
-/* MRUBY_BINDING: FSEvent::class_init_header */
-/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
-  /* Don't double-init. */
   static int initialized = 0;
   if (initialized) return;
   else initialized = 1;
+
+/* MRUBY_BINDING: pre_class_definition */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: FSEvent::class_definition */
@@ -127,20 +118,8 @@ mrb_const_set(mrb, mrb_obj_value(UV_module(mrb)), mrb_intern_lit(mrb, "CHANGE"),
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: FSEvent::pre_instance_method_definitions */
-/* sha: user_defined */
 
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: FSEvent::instance_method_definitions */
-/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
-  /*
-   * Member Functions
-   */
-  /* None */
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: FSEvent::class_init_footer */
+/* MRUBY_BINDING: FSEvent::post_class_definition */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

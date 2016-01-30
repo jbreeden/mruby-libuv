@@ -30,12 +30,8 @@ mrb_UV_Timeval_initialize(mrb_state* mrb, mrb_value self) {
  */
 
 /* MRUBY_BINDING: Timeval::tv_sec_reader */
-/* sha: 7333ee640e444cb131623e62dc07797545f1c2f34bc79402f41a511db200d7d0 */
+/* sha: 267a479e18770a63dc4f26f3d2a9080bc43c6ca4e430904f3818a39af0bfa567 */
 #if BIND_Timeval_tv_sec_FIELD_READER
-/* get_tv_sec
- *
- * Return Type: long
- */
 mrb_value
 mrb_UV_Timeval_get_tv_sec(mrb_state* mrb, mrb_value self) {
   uv_timeval_t * native_self = mruby_unbox_uv_timeval_t(self);
@@ -50,13 +46,8 @@ mrb_UV_Timeval_get_tv_sec(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Timeval::tv_sec_writer */
-/* sha: 6def1c05fa33bd0a84b077fd03f120a038d2c350a592193cd439c5e178058237 */
+/* sha: 3bd1eca2b894baf8bd8c9161476e58801b758e3fff44e55cc46ec099a1f4ce23 */
 #if BIND_Timeval_tv_sec_FIELD_WRITER
-/* set_tv_sec
- *
- * Parameters:
- * - value: long
- */
 mrb_value
 mrb_UV_Timeval_set_tv_sec(mrb_state* mrb, mrb_value self) {
   uv_timeval_t * native_self = mruby_unbox_uv_timeval_t(self);
@@ -66,7 +57,6 @@ mrb_UV_Timeval_set_tv_sec(mrb_state* mrb, mrb_value self) {
 
   native_self->tv_sec = native_tv_sec;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -75,12 +65,8 @@ mrb_UV_Timeval_set_tv_sec(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Timeval::tv_usec_reader */
-/* sha: b6abba3e0a2059511fe4897f1aaceefda916474d52d385444d8c5689be7a2b4f */
+/* sha: 564421b761288d74aac878290c6be1aa88b1fcff46cb75b08446c695aa1be4c1 */
 #if BIND_Timeval_tv_usec_FIELD_READER
-/* get_tv_usec
- *
- * Return Type: long
- */
 mrb_value
 mrb_UV_Timeval_get_tv_usec(mrb_state* mrb, mrb_value self) {
   uv_timeval_t * native_self = mruby_unbox_uv_timeval_t(self);
@@ -95,13 +81,8 @@ mrb_UV_Timeval_get_tv_usec(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Timeval::tv_usec_writer */
-/* sha: b7ffa88225cdea1e47346ef4e1a139fb1f3a975ee0503d32929581ba581a3c40 */
+/* sha: 3f31b51297c87d7a83f439c6fbba34a353723a15a421958b3c75e9874ec669a7 */
 #if BIND_Timeval_tv_usec_FIELD_WRITER
-/* set_tv_usec
- *
- * Parameters:
- * - value: long
- */
 mrb_value
 mrb_UV_Timeval_set_tv_usec(mrb_state* mrb, mrb_value self) {
   uv_timeval_t * native_self = mruby_unbox_uv_timeval_t(self);
@@ -111,7 +92,6 @@ mrb_UV_Timeval_set_tv_usec(mrb_state* mrb, mrb_value self) {
 
   native_self->tv_usec = native_tv_usec;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -121,12 +101,13 @@ mrb_UV_Timeval_set_tv_usec(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_Timeval_init(mrb_state* mrb) {
-/* MRUBY_BINDING: Timeval::class_init_header */
-/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
-  /* Don't double-init. */
   static int initialized = 0;
   if (initialized) return;
   else initialized = 1;
+
+/* MRUBY_BINDING: pre_class_definition */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Timeval::class_definition */
@@ -171,20 +152,8 @@ void mrb_UV_Timeval_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: Timeval::pre_instance_method_definitions */
-/* sha: user_defined */
 
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: Timeval::instance_method_definitions */
-/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
-  /*
-   * Member Functions
-   */
-  /* None */
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: Timeval::class_init_footer */
+/* MRUBY_BINDING: Timeval::post_class_definition */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

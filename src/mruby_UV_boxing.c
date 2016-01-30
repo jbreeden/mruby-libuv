@@ -43,28 +43,6 @@ mruby_unbox_as_void_ptr(mrb_value boxed) {
   return ((mruby_to_native_ref *)DATA_PTR(boxed))->obj;
 }
 
-int set_loop_reference(mrb_state* mrb, mrb_value obj) {
-  uv_handle_t * handle = (uv_handle_t *)(mruby_unbox_as_void_ptr(obj));
-  if (handle->loop == NULL) {
-    mrb_raise(mrb, E_RUNTIME_ERROR, "Attempt to SET_LOOP_REF on native handle with no associated loop");
-    return 1;
-  }
-  mruby_uv_data_t * data = (mruby_uv_data_t *)(handle->loop->data);
-  mrb_funcall(mrb, data->self, "ref", 1, obj);
-  return 0;
-}
-
-void unset_loop_reference(mrb_state* mrb, mrb_value obj) {
-  uv_handle_t * handle = (uv_handle_t *)(mruby_unbox_as_void_ptr(obj));
-  if (handle->loop == NULL) {
-    /* No loop associated, so nothing to be done. Not an error. */
-    return;
-  }
-  mruby_uv_data_t * data = (mruby_uv_data_t *)(handle->loop->data);
-  mrb_funcall(mrb, data->self, "unref", 1, obj);
-  return;
-}
-
 uv_req_t *
 new_mruby_uv_req(mrb_state* mrb, mrb_value self, size_t size) {
   uv_req_t* req = (uv_req_t*)calloc(1, size);
@@ -88,10 +66,6 @@ new_mruby_uv_handle(mrb_state* mrb, mrb_value self, size_t size) {
 
 void
 free_mruby_uv_handle(uv_handle_t * handle) {
-  /*
-   * NOT THREAD SAFE
-   */
-  
   if (MRUBY_UV_UNITIALIZE_HANDLE_TYPE != handle->type
       && !uv_is_closing(handle)) {
     uv_close(handle, free_mruby_uv_handle);
@@ -1279,56 +1253,74 @@ mruby_unbox_uv_prepare_t(mrb_value boxed) {
  * Boxing implementation for uv_process_options_t
  */
 
-static void free_uv_process_options_t(mrb_state* mrb, void* ptr) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
-  if (box->belongs_to_ruby) {
-    if (box->obj != NULL) {
-      free(box->obj);
-      box->obj = NULL;
-    }
-  }
-  free(box);
-}
-
-static const mrb_data_type uv_process_options_t_data_type = {
-   "uv_process_options_t", free_uv_process_options_t
-};
-
-mrb_value
-mruby_box_uv_process_options_t(mrb_state* mrb, uv_process_options_t *unboxed) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-  box->belongs_to_ruby = FALSE;
-  box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, ProcessOptions_class(mrb), &uv_process_options_t_data_type, box));
-}
-
-mrb_value
-mruby_giftwrap_uv_process_options_t(mrb_state* mrb, uv_process_options_t *unboxed) {
-   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-   box->belongs_to_ruby = TRUE;
-   box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, ProcessOptions_class(mrb), &uv_process_options_t_data_type, box));
-}
-
-void
-mruby_set_uv_process_options_t_data_ptr(mrb_value obj, uv_process_options_t *unboxed) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-  box->belongs_to_ruby = FALSE;
-  box->obj = unboxed;
-  mrb_data_init(obj, box, &uv_process_options_t_data_type);
-}
-
-void
-mruby_gift_uv_process_options_t_data_ptr(mrb_value obj, uv_process_options_t *unboxed) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-  box->belongs_to_ruby = TRUE;
-  box->obj = unboxed;
-  mrb_data_init(obj, box, &uv_process_options_t_data_type);
-}
+/* Implemented as a pure Ruby class. No boxing functions defined. */
 
 uv_process_options_t *
-mruby_unbox_uv_process_options_t(mrb_value boxed) {
-  return (uv_process_options_t *)((mruby_to_native_ref *)DATA_PTR(boxed))->obj;
+mruby_unbox_uv_process_options_t(mrb_state * mrb, mrb_value boxed) {
+  mrb_funcall(mrb, boxed, "validate", 0);
+  uv_process_options_t * options = (uv_process_options_t *)calloc(1, sizeof(uv_process_options_t));
+  options->exit_cb = mruby_uv_exit_cb_thunk;
+  
+  mrb_value file = mrb_iv_get(mrb, boxed, mrb_intern_cstr(mrb, "@file"));
+  if (!mrb_nil_p(file)) {
+    options->file = mrb_string_value_cstr(mrb, &file);
+  }
+  
+  {
+    mrb_value ary = mrb_iv_get(mrb, boxed, mrb_intern_cstr(mrb, "@args"));
+    if (!mrb_nil_p(ary)) {
+      int ary_len = mrb_ary_len(mrb, ary);
+      options->args = (char**)calloc(ary_len + 1, sizeof(char*));
+      for (int i = 0; i < ary_len; ++i) {
+        mrb_value val = mrb_ary_ref(mrb, ary, i);
+        options->args[i] = mrb_string_value_cstr(mrb, &val);
+        /* If the user didn't specify a file, use args[0] */
+        if (i == 0 && options->file == NULL) {
+          options->file = options->args[i];
+        }
+      }
+    }
+  }
+  
+  {
+    mrb_value ary = mrb_iv_get(mrb, boxed, mrb_intern_cstr(mrb, "@env"));
+    if (!mrb_nil_p(ary)) {
+      int ary_len = mrb_ary_len(mrb, ary);
+      options->env = (char**)calloc(ary_len + 1, sizeof(char*));
+      for (int i = 0; i < ary_len; ++i) {
+        mrb_value val = mrb_ary_ref(mrb, ary, i);
+        options->env[i] = mrb_string_value_cstr(mrb, &val);
+      }
+    }
+  }
+  
+  mrb_value cwd = mrb_iv_get(mrb, boxed, mrb_intern_cstr(mrb, "@cwd"));
+  options->cwd = mrb_nil_p(cwd) ? NULL : mrb_string_value_cstr(mrb, &cwd);
+  options->flags = mrb_fixnum(mrb_iv_get(mrb, boxed, mrb_intern_cstr(mrb, "@flags")));
+  
+  mrb_value stdios = mrb_iv_get(mrb, boxed, mrb_intern_cstr(mrb, "@stdio"));
+  
+  if (!mrb_nil_p(stdios)) {
+    options->stdio_count = mrb_ary_len(mrb, stdios);
+    if (options->stdio_count > 0) {
+      options->stdio = (uv_stdio_container_t *)calloc(options->stdio_count, sizeof(uv_stdio_container_t));
+      for (int i = 0; i < options->stdio_count; ++i) {
+        mrb_value stdio = mrb_ary_ref(mrb, stdios, i);
+        (options->stdio[i]).flags = mrb_fixnum(mrb_iv_get(mrb, stdio, mrb_intern_cstr(mrb, "@flags")));
+        mrb_value data = mrb_iv_get(mrb, stdio, mrb_intern_cstr(mrb, "@data"));
+        if (mrb_obj_is_kind_of(mrb, data, mrb->fixnum_class)) {
+          (options->stdio[i]).data.fd = mrb_fixnum(data);
+        } else {
+          (options->stdio[i]).data.stream = mruby_unbox_uv_stream_t(data);
+        }
+      }
+    }
+  }
+
+  // options->uid = mrb_iv_get(mrb, boxed, mrb_intern_cstr(mrb, @"uid"));
+  // options->gid = mrb_iv_get(mrb, boxed, mrb_intern_cstr(mrb, @"gid"));
+  
+  return options;
 }
 #endif
 /* MRUBY_BINDING_END */

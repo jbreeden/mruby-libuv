@@ -60,7 +60,7 @@ typedef struct {
 } mruby_uv_data_t;
 
 typedef struct {
-  uv_fs_t handle_data;
+  uv_fs_t fs_req;
   uv_buf_t buf;
 } uv_fs_and_buf_t;
 
@@ -70,23 +70,19 @@ typedef struct {
 #define MRUBY_UV_REQ_MRB(handle) ((mruby_uv_data_t*)((uv_handle_t*)handle)->data)->mrb
 #define MRUBY_UV_REQ_MRB(handle) ((mruby_uv_data_t*)((uv_handle_t*)handle)->data)->mrb
 
+uv_buf_t mruby_uv_prepare_write_buf(mrb_state* mrb, mrb_value self, mrb_value str);
 void free_mruby_uv_handle(uv_handle_t * handle);
 void free_mruby_uv_req(uv_req_t * req);
 uv_handle_t * new_mruby_uv_handle(mrb_state* mrb, mrb_value self, size_t size);
 uv_req_t * new_mruby_uv_req(mrb_state* mrb, mrb_value self, size_t size);
 
-#define INIT_LOOP_DATA(loop, mrb, _self) \
-if (loop->data == NULL) { \
+#define INIT_LOOP_DATA(native_loop, rb_loop) \
+if (native_loop->data == NULL) { \
   mruby_uv_data_t * data = (mruby_uv_data_t*)calloc(1, sizeof(mruby_uv_data_t)); \
   data->mrb = mrb; \
-  data->self = _self; \
-  loop->data = data; \
+  data->self = rb_loop; \
+  native_loop->data = data; \
 }
-
-int set_loop_reference(mrb_state*, mrb_value);
-void unset_loop_reference(mrb_state*, mrb_value);
-#define SET_LOOP_REF(rb_handle) if (set_loop_reference(mrb, rb_handle)) return mrb_nil_value();
-#define UNSET_LOOP_REF(rb_handle) unset_loop_reference(mrb, rb_handle);
 
 /* MRUBY_BINDING_END */
 

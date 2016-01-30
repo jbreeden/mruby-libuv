@@ -29,12 +29,8 @@ mrb_UV_Work_initialize(mrb_state* mrb, mrb_value self) {
  */
 
 /* MRUBY_BINDING: Work::loop_reader */
-/* sha: de5ba48680e204cb67e5ca94cbd2e8a711572b32748f9a05fc957294ef845dcb */
+/* sha: c332f331f738e02c1cd18308f4df9f27ed67efd6b0935f27428b360ee463895f */
 #if BIND_Work_loop_FIELD_READER
-/* get_loop
- *
- * Return Type: uv_loop_t *
- */
 mrb_value
 mrb_UV_Work_get_loop(mrb_state* mrb, mrb_value self) {
   uv_work_t * native_self = mruby_unbox_uv_work_t(self);
@@ -49,13 +45,8 @@ mrb_UV_Work_get_loop(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Work::loop_writer */
-/* sha: 10a44d6ad29d8531e0a5ca8148e31638f30f22d48fa5762c816a421d955a7bc3 */
+/* sha: 9e55da7b21d495ebf6539df4e407bbf1cf6c908f837a537400d6e58eba14d1b9 */
 #if BIND_Work_loop_FIELD_WRITER
-/* set_loop
- *
- * Parameters:
- * - value: uv_loop_t *
- */
 mrb_value
 mrb_UV_Work_set_loop(mrb_state* mrb, mrb_value self) {
   uv_work_t * native_self = mruby_unbox_uv_work_t(self);
@@ -73,7 +64,6 @@ mrb_UV_Work_set_loop(mrb_state* mrb, mrb_value self) {
 
   native_self->loop = native_loop;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -82,12 +72,8 @@ mrb_UV_Work_set_loop(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Work::work_cb_reader */
-/* sha: e8e6c6e49b86af15d4aef2749cd3877f1633cc41d6c0eccc0a0ad13d66d63488 */
+/* sha: 651e4728b601026e428e0a33583053371eb2ce670f52cb0ebabc41267bef0e01 */
 #if BIND_Work_work_cb_FIELD_READER
-/* get_work_cb
- *
- * Return Type: uv_work_cb
- */
 mrb_value
 mrb_UV_Work_get_work_cb(mrb_state* mrb, mrb_value self) {
   uv_work_t * native_self = mruby_unbox_uv_work_t(self);
@@ -102,13 +88,8 @@ mrb_UV_Work_get_work_cb(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Work::work_cb_writer */
-/* sha: 981db262c1c85b94e0c24e38752e9ead4a6b1e4cf8f218f1b04fb9cb0f315e41 */
+/* sha: c544307fae0c08089b7d18b1c9dea883cca7f67d59cdacfe9c55ad1db1e12ddf */
 #if BIND_Work_work_cb_FIELD_WRITER
-/* set_work_cb
- *
- * Parameters:
- * - value: uv_work_cb
- */
 mrb_value
 mrb_UV_Work_set_work_cb(mrb_state* mrb, mrb_value self) {
   uv_work_t * native_self = mruby_unbox_uv_work_t(self);
@@ -123,7 +104,6 @@ mrb_UV_Work_set_work_cb(mrb_state* mrb, mrb_value self) {
 
   native_self->work_cb = native_work_cb;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -132,12 +112,8 @@ mrb_UV_Work_set_work_cb(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Work::after_work_cb_reader */
-/* sha: d1239db59ffcf7a428328eb5d71d7957281aaed659cc16e08d9234a7b8ed1bcf */
+/* sha: cc03e9c0d7f491135b1196d55a8821a8843575eb6fb0c6afc220a5170333ad77 */
 #if BIND_Work_after_work_cb_FIELD_READER
-/* get_after_work_cb
- *
- * Return Type: uv_after_work_cb
- */
 mrb_value
 mrb_UV_Work_get_after_work_cb(mrb_state* mrb, mrb_value self) {
   uv_work_t * native_self = mruby_unbox_uv_work_t(self);
@@ -152,13 +128,8 @@ mrb_UV_Work_get_after_work_cb(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Work::after_work_cb_writer */
-/* sha: d0064e351dd509ef9cbfa4344e0cc6d3fce02edc8255435fb34098f25b6762eb */
+/* sha: 3617829dc9fd4bf27c02f9899c79e3194e2d46a1b3bf65463c0a6d38309fb89f */
 #if BIND_Work_after_work_cb_FIELD_WRITER
-/* set_after_work_cb
- *
- * Parameters:
- * - value: uv_after_work_cb
- */
 mrb_value
 mrb_UV_Work_set_after_work_cb(mrb_state* mrb, mrb_value self) {
   uv_work_t * native_self = mruby_unbox_uv_work_t(self);
@@ -173,7 +144,6 @@ mrb_UV_Work_set_after_work_cb(mrb_state* mrb, mrb_value self) {
 
   native_self->after_work_cb = native_after_work_cb;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -183,12 +153,13 @@ mrb_UV_Work_set_after_work_cb(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_Work_init(mrb_state* mrb) {
-/* MRUBY_BINDING: Work::class_init_header */
-/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
-  /* Don't double-init. */
   static int initialized = 0;
   if (initialized) return;
   else initialized = 1;
+
+/* MRUBY_BINDING: pre_class_definition */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Work::class_definition */
@@ -239,20 +210,8 @@ void mrb_UV_Work_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: Work::pre_instance_method_definitions */
-/* sha: user_defined */
 
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: Work::instance_method_definitions */
-/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
-  /*
-   * Member Functions
-   */
-  /* None */
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: Work::class_init_footer */
+/* MRUBY_BINDING: Work::post_class_definition */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

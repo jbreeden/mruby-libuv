@@ -29,12 +29,8 @@ mrb_UV_Signal_initialize(mrb_state* mrb, mrb_value self) {
  */
 
 /* MRUBY_BINDING: Signal::signal_cb_reader */
-/* sha: e889cb30ebd0b7c9fc16491d0b647f75b1cc5990107506b72aaa1d419424d0e0 */
+/* sha: 7cb5e9c610d424101c6651b24529d5fca9bbb115f1d661011ac7b1814256ced3 */
 #if BIND_Signal_signal_cb_FIELD_READER
-/* get_signal_cb
- *
- * Return Type: uv_signal_cb
- */
 mrb_value
 mrb_UV_Signal_get_signal_cb(mrb_state* mrb, mrb_value self) {
   uv_signal_t * native_self = mruby_unbox_uv_signal_t(self);
@@ -49,13 +45,8 @@ mrb_UV_Signal_get_signal_cb(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Signal::signal_cb_writer */
-/* sha: b4a923296c432046c13d6cb85e5518e5304d687b801dc3ebc3d08adf9c9bab2e */
+/* sha: 98fc0a8ad22ccf11e5ff76da241a8645781e1f37dd0071de4d74e59453d2e485 */
 #if BIND_Signal_signal_cb_FIELD_WRITER
-/* set_signal_cb
- *
- * Parameters:
- * - value: uv_signal_cb
- */
 mrb_value
 mrb_UV_Signal_set_signal_cb(mrb_state* mrb, mrb_value self) {
   uv_signal_t * native_self = mruby_unbox_uv_signal_t(self);
@@ -70,7 +61,6 @@ mrb_UV_Signal_set_signal_cb(mrb_state* mrb, mrb_value self) {
 
   native_self->signal_cb = native_signal_cb;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -79,12 +69,8 @@ mrb_UV_Signal_set_signal_cb(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Signal::signum_reader */
-/* sha: 0e904319e1f414df6199b20024940f9b3bb5e6087be32790ee16563b638bdec2 */
+/* sha: 26282c58c22ac5b3121a5b72243f19ab5a5d9e058922f31864b3dfb3ff1f1bd1 */
 #if BIND_Signal_signum_FIELD_READER
-/* get_signum
- *
- * Return Type: int
- */
 mrb_value
 mrb_UV_Signal_get_signum(mrb_state* mrb, mrb_value self) {
   uv_signal_t * native_self = mruby_unbox_uv_signal_t(self);
@@ -99,13 +85,8 @@ mrb_UV_Signal_get_signum(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Signal::signum_writer */
-/* sha: d39190b8e385f45a0c13acc1e7ea1e8ac0fa2a5928c448f59b7d8d071307b846 */
+/* sha: 90ce7f70707f98df2ff4624f5ce18feb837452590101aeca2da272752fcfb6ba */
 #if BIND_Signal_signum_FIELD_WRITER
-/* set_signum
- *
- * Parameters:
- * - value: int
- */
 mrb_value
 mrb_UV_Signal_set_signum(mrb_state* mrb, mrb_value self) {
   uv_signal_t * native_self = mruby_unbox_uv_signal_t(self);
@@ -115,7 +96,6 @@ mrb_UV_Signal_set_signum(mrb_state* mrb, mrb_value self) {
 
   native_self->signum = native_signum;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -125,12 +105,13 @@ mrb_UV_Signal_set_signum(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_Signal_init(mrb_state* mrb) {
-/* MRUBY_BINDING: Signal::class_init_header */
-/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
-  /* Don't double-init. */
   static int initialized = 0;
   if (initialized) return;
   else initialized = 1;
+
+/* MRUBY_BINDING: pre_class_definition */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Signal::class_definition */
@@ -175,20 +156,8 @@ void mrb_UV_Signal_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: Signal::pre_instance_method_definitions */
-/* sha: user_defined */
 
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: Signal::instance_method_definitions */
-/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
-  /*
-   * Member Functions
-   */
-  /* None */
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: Signal::class_init_footer */
+/* MRUBY_BINDING: Signal::post_class_definition */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

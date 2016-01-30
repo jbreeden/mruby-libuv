@@ -1,3 +1,4 @@
+- Cleanup handles & reqs when a loop is closed.
 - GC Canary Types
   + For regression tests, have a canary flag that can be set on req's & handles.
   + Use the flag to make sure GC is happening at the right times

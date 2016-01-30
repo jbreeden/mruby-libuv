@@ -29,12 +29,8 @@ mrb_UV_Poll_initialize(mrb_state* mrb, mrb_value self) {
  */
 
 /* MRUBY_BINDING: Poll::poll_cb_reader */
-/* sha: 41e9f04ae36b53b16ddb4e37fbe939c28301f9f6b8f18754b039bd88dea6bca0 */
+/* sha: b6216e113523c4aedbf0798fdc3b9b658ed6eb049c8a2263cb976592f77267cb */
 #if BIND_Poll_poll_cb_FIELD_READER
-/* get_poll_cb
- *
- * Return Type: uv_poll_cb
- */
 mrb_value
 mrb_UV_Poll_get_poll_cb(mrb_state* mrb, mrb_value self) {
   uv_poll_t * native_self = mruby_unbox_uv_poll_t(self);
@@ -49,13 +45,8 @@ mrb_UV_Poll_get_poll_cb(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Poll::poll_cb_writer */
-/* sha: f96aef0ce205d214784a01c7a1dac360b83924ed71a2d3b1635c6d8515ca84f3 */
+/* sha: 4fc55c73690bd12b32dd374112fe872466c6da6c3aa9b525daa3b72af6c4f30c */
 #if BIND_Poll_poll_cb_FIELD_WRITER
-/* set_poll_cb
- *
- * Parameters:
- * - value: uv_poll_cb
- */
 mrb_value
 mrb_UV_Poll_set_poll_cb(mrb_state* mrb, mrb_value self) {
   uv_poll_t * native_self = mruby_unbox_uv_poll_t(self);
@@ -70,7 +61,6 @@ mrb_UV_Poll_set_poll_cb(mrb_state* mrb, mrb_value self) {
 
   native_self->poll_cb = native_poll_cb;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -80,12 +70,13 @@ mrb_UV_Poll_set_poll_cb(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_Poll_init(mrb_state* mrb) {
-/* MRUBY_BINDING: Poll::class_init_header */
-/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
-  /* Don't double-init. */
   static int initialized = 0;
   if (initialized) return;
   else initialized = 1;
+
+/* MRUBY_BINDING: pre_class_definition */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Poll::class_definition */
@@ -124,20 +115,8 @@ void mrb_UV_Poll_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: Poll::pre_instance_method_definitions */
-/* sha: user_defined */
 
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: Poll::instance_method_definitions */
-/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
-  /*
-   * Member Functions
-   */
-  /* None */
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: Poll::class_init_footer */
+/* MRUBY_BINDING: Poll::post_class_definition */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

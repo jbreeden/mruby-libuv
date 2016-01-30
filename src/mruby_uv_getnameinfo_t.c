@@ -29,12 +29,8 @@ mrb_UV_Getnameinfo_initialize(mrb_state* mrb, mrb_value self) {
  */
 
 /* MRUBY_BINDING: Getnameinfo::loop_reader */
-/* sha: 1ff69fdfd8af587b8231b0e4a422b1cce50239248cfe9a9a3e95098df554036e */
+/* sha: 9ea5a1c582fd8937970b0df09dc68336d3f40542ac9bf99f4f5eb3459836cb40 */
 #if BIND_Getnameinfo_loop_FIELD_READER
-/* get_loop
- *
- * Return Type: uv_loop_t *
- */
 mrb_value
 mrb_UV_Getnameinfo_get_loop(mrb_state* mrb, mrb_value self) {
   uv_getnameinfo_t * native_self = mruby_unbox_uv_getnameinfo_t(self);
@@ -49,13 +45,8 @@ mrb_UV_Getnameinfo_get_loop(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Getnameinfo::loop_writer */
-/* sha: 10f8b461cec3b50f4903aa1809c78ec142f39cc7a79cf95c6d2003eab2201cb8 */
+/* sha: a755c3909d32cd01d146f7dc0c86fc64d5fd871292cab2fe68334feea817b7e8 */
 #if BIND_Getnameinfo_loop_FIELD_WRITER
-/* set_loop
- *
- * Parameters:
- * - value: uv_loop_t *
- */
 mrb_value
 mrb_UV_Getnameinfo_set_loop(mrb_state* mrb, mrb_value self) {
   uv_getnameinfo_t * native_self = mruby_unbox_uv_getnameinfo_t(self);
@@ -73,7 +64,6 @@ mrb_UV_Getnameinfo_set_loop(mrb_state* mrb, mrb_value self) {
 
   native_self->loop = native_loop;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -83,12 +73,13 @@ mrb_UV_Getnameinfo_set_loop(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_Getnameinfo_init(mrb_state* mrb) {
-/* MRUBY_BINDING: Getnameinfo::class_init_header */
-/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
-  /* Don't double-init. */
   static int initialized = 0;
   if (initialized) return;
   else initialized = 1;
+
+/* MRUBY_BINDING: pre_class_definition */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Getnameinfo::class_definition */
@@ -127,20 +118,8 @@ void mrb_UV_Getnameinfo_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: Getnameinfo::pre_instance_method_definitions */
-/* sha: user_defined */
 
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: Getnameinfo::instance_method_definitions */
-/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
-  /*
-   * Member Functions
-   */
-  /* None */
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: Getnameinfo::class_init_footer */
+/* MRUBY_BINDING: Getnameinfo::post_class_definition */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

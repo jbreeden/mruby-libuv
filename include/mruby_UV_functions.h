@@ -193,7 +193,7 @@
 #define BIND_uv_timer_set_repeat_FUNCTION FALSE
 #define BIND_uv_timer_start_FUNCTION TRUE
 #define BIND_uv_timer_stop_FUNCTION TRUE
-#define BIND_uv_try_write_FUNCTION FALSE
+#define BIND_uv_try_write_FUNCTION TRUE
 #define BIND_uv_tty_get_winsize_FUNCTION FALSE
 #define BIND_uv_tty_init_FUNCTION TRUE
 #define BIND_uv_tty_reset_mode_FUNCTION TRUE
@@ -219,6 +219,6 @@
 #define BIND_uv_version_FUNCTION TRUE
 #define BIND_uv_version_string_FUNCTION TRUE
 #define BIND_uv_walk_FUNCTION FALSE
-#define BIND_uv_write_FUNCTION FALSE
-#define BIND_uv_write2_FUNCTION FALSE
+#define BIND_uv_write_FUNCTION TRUE
+#define BIND_uv_write2_FUNCTION TRUE
 #endif

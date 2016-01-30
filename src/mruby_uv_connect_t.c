@@ -29,12 +29,8 @@ mrb_UV_Connect_initialize(mrb_state* mrb, mrb_value self) {
  */
 
 /* MRUBY_BINDING: Connect::cb_reader */
-/* sha: aa371c21fa95458086df6449d9ef9e86a64fe657a891728bbf4d7ca977801526 */
+/* sha: 0455ced50c7f8817dc3779f61227c44aa8352372c0a9ef46caf154773d54e54c */
 #if BIND_Connect_cb_FIELD_READER
-/* get_cb
- *
- * Return Type: uv_connect_cb
- */
 mrb_value
 mrb_UV_Connect_get_cb(mrb_state* mrb, mrb_value self) {
   uv_connect_t * native_self = mruby_unbox_uv_connect_t(self);
@@ -49,13 +45,8 @@ mrb_UV_Connect_get_cb(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Connect::cb_writer */
-/* sha: 0686a698c4b17103899d934f440427d93308c06d91ac80c0992f4d94c50f2f3e */
+/* sha: 69f194d9c19fa856dcf4f1eb41d8939bfadfb24df6fbd80cf7f8472e713eeb09 */
 #if BIND_Connect_cb_FIELD_WRITER
-/* set_cb
- *
- * Parameters:
- * - value: uv_connect_cb
- */
 mrb_value
 mrb_UV_Connect_set_cb(mrb_state* mrb, mrb_value self) {
   uv_connect_t * native_self = mruby_unbox_uv_connect_t(self);
@@ -70,7 +61,6 @@ mrb_UV_Connect_set_cb(mrb_state* mrb, mrb_value self) {
 
   native_self->cb = native_cb;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -79,12 +69,8 @@ mrb_UV_Connect_set_cb(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Connect::handle_reader */
-/* sha: 04e591d9070264eb177096b77c4e862490f283b932e728ded35c998d0adfe8fd */
+/* sha: 710de9e29828e08a374898a2ded1b3c7becb9efd499f406368b03f65f96b91b6 */
 #if BIND_Connect_handle_FIELD_READER
-/* get_handle
- *
- * Return Type: uv_stream_t *
- */
 mrb_value
 mrb_UV_Connect_get_handle(mrb_state* mrb, mrb_value self) {
   uv_connect_t * native_self = mruby_unbox_uv_connect_t(self);
@@ -99,13 +85,8 @@ mrb_UV_Connect_get_handle(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Connect::handle_writer */
-/* sha: 378307a6c170fa4a8b2c57229d708210acd0ff787f19e180ba44219692fd71a4 */
+/* sha: 4017daabe5fea4bc001756179bbe4230fed5c21da9b1424a8ede9f828060c104 */
 #if BIND_Connect_handle_FIELD_WRITER
-/* set_handle
- *
- * Parameters:
- * - value: uv_stream_t *
- */
 mrb_value
 mrb_UV_Connect_set_handle(mrb_state* mrb, mrb_value self) {
   uv_connect_t * native_self = mruby_unbox_uv_connect_t(self);
@@ -123,7 +104,6 @@ mrb_UV_Connect_set_handle(mrb_state* mrb, mrb_value self) {
 
   native_self->handle = native_handle;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -133,12 +113,13 @@ mrb_UV_Connect_set_handle(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_Connect_init(mrb_state* mrb) {
-/* MRUBY_BINDING: Connect::class_init_header */
-/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
-  /* Don't double-init. */
   static int initialized = 0;
   if (initialized) return;
   else initialized = 1;
+
+/* MRUBY_BINDING: pre_class_definition */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Connect::class_definition */
@@ -183,20 +164,8 @@ void mrb_UV_Connect_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: Connect::pre_instance_method_definitions */
-/* sha: user_defined */
 
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: Connect::instance_method_definitions */
-/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
-  /*
-   * Member Functions
-   */
-  /* None */
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: Connect::class_init_footer */
+/* MRUBY_BINDING: Connect::post_class_definition */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

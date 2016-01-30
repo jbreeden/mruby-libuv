@@ -29,19 +29,15 @@ mrb_UV_Write_initialize(mrb_state* mrb, mrb_value self) {
  */
 
 /* MRUBY_BINDING: Write::cb_reader */
-/* sha: 09dd969fc5d2d006dc58ba2c08af6372ff019d293445f8f89afe8644b98e4f5b */
+/* sha: 2f3f6e542d209cf6b6d7d8a52e2082a6e328d1b5efb0af79feedf8333da973c9 */
 #if BIND_Write_cb_FIELD_READER
-/* get_cb
- *
- * Return Type: uv_write_cb
- */
 mrb_value
 mrb_UV_Write_get_cb(mrb_state* mrb, mrb_value self) {
   uv_write_t * native_self = mruby_unbox_uv_write_t(self);
 
   uv_write_cb native_cb = native_self->cb;
 
-  mrb_value cb = TODO_mruby_box_uv_write_cb(mrb, native_cb);
+  mrb_value cb = TODO_mruby_box_uv_write_cb(native_cb);
 
   return cb;
 }
@@ -49,28 +45,24 @@ mrb_UV_Write_get_cb(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Write::cb_writer */
-/* sha: 21f9a2dc83d1caad0876aa120b8485a6559b30685c093a0817739b0caec1a5aa */
+/* sha: 07276d0d462e34dcb422e89154830a64f886b6287fa986ccb23f2213239caf90 */
 #if BIND_Write_cb_FIELD_WRITER
-/* set_cb
- *
- * Parameters:
- * - value: uv_write_cb
- */
 mrb_value
 mrb_UV_Write_set_cb(mrb_state* mrb, mrb_value self) {
   uv_write_t * native_self = mruby_unbox_uv_write_t(self);
-  mrb_value cb;
+  mrb_value native_cb;
 
-  mrb_get_args(mrb, "o", &cb);
+  mrb_get_args(mrb, "&", &native_cb);
 
   /* type checking */
-  TODO_type_check_uv_write_cb(cb);
-
-  uv_write_cb native_cb = TODO_mruby_unbox_uv_write_cb(cb);
+  if (mrb_nil_p(native_cb)) {
+    mrb_raise(mrb, E_ARGUMENT_ERROR, "No block provided");
+    return mrb_nil_value();
+  }
+  // TODO: mrb_iv_set(mrb, req???, mrb_intern_cstr(mrb, "@mruby_uv_write_cb"), native_cb);
 
   native_self->cb = native_cb;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -79,12 +71,8 @@ mrb_UV_Write_set_cb(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Write::send_handle_reader */
-/* sha: b225ca946ebde94cced8e83ff9f629871a90af95a8838777d086c4efa435accd */
+/* sha: 390b5c293a0bc3e0367d78dd38bdae244330c051f845323c85191a6cfb0f5d44 */
 #if BIND_Write_send_handle_FIELD_READER
-/* get_send_handle
- *
- * Return Type: uv_stream_t *
- */
 mrb_value
 mrb_UV_Write_get_send_handle(mrb_state* mrb, mrb_value self) {
   uv_write_t * native_self = mruby_unbox_uv_write_t(self);
@@ -99,13 +87,8 @@ mrb_UV_Write_get_send_handle(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Write::send_handle_writer */
-/* sha: 9e6c6f791aec1aba33767cc3c82303ab3fa07d6d0d66f52ec3d3c3aa7bd65788 */
+/* sha: 78ca9f325a9eada2f749110e2110af4b60985a78cf093d4a10cf0998a0eba1bb */
 #if BIND_Write_send_handle_FIELD_WRITER
-/* set_send_handle
- *
- * Parameters:
- * - value: uv_stream_t *
- */
 mrb_value
 mrb_UV_Write_set_send_handle(mrb_state* mrb, mrb_value self) {
   uv_write_t * native_self = mruby_unbox_uv_write_t(self);
@@ -123,7 +106,6 @@ mrb_UV_Write_set_send_handle(mrb_state* mrb, mrb_value self) {
 
   native_self->send_handle = native_send_handle;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -132,12 +114,8 @@ mrb_UV_Write_set_send_handle(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Write::handle_reader */
-/* sha: 05a01b0175902094a5e7c879666ab4925b829706a526dae0ea11e6948dcd9c6d */
+/* sha: 45ca09a0adc5bdbd27614453c9481d35fcaedb95bd4486875bf3bac341d718f9 */
 #if BIND_Write_handle_FIELD_READER
-/* get_handle
- *
- * Return Type: uv_stream_t *
- */
 mrb_value
 mrb_UV_Write_get_handle(mrb_state* mrb, mrb_value self) {
   uv_write_t * native_self = mruby_unbox_uv_write_t(self);
@@ -152,13 +130,8 @@ mrb_UV_Write_get_handle(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Write::handle_writer */
-/* sha: 8d8435d0e2f946d98040c0712599eee7ab66ee0306ce33bf945059c6c4382cac */
+/* sha: 21c6ae937e709d77dc337f4ea4052208135df3c46e207d3981c6e9300091ee74 */
 #if BIND_Write_handle_FIELD_WRITER
-/* set_handle
- *
- * Parameters:
- * - value: uv_stream_t *
- */
 mrb_value
 mrb_UV_Write_set_handle(mrb_state* mrb, mrb_value self) {
   uv_write_t * native_self = mruby_unbox_uv_write_t(self);
@@ -176,7 +149,6 @@ mrb_UV_Write_set_handle(mrb_state* mrb, mrb_value self) {
 
   native_self->handle = native_handle;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -186,12 +158,13 @@ mrb_UV_Write_set_handle(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_Write_init(mrb_state* mrb) {
-/* MRUBY_BINDING: Write::class_init_header */
-/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
-  /* Don't double-init. */
   static int initialized = 0;
   if (initialized) return;
   else initialized = 1;
+
+/* MRUBY_BINDING: pre_class_definition */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Write::class_definition */
@@ -242,20 +215,8 @@ void mrb_UV_Write_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: Write::pre_instance_method_definitions */
-/* sha: user_defined */
 
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: Write::instance_method_definitions */
-/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
-  /*
-   * Member Functions
-   */
-  /* None */
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: Write::class_init_footer */
+/* MRUBY_BINDING: Write::post_class_definition */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */

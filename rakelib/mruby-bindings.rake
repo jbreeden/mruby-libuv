@@ -1,3 +1,6 @@
+require 'pry'
+require 'mruby_bindings'
+
 namespace :bindings do
   desc 'Extract type information from C files'
   task :scrape do
@@ -35,6 +38,13 @@ namespace :bindings do
     cmd << '-output bindings'
     cmd << '-force'
     sh cmd.join(' ')
+  end
+  
+  desc 'Interactive pry console with all json declarations parsed'
+  task :pry do
+    MRubyBindings.read_declarations('declarations.json') do |lib|
+      binding.pry
+    end
   end
   
   desc "Merge generated code into mrbgem"

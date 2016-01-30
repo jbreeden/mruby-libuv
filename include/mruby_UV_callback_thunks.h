@@ -1,27 +1,3 @@
-/* Variables declared in macro may clash with names passed in. So, new scopes. */
-#define MRUBY_UV_PREPARE_HANDLE_THUNK(self, thunk_name, proc) \
-{ mrb_value _self = self;\
-  const char * _thunk_name = thunk_name;\
-  mrb_value _proc = proc;\
-  { uv_handle_t * _handle = mruby_unbox_uv_handle_t(_self); \
-    if (NULL != _handle && !uv_is_active(_handle)) { \
-      SET_LOOP_REF(_self); \
-    } \
-    mrb_iv_set(mrb, _self, mrb_intern_cstr(mrb, _thunk_name), _proc); } }
-  
-#define MRUBY_UV_FINALIZE_HANDLE_THUNK(self) \
-{ mrb_value _self = self;\
-  { uv_handle_t * handle = mruby_unbox_uv_handle_t(_self); \
-    if (NULL != handle && !uv_is_active(handle)) { \
-      UNSET_LOOP_REF(_self); \
-    } } }
-  
-#define MRUBY_UV_PREPARE_REQ_THUNK(self, thunk_name, proc) \
-{ mrb_gc_register(mrb, self); \
-  mrb_iv_set(mrb, self, mrb_intern_cstr(mrb, thunk_name), proc); }
-  
-#define MRUBY_UV_FINALIZE_REQ_THUNK(self) mrb_gc_unregister(mrb, self);
-  
 void mruby_uv_alloc_cb(uv_handle_t *, size_t, uv_buf_t *);
 void mruby_uv_close_cb_thunk(uv_handle_t *);
 void mruby_uv_read_cb_thunk(uv_stream_t *, ssize_t, const uv_buf_t *);
@@ -48,3 +24,27 @@ void mruby_uv_signal_cb_thunk(uv_signal_t *, int);
 void mruby_uv_udp_send_cb_thunk(uv_udp_send_t *, int);
 void mruby_uv_udp_recv_cb_thunk(uv_udp_t *, ssize_t, const uv_buf_t *, const struct sockaddr *, unsigned int);
 void mruby_uv_thread_cb_thunk(void *);
+
+void mruby_uv_prepare_handle_thunk(mrb_state * mrb, mrb_value self, const char * thunk_name, mrb_value proc);
+void mruby_uv_finalize_handle_thunk(mrb_state * mrb, mrb_value self);
+void mruby_uv_prepare_req_thunk(mrb_state * mrb, mrb_value self, const char * thunk_name, mrb_value proc);
+void mruby_uv_finalize_req_thunk(mrb_state * mrb, mrb_value self);
+uv_buf_t mruby_uv_prepare_write_buf(mrb_state * mrb, mrb_value self, mrb_value buf);
+
+void mruby_uv_register_handle(mrb_state*, mrb_value);
+void mruby_uv_unregister_handle(mrb_state*, mrb_value);
+
+#define MRUBY_UV_PREPARE_HANDLE_THUNK(self, thunk_name, proc) \
+  mruby_uv_prepare_handle_thunk(mrb, self, thunk_name, proc);
+  
+#define MRUBY_UV_FINALIZE_HANDLE_THUNK(self) \
+  mruby_uv_finalize_handle_thunk(mrb, self);
+  
+#define MRUBY_UV_PREPARE_REQ_THUNK(self, thunk_name, proc) \
+  mruby_uv_prepare_req_thunk(mrb, self, thunk_name, proc);
+  
+#define MRUBY_UV_FINALIZE_REQ_THUNK(self) \
+  mruby_uv_finalize_req_thunk(mrb, self);
+  
+#define MRUBY_UV_PREPARE_WRITE_BUF(self, buf) \
+  mruby_uv_prepare_write_buf(mrb, self, buf);

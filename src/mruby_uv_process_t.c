@@ -29,12 +29,8 @@ mrb_UV_Process_initialize(mrb_state* mrb, mrb_value self) {
  */
 
 /* MRUBY_BINDING: Process::exit_cb_reader */
-/* sha: f549cbdce59732f98ee8829e9a6a19f9416b42204afdace12905f8b32205b3f6 */
+/* sha: 3641113dd96acb44c11dbf47a86d627641ec26ea7c844dda37d93275d8f0bddc */
 #if BIND_Process_exit_cb_FIELD_READER
-/* get_exit_cb
- *
- * Return Type: uv_exit_cb
- */
 mrb_value
 mrb_UV_Process_get_exit_cb(mrb_state* mrb, mrb_value self) {
   uv_process_t * native_self = mruby_unbox_uv_process_t(self);
@@ -49,13 +45,8 @@ mrb_UV_Process_get_exit_cb(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Process::exit_cb_writer */
-/* sha: a356351d8edcf1e0b56e569ccb9bc7800b1039dc1c8c94f6032f08135a62aa48 */
+/* sha: 618bf9a7f397b0ebc8b67c23b29e379608dc96930182683c03ce651ffae2a53b */
 #if BIND_Process_exit_cb_FIELD_WRITER
-/* set_exit_cb
- *
- * Parameters:
- * - value: uv_exit_cb
- */
 mrb_value
 mrb_UV_Process_set_exit_cb(mrb_state* mrb, mrb_value self) {
   uv_process_t * native_self = mruby_unbox_uv_process_t(self);
@@ -70,7 +61,6 @@ mrb_UV_Process_set_exit_cb(mrb_state* mrb, mrb_value self) {
 
   native_self->exit_cb = native_exit_cb;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -79,12 +69,8 @@ mrb_UV_Process_set_exit_cb(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Process::pid_reader */
-/* sha: a6bbfc3cafdbe0bb7bdb13670c9117fbe7cf70711e089ae8567802013b0b5a3a */
+/* sha: 3b9849b9f578ace94968295e541dd9ef9ca671832e42f6a720ac8e9e7081f8ad */
 #if BIND_Process_pid_FIELD_READER
-/* get_pid
- *
- * Return Type: int
- */
 mrb_value
 mrb_UV_Process_get_pid(mrb_state* mrb, mrb_value self) {
   uv_process_t * native_self = mruby_unbox_uv_process_t(self);
@@ -99,13 +85,8 @@ mrb_UV_Process_get_pid(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Process::pid_writer */
-/* sha: c398a688cbd4b80395e10e9aaa10e5c63d80b2cac4938929ab16e277ece5f811 */
+/* sha: f9980c243c46000351c3c6662e3513ca07f3e419340c06e720d85f07448cb0e9 */
 #if BIND_Process_pid_FIELD_WRITER
-/* set_pid
- *
- * Parameters:
- * - value: int
- */
 mrb_value
 mrb_UV_Process_set_pid(mrb_state* mrb, mrb_value self) {
   uv_process_t * native_self = mruby_unbox_uv_process_t(self);
@@ -115,7 +96,6 @@ mrb_UV_Process_set_pid(mrb_state* mrb, mrb_value self) {
 
   native_self->pid = native_pid;
   
-  /* Hacky way to return whatever was passed in. Mirrors typical assignment semantics. */
   mrb_value value_as_mrb_value;
   mrb_get_args(mrb, "o", &value_as_mrb_value);
   return value_as_mrb_value;
@@ -125,12 +105,13 @@ mrb_UV_Process_set_pid(mrb_state* mrb, mrb_value self) {
 
 
 void mrb_UV_Process_init(mrb_state* mrb) {
-/* MRUBY_BINDING: Process::class_init_header */
-/* sha: ad8337ceaefe095e6123163db0ca9028098ef3cf11dd77e31138363633f0fdd6 */
-  /* Don't double-init. */
   static int initialized = 0;
   if (initialized) return;
   else initialized = 1;
+
+/* MRUBY_BINDING: pre_class_definition */
+/* sha: user_defined */
+
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Process::class_definition */
@@ -175,20 +156,8 @@ void mrb_UV_Process_init(mrb_state* mrb) {
 #endif
 /* MRUBY_BINDING_END */
 
-/* MRUBY_BINDING: Process::pre_instance_method_definitions */
-/* sha: user_defined */
 
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: Process::instance_method_definitions */
-/* sha: bc1a7bf41f8f5b2f90434b58331667565e72c2b8794e7f56884099f7767fa42c */
-  /*
-   * Member Functions
-   */
-  /* None */
-/* MRUBY_BINDING_END */
-
-/* MRUBY_BINDING: Process::class_init_footer */
+/* MRUBY_BINDING: Process::post_class_definition */
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
