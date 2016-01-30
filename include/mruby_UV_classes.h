@@ -2,19 +2,12 @@
 #define MRUBY_UV_CLASSES_HEADER
 
 #define BIND_Addrinfo_TYPE TRUE
-#define BIND_Addrinfo_INITIALIZE TRUE
-#define BIND_Addrinfo_ai_flags_FIELD_READER TRUE
-#define BIND_Addrinfo_ai_flags_FIELD_WRITER TRUE
-#define BIND_Addrinfo_ai_family_FIELD_READER TRUE
-#define BIND_Addrinfo_ai_family_FIELD_WRITER TRUE
-#define BIND_Addrinfo_ai_socktype_FIELD_READER TRUE
-#define BIND_Addrinfo_ai_socktype_FIELD_WRITER TRUE
-#define BIND_Addrinfo_ai_protocol_FIELD_READER TRUE
-#define BIND_Addrinfo_ai_protocol_FIELD_WRITER TRUE
-#define BIND_Addrinfo_ai_addrlen_FIELD_READER TRUE
-#define BIND_Addrinfo_ai_addrlen_FIELD_WRITER TRUE
-#define BIND_Addrinfo_ai_canonname_FIELD_READER FALSE
-#define BIND_Addrinfo_ai_canonname_FIELD_WRITER FALSE
+
+#define BIND_Sockaddr_TYPE TRUE
+
+#define BIND_SockaddrIn_TYPE TRUE
+
+#define BIND_SockaddrIn6_TYPE TRUE
 
 #define BIND_Async_TYPE TRUE
 #define BIND_Async_INITIALIZE TRUE
@@ -218,11 +211,6 @@
 #define BIND_Stat_st_birthtim_FIELD_READER TRUE
 
 #define BIND_STDIOContainer_TYPE TRUE
-#define BIND_STDIOContainer_INITIALIZE TRUE
-#define BIND_STDIOContainer_flags_FIELD_READER TRUE
-#define BIND_STDIOContainer_flags_FIELD_WRITER TRUE
-#define BIND_STDIOContainer_data_FIELD_READER FALSE
-#define BIND_STDIOContainer_data_FIELD_WRITER FALSE
 
 #define BIND_Stream_TYPE TRUE
 #define BIND_Stream_INITIALIZE TRUE

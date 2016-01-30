@@ -957,13 +957,7 @@ mrb_UV_uv_err_name(mrb_state* mrb, mrb_value self) {
 #if BIND_uv_exepath_FUNCTION
 #define uv_exepath_REQUIRED_ARGC 0
 #define uv_exepath_OPTIONAL_ARGC 0
-/* uv_exepath
- *
- * Parameters:
- * - buffer: char *
- * - size: size_t *
- * Return Type: int
- */
+/* int uv_exepath(char *, size_t *) */
 mrb_value
 mrb_UV_uv_exepath(mrb_state* mrb, mrb_value self) {
   char * native_buffer = (char*)calloc(MRUBY_UV_PATH_BUF_SIZE, sizeof(char));
@@ -1115,16 +1109,7 @@ mrb_UV_uv_freeaddrinfo(mrb_state* mrb, mrb_value self) {
 #if BIND_uv_fs_access_FUNCTION
 #define uv_fs_access_REQUIRED_ARGC 4
 #define uv_fs_access_OPTIONAL_ARGC 1
-/* uv_fs_access
- *
- * Parameters:
- * - loop: uv_loop_t *
- * - req: uv_fs_t *
- * - path: const char *
- * - mode: int
- * - cb: uv_fs_cb
- * Return Type: int
- */
+/* int uv_fs_access(uv_loop_t *, uv_fs_t *, const char *, int, uv_fs_cb) */
 mrb_value
 mrb_UV_uv_fs_access(mrb_state* mrb, mrb_value self) {
   mrb_value loop;
@@ -3213,30 +3198,20 @@ mrb_UV_uv_get_total_memory(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING: uv_getaddrinfo */
 /* sha: db80218c1eeaa7d42dab43ec450b7356e7258c8ae07c2f11ad97ed930b0349e0 */
 #if BIND_uv_getaddrinfo_FUNCTION
-#define uv_getaddrinfo_REQUIRED_ARGC 5
-#define uv_getaddrinfo_OPTIONAL_ARGC 1
-/* uv_getaddrinfo
- *
- * Parameters:
- * - loop: uv_loop_t *
- * - req: uv_getaddrinfo_t *
- * - getaddrinfo_cb: uv_getaddrinfo_cb
- * - node: const char *
- * - service: const char *
- * - hints: const struct addrinfo *
- * Return Type: int
- */
+#define uv_getaddrinfo_REQUIRED_ARGC 4
+#define uv_getaddrinfo_OPTIONAL_ARGC 2
+/* int uv_getaddrinfo(uv_loop_t *, uv_getaddrinfo_t * req, uv_getaddrinfo_cb cb, const char *, const char *, const struct addrinfo *) */
 mrb_value
 mrb_UV_uv_getaddrinfo(mrb_state* mrb, mrb_value self) {
-  mrb_value loop;
-  mrb_value req;
-  mrb_value getaddrinfo_cb;
+  mrb_value loop = mrb_nil_value();
+  mrb_value req = mrb_nil_value();
+  mrb_value getaddrinfo_cb = mrb_nil_value();
   char * native_node = NULL;
   char * native_service = NULL;
-  mrb_value hints;
+  mrb_value hints = mrb_nil_value();
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooozz|o&", &loop, &req, &native_node, &native_service, &hints, &getaddrinfo_cb);
+  mrb_get_args(mrb, "oozz|o&", &loop, &req, &native_node, &native_service, &hints, &getaddrinfo_cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
@@ -3247,18 +3222,14 @@ mrb_UV_uv_getaddrinfo(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "Getaddrinfo expected");
     return mrb_nil_value();
   }
-  if (!mrb_obj_is_kind_of(mrb, req, Getaddrinfo_class(mrb))) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Getaddrinfo expected");
-    return mrb_nil_value();
-  }
-  if (!mrb_obj_is_kind_of(mrb, hints, Addrinfo_class(mrb)) || mrb_nil_p(hints)) {
+  if (!mrb_obj_is_kind_of(mrb, hints, Addrinfo_class(mrb)) && !mrb_nil_p(hints)) {
     mrb_raise(mrb, E_TYPE_ERROR, "Addrinfo expected");
     return mrb_nil_value();
   }
   uv_getaddrinfo_cb thunk = NULL;
   if (!mrb_nil_p(getaddrinfo_cb)) {
     thunk = mruby_uv_getaddrinfo_cb_thunk;
-    MRUBY_UV_PREPARE_REQ_THUNK(req, "@mruby_uv_getaddrinfo_cb_thunk", /* TODO XXX */)
+    MRUBY_UV_PREPARE_REQ_THUNK(req, "@mruby_uv_getaddrinfo_cb_thunk", getaddrinfo_cb)
   }
 
   /* Unbox param: loop */
@@ -3282,10 +3253,10 @@ mrb_UV_uv_getaddrinfo(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_getnameinfo */
-/* sha: f204b762b461c819131b306dd52b36dfe28529a368c3f2f79a0f04e4939da474 */
+/* sha: 976d528602c2951be3cc2609b512c07fdf7676731c8b80a53e39dc989d321168 */
 #if BIND_uv_getnameinfo_FUNCTION
-#define uv_getnameinfo_REQUIRED_ARGC 5
-#define uv_getnameinfo_OPTIONAL_ARGC 0
+#define uv_getnameinfo_REQUIRED_ARGC 3
+#define uv_getnameinfo_OPTIONAL_ARGC 2
 /* int uv_getnameinfo(uv_loop_t * loop, uv_getnameinfo_t * req, uv_getnameinfo_cb getnameinfo_cb, const struct sockaddr * addr, int flags) */
 mrb_value
 mrb_UV_uv_getnameinfo(mrb_state* mrb, mrb_value self) {
@@ -3293,11 +3264,12 @@ mrb_UV_uv_getnameinfo(mrb_state* mrb, mrb_value self) {
   mrb_value req;
   mrb_value getnameinfo_cb;
   mrb_value addr;
-  mrb_int native_flags;
+  mrb_int native_flags = 0;
+  uv_getnameinfo_cb thunk = NULL;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooooi", &loop, &req, &getnameinfo_cb, &addr, &native_flags);
-
+  mrb_get_args(mrb, "ooo|i&", &loop, &req, &addr, &native_flags, &getnameinfo_cb);
+  
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
@@ -3307,8 +3279,15 @@ mrb_UV_uv_getnameinfo(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "Getnameinfo expected");
     return mrb_nil_value();
   }
-  TODO_type_check_uv_getnameinfo_cb(getnameinfo_cb);
-  TODO_type_check_sockaddr_PTR(addr);
+  if (!mrb_obj_is_kind_of(mrb, addr, Sockaddr_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Sockaddr expected");
+    return mrb_nil_value();
+  }
+  if (!mrb_nil_p(getnameinfo_cb)) {
+    thunk = mruby_uv_getnameinfo_cb_thunk;
+    MRUBY_UV_PREPARE_REQ_THUNK(req, "@mruby_uv_getnameinfo_cb_thunk", getnameinfo_cb);
+  }
+  
 
   /* Unbox param: loop */
   uv_loop_t * native_loop = (mrb_nil_p(loop) ? NULL : mruby_unbox_uv_loop_t(loop));
@@ -3316,14 +3295,11 @@ mrb_UV_uv_getnameinfo(mrb_state* mrb, mrb_value self) {
   /* Unbox param: req */
   uv_getnameinfo_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_getnameinfo_t(req));
 
-  /* Unbox param: getnameinfo_cb */
-  uv_getnameinfo_cb native_getnameinfo_cb = TODO_mruby_unbox_uv_getnameinfo_cb(getnameinfo_cb);
-
   /* Unbox param: addr */
-  const struct sockaddr * native_addr = TODO_mruby_unbox_sockaddr_PTR(addr);
+  const struct sockaddr * native_addr = (mrb_nil_p(addr) ? NULL : mruby_unbox_sockaddr(addr));
 
   /* Invocation */
-  int native_return_value = uv_getnameinfo(native_loop, native_req, native_getnameinfo_cb, native_addr, native_flags);
+  int native_return_value = uv_getnameinfo(native_loop, native_req, thunk, native_addr, native_flags);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -3690,25 +3666,21 @@ mrb_UV_uv_interface_addresses(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_ip4_addr */
-/* sha: 86b9ba3e0e6e61baa0c9eeb8f8d15cd10c1f16fc817f3323f3f4d2d2d38dcf3f */
+/* sha: 3df5ed690eb48d94bee35db2066b81a8473a4efb201e309117da715384789532 */
 #if BIND_uv_ip4_addr_FUNCTION
-#define uv_ip4_addr_REQUIRED_ARGC 3
+#define uv_ip4_addr_REQUIRED_ARGC 2
 #define uv_ip4_addr_OPTIONAL_ARGC 0
 /* int uv_ip4_addr(const char * ip, int port, struct sockaddr_in * addr) */
 mrb_value
 mrb_UV_uv_ip4_addr(mrb_state* mrb, mrb_value self) {
   char * native_ip = NULL;
   mrb_int native_port;
-  mrb_value addr;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "zio", &native_ip, &native_port, &addr);
-
-  /* Type checking */
-  TODO_type_check_sockaddr_in_PTR(addr);
+  mrb_get_args(mrb, "zi", &native_ip, &native_port);
 
   /* Unbox param: addr */
-  struct sockaddr_in * native_addr = TODO_mruby_unbox_sockaddr_in_PTR(addr);
+  sockaddr_in * native_addr = (sockaddr_in*)calloc(1, sizeof(sockaddr_in));
 
   /* Invocation */
   int native_return_value = uv_ip4_addr(native_ip, native_port, native_addr);
@@ -3716,67 +3688,82 @@ mrb_UV_uv_ip4_addr(mrb_state* mrb, mrb_value self) {
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
   
-  return return_value;
+  /* Box out params */
+  mrb_value addr = mruby_giftwrap_sockaddr_in(mrb, native_addr);
+  
+  mrb_value results = mrb_ary_new(mrb);
+  mrb_ary_push(mrb, results, return_value);
+  if (native_return_value == 0) {
+    mrb_ary_push(mrb, results, addr);
+  } else {
+    mrb_ary_push(mrb, results, mrb_nil_value());
+  }
+  
+  return results;
 }
 #endif
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_ip4_name */
-/* sha: 182742b84dcd2c98b8baea004659cae288593947e92a9cd0b1143a045bc892ab */
+/* sha: dfa5f4ded29979462720a96e76207533569d9eee5db1649227847b2cab8891bd */
 #if BIND_uv_ip4_name_FUNCTION
-#define uv_ip4_name_REQUIRED_ARGC 3
+#define uv_ip4_name_REQUIRED_ARGC 1
 #define uv_ip4_name_OPTIONAL_ARGC 0
 /* int uv_ip4_name(const struct sockaddr_in * src, char * dst, size_t size) */
 mrb_value
 mrb_UV_uv_ip4_name(mrb_state* mrb, mrb_value self) {
   mrb_value src;
-  mrb_value dst;
-  mrb_int native_size;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooi", &src, &dst, &native_size);
+  mrb_get_args(mrb, "o", &src);
 
   /* Type checking */
-  TODO_type_check_sockaddr_in_PTR(src);
-  TODO_type_check_char_PTR(dst);
+  if (!mrb_obj_is_kind_of(mrb, src, SockaddrIn_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "SockaddrIn expected");
+    return mrb_nil_value();
+  }
 
   /* Unbox param: src */
-  const struct sockaddr_in * native_src = TODO_mruby_unbox_sockaddr_in_PTR(src);
-
-  /* Unbox param: dst */
-  char * native_dst = TODO_mruby_unbox_char_PTR(dst);
+  const struct sockaddr_in * native_src = (mrb_nil_p(src) ? NULL : mruby_unbox_sockaddr_in(src));
 
   /* Invocation */
-  int native_return_value = uv_ip4_name(native_src, native_dst, native_size);
+  
+  /* 45 is the max size... rounding up a tad */
+  char * native_dst = (char*)calloc(101, sizeof(char));
+  int native_return_value = uv_ip4_name(native_src, native_dst, 100);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
   
-  return return_value;
+  /* Box the out params */
+  mrb_value dst = mrb_str_new_cstr(mrb, native_dst);
+  free(native_dst);
+  
+  mrb_value results = mrb_ary_new(mrb);
+  mrb_ary_push(mrb, results, return_value);
+  mrb_ary_push(mrb, results, dst);
+  
+  return results;
 }
 #endif
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_ip6_addr */
-/* sha: bcb79714d313e93bad58b83aea6f1252c84f2272147984c28d3638921fbad31f */
+/* sha: b6b420a11408c258dce1f27bbc8477741a32c439aff75318522e347cae192ec3 */
 #if BIND_uv_ip6_addr_FUNCTION
-#define uv_ip6_addr_REQUIRED_ARGC 3
+#define uv_ip6_addr_REQUIRED_ARGC 2
 #define uv_ip6_addr_OPTIONAL_ARGC 0
 /* int uv_ip6_addr(const char * ip, int port, struct sockaddr_in6 * addr) */
 mrb_value
 mrb_UV_uv_ip6_addr(mrb_state* mrb, mrb_value self) {
   char * native_ip = NULL;
   mrb_int native_port;
-  mrb_value addr;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "zio", &native_ip, &native_port, &addr);
-
-  /* Type checking */
-  TODO_type_check_sockaddr_in6_PTR(addr);
+  mrb_get_args(mrb, "zi", &native_ip, &native_port);
 
   /* Unbox param: addr */
-  struct sockaddr_in6 * native_addr = TODO_mruby_unbox_sockaddr_in6_PTR(addr);
+  struct sockaddr_in6 * native_addr = (sockaddr_in6*)calloc(1, sizeof(sockaddr_in6));
 
   /* Invocation */
   int native_return_value = uv_ip6_addr(native_ip, native_port, native_addr);
@@ -3784,43 +3771,60 @@ mrb_UV_uv_ip6_addr(mrb_state* mrb, mrb_value self) {
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
   
-  return return_value;
+  /* Box the out params */
+  mrb_value addr = mruby_giftwrap_sockaddr_in6(mrb, native_addr);
+  
+  mrb_value results = mrb_ary_new(mrb);
+  mrb_ary_push(mrb, results, return_value);
+  if (native_return_value == 0) {
+    mrb_ary_push(mrb, results, addr);
+  } else {
+    mrb_ary_push(mrb, results, mrb_nil_value());
+  }
+  
+  return results;
 }
 #endif
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_ip6_name */
-/* sha: 8b9428a39186dfa2b4eb802453e9b288a734aa03df59caae31a64ee030cd65f1 */
+/* sha: b8e0325e627b810c8760bff2210db35bf53bd813a2f377ea8e872965c3897253 */
 #if BIND_uv_ip6_name_FUNCTION
-#define uv_ip6_name_REQUIRED_ARGC 3
+#define uv_ip6_name_REQUIRED_ARGC 1
 #define uv_ip6_name_OPTIONAL_ARGC 0
 /* int uv_ip6_name(const struct sockaddr_in6 * src, char * dst, size_t size) */
 mrb_value
 mrb_UV_uv_ip6_name(mrb_state* mrb, mrb_value self) {
   mrb_value src;
-  mrb_value dst;
-  mrb_int native_size;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooi", &src, &dst, &native_size);
+  mrb_get_args(mrb, "o", &src);
 
   /* Type checking */
-  TODO_type_check_sockaddr_in6_PTR(src);
-  TODO_type_check_char_PTR(dst);
+  if (!mrb_obj_is_kind_of(mrb, src, SockaddrIn6_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "SockaddrIn6 expected");
+    return mrb_nil_value();
+  }
 
   /* Unbox param: src */
-  const struct sockaddr_in6 * native_src = TODO_mruby_unbox_sockaddr_in6_PTR(src);
-
-  /* Unbox param: dst */
-  char * native_dst = TODO_mruby_unbox_char_PTR(dst);
+  const struct sockaddr_in6 * native_src = (mrb_nil_p(src) ? NULL : mruby_unbox_sockaddr_in6(src));
 
   /* Invocation */
-  int native_return_value = uv_ip6_name(native_src, native_dst, native_size);
+  char * native_dst = (char*)calloc(101, sizeof(char));
+  int native_return_value = uv_ip6_name(native_src, native_dst, 100);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
   
-  return return_value;
+  /* Box the out params */
+  mrb_value dst = mrb_str_new_cstr(mrb, native_dst);
+  free(native_dst);
+  
+  mrb_value results = mrb_ary_new(mrb);
+  mrb_ary_push(mrb, results, return_value);
+  mrb_ary_push(mrb, results, dst);
+  
+  return results;
 }
 #endif
 /* MRUBY_BINDING_END */
@@ -4693,42 +4697,47 @@ mrb_UV_uv_pipe_connect(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING: uv_pipe_getpeername */
 /* sha: 334c43cd126db1791c1959f98c8da16e0da32807aeabaea3b115207e6ad1e4ed */
 #if BIND_uv_pipe_getpeername_FUNCTION
-#define uv_pipe_getpeername_REQUIRED_ARGC 3
+#define uv_pipe_getpeername_REQUIRED_ARGC 1
 #define uv_pipe_getpeername_OPTIONAL_ARGC 0
 /* int uv_pipe_getpeername(const uv_pipe_t * handle, char * buffer, size_t * size) */
 mrb_value
 mrb_UV_uv_pipe_getpeername(mrb_state* mrb, mrb_value self) {
   mrb_value handle;
-  mrb_value buffer;
-  mrb_value size;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooo", &handle, &buffer, &size);
+  mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, handle, Pipe_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "Pipe expected");
     return mrb_nil_value();
   }
-  TODO_type_check_char_PTR(buffer);
-  TODO_type_check_size_t_PTR(size);
 
   /* Unbox param: handle */
-  const uv_pipe_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_pipe_t(handle));
-
-  /* Unbox param: buffer */
-  char * native_buffer = TODO_mruby_unbox_char_PTR(buffer);
-
-  /* Unbox param: size */
-  size_t * native_size = TODO_mruby_unbox_size_t_PTR(size);
+  const uv_tcp_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_tcp_t(handle));
 
   /* Invocation */
-  int native_return_value = uv_pipe_getpeername(native_handle, native_buffer, native_size);
+  sockaddr_storage * native_addr = (sockaddr_storage*)calloc(1, sizeof(sockaddr_storage));
+  int size = 0;
+  int native_return_value = uv_pipe_getpeername(native_handle, native_addr, &size);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
   
-  return return_value;
+  /* Box the out param */
+  mrb_value addr = mrb_nil_value();
+  if (native_return_value == 0) {
+    if (size == sizeof(sockaddr_in)) {
+      addr = mruby_giftwrap_sockaddr_in(mrb, native_addr);
+    } else if (size = sizeof(sockaddr_in6)) {
+      addr = mruby_giftwrap_sockaddr_in6(mrb, native_addr);
+    }
+  }
+  
+  mrb_value results = mrb_ary_new(mrb);
+  mrb_ary_push(mrb, results, return_value);
+  mrb_ary_push(mrb, results, addr);
+  return results;
 }
 #endif
 /* MRUBY_BINDING_END */
@@ -4736,42 +4745,47 @@ mrb_UV_uv_pipe_getpeername(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING: uv_pipe_getsockname */
 /* sha: 8ccf666165a7f25ea63991357bc708a6c859e88c5e2bfa239b6a0a67ab389fdf */
 #if BIND_uv_pipe_getsockname_FUNCTION
-#define uv_pipe_getsockname_REQUIRED_ARGC 3
+#define uv_pipe_getsockname_REQUIRED_ARGC 1
 #define uv_pipe_getsockname_OPTIONAL_ARGC 0
 /* int uv_pipe_getsockname(const uv_pipe_t * handle, char * buffer, size_t * size) */
 mrb_value
 mrb_UV_uv_pipe_getsockname(mrb_state* mrb, mrb_value self) {
   mrb_value handle;
-  mrb_value buffer;
-  mrb_value size;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooo", &handle, &buffer, &size);
+  mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, handle, Pipe_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "Pipe expected");
     return mrb_nil_value();
   }
-  TODO_type_check_char_PTR(buffer);
-  TODO_type_check_size_t_PTR(size);
 
   /* Unbox param: handle */
-  const uv_pipe_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_pipe_t(handle));
-
-  /* Unbox param: buffer */
-  char * native_buffer = TODO_mruby_unbox_char_PTR(buffer);
-
-  /* Unbox param: size */
-  size_t * native_size = TODO_mruby_unbox_size_t_PTR(size);
+  const uv_tcp_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_tcp_t(handle));
 
   /* Invocation */
-  int native_return_value = uv_pipe_getsockname(native_handle, native_buffer, native_size);
+  sockaddr_storage * native_addr = (sockaddr_storage*)calloc(1, sizeof(sockaddr_storage));
+  int size = 0;
+  int native_return_value = uv_pipe_getsockname(native_handle, native_addr, &size);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
   
-  return return_value;
+  /* Box the out param */
+  mrb_value addr = mrb_nil_value();
+  if (native_return_value == 0) {
+    if (size == sizeof(sockaddr_in)) {
+      addr = mruby_giftwrap_sockaddr_in(mrb, native_addr);
+    } else if (size = sizeof(sockaddr_in6)) {
+      addr = mruby_giftwrap_sockaddr_in6(mrb, native_addr);
+    }
+  }
+  
+  mrb_value results = mrb_ary_new(mrb);
+  mrb_ary_push(mrb, results, return_value);
+  mrb_ary_push(mrb, results, addr);
+  return results;
 }
 #endif
 /* MRUBY_BINDING_END */
@@ -6344,8 +6358,10 @@ mrb_UV_uv_spawn(mrb_state* mrb, mrb_value self) {
 
   /* Unbox param: options */
   uv_process_options_t * native_options = mruby_unbox_uv_process_options_t(mrb, options);
-  native_handle->loop = native_loop;
   mrb_value cb = mrb_iv_get(mrb, options, mrb_intern_cstr(mrb, "@exit_cb"));
+
+  /* Prepare for thunk. No init call for uv_process_t, so assign the loop reference here */
+  native_handle->loop = native_loop;
   MRUBY_UV_PREPARE_HANDLE_THUNK(handle, "@mruby_uv_exit_cb_thunk", cb);
 
   /* Invocation */
@@ -6462,7 +6478,7 @@ mrb_UV_uv_strerror(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tcp_bind */
-/* sha: da1796c3c7b3f17548c9d6cda042c3416798821c48c7257601d20c417ddfd5e7 */
+/* sha: 3c088df73c78c65e777e8d6a1f88725a2d7b093d2fd0783627982c1c4bcdb2ef */
 #if BIND_uv_tcp_bind_FUNCTION
 #define uv_tcp_bind_REQUIRED_ARGC 3
 #define uv_tcp_bind_OPTIONAL_ARGC 0
@@ -6481,13 +6497,16 @@ mrb_UV_uv_tcp_bind(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "TCP expected");
     return mrb_nil_value();
   }
-  TODO_type_check_sockaddr_PTR(addr);
+  if (!mrb_obj_is_kind_of(mrb, addr, Sockaddr_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Sockaddr expected");
+    return mrb_nil_value();
+  }
 
   /* Unbox param: handle */
   uv_tcp_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_tcp_t(handle));
 
   /* Unbox param: addr */
-  const struct sockaddr * native_addr = TODO_mruby_unbox_sockaddr_PTR(addr);
+  const struct sockaddr * native_addr = (mrb_nil_p(addr) ? NULL : mruby_unbox_sockaddr(addr));
 
   /* Invocation */
   int native_return_value = uv_tcp_bind(native_handle, native_addr, native_flags);
@@ -6501,7 +6520,7 @@ mrb_UV_uv_tcp_bind(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tcp_connect */
-/* sha: 9681fc57c8b3e1bd5bcc1362881aee202bc732642ed04cda557ee46e5850ded2 */
+/* sha: 3b37dd025e7855cc6f4cbfc8e930f9b593de206802c0350764ebd8b29545ff45 */
 #if BIND_uv_tcp_connect_FUNCTION
 #define uv_tcp_connect_REQUIRED_ARGC 4
 #define uv_tcp_connect_OPTIONAL_ARGC 0
@@ -6525,7 +6544,10 @@ mrb_UV_uv_tcp_connect(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "TCP expected");
     return mrb_nil_value();
   }
-  TODO_type_check_sockaddr_PTR(addr);
+  if (!mrb_obj_is_kind_of(mrb, addr, Sockaddr_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Sockaddr expected");
+    return mrb_nil_value();
+  }
   TODO_type_check_uv_connect_cb(cb);
 
   /* Unbox param: req */
@@ -6535,7 +6557,7 @@ mrb_UV_uv_tcp_connect(mrb_state* mrb, mrb_value self) {
   uv_tcp_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_tcp_t(handle));
 
   /* Unbox param: addr */
-  const struct sockaddr * native_addr = TODO_mruby_unbox_sockaddr_PTR(addr);
+  const struct sockaddr * native_addr = (mrb_nil_p(addr) ? NULL : mruby_unbox_sockaddr(addr));
 
   /* Unbox param: cb */
   uv_connect_cb native_cb = TODO_mruby_unbox_uv_connect_cb(cb);
@@ -6552,87 +6574,97 @@ mrb_UV_uv_tcp_connect(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tcp_getpeername */
-/* sha: 10cc5580e603ba11d5da65b2fcdd9c6cf6183490c7e7a999db3f5cf04a60498c */
+/* sha: 49205c8eccd8613fae63f46ccdceec3c4e7ec97474a7654fd37175b5acd53405 */
 #if BIND_uv_tcp_getpeername_FUNCTION
-#define uv_tcp_getpeername_REQUIRED_ARGC 3
+#define uv_tcp_getpeername_REQUIRED_ARGC 1
 #define uv_tcp_getpeername_OPTIONAL_ARGC 0
 /* int uv_tcp_getpeername(const uv_tcp_t * handle, struct sockaddr * name, int * namelen) */
 mrb_value
 mrb_UV_uv_tcp_getpeername(mrb_state* mrb, mrb_value self) {
   mrb_value handle;
-  mrb_value name;
-  mrb_value namelen;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooo", &handle, &name, &namelen);
+  mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, handle, TCP_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "TCP expected");
     return mrb_nil_value();
   }
-  TODO_type_check_sockaddr_PTR(name);
-  TODO_type_check_int_PTR(namelen);
 
   /* Unbox param: handle */
   const uv_tcp_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_tcp_t(handle));
 
-  /* Unbox param: name */
-  struct sockaddr * native_name = TODO_mruby_unbox_sockaddr_PTR(name);
-
-  /* Unbox param: namelen */
-  int * native_namelen = TODO_mruby_unbox_int_PTR(namelen);
-
   /* Invocation */
-  int native_return_value = uv_tcp_getpeername(native_handle, native_name, native_namelen);
+  sockaddr_storage * native_addr = (sockaddr_storage*)calloc(1, sizeof(sockaddr_storage));
+  int size = 0;
+  int native_return_value = uv_tcp_getpeername(native_handle, native_addr, &size);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
   
-  return return_value;
+  /* Box the out param */
+  mrb_value addr = mrb_nil_value();
+  if (native_return_value == 0) {
+    if (size == sizeof(sockaddr_in)) {
+      addr = mruby_giftwrap_sockaddr_in(mrb, native_addr);
+    } else if (size = sizeof(sockaddr_in6)) {
+      addr = mruby_giftwrap_sockaddr_in6(mrb, native_addr);
+    }
+  }
+  
+  mrb_value results = mrb_ary_new(mrb);
+  mrb_ary_push(mrb, results, return_value);
+  mrb_ary_push(mrb, results, addr);
+  return results;
 }
 #endif
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_tcp_getsockname */
-/* sha: 0b7fe3d5686f934333aff27215781a9ef5a787e088122da8bc8862e233586eee */
+/* sha: f34e1a9923bf8f1874ccd8417514ece984fd97e1a25e626ba7a17e89c701fc87 */
 #if BIND_uv_tcp_getsockname_FUNCTION
-#define uv_tcp_getsockname_REQUIRED_ARGC 3
+#define uv_tcp_getsockname_REQUIRED_ARGC 1
 #define uv_tcp_getsockname_OPTIONAL_ARGC 0
 /* int uv_tcp_getsockname(const uv_tcp_t * handle, struct sockaddr * name, int * namelen) */
 mrb_value
 mrb_UV_uv_tcp_getsockname(mrb_state* mrb, mrb_value self) {
   mrb_value handle;
-  mrb_value name;
-  mrb_value namelen;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooo", &handle, &name, &namelen);
+  mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, handle, TCP_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "TCP expected");
     return mrb_nil_value();
   }
-  TODO_type_check_sockaddr_PTR(name);
-  TODO_type_check_int_PTR(namelen);
 
   /* Unbox param: handle */
   const uv_tcp_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_tcp_t(handle));
 
-  /* Unbox param: name */
-  struct sockaddr * native_name = TODO_mruby_unbox_sockaddr_PTR(name);
-
-  /* Unbox param: namelen */
-  int * native_namelen = TODO_mruby_unbox_int_PTR(namelen);
-
   /* Invocation */
-  int native_return_value = uv_tcp_getsockname(native_handle, native_name, native_namelen);
+  sockaddr_storage * native_addr = (sockaddr_storage*)calloc(1, sizeof(sockaddr_storage));
+  int size = 0;
+  int native_return_value = uv_tcp_getsockname(native_handle, native_addr, &size);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
   
-  return return_value;
+  /* Box the out param */
+  mrb_value addr = mrb_nil_value();
+  if (native_return_value == 0) {
+    if (size == sizeof(sockaddr_in)) {
+      addr = mruby_giftwrap_sockaddr_in(mrb, native_addr);
+    } else if (size = sizeof(sockaddr_in6)) {
+      addr = mruby_giftwrap_sockaddr_in6(mrb, native_addr);
+    }
+  }
+  
+  mrb_value results = mrb_ary_new(mrb);
+  mrb_ary_push(mrb, results, return_value);
+  mrb_ary_push(mrb, results, addr);
+  return results;
 }
 #endif
 /* MRUBY_BINDING_END */
@@ -6764,10 +6796,10 @@ mrb_UV_uv_tcp_keepalive(mrb_state* mrb, mrb_value self) {
 mrb_value
 mrb_UV_uv_tcp_nodelay(mrb_state* mrb, mrb_value self) {
   mrb_value handle;
-  mrb_int native_enable;
+  mrb_bool native_enable;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oi", &handle, &native_enable);
+  mrb_get_args(mrb, "ob", &handle, &native_enable);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, handle, TCP_class(mrb))) {
@@ -7392,7 +7424,7 @@ mrb_UV_uv_tty_set_mode(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_udp_bind */
-/* sha: a6cb56d6e195b819961db043cd5cdd232d5041001a54249605a10762004b88eb */
+/* sha: e00599300fc4ee12f18f239a1b2bcc4bfbc07b4c615062560ec06276ff9d3593 */
 #if BIND_uv_udp_bind_FUNCTION
 #define uv_udp_bind_REQUIRED_ARGC 3
 #define uv_udp_bind_OPTIONAL_ARGC 0
@@ -7411,13 +7443,16 @@ mrb_UV_uv_udp_bind(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "UDP expected");
     return mrb_nil_value();
   }
-  TODO_type_check_sockaddr_PTR(addr);
+  if (!mrb_obj_is_kind_of(mrb, addr, Sockaddr_class(mrb))) {
+    mrb_raise(mrb, E_TYPE_ERROR, "Sockaddr expected");
+    return mrb_nil_value();
+  }
 
   /* Unbox param: handle */
   uv_udp_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_udp_t(handle));
 
   /* Unbox param: addr */
-  const struct sockaddr * native_addr = TODO_mruby_unbox_sockaddr_PTR(addr);
+  const struct sockaddr * native_addr = (mrb_nil_p(addr) ? NULL : mruby_unbox_sockaddr(addr));
 
   /* Invocation */
   int native_return_value = uv_udp_bind(native_handle, native_addr, native_flags);
@@ -7431,44 +7466,49 @@ mrb_UV_uv_udp_bind(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: uv_udp_getsockname */
-/* sha: 68d225a40722d0a92b17f6eb9f83c2a65df40f8d0b66a34aaa1d7071e42acf0a */
+/* sha: ff0d87e5816025d51f17f3b5185ac4a89b5f78b4f5747375a47ce8157fd5a7ed */
 #if BIND_uv_udp_getsockname_FUNCTION
-#define uv_udp_getsockname_REQUIRED_ARGC 3
+#define uv_udp_getsockname_REQUIRED_ARGC 1
 #define uv_udp_getsockname_OPTIONAL_ARGC 0
 /* int uv_udp_getsockname(const uv_udp_t * handle, struct sockaddr * name, int * namelen) */
 mrb_value
 mrb_UV_uv_udp_getsockname(mrb_state* mrb, mrb_value self) {
   mrb_value handle;
-  mrb_value name;
-  mrb_value namelen;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooo", &handle, &name, &namelen);
+  mrb_get_args(mrb, "o", &handle);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, handle, UDP_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "UDP expected");
     return mrb_nil_value();
   }
-  TODO_type_check_sockaddr_PTR(name);
-  TODO_type_check_int_PTR(namelen);
 
   /* Unbox param: handle */
-  const uv_udp_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_udp_t(handle));
-
-  /* Unbox param: name */
-  struct sockaddr * native_name = TODO_mruby_unbox_sockaddr_PTR(name);
-
-  /* Unbox param: namelen */
-  int * native_namelen = TODO_mruby_unbox_int_PTR(namelen);
+  const uv_tcp_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_tcp_t(handle));
 
   /* Invocation */
-  int native_return_value = uv_udp_getsockname(native_handle, native_name, native_namelen);
+  sockaddr_storage * native_addr = (sockaddr_storage*)calloc(1, sizeof(sockaddr_storage));
+  int size = 0;
+  int native_return_value = uv_udp_getsockname(native_handle, native_addr, &size);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
   
-  return return_value;
+  /* Box the out param */
+  mrb_value addr = mrb_nil_value();
+  if (native_return_value == 0) {
+    if (size == sizeof(sockaddr_in)) {
+      addr = mruby_giftwrap_sockaddr_in(mrb, native_addr);
+    } else if (size = sizeof(sockaddr_in6)) {
+      addr = mruby_giftwrap_sockaddr_in6(mrb, native_addr);
+    }
+  }
+  
+  mrb_value results = mrb_ary_new(mrb);
+  mrb_ary_push(mrb, results, return_value);
+  mrb_ary_push(mrb, results, addr);
+  return results;
 }
 #endif
 /* MRUBY_BINDING_END */
@@ -8177,6 +8217,7 @@ mrb_UV_uv_write(mrb_state* mrb, mrb_value self) {
   mrb_value handle;
   mrb_value bufs;
   mrb_value native_cb;
+  uv_write_cb thunk = NULL;
 
   /* Fetch the args */
   mrb_get_args(mrb, "ooS&", &req, &handle, &bufs, &native_cb);
@@ -8190,11 +8231,11 @@ mrb_UV_uv_write(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "Stream expected");
     return mrb_nil_value();
   }
-  if (mrb_nil_p(native_cb)) {
-    mrb_raise(mrb, E_ARGUMENT_ERROR, "No block provided");
-    return mrb_nil_value();
+  if (!mrb_nil_p(native_cb)) {
+    thunk = mruby_uv_write_cb_thunk;
+    MRUBY_UV_PREPARE_REQ_THUNK(req, "@mruby_uv_write_cb", native_cb);
   }
-  mrb_iv_set(mrb, req, mrb_intern_cstr(mrb, "@mruby_uv_write_cb"), native_cb);
+  
 
   /* Unbox param: req */
   uv_write_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_write_t(req));
@@ -8206,7 +8247,7 @@ mrb_UV_uv_write(mrb_state* mrb, mrb_value self) {
   uv_buf_t native_bufs = MRUBY_UV_PREPARE_WRITE_BUF(req, bufs);
 
   /* Invocation */
-  int native_return_value = uv_write(native_req, native_handle, &native_bufs, 1, mruby_uv_write_cb_thunk);
+  int native_return_value = uv_write(native_req, native_handle, &native_bufs, 1, thunk);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -8219,8 +8260,8 @@ mrb_UV_uv_write(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING: uv_write2 */
 /* sha: dcf9c70c710f8d728ef368e62b9af51bc20afab23402ad656a44f96b5b36e9a2 */
 #if BIND_uv_write2_FUNCTION
-#define uv_write2_REQUIRED_ARGC 5
-#define uv_write2_OPTIONAL_ARGC 0
+#define uv_write2_REQUIRED_ARGC 4
+#define uv_write2_OPTIONAL_ARGC 1
 /* uv_write2
  *
  * Parameters:
@@ -8238,9 +8279,10 @@ mrb_UV_uv_write2(mrb_state* mrb, mrb_value self) {
   mrb_value bufs;
   mrb_value send_handle;
   mrb_value native_cb;
+  uv_write_cb thunk = NULL;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooSoo", &req, &handle, &bufs, &send_handle, &native_cb);
+  mrb_get_args(mrb, "ooSo|&", &req, &handle, &bufs, &send_handle, &native_cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, req, Write_class(mrb))) {
@@ -8255,11 +8297,11 @@ mrb_UV_uv_write2(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "Stream expected");
     return mrb_nil_value();
   }
-  if (mrb_nil_p(native_cb)) {
-    mrb_raise(mrb, E_ARGUMENT_ERROR, "No block provided");
-    return mrb_nil_value();
+  if (!mrb_nil_p(native_cb)) {
+    thunk = mruby_uv_write_cb_thunk;
+    MRUBY_UV_PREPARE_REQ_THUNK(req, "@mruby_uv_write_cb", native_cb);
   }
-  mrb_iv_set(mrb, req, mrb_intern_cstr(mrb, "@mruby_uv_write_cb"), native_cb);
+  
 
   /* Unbox param: req */
   uv_write_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_write_t(req));
@@ -8274,7 +8316,7 @@ mrb_UV_uv_write2(mrb_state* mrb, mrb_value self) {
   uv_stream_t * native_send_handle = (mrb_nil_p(send_handle) ? NULL : mruby_unbox_uv_stream_t(send_handle));
 
   /* Invocation */
-  int native_return_value = uv_write2(native_req, native_handle, &native_bufs, 1, native_send_handle, mruby_uv_write_cb_thunk);
+  int native_return_value = uv_write2(native_req, native_handle, &native_bufs, 1, native_send_handle, thunk);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -8306,7 +8348,7 @@ void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: class_initializations */
-/* sha: 406dfe30f03f9d7afb50617f0262bf705ee011b3fce4bc5fda0c501ba4dc0223 */
+/* sha: 715ea1e478c9bd100d8449cb6a1a743a242aa55eaf3ff75307afc06e10cc8742 */
 #if BIND_Addrinfo_TYPE
   mrb_UV_Addrinfo_init(mrb);
 #endif
@@ -8381,6 +8423,15 @@ void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
 #endif
 #if BIND_Signal_TYPE
   mrb_UV_Signal_init(mrb);
+#endif
+#if BIND_Sockaddr_TYPE
+  mrb_UV_Sockaddr_init(mrb);
+#endif
+#if BIND_SockaddrIn_TYPE
+  mrb_UV_SockaddrIn_init(mrb);
+#endif
+#if BIND_SockaddrIn6_TYPE
+  mrb_UV_SockaddrIn6_init(mrb);
 #endif
 #if BIND_Stat_TYPE
   mrb_UV_Stat_init(mrb);

@@ -90,11 +90,18 @@ free_mruby_uv_req(uv_req_t * handle) {
 /* MRUBY_BINDING: Addrinfo_boxing */
 /* sha: 9f11f4036eef3fa993e3c1ca299d2a1b9e827a5a62ca9767211e4d46650dceba */
 #if BIND_Addrinfo_TYPE
+/* Moved into mruby_addinfo.c (Need to make this the default for mruby-bindings) */
+#endif
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: Sockaddr_boxing */
+/* sha: f8aae84e3aa2e9f5e7dc18822d837aceaff8f9f72da970719f1056b2fcaf9be6 */
+#if BIND_Sockaddr_TYPE
 /*
- * Boxing implementation for struct addrinfo
+ * Boxing implementation for struct sockaddr
  */
 
-static void free_addrinfo(mrb_state* mrb, void* ptr) {
+static void free_sockaddr(mrb_state* mrb, void* ptr) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
   if (box->belongs_to_ruby) {
     if (box->obj != NULL) {
@@ -105,45 +112,161 @@ static void free_addrinfo(mrb_state* mrb, void* ptr) {
   free(box);
 }
 
-static const mrb_data_type addrinfo_data_type = {
-   "struct addrinfo", free_addrinfo
+static const mrb_data_type sockaddr_data_type = {
+   "struct sockaddr", free_sockaddr
 };
 
 mrb_value
-mruby_box_addrinfo(mrb_state* mrb, struct addrinfo *unboxed) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-  box->belongs_to_ruby = FALSE;
-  box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, Addrinfo_class(mrb), &addrinfo_data_type, box));
+mruby_box_sockaddr(mrb_state* mrb, struct sockaddr *unboxed) {
+  if (unboxed != NULL) {
+    if (unboxed->sa_family == AF_INET) {
+      return mruby_box_sockaddr_in(mrb, unboxed);
+    } else if (unboxed->sa_family == AF_INET6) {
+      return mruby_box_sockaddr_in6(mrb, unboxed);
+    }
+  } else {
+    return mrb_nil_value();
+  }
 }
 
 mrb_value
-mruby_giftwrap_addrinfo(mrb_state* mrb, struct addrinfo *unboxed) {
-   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
-   box->belongs_to_ruby = TRUE;
-   box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, Addrinfo_class(mrb), &addrinfo_data_type, box));
+mruby_giftwrap_sockaddr(mrb_state* mrb, struct sockaddr *unboxed) {
+  if (unboxed != NULL) {
+    if (unboxed->sa_family == AF_INET) {
+      return mruby_giftwrap_sockaddr_in(mrb, unboxed);
+    } else if (unboxed->sa_family == AF_INET6) {
+      return mruby_giftwrap_sockaddr_in6(mrb, unboxed);
+    }
+  } else {
+    return mrb_nil_value();
+  }
 }
 
-void
-mruby_set_addrinfo_data_ptr(mrb_value obj, struct addrinfo *unboxed) {
+struct sockaddr *
+mruby_unbox_sockaddr(mrb_value boxed) {
+  return (struct sockaddr *)((mruby_to_native_ref *)DATA_PTR(boxed))->obj;
+}
+#endif
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: SockaddrIn_boxing */
+/* sha: 43d60ee4c711e7c067c335e41fe509e4cecef5fa8975ffe2e0366a5c31c09443 */
+#if BIND_SockaddrIn_TYPE
+/*
+ * Boxing implementation for struct sockaddr_in
+ */
+
+static void free_sockaddr_in(mrb_state* mrb, void* ptr) {
+  mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
+  if (box->belongs_to_ruby) {
+    if (box->obj != NULL) {
+      free(box->obj);
+      box->obj = NULL;
+    }
+  }
+  free(box);
+}
+
+static const mrb_data_type sockaddr_in_data_type = {
+   "struct sockaddr_in", free_sockaddr_in
+};
+
+mrb_value
+mruby_box_sockaddr_in(mrb_state* mrb, struct sockaddr_in *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  mrb_data_init(obj, box, &addrinfo_data_type);
+  return mrb_obj_value(Data_Wrap_Struct(mrb, SockaddrIn_class(mrb), &sockaddr_in_data_type, box));
+}
+
+mrb_value
+mruby_giftwrap_sockaddr_in(mrb_state* mrb, struct sockaddr_in *unboxed) {
+   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
+   box->belongs_to_ruby = TRUE;
+   box->obj = unboxed;
+   return mrb_obj_value(Data_Wrap_Struct(mrb, SockaddrIn_class(mrb), &sockaddr_in_data_type, box));
 }
 
 void
-mruby_gift_addrinfo_data_ptr(mrb_value obj, struct addrinfo *unboxed) {
+mruby_set_sockaddr_in_data_ptr(mrb_value obj, struct sockaddr_in *unboxed) {
+  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
+  box->belongs_to_ruby = FALSE;
+  box->obj = unboxed;
+  mrb_data_init(obj, box, &sockaddr_in_data_type);
+}
+
+void
+mruby_gift_sockaddr_in_data_ptr(mrb_value obj, struct sockaddr_in *unboxed) {
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = TRUE;
   box->obj = unboxed;
-  mrb_data_init(obj, box, &addrinfo_data_type);
+  mrb_data_init(obj, box, &sockaddr_in_data_type);
 }
 
-struct addrinfo *
-mruby_unbox_addrinfo(mrb_value boxed) {
-  return (struct addrinfo *)((mruby_to_native_ref *)DATA_PTR(boxed))->obj;
+struct sockaddr_in *
+mruby_unbox_sockaddr_in(mrb_value boxed) {
+  return (struct sockaddr_in *)((mruby_to_native_ref *)DATA_PTR(boxed))->obj;
+}
+#endif
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: SockaddrIn6_boxing */
+/* sha: f036a109114de5f6f310cd18c6329790ddab189c82db32a9d43845ac8ee08938 */
+#if BIND_SockaddrIn6_TYPE
+/*
+ * Boxing implementation for struct sockaddr_in6
+ */
+
+static void free_sockaddr_in6(mrb_state* mrb, void* ptr) {
+  mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
+  if (box->belongs_to_ruby) {
+    if (box->obj != NULL) {
+      free(box->obj);
+      box->obj = NULL;
+    }
+  }
+  free(box);
+}
+
+static const mrb_data_type sockaddr_in6_data_type = {
+   "struct sockaddr_in6", free_sockaddr_in6
+};
+
+mrb_value
+mruby_box_sockaddr_in6(mrb_state* mrb, struct sockaddr_in6 *unboxed) {
+  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
+  box->belongs_to_ruby = FALSE;
+  box->obj = unboxed;
+  return mrb_obj_value(Data_Wrap_Struct(mrb, SockaddrIn6_class(mrb), &sockaddr_in6_data_type, box));
+}
+
+mrb_value
+mruby_giftwrap_sockaddr_in6(mrb_state* mrb, struct sockaddr_in6 *unboxed) {
+   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
+   box->belongs_to_ruby = TRUE;
+   box->obj = unboxed;
+   return mrb_obj_value(Data_Wrap_Struct(mrb, SockaddrIn6_class(mrb), &sockaddr_in6_data_type, box));
+}
+
+void
+mruby_set_sockaddr_in6_data_ptr(mrb_value obj, struct sockaddr_in6 *unboxed) {
+  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
+  box->belongs_to_ruby = FALSE;
+  box->obj = unboxed;
+  mrb_data_init(obj, box, &sockaddr_in6_data_type);
+}
+
+void
+mruby_gift_sockaddr_in6_data_ptr(mrb_value obj, struct sockaddr_in6 *unboxed) {
+  mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
+  box->belongs_to_ruby = TRUE;
+  box->obj = unboxed;
+  mrb_data_init(obj, box, &sockaddr_in6_data_type);
+}
+
+struct sockaddr_in6 *
+mruby_unbox_sockaddr_in6(mrb_value boxed) {
+  return (struct sockaddr_in6 *)((mruby_to_native_ref *)DATA_PTR(boxed))->obj;
 }
 #endif
 /* MRUBY_BINDING_END */

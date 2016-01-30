@@ -50,6 +50,11 @@
 #  include "sys/types.h"
 #endif
 
+typedef struct sockaddr sockaddr;
+typedef struct sockaddr_in sockaddr_in;
+typedef struct sockaddr_in6 sockaddr_in6;
+typedef struct sockaddr_storage sockaddr_storage;
+
 #include "mruby_UV_callback_thunks.h"
 
 #define MRUBY_UV_PATH_BUF_SIZE 1024
@@ -99,7 +104,7 @@ if (native_loop->data == NULL) { \
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: class_macros */
-/* sha: 2075a9c00b4b672c36c7d59b3ab4f082dccefadc809cfeb90341a057e6fc96be */
+/* sha: 0e6f4a88bdf386dd84a9398c9a28f8a2a7a1c155662e282804b7e11235815a94 */
 #define UV_module(mrb) mrb_module_get(mrb, "UV")
 #define Addrinfo_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Addrinfo")
 #define Async_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Async")
@@ -126,6 +131,9 @@ if (native_loop->data == NULL) { \
 #define RUsage_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "RUsage")
 #define Shutdown_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Shutdown")
 #define Signal_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Signal")
+#define Sockaddr_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Sockaddr")
+#define SockaddrIn_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "SockaddrIn")
+#define SockaddrIn6_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "SockaddrIn6")
 #define Stat_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Stat")
 #define STDIOContainer_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "STDIOContainer")
 #define Stream_class(mrb) mrb_class_get_under(mrb, UV_module(mrb), "Stream")
@@ -156,7 +164,7 @@ if (native_loop->data == NULL) { \
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: pre_class_init_decls */
-/* sha: efe6c9fca9d1ec938b40cf8f3824370572f7a076110864a642b7e7602b0ebf1d */
+/* sha: e9d55b2839cb89e65ce6e0a54a2e424ab3aca7c1ce6b42344c64087f9e0a5655 */
 #if BIND_Addrinfo_TYPE
 void mrb_UV_Addrinfo_init(mrb_state* mrb);
 #endif
@@ -231,6 +239,15 @@ void mrb_UV_Shutdown_init(mrb_state* mrb);
 #endif
 #if BIND_Signal_TYPE
 void mrb_UV_Signal_init(mrb_state* mrb);
+#endif
+#if BIND_Sockaddr_TYPE
+void mrb_UV_Sockaddr_init(mrb_state* mrb);
+#endif
+#if BIND_SockaddrIn_TYPE
+void mrb_UV_SockaddrIn_init(mrb_state* mrb);
+#endif
+#if BIND_SockaddrIn6_TYPE
+void mrb_UV_SockaddrIn6_init(mrb_state* mrb);
 #endif
 #if BIND_Stat_TYPE
 void mrb_UV_Stat_init(mrb_state* mrb);

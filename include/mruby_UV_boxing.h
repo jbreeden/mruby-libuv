@@ -45,20 +45,13 @@ typedef struct mruby_to_native_ref_ {
 /* MRUBY_BINDING: Addrinfo::boxing_decls */
 /* sha: 6b9b283610bbb66f97487efdd356297cef265f22a9f820352c8980f6def36d0e */
 #if BIND_Addrinfo_TYPE
-mrb_value
-mruby_box_addrinfo(mrb_state* mrb, struct addrinfo *unboxed);
 
 mrb_value
-mruby_giftwrap_addrinfo(mrb_state* mrb, struct addrinfo *unboxed);
-
-void
-mruby_set_addrinfo_data_ptr(mrb_value obj, struct addrinfo *unboxed);
-
-void
-mruby_gift_addrinfo_data_ptr(mrb_value obj, struct addrinfo *unboxed);
+mruby_marshal_load_addrinfo(mrb_state* mrb, struct addrinfo *unboxed);
 
 struct addrinfo *
 mruby_unbox_addrinfo(mrb_value boxed);
+
 #endif
 /* MRUBY_BINDING_END */
 
@@ -527,6 +520,66 @@ mruby_gift_uv_signal_t_data_ptr(mrb_value obj, uv_signal_t *unboxed);
 
 uv_signal_t *
 mruby_unbox_uv_signal_t(mrb_value boxed);
+#endif
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: Sockaddr::boxing_decls */
+/* sha: 4228f724382318ca10d2fa23b7f5f35315dd60d8b95e16764e44e9068adb0a6f */
+#if BIND_Sockaddr_TYPE
+mrb_value
+mruby_box_sockaddr(mrb_state* mrb, struct sockaddr *unboxed);
+
+mrb_value
+mruby_giftwrap_sockaddr(mrb_state* mrb, struct sockaddr *unboxed);
+
+void
+mruby_set_sockaddr_data_ptr(mrb_value obj, struct sockaddr *unboxed);
+
+void
+mruby_gift_sockaddr_data_ptr(mrb_value obj, struct sockaddr *unboxed);
+
+struct sockaddr *
+mruby_unbox_sockaddr(mrb_value boxed);
+#endif
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: SockaddrIn::boxing_decls */
+/* sha: 1ff570a2c5f31e9650cf741cb852bca723655c75f3cd16dae7b1fc8dbf002df5 */
+#if BIND_SockaddrIn_TYPE
+mrb_value
+mruby_box_sockaddr_in(mrb_state* mrb, struct sockaddr_in *unboxed);
+
+mrb_value
+mruby_giftwrap_sockaddr_in(mrb_state* mrb, struct sockaddr_in *unboxed);
+
+void
+mruby_set_sockaddr_in_data_ptr(mrb_value obj, struct sockaddr_in *unboxed);
+
+void
+mruby_gift_sockaddr_in_data_ptr(mrb_value obj, struct sockaddr_in *unboxed);
+
+struct sockaddr_in *
+mruby_unbox_sockaddr_in(mrb_value boxed);
+#endif
+/* MRUBY_BINDING_END */
+
+/* MRUBY_BINDING: SockaddrIn6::boxing_decls */
+/* sha: 7690ab1203008787c35bbc700328237899efad6e581143d62597188e48c266c2 */
+#if BIND_SockaddrIn6_TYPE
+mrb_value
+mruby_box_sockaddr_in6(mrb_state* mrb, struct sockaddr_in6 *unboxed);
+
+mrb_value
+mruby_giftwrap_sockaddr_in6(mrb_state* mrb, struct sockaddr_in6 *unboxed);
+
+void
+mruby_set_sockaddr_in6_data_ptr(mrb_value obj, struct sockaddr_in6 *unboxed);
+
+void
+mruby_gift_sockaddr_in6_data_ptr(mrb_value obj, struct sockaddr_in6 *unboxed);
+
+struct sockaddr_in6 *
+mruby_unbox_sockaddr_in6(mrb_value boxed);
 #endif
 /* MRUBY_BINDING_END */
 

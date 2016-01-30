@@ -45,21 +45,21 @@ mrb_UV_Write_get_cb(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING_END */
 
 /* MRUBY_BINDING: Write::cb_writer */
-/* sha: 07276d0d462e34dcb422e89154830a64f886b6287fa986ccb23f2213239caf90 */
+/* sha: 9049561b376658dceebee0d89e301cae6f2ee54cb8f6bfa38301b366b7a844af */
 #if BIND_Write_cb_FIELD_WRITER
 mrb_value
 mrb_UV_Write_set_cb(mrb_state* mrb, mrb_value self) {
   uv_write_t * native_self = mruby_unbox_uv_write_t(self);
   mrb_value native_cb;
+  uv_write_cb thunk = NULL;
 
   mrb_get_args(mrb, "&", &native_cb);
 
   /* type checking */
-  if (mrb_nil_p(native_cb)) {
-    mrb_raise(mrb, E_ARGUMENT_ERROR, "No block provided");
-    return mrb_nil_value();
+  if (!mrb_nil_p(native_cb)) {
+    thunk = mruby_uv_write_cb_thunk;
+    MRUBY_UV_PREPARE_REQ_THUNK(/* TODO: req??? */, "@mruby_uv_write_cb_thunk", native_cb);
   }
-  // TODO: mrb_iv_set(mrb, req???, mrb_intern_cstr(mrb, "@mruby_uv_write_cb"), native_cb);
 
   native_self->cb = native_cb;
   

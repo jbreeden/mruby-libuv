@@ -378,8 +378,14 @@ void mruby_uv_getaddrinfo_cb_thunk(uv_getaddrinfo_t * req, int status, struct ad
   /* Invoke callback */
   MRUBY_UV_FINALIZE_REQ_THUNK(self);
   if (!mrb_nil_p(callback)) {
-    mrb_funcall(mrb, callback, "call", 3, MRUBY_UV_REQ_SELF(req), mrb_fixnum_value(status), mruby_box_addrinfo(mrb, addr));
+    if (status == 0) {
+      mrb_funcall(mrb, callback, "call", 3, MRUBY_UV_REQ_SELF(req), mrb_fixnum_value(status), mruby_marshal_load_addrinfo(mrb, addr));
+    } else {
+      mrb_funcall(mrb, callback, "call", 3, MRUBY_UV_REQ_SELF(req), mrb_fixnum_value(status), mrb_nil_value());
+    }
   }
+  /* mruby_marshal_load_addrinfo made a copy for Ruby, free the native object */
+  uv_freeaddrinfo(addr);
 }
   
 void mruby_uv_getnameinfo_cb_thunk(uv_getnameinfo_t * req, int status, const char * hostname, const char * service) {
