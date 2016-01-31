@@ -22,14 +22,11 @@ Connection: close\n
 EOS
         
         write = UV::Write.new
-        UV.write(write, tcp, msg) do 
-          puts "WROTE"
-        end
-        
+        UV.write(write, tcp, msg)
+
         UV.read_start(tcp) do |handle, size, str|
-          puts "READ"
           if size > 0
-            # puts str
+            puts str
           else
             puts UV::ERRNO_TO_SYM[size]
           end
