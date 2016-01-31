@@ -92,8 +92,14 @@ mruby_uv_prepare_write_buf(mrb_state * mrb, mrb_value self, mrb_value buf) {
 }
 
 void mruby_uv_alloc_cb(uv_handle_t * handle, size_t suggested_size, uv_buf_t * buf) {
-  buf->base = (char*)calloc(suggested_size, sizeof(char));
-  buf->len = suggested_size;
+  int size = suggested_size;
+  
+  if (size > (1024 * 8)) {
+    size = (1024 * 8);
+  }
+  
+  buf->base = (char*)calloc(size, sizeof(char));
+  buf->len = size;
 }
  
 /*
@@ -117,20 +123,23 @@ void mruby_uv_close_cb_thunk(uv_handle_t * handle) {
   mruby_uv_unregister_handle(mrb, self);
 }
  
-void mruby_uv_read_cb_thunk(uv_stream_t * handle, ssize_t size, const uv_buf_t * buf) {
+void mruby_uv_read_cb_thunk(uv_stream_t * handle, ssize_t nread, const uv_buf_t * buf) {
   mrb_state * mrb = MRUBY_UV_HANDLE_MRB(handle);
   mrb_value self = MRUBY_UV_HANDLE_SELF(handle);
   mrb_value callback = mrb_iv_get(mrb, self, mrb_intern_cstr(mrb, "@mruby_uv_read_cb_thunk"));
   
   /* Box Parameters */
-  mrb_value rb_size = mrb_fixnum_value(size);
-  mrb_value rb_buf = mrb_str_new(mrb, buf->base, buf->len);
+  mrb_value rb_nread = mrb_fixnum_value(nread);
+  mrb_value rb_buf = mrb_nil_value();
+  if (nread > 0) {
+    rb_buf = mrb_str_new(mrb, buf->base, nread);
+  }
   free(buf->base);
   
   /* Invoke callback */
   MRUBY_UV_FINALIZE_HANDLE_THUNK(self);
   if (!mrb_nil_p(callback)) {
-    mrb_funcall(mrb, callback, "call", 3, MRUBY_UV_HANDLE_SELF(handle), rb_size, rb_buf);
+    mrb_funcall(mrb, callback, "call", 3, MRUBY_UV_HANDLE_SELF(handle), rb_nread, rb_buf);
   }
 }
  

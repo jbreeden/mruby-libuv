@@ -100,46 +100,28 @@ free_mruby_uv_req(uv_req_t * handle) {
 /*
  * Boxing implementation for struct sockaddr
  */
-
-static void free_sockaddr(mrb_state* mrb, void* ptr) {
-  mruby_to_native_ref* box = (mruby_to_native_ref*)ptr;
-  if (box->belongs_to_ruby) {
-    if (box->obj != NULL) {
-      free(box->obj);
-      box->obj = NULL;
-    }
-  }
-  free(box);
-}
-
-static const mrb_data_type sockaddr_data_type = {
-   "struct sockaddr", free_sockaddr
-};
-
 mrb_value
 mruby_box_sockaddr(mrb_state* mrb, struct sockaddr *unboxed) {
   if (unboxed != NULL) {
     if (unboxed->sa_family == AF_INET) {
-      return mruby_box_sockaddr_in(mrb, unboxed);
+      return mruby_box_sockaddr_in(mrb, (sockaddr_in*)unboxed);
     } else if (unboxed->sa_family == AF_INET6) {
-      return mruby_box_sockaddr_in6(mrb, unboxed);
+      return mruby_box_sockaddr_in6(mrb, (sockaddr_in6*)unboxed);
     }
-  } else {
-    return mrb_nil_value();
   }
+  return mrb_nil_value();
 }
 
 mrb_value
 mruby_giftwrap_sockaddr(mrb_state* mrb, struct sockaddr *unboxed) {
   if (unboxed != NULL) {
     if (unboxed->sa_family == AF_INET) {
-      return mruby_giftwrap_sockaddr_in(mrb, unboxed);
+      return mruby_giftwrap_sockaddr_in(mrb, (sockaddr_in*)unboxed);
     } else if (unboxed->sa_family == AF_INET6) {
-      return mruby_giftwrap_sockaddr_in6(mrb, unboxed);
+      return mruby_giftwrap_sockaddr_in6(mrb, (sockaddr_in6*)unboxed);
     }
-  } else {
-    return mrb_nil_value();
   }
+  return mrb_nil_value();
 }
 
 struct sockaddr *
@@ -1396,7 +1378,7 @@ mruby_unbox_uv_process_options_t(mrb_state * mrb, mrb_value boxed) {
       options->args = (char**)calloc(ary_len + 1, sizeof(char*));
       for (int i = 0; i < ary_len; ++i) {
         mrb_value val = mrb_ary_ref(mrb, ary, i);
-        options->args[i] = mrb_string_value_cstr(mrb, &val);
+        options->args[i] = (char*)mrb_string_value_cstr(mrb, &val);
         /* If the user didn't specify a file, use args[0] */
         if (i == 0 && options->file == NULL) {
           options->file = options->args[i];
@@ -1412,7 +1394,7 @@ mruby_unbox_uv_process_options_t(mrb_state * mrb, mrb_value boxed) {
       options->env = (char**)calloc(ary_len + 1, sizeof(char*));
       for (int i = 0; i < ary_len; ++i) {
         mrb_value val = mrb_ary_ref(mrb, ary, i);
-        options->env[i] = mrb_string_value_cstr(mrb, &val);
+        options->env[i] = (char*)mrb_string_value_cstr(mrb, &val);
       }
     }
   }

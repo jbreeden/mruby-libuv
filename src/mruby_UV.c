@@ -2458,6 +2458,7 @@ mrb_UV_uv_fs_readlink(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING: uv_fs_realpath */
 /* sha: 7316da826adac8ab585a34c035d58a8483f2f00c8be1bd577b53122324ef222a */
 #if UV_VERSION_MAJOR <= 1 && UV_VERSION_MINOR < 8
+# undef BIND_uv_fs_realpath_FUNCTION
 # define BIND_uv_fs_realpath_FUNCTION FALSE
 #endif
 #if BIND_uv_fs_realpath_FUNCTION
@@ -4714,29 +4715,26 @@ mrb_UV_uv_pipe_getpeername(mrb_state* mrb, mrb_value self) {
   }
 
   /* Unbox param: handle */
-  const uv_tcp_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_tcp_t(handle));
+  const uv_pipe_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_pipe_t(handle));
 
   /* Invocation */
-  sockaddr_storage * native_addr = (sockaddr_storage*)calloc(1, sizeof(sockaddr_storage));
-  int size = 0;
-  int native_return_value = uv_pipe_getpeername(native_handle, native_addr, &size);
+  char * native_name = (char*)calloc(1025, sizeof(char));
+  size_t size = 0;
+  int native_return_value = uv_pipe_getpeername(native_handle, native_name, &size);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
   
   /* Box the out param */
-  mrb_value addr = mrb_nil_value();
+  mrb_value name = mrb_nil_value();
   if (native_return_value == 0) {
-    if (size == sizeof(sockaddr_in)) {
-      addr = mruby_giftwrap_sockaddr_in(mrb, native_addr);
-    } else if (size = sizeof(sockaddr_in6)) {
-      addr = mruby_giftwrap_sockaddr_in6(mrb, native_addr);
-    }
+    name = mrb_str_new(mrb, native_name, size);
   }
+  free(native_name);
   
   mrb_value results = mrb_ary_new(mrb);
   mrb_ary_push(mrb, results, return_value);
-  mrb_ary_push(mrb, results, addr);
+  mrb_ary_push(mrb, results, name);
   return results;
 }
 #endif
@@ -4762,29 +4760,26 @@ mrb_UV_uv_pipe_getsockname(mrb_state* mrb, mrb_value self) {
   }
 
   /* Unbox param: handle */
-  const uv_tcp_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_tcp_t(handle));
+  const uv_pipe_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_pipe_t(handle));
 
   /* Invocation */
-  sockaddr_storage * native_addr = (sockaddr_storage*)calloc(1, sizeof(sockaddr_storage));
-  int size = 0;
-  int native_return_value = uv_pipe_getsockname(native_handle, native_addr, &size);
+  char * native_name = (char*)calloc(1025, sizeof(char));
+  size_t size = 0;
+  int native_return_value = uv_pipe_getsockname(native_handle, native_name, &size);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
   
   /* Box the out param */
-  mrb_value addr = mrb_nil_value();
+  mrb_value name = mrb_nil_value();
   if (native_return_value == 0) {
-    if (size == sizeof(sockaddr_in)) {
-      addr = mruby_giftwrap_sockaddr_in(mrb, native_addr);
-    } else if (size = sizeof(sockaddr_in6)) {
-      addr = mruby_giftwrap_sockaddr_in6(mrb, native_addr);
-    }
+    name = mrb_str_new(mrb, native_name, size);
   }
+  free(native_name);
   
   mrb_value results = mrb_ary_new(mrb);
   mrb_ary_push(mrb, results, return_value);
-  mrb_ary_push(mrb, results, addr);
+  mrb_ary_push(mrb, results, name);
   return results;
 }
 #endif
@@ -6522,18 +6517,19 @@ mrb_UV_uv_tcp_bind(mrb_state* mrb, mrb_value self) {
 /* MRUBY_BINDING: uv_tcp_connect */
 /* sha: 3b37dd025e7855cc6f4cbfc8e930f9b593de206802c0350764ebd8b29545ff45 */
 #if BIND_uv_tcp_connect_FUNCTION
-#define uv_tcp_connect_REQUIRED_ARGC 4
-#define uv_tcp_connect_OPTIONAL_ARGC 0
+#define uv_tcp_connect_REQUIRED_ARGC 3
+#define uv_tcp_connect_OPTIONAL_ARGC 1
 /* int uv_tcp_connect(uv_connect_t * req, uv_tcp_t * handle, const struct sockaddr * addr, uv_connect_cb cb) */
 mrb_value
 mrb_UV_uv_tcp_connect(mrb_state* mrb, mrb_value self) {
   mrb_value req;
   mrb_value handle;
   mrb_value addr;
-  mrb_value cb;
+  mrb_value cb = mrb_nil_value();
+  uv_connect_cb thunk = NULL;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oooo", &req, &handle, &addr, &cb);
+  mrb_get_args(mrb, "ooo|&", &req, &handle, &addr, &cb);
 
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, req, Connect_class(mrb))) {
@@ -6548,7 +6544,10 @@ mrb_UV_uv_tcp_connect(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_TYPE_ERROR, "Sockaddr expected");
     return mrb_nil_value();
   }
-  TODO_type_check_uv_connect_cb(cb);
+  if (!mrb_nil_p(cb)) {
+    thunk = mruby_uv_connect_cb_thunk;
+    MRUBY_UV_PREPARE_REQ_THUNK(req, "@mruby_uv_connect_cb_thunk", cb);
+  }
 
   /* Unbox param: req */
   uv_connect_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_connect_t(req));
@@ -6559,11 +6558,8 @@ mrb_UV_uv_tcp_connect(mrb_state* mrb, mrb_value self) {
   /* Unbox param: addr */
   const struct sockaddr * native_addr = (mrb_nil_p(addr) ? NULL : mruby_unbox_sockaddr(addr));
 
-  /* Unbox param: cb */
-  uv_connect_cb native_cb = TODO_mruby_unbox_uv_connect_cb(cb);
-
   /* Invocation */
-  int native_return_value = uv_tcp_connect(native_req, native_handle, native_addr, native_cb);
+  int native_return_value = uv_tcp_connect(native_req, native_handle, native_addr, thunk);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -6598,7 +6594,7 @@ mrb_UV_uv_tcp_getpeername(mrb_state* mrb, mrb_value self) {
   /* Invocation */
   sockaddr_storage * native_addr = (sockaddr_storage*)calloc(1, sizeof(sockaddr_storage));
   int size = 0;
-  int native_return_value = uv_tcp_getpeername(native_handle, native_addr, &size);
+  int native_return_value = uv_tcp_getpeername(native_handle, (struct sockaddr *)native_addr, &size);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -6607,9 +6603,9 @@ mrb_UV_uv_tcp_getpeername(mrb_state* mrb, mrb_value self) {
   mrb_value addr = mrb_nil_value();
   if (native_return_value == 0) {
     if (size == sizeof(sockaddr_in)) {
-      addr = mruby_giftwrap_sockaddr_in(mrb, native_addr);
-    } else if (size = sizeof(sockaddr_in6)) {
-      addr = mruby_giftwrap_sockaddr_in6(mrb, native_addr);
+      addr = mruby_giftwrap_sockaddr_in(mrb, (sockaddr_in*)native_addr);
+    } else if (size == sizeof(sockaddr_in6)) {
+      addr = mruby_giftwrap_sockaddr_in6(mrb, (sockaddr_in6*)native_addr);
     }
   }
   
@@ -6646,7 +6642,7 @@ mrb_UV_uv_tcp_getsockname(mrb_state* mrb, mrb_value self) {
   /* Invocation */
   sockaddr_storage * native_addr = (sockaddr_storage*)calloc(1, sizeof(sockaddr_storage));
   int size = 0;
-  int native_return_value = uv_tcp_getsockname(native_handle, native_addr, &size);
+  int native_return_value = uv_tcp_getsockname(native_handle, (struct sockaddr *)native_addr, &size);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -6655,9 +6651,9 @@ mrb_UV_uv_tcp_getsockname(mrb_state* mrb, mrb_value self) {
   mrb_value addr = mrb_nil_value();
   if (native_return_value == 0) {
     if (size == sizeof(sockaddr_in)) {
-      addr = mruby_giftwrap_sockaddr_in(mrb, native_addr);
-    } else if (size = sizeof(sockaddr_in6)) {
-      addr = mruby_giftwrap_sockaddr_in6(mrb, native_addr);
+      addr = mruby_giftwrap_sockaddr_in(mrb, (sockaddr_in*)native_addr);
+    } else if (size == sizeof(sockaddr_in6)) {
+      addr = mruby_giftwrap_sockaddr_in6(mrb, (sockaddr_in6*)native_addr);
     }
   }
   
@@ -7485,12 +7481,12 @@ mrb_UV_uv_udp_getsockname(mrb_state* mrb, mrb_value self) {
   }
 
   /* Unbox param: handle */
-  const uv_tcp_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_tcp_t(handle));
+  const uv_udp_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_udp_t(handle));
 
   /* Invocation */
   sockaddr_storage * native_addr = (sockaddr_storage*)calloc(1, sizeof(sockaddr_storage));
   int size = 0;
-  int native_return_value = uv_udp_getsockname(native_handle, native_addr, &size);
+  int native_return_value = uv_udp_getsockname(native_handle, (struct sockaddr *)native_addr, &size);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
@@ -7499,9 +7495,9 @@ mrb_UV_uv_udp_getsockname(mrb_state* mrb, mrb_value self) {
   mrb_value addr = mrb_nil_value();
   if (native_return_value == 0) {
     if (size == sizeof(sockaddr_in)) {
-      addr = mruby_giftwrap_sockaddr_in(mrb, native_addr);
-    } else if (size = sizeof(sockaddr_in6)) {
-      addr = mruby_giftwrap_sockaddr_in6(mrb, native_addr);
+      addr = mruby_giftwrap_sockaddr_in(mrb, (sockaddr_in*)native_addr);
+    } else if (size == sizeof(sockaddr_in6)) {
+      addr = mruby_giftwrap_sockaddr_in6(mrb, (sockaddr_in6*)native_addr);
     }
   }
   
@@ -8233,7 +8229,7 @@ mrb_UV_uv_write(mrb_state* mrb, mrb_value self) {
   }
   if (!mrb_nil_p(native_cb)) {
     thunk = mruby_uv_write_cb_thunk;
-    MRUBY_UV_PREPARE_REQ_THUNK(req, "@mruby_uv_write_cb", native_cb);
+    MRUBY_UV_PREPARE_REQ_THUNK(req, "@mruby_uv_write_cb_thunk", native_cb);
   }
   
 
@@ -8299,7 +8295,7 @@ mrb_UV_uv_write2(mrb_state* mrb, mrb_value self) {
   }
   if (!mrb_nil_p(native_cb)) {
     thunk = mruby_uv_write_cb_thunk;
-    MRUBY_UV_PREPARE_REQ_THUNK(req, "@mruby_uv_write_cb", native_cb);
+    MRUBY_UV_PREPARE_REQ_THUNK(req, "@mruby_uv_write_cb_thunk", native_cb);
   }
   
 
@@ -8344,6 +8340,9 @@ void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
 #endif
 #if BIND_Req_TYPE
   mrb_UV_Req_init(mrb);
+#endif
+#if BIND_Stream_TYPE
+  mrb_UV_Stream_init(mrb);
 #endif
 /* MRUBY_BINDING_END */
 

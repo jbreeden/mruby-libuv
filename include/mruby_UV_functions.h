@@ -174,7 +174,7 @@
 #define BIND_uv_stream_set_blocking_FUNCTION TRUE
 #define BIND_uv_strerror_FUNCTION TRUE
 #define BIND_uv_tcp_bind_FUNCTION TRUE
-#define BIND_uv_tcp_connect_FUNCTION FALSE
+#define BIND_uv_tcp_connect_FUNCTION TRUE
 #define BIND_uv_tcp_getpeername_FUNCTION TRUE
 #define BIND_uv_tcp_getsockname_FUNCTION TRUE
 #define BIND_uv_tcp_init_FUNCTION TRUE
