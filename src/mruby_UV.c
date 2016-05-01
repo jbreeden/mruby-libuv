@@ -775,6 +775,12 @@ mrb_UV_uv_cwd(mrb_state* mrb, mrb_value self) {
 /* uv_loop_t * uv_default_loop() */
 mrb_value
 mrb_UV_uv_default_loop(mrb_state* mrb, mrb_value self) {
+  mrb_value cached_default_loop = mrb_iv_get(mrb, mrb_obj_value(UV_module(mrb)), mrb_intern_cstr(mrb, "default_loop"));
+  
+  if (mrb_test(cached_default_loop)) {
+      return cached_default_loop;
+  }
+  
   /* Invocation */
   uv_loop_t * native_return_value = uv_default_loop();
   
@@ -783,6 +789,7 @@ mrb_UV_uv_default_loop(mrb_state* mrb, mrb_value self) {
   
   INIT_LOOP_DATA(native_return_value, return_value);
   
+  mrb_iv_set(mrb, mrb_obj_value(UV_module(mrb)), mrb_intern_cstr(mrb, "default_loop"), return_value);
   return return_value;
 }
 #endif
