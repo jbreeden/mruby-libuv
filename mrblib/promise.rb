@@ -14,6 +14,23 @@ class Promise
   
   attr_reader :state
   
+  def pending?
+    state == :pending
+  end
+  
+  def resolved?
+    state == :resolved
+  end
+  alias fulfilled? resolved?
+  
+  def rejected?
+    state == :rejected
+  end
+  
+  def settled?
+    state != :pending
+  end
+  
   def initialize()
     @callbacks = []
     @state = :pending # :pending, :resolved, :rejected
@@ -32,15 +49,8 @@ class Promise
     end
   end
   
-  def then(&block)
-    self.bind(block, nil)
-  end
-  
-  def catch(&block)
-    self.bind(nil, block)
-  end
-  
-  def bind(on_resolve, on_reject)
+  def then(on_resolve=nil, on_reject=nil, &block)
+    on_resolve ||= block
     callback = nil
     promise = Promise.new { |res, rej|
       callback = proc { |val, err|
@@ -75,19 +85,20 @@ class Promise
     promise
   end
   
+  def rescue(&block)
+    self.then(nil, block)
+  end
+  alias catch rescue
+  
   def resolve(value)
     unless @state == :pending
       raise "Attempted to resolve a promise that is already settled"
     end
     @value = value
     @state = :resolved
-    Promise.next_tick {
-      @callbacks.each { |c|
-        c.call(value, nil)
-      }
-      @callbacks = []
-    }
+    notify
   end
+  alias fulfill resolve
   
   def reject(reason)
     unless @state == :pending
@@ -98,9 +109,13 @@ class Promise
     end
     @reason = reason
     @state = :rejected
+    notify
+  end
+  
+  def notify
     Promise.next_tick {
       @callbacks.each { |c|
-        c.call(nil, reason)
+        c.call(@value, @reason)
       }
       @callbacks = []
     }
@@ -110,6 +125,9 @@ class Promise
     self.new { |resolve, reject|
       resolve.call(value)
     }
+  end
+  class << self
+    alias fulfill resolve
   end
   
   def self.reject(reason)

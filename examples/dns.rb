@@ -24,7 +24,7 @@ UV.getaddrinfo(UV.default_loop, req, 'google.com', 'http') do |req, status, addr
     # => "DNS Lookup failed: unknown node or service"
   else
     loop {
-      puts " - Addrinfo: addrinfo.inspect"
+      puts " - Addrinfo: #{addrinfo.inspect}"
       if addrinfo.ai_addr.kind_of?(UV::SockaddrIn)
         puts " - IP: #{UV.ip4_name(addrinfo.ai_addr)[1]}"
       elsif addrinfo.ai_addr.kind_of?(UV::SockaddrIn6)
