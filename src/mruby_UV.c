@@ -5416,7 +5416,6 @@ mrb_UV_uv_queue_work(mrb_state* mrb, mrb_value self) {
  *
  * Parameters:
  * - arg1: uv_stream_t *
- * - alloc_cb: uv_alloc_cb
  * - read_cb: uv_read_cb
  * Return Type: int
  */
