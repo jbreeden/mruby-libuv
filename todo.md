@@ -1,7 +1,18 @@
 - Cleanup handles & reqs when a loop is closed.
-- GC Canary Types
-  + For regression tests, have a canary flag that can be set on req's & handles.
-  + Use the flag to make sure GC is happening at the right times
-  + Have the free functions in the boxing code printf or otherwise log when
-    GC happens & is_canary is set.
-  + Could also log the loop's "GC root" members
+
+To Bind
+-------
+
+#define BIND_uv_fs_chown_FUNCTION FALSE
+#define BIND_uv_fs_fchown_FUNCTION FALSE
+#define BIND_uv_fs_ftruncate_FUNCTION FALSE
+#define BIND_uv_get_process_title_FUNCTION FALSE
+#define BIND_uv_inet_ntop_FUNCTION FALSE
+#define BIND_uv_inet_pton_FUNCTION FALSE
+#define BIND_uv_pipe_connect_FUNCTION FALSE
+#define BIND_uv_shutdown_FUNCTION FALSE
+#define BIND_uv_tty_get_winsize_FUNCTION FALSE
+#define BIND_uv_udp_open_FUNCTION FALSE
+#define BIND_uv_udp_recv_start_FUNCTION FALSE
+#define BIND_uv_udp_send_FUNCTION FALSE
+#define BIND_uv_udp_try_send_FUNCTION FALSE
