@@ -3,16 +3,16 @@
 To Bind
 -------
 
-uv_fs_chown_FUNCTION
-uv_fs_fchown_FUNCTION
-uv_fs_ftruncate_FUNCTION
-uv_get_process_title_FUNCTION
-uv_inet_ntop_FUNCTION
-uv_inet_pton_FUNCTION
-uv_pipe_connect_FUNCTION
-uv_shutdown_FUNCTION
-uv_tty_get_winsize_FUNCTION
-uv_udp_open_FUNCTION
-uv_udp_recv_start_FUNCTION
-uv_udp_send_FUNCTION
-uv_udp_try_send_FUNCTION
+- uv_fs_chown
+- uv_fs_fchown
+- uv_fs_ftruncate
+- uv_get_process_title
+- uv_inet_ntop
+- uv_inet_pton
+- uv_pipe_connect
+- uv_shutdown
+- uv_tty_get_winsize
+- uv_udp_open
+- uv_udp_recv_start
+- uv_udp_send
+- uv_udp_try_send
