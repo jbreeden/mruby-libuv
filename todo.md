@@ -1,4 +1,11 @@
 - Cleanup handles & reqs when a loop is closed.
+- Currently handles are removed from the event loop's "GC root" if they
+  are marked inactive when one of their handlers are invoked. This does not
+  cover the case that the client simply calls a `*_stop` function on the handle.
+  For these, we should automatically unset the GC root reference.
+- What happens when the user manually ref/unrefs a handle? May need to consider
+  GC implications here as well.
+
 
 To Bind
 -------
