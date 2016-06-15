@@ -44,7 +44,7 @@ mrb_UV_uv_accept(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -63,10 +63,10 @@ mrb_UV_uv_accept(mrb_state* mrb, mrb_value self) {
 //   mrb_value arg1;
 //   mrb_value async;
 //   mrb_value async_cb;
-// 
+//
 //   /* Fetch the args */
 //   mrb_get_args(mrb, "oo&", &arg1, &async, &async_cb);
-// 
+//
 //   /* Type checking */
 //   if (!mrb_obj_is_kind_of(mrb, arg1, Loop_class(mrb))) {
 //     mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
@@ -81,19 +81,19 @@ mrb_UV_uv_accept(mrb_state* mrb, mrb_value self) {
 //     return mrb_nil_value();
 //   }
 //   mrb_iv_set(mrb, async, mrb_intern_cstr(mrb, "@mruby_uv_async_cb_thunk"), async_cb);
-// 
+//
 //   /* Unbox param: arg1 */
 //   uv_loop_t * native_arg1 = (mrb_nil_p(arg1) ? NULL : mruby_unbox_uv_loop_t(arg1));
-// 
+//
 //   /* Unbox param: async */
 //   uv_async_t * native_async = (mrb_nil_p(async) ? NULL : mruby_unbox_uv_async_t(async));
-// 
+//
 //   /* Invocation */
 //   int native_return_value = uv_async_init(native_arg1, native_async, mruby_uv_async_cb_thunk);
-// 
+//
 //   /* Box the return value */
 //   mrb_value return_value = mrb_fixnum_value(native_return_value);
-//   
+//
 //   return return_value;
 // }
 #endif
@@ -126,7 +126,7 @@ mrb_UV_uv_async_send(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -159,7 +159,7 @@ mrb_UV_uv_backend_fd(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -192,7 +192,7 @@ mrb_UV_uv_backend_timeout(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -250,7 +250,7 @@ mrb_UV_uv_barrier_init(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -280,7 +280,7 @@ mrb_UV_uv_barrier_wait(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -311,7 +311,7 @@ mrb_UV_uv_buf_init(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = TODO_mruby_box_uv_buf_t(mrb, native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -344,7 +344,7 @@ mrb_UV_uv_cancel(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -368,7 +368,7 @@ mrb_UV_uv_chdir(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -409,7 +409,7 @@ mrb_UV_uv_check_init(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -439,7 +439,7 @@ mrb_UV_uv_check_start(mrb_state* mrb, mrb_value self) {
     return mrb_nil_value();
   }
   MRUBY_UV_PREPARE_HANDLE_THUNK(check, "@mruby_uv_check_cb_thunk", cb);
-  
+
   /* Unbox param: check */
   uv_check_t * native_check = (mrb_nil_p(check) ? NULL : mruby_unbox_uv_check_t(check));
 
@@ -448,7 +448,7 @@ mrb_UV_uv_check_start(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -473,6 +473,8 @@ mrb_UV_uv_check_stop(mrb_state* mrb, mrb_value self) {
     return mrb_nil_value();
   }
 
+  mruby_uv_unregister_handle(mrb, check);
+
   /* Unbox param: check */
   uv_check_t * native_check = (mrb_nil_p(check) ? NULL : mruby_unbox_uv_check_t(check));
 
@@ -481,7 +483,7 @@ mrb_UV_uv_check_stop(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -518,7 +520,7 @@ mrb_UV_uv_close(mrb_state* mrb, mrb_value self) {
 
   /* Unbox param: handle */
   uv_handle_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_handle_t(handle));
-  
+
   /* Invocation */
   uv_close(native_handle, mruby_uv_close_cb_thunk);
 
@@ -605,7 +607,7 @@ mrb_UV_uv_cond_init(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -672,7 +674,7 @@ mrb_UV_uv_cond_timedwait(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -739,7 +741,7 @@ mrb_UV_uv_cpu_info(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -755,7 +757,7 @@ mrb_value
 mrb_UV_uv_cwd(mrb_state* mrb, mrb_value self) {
   char * native_buffer = calloc(MRUBY_UV_PATH_BUF_SIZE, sizeof(char));
   size_t native_size = MRUBY_UV_PATH_BUF_SIZE;
-  
+
   /* Invocation */
   mrb_value return_value = mrb_nil_value();
   if (0 == uv_cwd(native_buffer, &native_size)) {
@@ -776,19 +778,19 @@ mrb_UV_uv_cwd(mrb_state* mrb, mrb_value self) {
 mrb_value
 mrb_UV_uv_default_loop(mrb_state* mrb, mrb_value self) {
   mrb_value cached_default_loop = mrb_iv_get(mrb, mrb_obj_value(UV_module(mrb)), mrb_intern_cstr(mrb, "default_loop"));
-  
+
   if (mrb_test(cached_default_loop)) {
       return cached_default_loop;
   }
-  
+
   /* Invocation */
   uv_loop_t * native_return_value = uv_default_loop();
-  
+
   /* Box the return value */
   mrb_value return_value = mruby_box_uv_loop_t(mrb, native_return_value);
-  
+
   INIT_LOOP_DATA(native_return_value, return_value);
-  
+
   mrb_iv_set(mrb, mrb_obj_value(UV_module(mrb)), mrb_intern_cstr(mrb, "default_loop"), return_value);
   return return_value;
 }
@@ -862,7 +864,7 @@ mrb_UV_uv_dlerror(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = native_return_value == NULL ? mrb_nil_value() : mrb_str_new_cstr(mrb, native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -893,7 +895,7 @@ mrb_UV_uv_dlopen(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -929,7 +931,7 @@ mrb_UV_uv_dlsym(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -953,7 +955,7 @@ mrb_UV_uv_err_name(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = native_return_value == NULL ? mrb_nil_value() : mrb_str_new_cstr(mrb, native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -969,12 +971,12 @@ mrb_value
 mrb_UV_uv_exepath(mrb_state* mrb, mrb_value self) {
   char * native_buffer = (char*)calloc(MRUBY_UV_PATH_BUF_SIZE, sizeof(char));
   size_t size = MRUBY_UV_PATH_BUF_SIZE;
-  
+
   mrb_value result = mrb_nil_value();
   if (0 == uv_exepath(native_buffer, &size)) {
     result = mrb_str_new_cstr(mrb, native_buffer);
   }
-  
+
   free(native_buffer);
   return result;
 }
@@ -1013,7 +1015,7 @@ mrb_UV_uv_fileno(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -1154,7 +1156,7 @@ mrb_UV_uv_fs_access(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -1212,7 +1214,7 @@ mrb_UV_uv_fs_chmod(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -1270,7 +1272,7 @@ mrb_UV_uv_fs_chown(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -1318,7 +1320,7 @@ mrb_UV_uv_fs_close(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -1404,7 +1406,7 @@ mrb_UV_uv_fs_event_init(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -1453,7 +1455,7 @@ mrb_UV_uv_fs_event_start(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -1478,6 +1480,8 @@ mrb_UV_uv_fs_event_stop(mrb_state* mrb, mrb_value self) {
     return mrb_nil_value();
   }
 
+  mruby_uv_unregister_handle(mrb, handle);
+
   /* Unbox param: handle */
   uv_fs_event_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_fs_event_t(handle));
 
@@ -1486,7 +1490,7 @@ mrb_UV_uv_fs_event_stop(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -1535,7 +1539,7 @@ mrb_UV_uv_fs_fchmod(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -1603,7 +1607,7 @@ mrb_UV_uv_fs_fchown(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -1659,7 +1663,7 @@ mrb_UV_uv_fs_fdatasync(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -1715,7 +1719,7 @@ mrb_UV_uv_fs_fstat(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -1771,7 +1775,7 @@ mrb_UV_uv_fs_fsync(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -1823,7 +1827,7 @@ mrb_UV_uv_fs_ftruncate(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -1883,7 +1887,7 @@ mrb_UV_uv_fs_futime(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -1932,7 +1936,7 @@ mrb_UV_uv_fs_link(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -1988,7 +1992,7 @@ mrb_UV_uv_fs_lstat(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -2046,7 +2050,7 @@ mrb_UV_uv_fs_mkdir(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -2102,7 +2106,7 @@ mrb_UV_uv_fs_mkdtemp(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -2159,10 +2163,10 @@ mrb_UV_uv_fs_open(mrb_state* mrb, mrb_value self) {
 
   /* Invocation */
   int native_return_value = uv_fs_open(native_loop, native_req, native_path, native_flags, native_mode, thunk);
-  
+
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -2248,7 +2252,7 @@ mrb_UV_uv_fs_poll_init(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -2297,7 +2301,7 @@ mrb_UV_uv_fs_poll_start(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -2322,6 +2326,8 @@ mrb_UV_uv_fs_poll_stop(mrb_state* mrb, mrb_value self) {
     return mrb_nil_value();
   }
 
+  mruby_uv_unregister_handle(mrb, handle);
+
   /* Unbox param: handle */
   uv_fs_poll_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_fs_poll_t(handle));
 
@@ -2330,7 +2336,7 @@ mrb_UV_uv_fs_poll_stop(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -2400,7 +2406,7 @@ mrb_UV_uv_fs_read(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -2456,7 +2462,7 @@ mrb_UV_uv_fs_readlink(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -2516,7 +2522,7 @@ mrb_UV_uv_fs_realpath(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -2574,7 +2580,7 @@ mrb_UV_uv_fs_rename(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -2660,7 +2666,7 @@ mrb_UV_uv_fs_rmdir(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -2718,7 +2724,7 @@ mrb_UV_uv_fs_scandir(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -2759,7 +2765,7 @@ mrb_UV_uv_fs_scandir_next(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -2821,7 +2827,7 @@ mrb_UV_uv_fs_sendfile(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -2877,7 +2883,7 @@ mrb_UV_uv_fs_stat(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -2937,7 +2943,7 @@ mrb_UV_uv_fs_symlink(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -2993,7 +2999,7 @@ mrb_UV_uv_fs_unlink(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -3053,7 +3059,7 @@ mrb_UV_uv_fs_utime(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -3117,7 +3123,7 @@ mrb_UV_uv_fs_write(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -3173,7 +3179,7 @@ mrb_UV_uv_get_process_title(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -3193,7 +3199,7 @@ mrb_value
 mrb_UV_uv_get_total_memory(mrb_state* mrb, mrb_value self) {
   /* Invocation */
   uint64_t native_return_value = uv_get_total_memory();
-  
+
   if (native_return_value > MRB_INT_MAX) {
     mrb_raise(mrb, mrb_class_get(mrb, "RangeError"), "Out of range");
     return mrb_nil_value();
@@ -3254,7 +3260,7 @@ mrb_UV_uv_getaddrinfo(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -3277,7 +3283,7 @@ mrb_UV_uv_getnameinfo(mrb_state* mrb, mrb_value self) {
 
   /* Fetch the args */
   mrb_get_args(mrb, "ooo|i&", &loop, &req, &addr, &native_flags, &getnameinfo_cb);
-  
+
   /* Type checking */
   if (!mrb_obj_is_kind_of(mrb, loop, Loop_class(mrb))) {
     mrb_raise(mrb, E_TYPE_ERROR, "Loop expected");
@@ -3295,7 +3301,7 @@ mrb_UV_uv_getnameinfo(mrb_state* mrb, mrb_value self) {
     thunk = mruby_uv_getnameinfo_cb_thunk;
     MRUBY_UV_PREPARE_REQ_THUNK(req, "@mruby_uv_getnameinfo_cb_thunk", getnameinfo_cb);
   }
-  
+
 
   /* Unbox param: loop */
   uv_loop_t * native_loop = (mrb_nil_p(loop) ? NULL : mruby_unbox_uv_loop_t(loop));
@@ -3311,7 +3317,7 @@ mrb_UV_uv_getnameinfo(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -3344,7 +3350,7 @@ mrb_UV_uv_getrusage(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -3368,7 +3374,7 @@ mrb_UV_uv_guess_handle(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -3392,7 +3398,7 @@ mrb_UV_uv_handle_size(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -3425,7 +3431,7 @@ mrb_UV_uv_has_ref(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -3444,7 +3450,7 @@ mrb_UV_uv_hrtime(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = TODO_mruby_box_uint64_t(mrb, native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -3485,7 +3491,7 @@ mrb_UV_uv_idle_init(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -3530,7 +3536,7 @@ mrb_UV_uv_idle_start(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -3555,6 +3561,8 @@ mrb_UV_uv_idle_stop(mrb_state* mrb, mrb_value self) {
     return mrb_nil_value();
   }
 
+  mruby_uv_unregister_handle(mrb, idle);
+
   /* Unbox param: idle */
   uv_idle_t * native_idle = (mrb_nil_p(idle) ? NULL : mruby_unbox_uv_idle_t(idle));
 
@@ -3563,7 +3571,7 @@ mrb_UV_uv_idle_stop(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -3600,7 +3608,7 @@ mrb_UV_uv_inet_ntop(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -3632,7 +3640,7 @@ mrb_UV_uv_inet_pton(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -3667,7 +3675,7 @@ mrb_UV_uv_interface_addresses(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -3695,10 +3703,10 @@ mrb_UV_uv_ip4_addr(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   /* Box out params */
   mrb_value addr = mruby_giftwrap_sockaddr_in(mrb, native_addr);
-  
+
   mrb_value results = mrb_ary_new(mrb);
   mrb_ary_push(mrb, results, return_value);
   if (native_return_value == 0) {
@@ -3706,7 +3714,7 @@ mrb_UV_uv_ip4_addr(mrb_state* mrb, mrb_value self) {
   } else {
     mrb_ary_push(mrb, results, mrb_nil_value());
   }
-  
+
   return results;
 }
 #endif
@@ -3735,22 +3743,22 @@ mrb_UV_uv_ip4_name(mrb_state* mrb, mrb_value self) {
   const struct sockaddr_in * native_src = (mrb_nil_p(src) ? NULL : mruby_unbox_sockaddr_in(src));
 
   /* Invocation */
-  
+
   /* 45 is the max size... rounding up a tad */
   char * native_dst = (char*)calloc(101, sizeof(char));
   int native_return_value = uv_ip4_name(native_src, native_dst, 100);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   /* Box the out params */
   mrb_value dst = mrb_str_new_cstr(mrb, native_dst);
   free(native_dst);
-  
+
   mrb_value results = mrb_ary_new(mrb);
   mrb_ary_push(mrb, results, return_value);
   mrb_ary_push(mrb, results, dst);
-  
+
   return results;
 }
 #endif
@@ -3778,10 +3786,10 @@ mrb_UV_uv_ip6_addr(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   /* Box the out params */
   mrb_value addr = mruby_giftwrap_sockaddr_in6(mrb, native_addr);
-  
+
   mrb_value results = mrb_ary_new(mrb);
   mrb_ary_push(mrb, results, return_value);
   if (native_return_value == 0) {
@@ -3789,7 +3797,7 @@ mrb_UV_uv_ip6_addr(mrb_state* mrb, mrb_value self) {
   } else {
     mrb_ary_push(mrb, results, mrb_nil_value());
   }
-  
+
   return results;
 }
 #endif
@@ -3823,15 +3831,15 @@ mrb_UV_uv_ip6_name(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   /* Box the out params */
   mrb_value dst = mrb_str_new_cstr(mrb, native_dst);
   free(native_dst);
-  
+
   mrb_value results = mrb_ary_new(mrb);
   mrb_ary_push(mrb, results, return_value);
   mrb_ary_push(mrb, results, dst);
-  
+
   return results;
 }
 #endif
@@ -3864,7 +3872,7 @@ mrb_UV_uv_is_active(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -3897,7 +3905,7 @@ mrb_UV_uv_is_closing(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -3930,7 +3938,7 @@ mrb_UV_uv_is_readable(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -3963,7 +3971,7 @@ mrb_UV_uv_is_writable(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -3993,7 +4001,7 @@ mrb_UV_uv_key_create(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -4050,7 +4058,7 @@ mrb_UV_uv_key_get(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = TODO_mruby_box_void_PTR(mrb, native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -4107,7 +4115,7 @@ mrb_UV_uv_kill(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -4154,7 +4162,7 @@ mrb_UV_uv_listen(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -4214,7 +4222,7 @@ mrb_UV_uv_loop_alive(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -4247,7 +4255,7 @@ mrb_UV_uv_loop_close(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -4281,7 +4289,7 @@ mrb_UV_uv_loop_configure(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -4344,7 +4352,7 @@ mrb_UV_uv_loop_init(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -4363,7 +4371,7 @@ mrb_UV_uv_loop_new(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = (native_return_value == NULL ? mrb_nil_value() : mruby_box_uv_loop_t(mrb, native_return_value));
-  
+
   return return_value;
 }
 #endif
@@ -4382,7 +4390,7 @@ mrb_UV_uv_loop_size(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -4439,7 +4447,7 @@ mrb_UV_uv_mutex_init(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -4496,7 +4504,7 @@ mrb_UV_uv_mutex_trylock(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -4556,7 +4564,7 @@ mrb_UV_uv_now(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = TODO_mruby_box_uint64_t(mrb, native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -4652,7 +4660,7 @@ mrb_UV_uv_pipe_bind(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -4731,14 +4739,14 @@ mrb_UV_uv_pipe_getpeername(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   /* Box the out param */
   mrb_value name = mrb_nil_value();
   if (native_return_value == 0) {
     name = mrb_str_new(mrb, native_name, size);
   }
   free(native_name);
-  
+
   mrb_value results = mrb_ary_new(mrb);
   mrb_ary_push(mrb, results, return_value);
   mrb_ary_push(mrb, results, name);
@@ -4776,14 +4784,14 @@ mrb_UV_uv_pipe_getsockname(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   /* Box the out param */
   mrb_value name = mrb_nil_value();
   if (native_return_value == 0) {
     name = mrb_str_new(mrb, native_name, size);
   }
   free(native_name);
-  
+
   mrb_value results = mrb_ary_new(mrb);
   mrb_ary_push(mrb, results, return_value);
   mrb_ary_push(mrb, results, name);
@@ -4828,7 +4836,7 @@ mrb_UV_uv_pipe_init(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -4862,7 +4870,7 @@ mrb_UV_uv_pipe_open(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -4895,7 +4903,7 @@ mrb_UV_uv_pipe_pending_count(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -4959,7 +4967,7 @@ mrb_UV_uv_pipe_pending_type(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -5001,7 +5009,7 @@ mrb_UV_uv_poll_init(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -5047,7 +5055,7 @@ mrb_UV_uv_poll_init_socket(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -5094,7 +5102,7 @@ mrb_UV_uv_poll_start(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -5119,6 +5127,8 @@ mrb_UV_uv_poll_stop(mrb_state* mrb, mrb_value self) {
     return mrb_nil_value();
   }
 
+  mruby_uv_unregister_handle(mrb, handle);
+
   /* Unbox param: handle */
   uv_poll_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_poll_t(handle));
 
@@ -5127,7 +5137,7 @@ mrb_UV_uv_poll_stop(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -5168,7 +5178,7 @@ mrb_UV_uv_prepare_init(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -5213,7 +5223,7 @@ mrb_UV_uv_prepare_start(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -5238,6 +5248,8 @@ mrb_UV_uv_prepare_stop(mrb_state* mrb, mrb_value self) {
     return mrb_nil_value();
   }
 
+  mruby_uv_unregister_handle(mrb, prepare);
+
   /* Unbox param: prepare */
   uv_prepare_t * native_prepare = (mrb_nil_p(prepare) ? NULL : mruby_unbox_uv_prepare_t(prepare));
 
@@ -5246,7 +5258,7 @@ mrb_UV_uv_prepare_stop(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -5350,7 +5362,7 @@ mrb_UV_uv_process_kill(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -5401,7 +5413,7 @@ mrb_UV_uv_queue_work(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -5440,13 +5452,13 @@ mrb_UV_uv_read_start(mrb_state* mrb, mrb_value self) {
 
   /* Unbox param: stream */
   uv_stream_t * native_stream = (mrb_nil_p(stream) ? NULL : mruby_unbox_uv_stream_t(stream));
-  
+
   /* Invocation */
   int native_return_value = uv_read_start(native_stream, mruby_uv_alloc_cb, mruby_uv_read_cb_thunk);
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -5471,6 +5483,8 @@ mrb_UV_uv_read_stop(mrb_state* mrb, mrb_value self) {
     return mrb_nil_value();
   }
 
+  mruby_uv_unregister_handle(mrb, arg1);
+
   /* Unbox param: arg1 */
   uv_stream_t * native_arg1 = (mrb_nil_p(arg1) ? NULL : mruby_unbox_uv_stream_t(arg1));
 
@@ -5479,7 +5493,7 @@ mrb_UV_uv_read_stop(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -5517,7 +5531,7 @@ mrb_UV_uv_recv_buffer_size(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -5592,7 +5606,7 @@ mrb_UV_uv_replace_allocator(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -5616,7 +5630,7 @@ mrb_UV_uv_req_size(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -5646,7 +5660,7 @@ mrb_UV_uv_resident_set_memory(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -5689,7 +5703,7 @@ mrb_UV_uv_run(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -5746,7 +5760,7 @@ mrb_UV_uv_rwlock_init(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -5830,7 +5844,7 @@ mrb_UV_uv_rwlock_tryrdlock(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -5860,7 +5874,7 @@ mrb_UV_uv_rwlock_trywrlock(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -5972,7 +5986,7 @@ mrb_UV_uv_sem_init(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6029,7 +6043,7 @@ mrb_UV_uv_sem_trywait(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6094,7 +6108,7 @@ mrb_UV_uv_send_buffer_size(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6118,7 +6132,7 @@ mrb_UV_uv_set_process_title(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6149,7 +6163,7 @@ mrb_UV_uv_setup_args(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = TODO_mruby_box_char_PTR_PTR(mrb, native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6195,7 +6209,7 @@ mrb_UV_uv_shutdown(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6236,7 +6250,7 @@ mrb_UV_uv_signal_init(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6283,7 +6297,7 @@ mrb_UV_uv_signal_start(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6308,6 +6322,8 @@ mrb_UV_uv_signal_stop(mrb_state* mrb, mrb_value self) {
     return mrb_nil_value();
   }
 
+  mruby_uv_unregister_handle(mrb, handle);
+
   /* Unbox param: handle */
   uv_signal_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_signal_t(handle));
 
@@ -6316,7 +6332,7 @@ mrb_UV_uv_signal_stop(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6367,7 +6383,7 @@ mrb_UV_uv_spawn(mrb_state* mrb, mrb_value self) {
 
   /* Invocation */
   int native_return_value = uv_spawn(native_loop, native_handle, native_options);
-  
+
   if (native_options->args != NULL) {
     /* Array of pointers to ruby internal char *, no need to free the strings. */
     free(native_options->args);
@@ -6384,7 +6400,7 @@ mrb_UV_uv_spawn(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6448,7 +6464,7 @@ mrb_UV_uv_stream_set_blocking(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6472,7 +6488,7 @@ mrb_UV_uv_strerror(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = native_return_value == NULL ? mrb_nil_value() : mrb_str_new_cstr(mrb, native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6514,7 +6530,7 @@ mrb_UV_uv_tcp_bind(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6569,7 +6585,7 @@ mrb_UV_uv_tcp_connect(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6604,7 +6620,7 @@ mrb_UV_uv_tcp_getpeername(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   /* Box the out param */
   mrb_value addr = mrb_nil_value();
   if (native_return_value == 0) {
@@ -6614,7 +6630,7 @@ mrb_UV_uv_tcp_getpeername(mrb_state* mrb, mrb_value self) {
       addr = mruby_giftwrap_sockaddr_in6(mrb, (sockaddr_in6*)native_addr);
     }
   }
-  
+
   mrb_value results = mrb_ary_new(mrb);
   mrb_ary_push(mrb, results, return_value);
   mrb_ary_push(mrb, results, addr);
@@ -6652,7 +6668,7 @@ mrb_UV_uv_tcp_getsockname(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   /* Box the out param */
   mrb_value addr = mrb_nil_value();
   if (native_return_value == 0) {
@@ -6662,7 +6678,7 @@ mrb_UV_uv_tcp_getsockname(mrb_state* mrb, mrb_value self) {
       addr = mruby_giftwrap_sockaddr_in6(mrb, (sockaddr_in6*)native_addr);
     }
   }
-  
+
   mrb_value results = mrb_ary_new(mrb);
   mrb_ary_push(mrb, results, return_value);
   mrb_ary_push(mrb, results, addr);
@@ -6706,7 +6722,7 @@ mrb_UV_uv_tcp_init(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6748,7 +6764,7 @@ mrb_UV_uv_tcp_init_ex(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6783,7 +6799,7 @@ mrb_UV_uv_tcp_keepalive(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6817,7 +6833,7 @@ mrb_UV_uv_tcp_nodelay(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6855,7 +6871,7 @@ mrb_UV_uv_tcp_open(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6889,7 +6905,7 @@ mrb_UV_uv_tcp_simultaneous_accepts(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6929,7 +6945,7 @@ mrb_UV_uv_thread_create(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6964,7 +6980,7 @@ mrb_UV_uv_thread_equal(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -6994,7 +7010,7 @@ mrb_UV_uv_thread_join(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7013,7 +7029,7 @@ mrb_UV_uv_thread_self(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = TODO_mruby_box_uv_thread_t(mrb, native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7046,7 +7062,7 @@ mrb_UV_uv_timer_again(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7079,7 +7095,7 @@ mrb_UV_uv_timer_get_repeat(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = TODO_mruby_box_uint64_t(mrb, native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7120,7 +7136,7 @@ mrb_UV_uv_timer_init(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7194,7 +7210,7 @@ mrb_UV_uv_timer_start(mrb_state* mrb, mrb_value self) {
     mrb_raise(mrb, E_ARGUMENT_ERROR, "uv_timer_start requires a block");
     return mrb_nil_value();
   }
-  MRUBY_UV_PREPARE_HANDLE_THUNK(handle, "@mruby_uv_timer_cb_thunk", cb);  
+  MRUBY_UV_PREPARE_HANDLE_THUNK(handle, "@mruby_uv_timer_cb_thunk", cb);
 
   /* Unbox param: handle */
   uv_timer_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_timer_t(handle));
@@ -7204,7 +7220,7 @@ mrb_UV_uv_timer_start(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7229,6 +7245,8 @@ mrb_UV_uv_timer_stop(mrb_state* mrb, mrb_value self) {
     return mrb_nil_value();
   }
 
+  mruby_uv_unregister_handle(mrb, handle);
+
   /* Unbox param: handle */
   uv_timer_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_timer_t(handle));
 
@@ -7237,7 +7255,7 @@ mrb_UV_uv_timer_stop(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7280,7 +7298,7 @@ mrb_UV_uv_try_write(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7323,7 +7341,7 @@ mrb_UV_uv_tty_get_winsize(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7366,7 +7384,7 @@ mrb_UV_uv_tty_init(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7385,7 +7403,7 @@ mrb_UV_uv_tty_reset_mode(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7419,7 +7437,7 @@ mrb_UV_uv_tty_set_mode(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7461,7 +7479,7 @@ mrb_UV_uv_udp_bind(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7496,7 +7514,7 @@ mrb_UV_uv_udp_getsockname(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   /* Box the out param */
   mrb_value addr = mrb_nil_value();
   if (native_return_value == 0) {
@@ -7506,7 +7524,7 @@ mrb_UV_uv_udp_getsockname(mrb_state* mrb, mrb_value self) {
       addr = mruby_giftwrap_sockaddr_in6(mrb, (sockaddr_in6*)native_addr);
     }
   }
-  
+
   mrb_value results = mrb_ary_new(mrb);
   mrb_ary_push(mrb, results, return_value);
   mrb_ary_push(mrb, results, addr);
@@ -7550,7 +7568,7 @@ mrb_UV_uv_udp_init(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7592,7 +7610,7 @@ mrb_UV_uv_udp_init_ex(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7630,7 +7648,7 @@ mrb_UV_uv_udp_open(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7673,7 +7691,7 @@ mrb_UV_uv_udp_recv_start(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7698,6 +7716,8 @@ mrb_UV_uv_udp_recv_stop(mrb_state* mrb, mrb_value self) {
     return mrb_nil_value();
   }
 
+  mruby_uv_unregister_handle(mrb, handle);
+
   /* Unbox param: handle */
   uv_udp_t * native_handle = (mrb_nil_p(handle) ? NULL : mruby_unbox_uv_udp_t(handle));
 
@@ -7706,7 +7726,7 @@ mrb_UV_uv_udp_recv_stop(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7770,7 +7790,7 @@ mrb_UV_uv_udp_send(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7804,7 +7824,7 @@ mrb_UV_uv_udp_set_broadcast(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7840,7 +7860,7 @@ mrb_UV_uv_udp_set_membership(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7874,7 +7894,7 @@ mrb_UV_uv_udp_set_multicast_interface(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7908,7 +7928,7 @@ mrb_UV_uv_udp_set_multicast_loop(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7942,7 +7962,7 @@ mrb_UV_uv_udp_set_multicast_ttl(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -7976,7 +7996,7 @@ mrb_UV_uv_udp_set_ttl(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -8025,7 +8045,7 @@ mrb_UV_uv_udp_try_send(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -8115,7 +8135,7 @@ mrb_UV_uv_uptime(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -8134,7 +8154,7 @@ mrb_UV_uv_version(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -8153,7 +8173,7 @@ mrb_UV_uv_version_string(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = native_return_value == NULL ? mrb_nil_value() : mrb_str_new_cstr(mrb, native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -8237,7 +8257,7 @@ mrb_UV_uv_write(mrb_state* mrb, mrb_value self) {
     thunk = mruby_uv_write_cb_thunk;
     MRUBY_UV_PREPARE_REQ_THUNK(req, "@mruby_uv_write_cb_thunk", native_cb);
   }
-  
+
 
   /* Unbox param: req */
   uv_write_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_write_t(req));
@@ -8253,7 +8273,7 @@ mrb_UV_uv_write(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -8303,7 +8323,7 @@ mrb_UV_uv_write2(mrb_state* mrb, mrb_value self) {
     thunk = mruby_uv_write_cb_thunk;
     MRUBY_UV_PREPARE_REQ_THUNK(req, "@mruby_uv_write_cb_thunk", native_cb);
   }
-  
+
 
   /* Unbox param: req */
   uv_write_t * native_req = (mrb_nil_p(req) ? NULL : mruby_unbox_uv_write_t(req));
@@ -8322,7 +8342,7 @@ mrb_UV_uv_write2(mrb_state* mrb, mrb_value self) {
 
   /* Box the return value */
   mrb_value return_value = mrb_fixnum_value(native_return_value);
-  
+
   return return_value;
 }
 #endif
@@ -8334,7 +8354,7 @@ void mrb_mruby_libuv_gem_init(mrb_state* mrb) {
 /* sha: user_defined */
 
 /* MRUBY_BINDING_END */
-  
+
   struct RClass* UV_module = mrb_define_module(mrb, "UV");
   mruby_UV_define_macro_constants(mrb);
   mruby_UV_define_enum_constants(mrb);
