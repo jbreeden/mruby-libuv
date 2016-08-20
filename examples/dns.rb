@@ -18,10 +18,9 @@ req = UV::Getaddrinfo.new
 # Note: `hints` param is optional, and is not given here
 UV.getaddrinfo(UV.default_loop, req, 'google.com', 'http') do |req, status, addrinfo|
   puts "Got addrinfo for www.google.com (DNS lookup)"
-  
+
   if status != 0
     puts "DNS Lookup failed: #{UV.strerror(status)}"
-    # => "DNS Lookup failed: unknown node or service"
   else
     loop {
       puts " - Addrinfo: #{addrinfo.inspect}"
@@ -34,9 +33,9 @@ UV.getaddrinfo(UV.default_loop, req, 'google.com', 'http') do |req, status, addr
       break if ai_next.nil?
       addrinfo = ai_next
     }
-    
+
     puts
-    
+
     req = UV::Getnameinfo.new
     # Note: `flags` param is optional, defaults to 0, and is not given here
     UV.getnameinfo(UV.default_loop, req, addrinfo.ai_addr) do |req, status, host, service|

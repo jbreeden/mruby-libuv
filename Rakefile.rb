@@ -1,1 +1,1 @@
-# Everything in rakelib/mruby-bindings.rake so far
+require 'mruby/rake/tasks'
